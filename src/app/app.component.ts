@@ -40,4 +40,16 @@ export class AppComponent implements OnInit {
     // the form was submitted
     this.flashMessage = 'Form submitted!';
   }
+
+  handleEditClick(event: Event): void {
+    // TODO: If there is no form in localStorage => flash message
+    // Read from localStorage
+    const applicationFormLS = JSON.parse(
+      localStorage.getItem('applicationForm')
+    );
+    this.applicationForm.setValue({
+      firstname: applicationFormLS.firstname,
+      lastname: applicationFormLS.lastname,
+    });
+  }
 }

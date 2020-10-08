@@ -5,6 +5,10 @@
   <br />
   <label>Lastname</label>
   <input type="text" formControlName="lastname" />
-  <button>Add</button>
+  <br />
+  <button>Submit Form</button>
+  <button type="button" (click)="handleEditClick($event)">
+    Edit Existing Form
+  </button>
 </form>
 <p>{{ flashMessage }}</p>
