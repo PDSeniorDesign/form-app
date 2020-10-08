@@ -1,14 +1,22 @@
-<h1>Form App</h1>
-<form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
-  <label>Firstname</label>
-  <input type="text" formControlName="firstname" />
-  <br />
-  <label>Lastname</label>
-  <input type="text" formControlName="lastname" />
-  <br />
-  <button>Submit Form</button>
-  <button type="button" (click)="handleEditClick($event)">
-    Edit Existing Form
-  </button>
-</form>
-<p>{{ flashMessage }}</p>
+<h1 class="bg-primary text-center text-white p-2">Form App</h1>
+<div class="container">
+  <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Firstname</label>
+      <input class="form-control" type="text" formControlName="firstname" />
+    </div>
+
+    <label>Lastname</label>
+    <input class="form-control" type="text" formControlName="lastname" />
+    <br />
+    <button class="btn btn-primary mr-2">Submit Form</button>
+    <button
+      class="btn btn-secondary m-2"
+      type="button"
+      (click)="handleEditClick($event)"
+    >
+      Edit Existing Form
+    </button>
+  </form>
+  <p>{{ flashMessage }}</p>
+</div>
