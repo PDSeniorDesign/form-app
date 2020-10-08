@@ -19,10 +19,11 @@ export class AppComponent implements OnInit {
   initializeForm(): void {
     this.applicationForm = this.fb.group({
       firstname: '',
+      lastname: '',
     });
   }
 
   onSubmit(): void {
-    console.log(this.applicationForm.value);
+    console.log(this.applicationForm);
   }
 }
