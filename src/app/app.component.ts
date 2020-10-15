@@ -21,6 +21,17 @@ export class AppComponent implements OnInit {
     this.applicationForm = this.fb.group({
       firstname: '',
       lastname: '',
+      middleInitial: '',
+      // L.A. County Employee No.
+      employeeNumber: '',
+      hostedId: '',
+      departmentEmailAddress: '',
+      departmentName: '',
+      departmentNumber: '',
+      businessStreetAddress: '',
+      city: '',
+      zip: '',
+      phoneNumber: '',
     });
   }
 
