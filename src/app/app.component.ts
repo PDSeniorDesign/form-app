@@ -46,6 +46,16 @@ export class AppComponent implements OnInit {
     this.applicationForm.setValue({
       firstname: '',
       lastname: '',
+      middleInitial: '',
+      employeeNumber: '',
+      hostedId: '',
+      departmentEmailAddress: '',
+      departmentName: '',
+      departmentNumber: '',
+      businessStreetAddress: '',
+      city: '',
+      zip: '',
+      phoneNumber: '',
     });
     // Adding a flashMessage to show that
     // the form was submitted
