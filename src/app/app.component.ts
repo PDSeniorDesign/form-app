@@ -26,8 +26,8 @@ export class AppComponent implements OnInit {
 
   initializeForm(): void {
     this.applicationForm = this.fb.group({
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       middleInitial: '',
       // L.A. County Employee No.
       employeeNumber: '',
@@ -56,8 +56,8 @@ export class AppComponent implements OnInit {
       .then((res) => console.log(res));
     // Clearing the form
     this.applicationForm.setValue({
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       middleInitial: '',
       employeeNumber: '',
       hostedId: '',
