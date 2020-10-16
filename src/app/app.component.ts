@@ -32,16 +32,11 @@ export class AppComponent implements OnInit {
       city: '',
       zip: '',
       phoneNumber: '',
-      // Applications Requested
-      applicationRequested: this.fb.group({
-        internet: false,
-        exchangeEmail: false,
-      }),
     });
   }
 
   onSubmit(): void {
-    console.log(this.applicationForm.value.applicationRequested);
+    console.log(this.applicationForm.value);
     // Saving values to localStorage
     localStorage.setItem(
       'applicationForm',
@@ -61,7 +56,6 @@ export class AppComponent implements OnInit {
       city: '',
       zip: '',
       phoneNumber: '',
-      applicationRequested: { internet: false, exchangeEmail: false },
     });
     // Adding a flashMessage to show that
     // the form was submitted
@@ -74,9 +68,6 @@ export class AppComponent implements OnInit {
     const applicationFormLS = JSON.parse(
       localStorage.getItem('applicationForm')
     );
-    this.applicationForm.setValue({
-      firstname: applicationFormLS.firstname,
-      lastname: applicationFormLS.lastname,
-    });
+    this.applicationForm.setValue(applicationFormLS);
   }
 }
