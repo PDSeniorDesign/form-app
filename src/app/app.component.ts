@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     );
 
     this.http
-      .get(this.URL, this.options)
+      .post(this.URL, this.applicationForm.value, this.options)
       .toPromise()
       .then((res) => console.log(res));
     // Clearing the form
