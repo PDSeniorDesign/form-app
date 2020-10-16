@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,13 @@ export class AppComponent implements OnInit {
   applicationForm: FormGroup;
   flashMessage: string = '';
 
-  constructor(private fb: FormBuilder) {}
+  // For requests
+  URL = 'http://localhost:8080/customers';
+  options = {
+    headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+  };
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
     this.initializeForm();
@@ -42,6 +49,11 @@ export class AppComponent implements OnInit {
       'applicationForm',
       JSON.stringify(this.applicationForm.value)
     );
+
+    this.http
+      .get(this.URL, this.options)
+      .toPromise()
+      .then((res) => console.log(res));
     // Clearing the form
     this.applicationForm.setValue({
       firstname: '',
