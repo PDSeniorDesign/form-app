@@ -2,43 +2,74 @@
 <div class="container">
   <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
+      <h3>Customer Information</h3>
       <label>Firstname</label>
       <input class="form-control" type="text" formControlName="firstname" />
-    
 
-    <label>Lastname</label>
-    <input class="form-control" type="text" formControlName="lastname" />
+      <label>Lastname</label>
+      <input class="form-control" type="text" formControlName="lastname" />
 
-    <label>Middle Initial</label>
-    <input class="form-control" type="text" formControlName="middleInitial" />
+      <label>Middle Initial</label>
+      <input class="form-control" type="text" formControlName="middleInitial" />
 
-    <label>L.A. County Employee Number</label>
-    <input class="form-control" type="text" formControlName="employeeNumber" />
+      <label>L.A. County Employee Number</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="employeeNumber"
+      />
 
-    <label>Hosted ID</label>
-    <input class="form-control" type="text" formControlName="middleInitial" />
+      <label>Hosted ID</label>
+      <input class="form-control" type="text" formControlName="middleInitial" />
 
-    <label>Department Email Address</label>
-    <input class="form-control" type="text" formControlName="departmentEmailAddress" />
+      <label>Department Email Address</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="departmentEmailAddress"
+      />
 
-    <label>Department Name</label>
-    <input class="form-control" type="text" formControlName="departmentName" />
+      <label>Department Name</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="departmentName"
+      />
 
-    <label>Department Number</label>
-    <input class="form-control" type="text" formControlName="departmentNumber" />
+      <label>Department Number</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="departmentNumber"
+      />
 
-    <label>Business Street Address</label>
-    <input class="form-control" type="text" formControlName="businessStreetAddress" />
+      <label>Business Street Address</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="businessStreetAddress"
+      />
 
-    <label>City</label>
-    <input class="form-control" type="text" formControlName="city" />
+      <label>City</label>
+      <input class="form-control" type="text" formControlName="city" />
 
-    <label>Zip</label>
-    <input class="form-control" type="text" formControlName="zip" />
+      <label>Zip</label>
+      <input class="form-control" type="text" formControlName="zip" />
 
-    <label>Phone Number</label>
-    <input class="form-control" type="text" formControlName="phoneNumber" />
+      <label>Phone Number</label>
+      <input class="form-control" type="text" formControlName="phoneNumber" />
 
+      <div class="form-group" formGroupName="applicationRequested">
+        <h3>Application(s) Requested</h3>
+        <label
+          >Internet
+          <input type="checkbox" formControlName="internet" />
+        </label>
+        <label
+          >Exchange Email
+          <input type="checkbox" formControlName="exchangeEmail" />
+        </label>
+      </div>
     </div>
     <button class="btn btn-primary mr-2">Submit Form</button>
     <button
