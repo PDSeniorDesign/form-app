@@ -1,25 +1,5 @@
 <div id="personal-details" [formGroup]="regForm">
-  <div class="form-group col-md-4" formGroupName="personalDetails">
-    <label>Firstname*</label>
-    <input
-      matInput
-      type="text"
-      class="form-control"
-      formControlName="firstname"
-    />
-  </div>
-  <div class="form-group col-md-4" formGroupName="personalDetails">
-    <label>MI</label>
-    <input matInput type="text" class="form-control" formControlName="mi" />
-  </div>
-  <div class="form-group col-md-4" formGroupName="personalDetails">
-    <label>Lastname*</label>
-    <input
-      matInput
-      type="text"
-      class="form-control"
-      formControlName="lastname"
-    />
+  <div class="from-group col-md-4" formGroupName="applicationName">
     <div>
       <button (click)="onClickEmployee()">Employee</button>
       <button>Contractor</button>
@@ -35,5 +15,6 @@
     </ng-template>
   </div>
   <br />
+  <button type="button" (click)="printValues()">Print Values</button>
   <button type="button" matStepperNext>Next</button>
 </div>

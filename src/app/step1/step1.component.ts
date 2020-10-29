@@ -34,4 +34,8 @@ export class Step1Component implements OnInit {
     this.formType = 'EMPLOYEE';
     console.log(this.formType);
   }
+
+  printValues(): void {
+    console.log(this.regForm);
+  }
 }

@@ -5,8 +5,8 @@
   <form id="regForm" [formGroup]="registrationForm">
     <mat-horizontal-stepper #stepper linear>
       <mat-step
-        formGroupName="personalDetails"
-        [stepControl]="registrationForm.get('personalDetails')"
+        formGroupName="applicationName"
+        [stepControl]="registrationForm.get('applicationName')"
       >
         <ng-template matStepLabel>Enter Personal Details</ng-template>
         <app-step1 [regForm]="registrationForm"></app-step1>
