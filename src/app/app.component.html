@@ -1,84 +1,27 @@
-<h1 class="bg-primary text-center text-white p-2">Form App</h1>
-<div class="container">
-  <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <h3>Customer Information</h3>
-      <label>Firstname</label>
-      <input class="form-control" type="text" formControlName="firstname" />
-
-      <label>Lastname</label>
-      <input class="form-control" type="text" formControlName="lastname" />
-
-      <label>Middle Initial</label>
-      <input class="form-control" type="text" formControlName="middleInitial" />
-
-      <label>L.A. County Employee Number</label>
-      <input
-        class="form-control"
-        type="text"
-        formControlName="employeeNumber"
-      />
-
-      <label>Hosted ID</label>
-      <input class="form-control" type="text" formControlName="middleInitial" />
-
-      <label>Department Email Address</label>
-      <input
-        class="form-control"
-        type="text"
-        formControlName="departmentEmailAddress"
-      />
-
-      <label>Department Name</label>
-      <input
-        class="form-control"
-        type="text"
-        formControlName="departmentName"
-      />
-
-      <label>Department Number</label>
-      <input
-        class="form-control"
-        type="text"
-        formControlName="departmentNumber"
-      />
-
-      <label>Business Street Address</label>
-      <input
-        class="form-control"
-        type="text"
-        formControlName="businessStreetAddress"
-      />
-
-      <label>City</label>
-      <input class="form-control" type="text" formControlName="city" />
-
-      <label>Zip</label>
-      <input class="form-control" type="text" formControlName="zip" />
-
-      <label>Phone Number</label>
-      <input class="form-control" type="text" formControlName="phoneNumber" />
-
-      <div class="form-group" formGroupName="applicationRequested">
-        <h3>Application(s) Requested</h3>
-        <label
-          >Internet
-          <input type="checkbox" formControlName="internet" />
-        </label>
-        <label
-          >Exchange Email
-          <input type="checkbox" formControlName="exchangeEmail" />
-        </label>
-      </div>
-    </div>
-    <button class="btn btn-primary mr-2">Submit Form</button>
-    <button
-      class="btn btn-secondary m-2"
-      type="button"
-      (click)="handleEditClick($event)"
-    >
-      Edit Existing Form
-    </button>
+<div style="text-align: center">
+  <h1>Welcome to {{ title }}!</h1>
+</div>
+<div id="registration" class="conatiner col-md-12">
+  <form id="regForm" [formGroup]="registrationForm">
+    <mat-horizontal-stepper #stepper linear>
+      <mat-step
+        formGroupName="personalDetails"
+        [stepControl]="registrationForm.get('personalDetails')"
+      >
+        <ng-template matStepLabel>Enter Personal Details</ng-template>
+        <app-step1 [regForm]="registrationForm"></app-step1>
+      </mat-step>
+      <mat-step
+        formGroupName="contactDetails"
+        [stepControl]="registrationForm.get('contactDetails')"
+      >
+        <ng-template matStepLabel>Enter Contact Details</ng-template>
+        <app-step2 [regForm]="registrationForm"></app-step2>
+      </mat-step>
+      <!-- <mat-step>
+        <ng-template matStepLabel>Confirm Details</ng-template>
+        <app-registration-step3 [regForm]="registrationForm"></app-registration-step3>
+      </mat-step> -->
+    </mat-horizontal-stepper>
   </form>
-  <p>{{ flashMessage }}</p>
 </div>

@@ -1,0 +1,39 @@
+<div id="personal-details" [formGroup]="regForm">
+  <div class="form-group col-md-4" formGroupName="personalDetails">
+    <label>Firstname*</label>
+    <input
+      matInput
+      type="text"
+      class="form-control"
+      formControlName="firstname"
+    />
+  </div>
+  <div class="form-group col-md-4" formGroupName="personalDetails">
+    <label>MI</label>
+    <input matInput type="text" class="form-control" formControlName="mi" />
+  </div>
+  <div class="form-group col-md-4" formGroupName="personalDetails">
+    <label>Lastname*</label>
+    <input
+      matInput
+      type="text"
+      class="form-control"
+      formControlName="lastname"
+    />
+    <div>
+      <button (click)="onClickEmployee()">Employee</button>
+      <button>Contractor</button>
+    </div>
+    <!-- Employee Forms -->
+    <ng-template [ngIf]="formType == 'EMPLOYEE'">
+      <div class="form-group">
+        <div *ngFor="let application of employeeApplicationList; let i = index">
+          <input type="checkbox" />
+          <label for="">{{ application }}</label>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <br />
+  <button type="button" matStepperNext>Next</button>
+</div>
