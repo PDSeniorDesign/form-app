@@ -15,9 +15,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { Step2Component } from './step2/step2.component';
 import { Step3Component } from './step3/step3.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
-  declarations: [AppComponent, Step1Component, Step2Component, Step3Component],
+  declarations: [AppComponent, Step1Component, Step2Component, Step3Component, HomepageComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
