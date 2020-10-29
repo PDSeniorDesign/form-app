@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Step1Component } from './step1/step1.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,12 +12,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
-import { Step2Component } from './step2/step2.component';
-import { Step3Component } from './step3/step3.component';
+import { Step1Component } from './form/step1/step1.component';
+import { Step2Component } from './form/step2/step2.component';
+import { Step3Component } from './form/step3/step3.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
-  declarations: [AppComponent, Step1Component, Step2Component, Step3Component, HomepageComponent],
+  declarations: [
+    AppComponent,
+    Step1Component,
+    Step2Component,
+    Step3Component,
+    HomepageComponent,
+    FormComponent,
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -30,6 +39,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatListModule,
     MatStepperModule,
     MatInputModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
