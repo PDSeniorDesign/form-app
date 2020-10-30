@@ -1,20 +1,25 @@
 <div id="personal-details" [formGroup]="regForm">
-  <div class="from-group col-md-4" formGroupName="applicationName">
-    <div>
-      <button (click)="onClickEmployee()">Employee</button>
-      <button>Contractor</button>
+  <div class="row" formGroupName="name">
+    <div class="col-4">
+      <input placeholder="First Name" formControlName="firstName" />
     </div>
-    <!-- Employee Forms -->
-    <ng-template [ngIf]="formType == 'EMPLOYEE'">
-      <div class="form-group">
-        <div *ngFor="let application of employeeApplicationList; let i = index">
-          <input type="checkbox" />
-          <label for="">{{ application }}</label>
-        </div>
-      </div>
-    </ng-template>
+    <div class="col-4">
+      <input placeholder="Middle Initial" formControlName="middleInitial" />
+    </div>
+    <div class="col-4">
+      <input placeholder="Last Name" formControlName="lastName" />
+    </div>
   </div>
-  <br />
-  <button type="button" (click)="printValues()">Print Values</button>
+  <div class="row" formGroupName="name">
+    <div class="col-6">
+      <input
+        placeholder="County Employee Number"
+        formControlName="countyEmployeeNumber"
+      />
+    </div>
+    <div class="col-6">
+      <input placeholder="Hosted Id" formControlName="hostedId" />
+    </div>
+  </div>
   <button type="button" matStepperNext>Next</button>
 </div>

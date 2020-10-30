@@ -5,7 +5,9 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-
+/* TODO: Flash error message when required field
+ *  is not filled in
+ */
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -21,6 +23,13 @@ export class FormComponent implements OnInit {
     this.registrationForm = new FormGroup({
       applicationName: new FormGroup({
         name: new FormControl(null),
+      }),
+      name: new FormGroup({
+        firstName: new FormControl(null, [Validators.required]),
+        middleInitial: new FormControl(null),
+        lastName: new FormControl(null, [Validators.required]),
+        countyEmployeeNumber: new FormControl(null, [Validators.required]),
+        hostedId: new FormControl(null, [Validators.required]),
       }),
       contactDetails: new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
