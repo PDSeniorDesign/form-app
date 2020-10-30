@@ -1,1 +1,16 @@
-<p>step2 works!</p>
+<div id="department-details" [formGroup]="regForm">
+  <div class="row" formGroupName="department">
+    <div class="col-12">
+      <input
+        placeholder="Department Email Address"
+        formControlName="departmentEmailAddress"
+      />
+    </div>
+  </div>
+  <div class="row" formGroupName="department">
+    <div class="col-12">
+      <input placeholder="Department Name" formControlName="departmentName" />
+    </div>
+  </div>
+  <button type="button" matStepperNext>Next</button>
+</div>

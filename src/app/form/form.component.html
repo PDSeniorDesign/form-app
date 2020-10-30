@@ -12,8 +12,8 @@
         <app-step1 [regForm]="registrationForm"></app-step1>
       </mat-step>
       <mat-step
-        formGroupName="contactDetails"
-        [stepControl]="registrationForm.get('contactDetails')"
+        formGroupName="department"
+        [stepControl]="registrationForm.get('department')"
       >
         <ng-template matStepLabel>Department</ng-template>
         <app-step2 [regForm]="registrationForm"></app-step2>

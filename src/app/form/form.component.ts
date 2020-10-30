@@ -31,6 +31,10 @@ export class FormComponent implements OnInit {
         countyEmployeeNumber: new FormControl(null, [Validators.required]),
         hostedId: new FormControl(null, [Validators.required]),
       }),
+      department: new FormGroup({
+        departmentEmailAddress: new FormControl(null, [Validators.required]),
+        departmentName: new FormControl(null, [Validators.required]),
+      }),
       contactDetails: new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
         phone: new FormControl(null),
