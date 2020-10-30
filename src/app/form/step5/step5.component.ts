@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-step3',
-  templateUrl: './step3.component.html',
-  styleUrls: ['./step3.component.css'],
+  selector: 'app-step5',
+  templateUrl: './step5.component.html',
+  styleUrls: ['./step5.component.css'],
 })
-export class Step3Component implements OnInit {
+export class Step5Component implements OnInit {
   @Input() regForm: FormGroup;
   constructor() {}
 
