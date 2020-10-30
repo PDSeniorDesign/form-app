@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-step5',
   templateUrl: './step5.component.html',
-  styleUrls: ['./step5.component.css']
+  styleUrls: ['./step5.component.css'],
 })
 export class Step5Component implements OnInit {
+  @Input() regForm: FormGroup;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
