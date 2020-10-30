@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -27,7 +28,12 @@ export class HomepageComponent implements OnInit {
     'ISD Internet Registration Form',
   ];
 
-  constructor() { }
+  constructor(private router:Router) { }
+
+  //to link button to form page
+  goToForm(pageName:string):void{
+    this.router.navigate([`${pageName}`]);
+  }
 
   ngOnInit(): void {
   }
@@ -46,3 +52,4 @@ export class HomepageComponent implements OnInit {
   }
 
 }
+
