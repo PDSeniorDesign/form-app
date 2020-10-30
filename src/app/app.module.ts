@@ -18,6 +18,8 @@ import { Step3Component } from './form/step3/step3.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormComponent } from './form/form.component';
+import { Step4Component } from './form/step4/step4.component';
+import { Step5Component } from './form/step5/step5.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { FormComponent } from './form/form.component';
     Step3Component,
     HomepageComponent,
     FormComponent,
+    Step4Component,
+    Step5Component,
   ],
   imports: [
     BrowserModule,
