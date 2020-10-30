@@ -3,7 +3,7 @@
 </div>
 <div id="registration" class="conatiner col-md-12">
   <form id="regForm" [formGroup]="registrationForm">
-    <mat-horizontal-stepper #stepper linear>
+    <mat-horizontal-stepper #stepper>
       <mat-step
         formGroupName="name"
         [stepControl]="registrationForm.get('name')"
@@ -18,10 +18,10 @@
         <ng-template matStepLabel>Department</ng-template>
         <app-step2 [regForm]="registrationForm"></app-step2>
       </mat-step>
-      <!-- <mat-step>
-        <ng-template matStepLabel>Confirm Details</ng-template>
-        <app-registration-step3 [regForm]="registrationForm"></app-registration-step3>
-      </mat-step> -->
+      <mat-step>
+        <ng-template matStepLabel>Address</ng-template>
+        <app-step3 [regForm]="registrationForm"></app-step3>
+      </mat-step>
     </mat-horizontal-stepper>
   </form>
 </div>

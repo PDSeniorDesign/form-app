@@ -8,6 +8,8 @@ import {
 /* TODO: Flash error message when required field
  *  is not filled in
  */
+
+//TODO: Missing phoneNumber field not sure where to put
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -34,6 +36,12 @@ export class FormComponent implements OnInit {
       department: new FormGroup({
         departmentEmailAddress: new FormControl(null, [Validators.required]),
         departmentName: new FormControl(null, [Validators.required]),
+      }),
+      address: new FormGroup({
+        businessStreetAddress: new FormControl(null, [Validators.required]),
+        city: new FormControl(null, [Validators.required]),
+        zip: new FormControl(null, [Validators.required]),
+        phoneNumber: new FormControl(null, [Validators.required]),
       }),
       contactDetails: new FormGroup({
         email: new FormControl(null, [Validators.required, Validators.email]),
