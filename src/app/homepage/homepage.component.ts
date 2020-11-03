@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormType } from '../form/models/FormType';
+import { FormUserType } from '../form/models/FormUserType';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
   // (@Input) Allows us to recieve the form from
@@ -13,8 +15,14 @@ export class HomepageComponent implements OnInit {
   @Input() regForm: FormGroup;
 
   // EMPLOYEE or CONTRACTOR
-  formType: string;
- 
+  formType: FormType;
+  formUserType: FormUserType;
+
+  // Used by template
+  public get FormUserType() {
+    return FormUserType;
+  }
+
   //forms that pertains to either EMPLOYEE or CONTRACTOR and represented as values
   employeeApplicationList: string[] = [
     'ISD Active Directory Hosted Registration Forms Permanent Employees',
@@ -28,28 +36,25 @@ export class HomepageComponent implements OnInit {
     'ISD Internet Registration Form',
   ];
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) {}
 
   //to link button to form page
-  goToForm(pageName:string):void{
+  goToForm(pageName: string): void {
     this.router.navigate([`${pageName}`]);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onClickEmployee(): void {
-    this.formType = 'EMPLOYEE';
+    this.formUserType = FormUserType.EMPLOYEE;
     console.log(this.formType);
   }
   onClickContractor(): void {
-    this.formType = 'CONTRACTOR';
+    this.formUserType = FormUserType.CONTRACTOR;
     console.log(this.formType);
   }
 
   printValues(): void {
     console.log(this.regForm);
   }
-
 }
-
