@@ -5,6 +5,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { FormType } from './models/FormType';
 /* TODO: Flash error message when required field
  *  is not filled in
  */
@@ -18,10 +20,19 @@ import {
 export class FormComponent implements OnInit {
   title = 'form-app';
   registrationForm: FormGroup;
+  formName: any;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    // Reading url param
+    this.formName = this.route.snapshot.queryParamMap.get('formName');
+    console.log(
+      this.formName ==
+        FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES
+    );
+
+    // console.log(this.formName);
     this.registrationForm = new FormGroup({
       applicationName: new FormGroup({
         name: new FormControl(null),
