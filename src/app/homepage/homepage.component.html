@@ -15,9 +15,9 @@
           [id]="application"
           type="radio"
           formControlName="formName"
-          [value]="application"
+          [value]="application.value"
         />
-        <label [for]="application">{{ application }}</label>
+        <label [for]="application">{{ application.text }}</label>
       </div>
     </div>
   </ng-template>
@@ -30,9 +30,9 @@
           [id]="application"
           type="radio"
           formControlName="formName"
-          [value]="application"
+          [value]="application.value"
         />
-        <label [for]="application">{{ application }}</label>
+        <label [for]="application">{{ application.text }}</label>
       </div>
     </div>
   </ng-template>
