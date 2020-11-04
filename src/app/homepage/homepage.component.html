@@ -1,30 +1,41 @@
-
 <div style="text-align: center">
-    <h1>Homepage</h1>
+  <h1>Homepage</h1>
 </div>
-<div class= "from-group col-md-12">
-    <div>
-        <button (click)="onClickEmployee()">Employee</button>
-        <button (click)="onClickContractor()">Contractors/Vendors</button>
+<div class="from-group col-md-12">
+  <div>
+    <button (click)="onClickEmployee()">Employee</button>
+    <button (click)="onClickContractor()">Contractors/Vendors</button>
+  </div>
+  <!-- Employee Forms -->
+  <ng-template [ngIf]="formUserType == FormUserType.EMPLOYEE">
+    <div class="form-group" [formGroup]="formName">
+      <div *ngFor="let application of employeeApplicationList; let i = index">
+        <input
+          name="formName"
+          [id]="application"
+          type="radio"
+          formControlName="formName"
+          [value]="application.value"
+        />
+        <label [for]="application">{{ application.text }}</label>
+      </div>
     </div>
-    <!-- Employee Forms -->
-    <ng-template [ngIf]="formType == 'EMPLOYEE'">
-        <div class="form-group">
-            <div *ngFor="let application of employeeApplicationList; let i = index">
-                <input type="radio" />
-                <label for="">{{ application }}</label>
-            </div>
-        </div>
-    </ng-template>
-    <ng-template [ngIf]="formType == 'CONTRACTOR'">
-        <div class="form-group">
-            <div *ngFor="let application of  vendorApplicationList; let j = index">
-                <input type="radio">
-                <label for="">{{ application }}</label>
-            </div>
-        </div>
-    </ng-template>
-    <button (click)="goToForm('form')">Next</button>
+  </ng-template>
+  <!-- TODO: Fix format of form names -->
+  <ng-template [ngIf]="formUserType == FormUserType.CONTRACTOR">
+    <div class="form-group" [formGroup]="formName">
+      <div *ngFor="let application of vendorApplicationList; let j = index">
+        <input
+          name="formName"
+          [id]="application"
+          type="radio"
+          formControlName="formName"
+          [value]="application.value"
+        />
+        <label [for]="application">{{ application.text }}</label>
+      </div>
+    </div>
+  </ng-template>
+  <button (click)="goToForm()">Next</button>
+  <button (click)="printValues()">Print</button>
 </div>
-
-
