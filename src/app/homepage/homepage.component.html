@@ -8,26 +8,31 @@
   </div>
   <!-- Employee Forms -->
   <ng-template [ngIf]="formUserType == FormUserType.EMPLOYEE">
-    <form [formGroup]="formName">
-      <div class="form-group">
-        <div *ngFor="let application of employeeApplicationList; let i = index">
-          <input
-            name="formName"
-            [id]="application"
-            type="radio"
-            formControlName="formName"
-            [value]="application"
-          />
-          <label [for]="application">{{ application }}</label>
-        </div>
+    <div class="form-group" [formGroup]="formName">
+      <div *ngFor="let application of employeeApplicationList; let i = index">
+        <input
+          name="formName"
+          [id]="application"
+          type="radio"
+          formControlName="formName"
+          [value]="application"
+        />
+        <label [for]="application">{{ application }}</label>
       </div>
-    </form>
+    </div>
   </ng-template>
+  <!-- TODO: Fix format of form names -->
   <ng-template [ngIf]="formUserType == FormUserType.CONTRACTOR">
-    <div class="form-group">
+    <div class="form-group" [formGroup]="formName">
       <div *ngFor="let application of vendorApplicationList; let j = index">
-        <input type="radio" />
-        <label for="">{{ application }}</label>
+        <input
+          name="formName"
+          [id]="application"
+          type="radio"
+          formControlName="formName"
+          [value]="application"
+        />
+        <label [for]="application">{{ application }}</label>
       </div>
     </div>
   </ng-template>
