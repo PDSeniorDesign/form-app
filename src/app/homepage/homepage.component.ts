@@ -35,8 +35,10 @@ export class HomepageComponent implements OnInit {
   constructor(private router: Router) {}
 
   //to link button to form page
-  goToForm(pageName: string): void {
-    this.router.navigate([`${pageName}`]);
+  goToForm(): void {
+    this.router.navigate(['/form'], {
+      queryParams: { formName: this.formName.value.formName },
+    });
   }
 
   ngOnInit(): void {
