@@ -1,8 +1,15 @@
 <div style="text-align: center">
   <h1>Welcome to {{ title }}!</h1>
 </div>
-<div id="registration" class="conatiner col-md-12">
-  <form id="regForm" [formGroup]="registrationForm">
+<div id="registration" class="conatiner col-md-12" [ngSwitch]="formName">
+  <!-- ISD Active Directory Hosted Registration Forms Permanent Employees -->
+  <form
+    id="regForm"
+    [formGroup]="registrationForm"
+    *ngSwitchCase="
+      FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES
+    "
+  >
     <mat-horizontal-stepper #stepper>
       <mat-step
         formGroupName="name"
@@ -32,4 +39,8 @@
       </mat-step>
     </mat-horizontal-stepper>
   </form>
+  <!-- Default case -->
+  <div *ngSwitchDefault>
+    <h1>Form Not Yet Built</h1>
+  </div>
 </div>
