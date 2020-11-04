@@ -10,10 +10,6 @@ import { FormUserType } from '../form/models/FormUserType';
   styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
-  // (@Input) Allows us to recieve the form from
-  // parent component
-  @Input() regForm: FormGroup;
-
   // EMPLOYEE or CONTRACTOR
   formName: FormGroup;
   formUserType: FormUserType;
