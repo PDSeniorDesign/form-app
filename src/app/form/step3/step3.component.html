@@ -1,20 +1,36 @@
-  
 <div id="address-details" [formGroup]="regForm">
-  <div class="row" formGroupName="address">
+  <div class="row mb-4" formGroupName="address">
     <div class="col-12">
+      <label for="businessStreetAddressInput">Business Street Address`</label>
       <input
+        id="businessStreetAddressInput"
         placeholder="Business Street Address"
         formControlName="businessStreetAddress"
+        class="form-control"
       />
     </div>
   </div>
-  <div class="row" formGroupName="address">
+  <div class="row mb-4" formGroupName="address">
     <div class="col-6">
-      <input placeholder="city" formControlName="city" />
+      <label for="cityInput">City</label>
+      <input
+        id="cityInput"
+        placeholder="city"
+        formControlName="city"
+        class="form-control"
+      />
     </div>
     <div class="col-6">
-      <input placeholder="zip" formControlName="zip" />
+      <label for="zipInput">Zip Code</label>
+      <input
+        id="zipInput"
+        placeholder="zip"
+        formControlName="zip"
+        class="form-control"
+      />
     </div>
   </div>
-  <button type="button" matStepperNext>Next</button>
+  <button type="button" class="btn btn-lg btn-primary" matStepperNext>
+    Next
+  </button>
 </div>

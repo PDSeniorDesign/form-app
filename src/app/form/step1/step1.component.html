@@ -1,25 +1,52 @@
 <div id="name-details" [formGroup]="regForm">
-  <div class="row" formGroupName="name">
+  <div class="row mb-4" formGroupName="name">
     <div class="col-4">
-      <input placeholder="First Name" formControlName="firstName" />
+      <label for="firstNameInput">First name</label>
+      <input
+        id="firstNameInput"
+        placeholder="First Name"
+        formControlName="firstName"
+        class="form-control"
+      />
     </div>
     <div class="col-4">
-      <input placeholder="Middle Initial" formControlName="middleInitial" />
+      <label for="middleInitialInput">Middle Initial</label>
+      <input
+        placeholder="Middle Initial"
+        formControlName="middleInitial"
+        class="form-control"
+      />
     </div>
     <div class="col-4">
-      <input placeholder="Last Name" formControlName="lastName" />
+      <label for="lastNameInput">Last Name</label>
+      <input
+        placeholder="Last Name"
+        formControlName="lastName"
+        class="form-control"
+      />
     </div>
   </div>
-  <div class="row" formGroupName="name">
+  <div class="row mb-4" formGroupName="name">
     <div class="col-6">
+      <label for="countyEmployeeNumberInput">County Employee Number</label>
       <input
+        id="countyEmployeeNumberInput"
         placeholder="County Employee Number"
         formControlName="countyEmployeeNumber"
+        class="form-control"
       />
     </div>
     <div class="col-6">
-      <input placeholder="Hosted Id" formControlName="hostedId" />
+      <label for="hostedIdInput">Hosted Id</label>
+      <input
+        id="hostedIdInput"
+        placeholder="Hosted Id"
+        formControlName="hostedId"
+        class="form-control"
+      />
     </div>
   </div>
-  <button type="button" matStepperNext>Next</button>
+  <button type="button" class="btn btn-primary btn-lg" matStepperNext>
+    Next
+  </button>
 </div>
