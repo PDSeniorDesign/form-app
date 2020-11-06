@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormType } from './models/FormType';
+import FormGroups from './models/FormGroups';
+
 /* TODO: Flash error message when required field
  *  is not filled in
  */
@@ -30,37 +32,18 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     // Reading url param
     this.formName = this.route.snapshot.queryParamMap.get('formName');
-    console.log(
-      this.formName ==
-        FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES
-    );
 
-    // console.log(this.formName);
-    this.registrationForm = new FormGroup({
-      applicationName: new FormGroup({
-        name: new FormControl(null),
-      }),
-      name: new FormGroup({
-        firstName: new FormControl(null, [Validators.required]),
-        middleInitial: new FormControl(null),
-        lastName: new FormControl(null, [Validators.required]),
-        countyEmployeeNumber: new FormControl(null, [Validators.required]),
-        hostedId: new FormControl(null, [Validators.required]),
-      }),
-      department: new FormGroup({
-        departmentEmailAddress: new FormControl(null, [Validators.required]),
-        departmentName: new FormControl(null, [Validators.required]),
-      }),
-      address: new FormGroup({
-        businessStreetAddress: new FormControl(null, [Validators.required]),
-        city: new FormControl(null, [Validators.required]),
-        zip: new FormControl(null, [Validators.required]),
-        phoneNumber: new FormControl(null, [Validators.required]),
-      }),
-      contactDetails: new FormGroup({
-        email: new FormControl(null, [Validators.required, Validators.email]),
-        phone: new FormControl(null),
-      }),
-    });
+    // FormGroup Initialization
+    switch (this.formName) {
+      case FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES:
+        this.registrationForm = new FormGroup(
+          FormGroups[
+            FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES
+          ]
+        );
+        break;
+      default:
+        this.registrationForm = null;
+    }
   }
 }
