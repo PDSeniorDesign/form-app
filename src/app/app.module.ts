@@ -20,6 +20,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormComponent } from './form/form.component';
 import { Step4Component } from './form/step4/step4.component';
 import { Step5Component } from './form/step5/step5.component';
+import { InformationComponent } from './form/information/information.component';
+import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { Step5Component } from './form/step5/step5.component';
     FormComponent,
     Step4Component,
     Step5Component,
+    InformationComponent,
+    EmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
