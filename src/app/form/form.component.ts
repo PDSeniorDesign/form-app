@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { FormType } from './models/FormType';
 import FormGroups from './models/FormGroups';
+import { FormUserType } from './models/FormUserType';
 
 /* TODO: Flash error message when required field
  *  is not filled in
@@ -41,6 +42,9 @@ export class FormComponent implements OnInit {
             FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES
           ]
         );
+        break;
+      case FormUserType.EMPLOYEE:
+        this.registrationForm = new FormGroup(FormGroups.EMPLOYEE_FORM);
         break;
       default:
         this.registrationForm = null;

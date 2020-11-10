@@ -72,6 +72,9 @@ export class HomepageComponent implements OnInit {
   onClickEmployee(): void {
     this.formUserType = FormUserType.EMPLOYEE;
     console.log(this.formName);
+    this.router.navigate(['/form'], {
+      queryParams: { formName: FormUserType.EMPLOYEE },
+    });
   }
   onClickContractor(): void {
     this.formUserType = FormUserType.CONTRACTOR;
