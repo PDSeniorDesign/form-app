@@ -28,6 +28,17 @@ const ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES = {
   }),
 };
 
+const EMPLOYEE_FORM = {
+  information: new FormGroup({
+    lastName: new FormControl(null),
+    firstName: new FormControl(null),
+    middleInitial: new FormControl(null),
+    laCountyEmployeeNumber: new FormControl(null),
+    departmentName: new FormControl(null),
+    departmentNumber: new FormControl(null),
+    testingData: new FormControl(null),
+  }),
+};
 const FormGroups = {
   ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES: ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES,
 };
