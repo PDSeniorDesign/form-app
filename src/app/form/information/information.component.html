@@ -1,0 +1,63 @@
+<div id="name-details" [formGroup]="regForm">
+  <div class="row mb-4" formGroupName="information">
+    <div class="col-4">
+      <label for="firstNameInput">First Name</label>
+      <input
+        id="firstNameInput"
+        placeholder="Enter first name"
+        formControlName="firstName"
+        class="form-control"
+      />
+    </div>
+    <div class="col-4">
+      <label for="middleInitialInput">Middle Initial</label>
+      <input
+        id="middleInitialInput"
+        class="form-control"
+        placeholder="middle initial"
+        formControlName="middleInitial"
+      />
+    </div>
+    <div class="col-4">
+      <label for="lastNameInput">Last Name</label>
+      <input
+        id="lastNameInput"
+        placeholder="lastname"
+        formControlName="lastName"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row mb-4" formGroupName="information">
+    <div class="col-4">
+      <label for="employeeNumberInput">Employee Number</label>
+      <input
+        id="employeeNumberInput"
+        placeholder="employee number"
+        formControlName="laCountyEmployeeNumber"
+        class="form-control"
+      />
+    </div>
+    <div class="col-4">
+      <label for="departmentNameInput">Department Name</label>
+      <input
+        id="departmentName"
+        placeholder="Department Name"
+        formControlName="departmentNumber"
+        class="form-control"
+      />
+    </div>
+    <div class="col-4">
+      <label for="departmentNumberInput">Department Number</label>
+      <input
+        id="departmentNumberInput"
+        placeholder="department number"
+        formControlName="departmentNumber"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary btn-lg" matStepperNext>
+    Next
+  </button>
+</div>

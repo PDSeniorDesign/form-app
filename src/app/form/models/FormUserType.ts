@@ -1,4 +1,4 @@
 export enum FormUserType {
-  EMPLOYEE,
-  CONTRACTOR,
+  EMPLOYEE = 'EMPLOYEE',
+  CONTRACTOR = 'CONTRACTOR',
 }

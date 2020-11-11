@@ -33,9 +33,21 @@
         <ng-template matStepLabel>Email</ng-template>
         <app-step4 [regForm]="registrationForm"></app-step4>
       </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Submit</ng-template>
-        <app-step5 [regForm]="registrationForm"></app-step5>
+    </mat-horizontal-stepper>
+  </form>
+  <!-- Employee Form -->
+  <form
+    id="regForm"
+    [formGroup]="registrationForm"
+    *ngSwitchCase="FormUserType.EMPLOYEE"
+  >
+    <mat-horizontal-stepper #stepper>
+      <mat-step
+        formGroupName="information"
+        [stepControl]="registrationForm.get('information')"
+      >
+        <ng-template matStepLabel>Information</ng-template>
+        <app-information [regForm]="registrationForm"></app-information>
       </mat-step>
     </mat-horizontal-stepper>
   </form>
