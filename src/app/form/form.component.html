@@ -36,7 +36,11 @@
     </mat-horizontal-stepper>
   </form>
   <!-- Employee Form -->
-  <form id="regForm" [formGroup]="registrationForm" *ngSwitchCase="'EMPLOYEE'">
+  <form
+    id="regForm"
+    [formGroup]="registrationForm"
+    *ngSwitchCase="FormUserType.EMPLOYEE"
+  >
     <mat-horizontal-stepper #stepper>
       <mat-step
         formGroupName="information"

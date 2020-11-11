@@ -28,6 +28,9 @@ export class FormComponent implements OnInit {
   public get FormType() {
     return FormType;
   }
+  public get FormUserType() {
+    return FormUserType;
+  }
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
