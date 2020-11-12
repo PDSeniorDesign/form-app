@@ -85,6 +85,10 @@
       </mat-step>
     </mat-horizontal-stepper>
   </form>
+  <!-- Contractor Form -->
+  <form id="regForm" [formGroup]="" *ngSwitchCase="FormUserType.CONTRACTOR">
+    <p>Contractor</p>
+  </form>
   <!-- Default case -->
   <div *ngSwitchDefault>
     <h1>Form Not Yet Built</h1>
