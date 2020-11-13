@@ -49,9 +49,6 @@ export class FormComponent implements OnInit {
       case FormUserType.EMPLOYEE:
         this.registrationForm = new FormGroup(FormGroups.EMPLOYEE_FORM);
         break;
-      case FormUserType.CONTRACTOR:
-        this.registrationForm = new FormGroup(FormGroups.CONTRACTOR_FORM);
-        break;
       default:
         this.registrationForm = null;
     }
