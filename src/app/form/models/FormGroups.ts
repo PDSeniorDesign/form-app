@@ -40,7 +40,21 @@ const EMPLOYEE_FORM = {
   }),
 };
 
-const CONTRACTOR_FORM = {};
+const CONTRACTOR_FORM = {
+  information: new FormGroup({
+    lastName: new FormControl(null),
+    firstName: new FormControl(null),
+    middleInitial: new FormControl(null),
+    companyName: new FormControl(null),
+    companyEmailAddress: new FormControl(null),
+    
+    workPhoneNumber: new FormControl(null),
+    countyPhoneNumber: new FormControl(null),
+    companyPhoneNumber: new FormControl(null),
+
+  }),
+
+};
 
 const FormGroups = {
   ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES: ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES,
