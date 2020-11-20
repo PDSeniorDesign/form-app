@@ -5,8 +5,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CommunicationService } from './service/communication.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    let obs = this.http.get(''); //Make a call request using a URL
+    obs.subscribe(() => console.log('Got the response')) //obs.subscribe((response) => console.log(response))
+
     this.registrationForm = new FormGroup({
       applicationName: new FormGroup({
         name: new FormControl(null),
@@ -31,4 +35,5 @@ export class AppComponent implements OnInit {
       }),
     });
   }
+
 }
