@@ -5,6 +5,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { CommunicationService } from './service/communication.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,9 @@ import {
 export class AppComponent implements OnInit {
   title = 'form-app';
   registrationForm: FormGroup;
+
+  constructor(private svc: CommunicationService, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.registrationForm = new FormGroup({
