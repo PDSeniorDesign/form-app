@@ -21,6 +21,7 @@ import { FormComponent } from './form/form.component';
 import { Step4Component } from './form/step4/step4.component';
 import { InformationComponent } from './form/information/information.component';
 import { EmployeeInformationComponent } from './form/employee-information/employee-information.component';
+import { AccessInformationComponent } from './form/access-information/access-information.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { EmployeeInformationComponent } from './form/employee-information/employ
     Step4Component,
     InformationComponent,
     EmployeeInformationComponent,
+    AccessInformationComponent,
   ],
   imports: [
     BrowserModule,
