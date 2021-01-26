@@ -15,7 +15,7 @@ const routes: Routes = [
     component: FormComponent,
   },
   {
-    path: 'request',
+    path: 'request-status',
     component: RequestStatusComponent
   }
 ];
