@@ -11,7 +11,8 @@ export class SubmitPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // For debugging purposes
   onClick(): void {
-    console.log(this.regForm);
+    console.log(JSON.stringify(this.regForm.value));
   }
 }
