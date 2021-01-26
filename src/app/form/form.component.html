@@ -15,14 +15,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="#"
             >Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -101,6 +101,29 @@
       >
         <ng-template matStepLabel>Information</ng-template>
         <app-information [regForm]="registrationForm"></app-information>
+      </mat-step>
+      <!-- Employee Information Step -->
+      <mat-step>
+        <ng-template matStepLabel>Employee Information</ng-template>
+        <app-employee-information></app-employee-information>
+      </mat-step>
+      <!-- Requestor Information -->
+      <mat-step>
+        <ng-template matStepLabel>Access Information</ng-template>
+        <app-access-information></app-access-information>
+      </mat-step>
+      <!-- Approvers -->
+      <!-- <mat-step>
+        <ng-template matStepLabel>Approvers</ng-template>
+      </mat-step> -->
+      <!-- Department -->
+      <mat-step>
+        <ng-template matStepLabel>Additional Information</ng-template>
+        <app-additional-information></app-additional-information>
+      </mat-step>
+      <!-- Submit -->
+      <mat-step>
+        <ng-template matStepLabel>Submit</ng-template>
       </mat-step>
     </mat-horizontal-stepper>
   </form>
