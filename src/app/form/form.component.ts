@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators,
+  FormGroup
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormType } from './models/FormType';
 import FormGroups from './models/FormGroups';
+import { FormType } from './models/FormType';
 import { FormUserType } from './models/FormUserType';
 
 /* TODO: Flash error message when required field

@@ -1,5 +1,5 @@
 /* Form Groups */
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 const EMPLOYEE_FORM = {
   information: new FormGroup({
