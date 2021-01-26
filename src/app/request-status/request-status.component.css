@@ -1,0 +1,23 @@
+#container {
+    margin-top: 50px;
+}
+#selabel {
+    margin-left: 50px;
+}
+
+.input-group {
+    width: 480px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.tableStyle {
+    align-items: center;
+    padding-top: 50px;
+    padding-right: 180px;
+    padding-left: 180px;
+}
+
+td:nth-child(2) {
+    width: 400px;
+    }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from '../homepage/homepage.component';
 import { FormComponent } from '../form/form.component';
+import { RequestStatusComponent } from '../request-status/request-status.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: 'form',
     component: FormComponent,
   },
+  {
+    path: 'request',
+    component: RequestStatusComponent
+  }
 ];
 
 @NgModule({
