@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import FormGroups from './models/FormGroups';
 import { FormType } from './models/FormType';
 import { FormUserType } from './models/FormUserType';
-
+import {ApiService} from "../core/services/api.service";
 /* TODO: Flash error message when required field
  *  is not filled in
  */
