@@ -39,13 +39,6 @@ export class FormComponent implements OnInit {
 
     // FormGroup Initialization
     switch (this.formName) {
-      case FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES:
-        this.registrationForm = new FormGroup(
-          FormGroups[
-            FormType.ISD_ACTIVE_DIRECTORY_HOSTED_REGISTRATION_FORMS_PERMANENT_EMPLOYEES
-          ]
-        );
-        break;
       case FormUserType.EMPLOYEE:
         this.registrationForm = new FormGroup(FormGroups.EMPLOYEE_FORM);
         break;
