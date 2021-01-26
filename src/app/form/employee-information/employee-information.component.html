@@ -1,22 +1,24 @@
 <div [formGroup]="regForm">
   <div formGroupName="employeeInformation">
+    <!-- Employee Number -->
     <div class="row mb-4">
       <div class="col-sm-3">
-        <label for="firstNameInput">Employee Number</label>
+        <label for="employeeNumberInput">Employee Number</label>
         <input
-          id="firstNameInput"
-          placeholder="Enter first name"
+          id="employeeNumberInput"
+          placeholder="Employee number"
           formControlName="employeeNumber"
           class="form-control"
         />
       </div>
     </div>
+    <!-- Hosted ID -->
     <div class="row mb-4">
       <div class="col-sm-3">
-        <label for="firstNameInput">Hosted ID</label>
+        <label for="hostedIdInput">Hosted ID</label>
         <input
-          id="firstNameInput"
-          placeholder="Enter first name"
+          id="hostedIdInput"
+          placeholder="Enter Hosted ID"
           formControlName="hostedId"
           class="form-control"
         />
