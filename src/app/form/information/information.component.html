@@ -28,10 +28,15 @@
       />
     </div>
   </div>
-  <div class="row mb-4">
+  <div class="row mb-4" formGroupName="information">
     <div class="col-sm-3">
       <label for="emailInput">Email Address</label>
-      <input id="emailInput" placeholder="Enter email" class="form-control" />
+      <input
+        id="emailInput"
+        placeholder="Enter email"
+        class="form-control"
+        formControlName="emailAddress"
+      />
     </div>
     <div class="col-sm-3">
       <label for="phoneNumberInput">Phone Number</label>
@@ -39,32 +44,49 @@
         id="phoneNumberInput"
         placeholder="Enter phone number"
         class="form-control"
+        formControlName="phoneNumber"
       />
     </div>
   </div>
   <!-- Address -->
-  <div class="row mb-4">
+  <div class="row mb-4" formGroupName="information">
     <div class="col-sm-3">
       <label for="addressInput">Address</label>
       <input
         id="addressInput"
         placeholder="Enter address"
         class="form-control"
+        formControlName="address"
       />
     </div>
     <div class="col-sm-3">
       <label for="phoneNumberInput">City</label>
-      <input id="cityInput" placeholder="Enter city" class="form-control" />
+      <input
+        id="cityInput"
+        placeholder="Enter city"
+        class="form-control"
+        formControlName="city"
+      />
     </div>
     <div class="col-sm-3">
       <label for="stateInput">State</label>
-      <input id="stateInput" placeholder="Enter state" class="form-control" />
+      <input
+        id="stateInput"
+        placeholder="Enter state"
+        class="form-control"
+        formControlName="state"
+      />
     </div>
   </div>
-  <div class="row mb-4">
+  <div class="row mb-4" formGroupName="information">
     <div class="col-sm-3">
       <label for="zipInput">Zip Code</label>
-      <input id="zipInput" placeholder="Enter zip" class="form-control" />
+      <input
+        id="zipInput"
+        placeholder="Enter zip"
+        class="form-control"
+        formControlName="zipCode"
+      />
     </div>
   </div>
   <!-- <div class="row mb-4" formGroupName="information">

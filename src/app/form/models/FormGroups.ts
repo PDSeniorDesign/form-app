@@ -33,11 +33,22 @@ const EMPLOYEE_FORM = {
     lastName: new FormControl(null),
     firstName: new FormControl(null),
     middleInitial: new FormControl(null),
-    laCountyEmployeeNumber: new FormControl(null),
-    departmentName: new FormControl(null),
-    departmentNumber: new FormControl(null),
-    testingData: new FormControl(null),
+    emailAddress: new FormControl(null),
+    phoneNumber: new FormControl(null),
+    address: new FormControl(null),
+    city: new FormControl(null),
+    state: new FormControl(null),
+    zipCode: new FormControl(null),
   }),
+  employeeInformation: new FormGroup({
+    employeeNumber: new FormControl(null),
+    hostedId: new FormControl(null),
+  }),
+  // accessInformation: TODO: Fill this out later
+  // additionalInformation: new FormGroup({
+  // })
+  // TODO: Fill out the rest
+
 };
 
 const CONTRACTOR_FORM = {};

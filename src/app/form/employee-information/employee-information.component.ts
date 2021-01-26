@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-employee-information',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-information.component.css']
 })
 export class EmployeeInformationComponent implements OnInit {
-
+  @Input() regForm;
   constructor() { }
 
   ngOnInit(): void {

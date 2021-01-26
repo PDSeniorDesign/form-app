@@ -94,6 +94,7 @@
     [formGroup]="registrationForm"
     *ngSwitchCase="FormUserType.EMPLOYEE"
   >
+    <!-- Information Step -->
     <mat-horizontal-stepper #stepper>
       <mat-step
         formGroupName="information"
@@ -103,9 +104,14 @@
         <app-information [regForm]="registrationForm"></app-information>
       </mat-step>
       <!-- Employee Information Step -->
-      <mat-step>
+      <mat-step
+        formGroupName="employeeInformation"
+        [stepControl]="registrationForm.get('employeeInformation')"
+      >
         <ng-template matStepLabel>Employee Information</ng-template>
-        <app-employee-information></app-employee-information>
+        <app-employee-information
+          [regForm]="registrationForm"
+        ></app-employee-information>
       </mat-step>
       <!-- Requestor Information -->
       <mat-step>
@@ -124,13 +130,14 @@
       <!-- Submit -->
       <mat-step>
         <ng-template matStepLabel>Submit</ng-template>
+        <app-submit-page [regForm]="registrationForm"></app-submit-page>
       </mat-step>
     </mat-horizontal-stepper>
   </form>
   <!-- Contractor Form -->
-  <form id="regForm" [formGroup]="" *ngSwitchCase="FormUserType.CONTRACTOR">
+  <!-- <form id="regForm" [formGroup]="" *ngSwitchCase="FormUserType.CONTRACTOR">
     <p>Contractor</p>
-  </form>
+  </form> -->
   <!-- Default case -->
   <div *ngSwitchDefault>
     <h1>Form Not Yet Built</h1>

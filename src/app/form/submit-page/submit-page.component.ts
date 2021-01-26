@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-submit-page',
   templateUrl: './submit-page.component.html',
-  styleUrls: ['./submit-page.component.css']
+  styleUrls: ['./submit-page.component.css'],
 })
 export class SubmitPageComponent implements OnInit {
+  @Input() regForm;
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onClick(): void {
+    console.log(this.regForm);
   }
-
 }
