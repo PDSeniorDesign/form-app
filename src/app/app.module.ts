@@ -20,6 +20,8 @@ import { InformationComponent } from './form/information/information.component';
 import { SubmitPageComponent } from './form/submit-page/submit-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
+import { HeaderComponent } from './shared/layout';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { RequestStatusComponent } from './request-status/request-status.componen
     MatInputModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],
