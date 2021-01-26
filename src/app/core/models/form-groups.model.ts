@@ -1,4 +1,8 @@
-/* Form Groups */
+/**
+ * This file will hold the formgroup objects (initialize FormGroup eg. FormGroup(<HERE>)
+ *
+ * */
+
 import { FormControl, FormGroup } from '@angular/forms';
 
 const EMPLOYEE_FORM = {
@@ -25,9 +29,7 @@ const EMPLOYEE_FORM = {
 
 const CONTRACTOR_FORM = {};
 
-const FormGroups = {
+export const FormGroups = {
   EMPLOYEE_FORM: EMPLOYEE_FORM,
   CONTRACTOR_FORM: CONTRACTOR_FORM,
 };
-
-export default FormGroups;

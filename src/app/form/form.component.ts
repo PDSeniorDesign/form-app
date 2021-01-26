@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup
-} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import FormGroups from './models/FormGroups';
-import { FormType } from './models/FormType';
-import { FormUserType } from './models/FormUserType';
-import {ApiService} from "../core/services/api.service";
+import { FormGroups } from '../core/models';
+import { FormType } from '../core/types';
+import { FormUserType } from '../core/types';
 /* TODO: Flash error message when required field
  *  is not filled in
  */
