@@ -1,25 +1,31 @@
-<div>
-  <div class="row mb-4">
-    <div class="col-sm-3">
-      <label for="firstNameInput">Employee Number</label>
-      <input
-        id="firstNameInput"
-        placeholder="Enter first name"
-        formControlName="firstName"
-        class="form-control"
-      />
+<div [formGroup]="regForm">
+  <div formGroupName="employeeInformation">
+    <!-- Employee Number -->
+    <div class="row mb-4">
+      <div class="col-sm-3">
+        <label for="employeeNumberInput">Employee Number</label>
+        <input
+          id="employeeNumberInput"
+          placeholder="Employee number"
+          formControlName="employeeNumber"
+          class="form-control"
+        />
+      </div>
     </div>
-  </div>
-  <div class="row mb-4">
-    <div class="col-sm-3">
-      <label for="firstNameInput">Hosted ID</label>
-      <input
-        id="firstNameInput"
-        placeholder="Enter first name"
-        formControlName="firstName"
-        class="form-control"
-      />
+    <!-- Hosted ID -->
+    <div class="row mb-4">
+      <div class="col-sm-3">
+        <label for="hostedIdInput">Hosted ID</label>
+        <input
+          id="hostedIdInput"
+          placeholder="Enter Hosted ID"
+          formControlName="hostedId"
+          class="form-control"
+        />
+      </div>
     </div>
+    <button type="button" class="btn btn-primary mt-2" matStepperNext>
+      Next
+    </button>
   </div>
-  <button type="button" class="btn btn-primary mt-2" matStepperNext>Next</button>
 </div>

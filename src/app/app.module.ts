@@ -25,6 +25,7 @@ import { EmployeeInformationComponent } from './form/employee-information/employ
 import { AccessInformationComponent } from './form/access-information/access-information.component';
 import { AdditionalInformationComponent } from './form/additional-information/additional-information.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
+import { SubmitPageComponent } from './form/submit-page/submit-page.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { RequestStatusComponent } from './request-status/request-status.componen
     AccessInformationComponent,
     AdditionalInformationComponent,
     RequestStatusComponent,
+    SubmitPageComponent,
   ],
   imports: [
     BrowserModule,
