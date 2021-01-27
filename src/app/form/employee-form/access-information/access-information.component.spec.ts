@@ -80,4 +80,35 @@ describe('AccessInformationComponent', () => {
     expect(component.renderIBMForm).toBeFalse();
     expect(fixture.debugElement.query(By.css('.ibmForm'))).toBeFalsy();
   });
+
+  it('should have title IBM Data Center when form renders (IBM DATA CENTER)', () => {
+    // Click checkbox
+    const ibmDataCenterAccessCheckbox = fixture.debugElement.query(
+      By.css('input#ibmCheckbox')
+    ).nativeElement;
+
+    ibmDataCenterAccessCheckbox.click();
+    fixture.detectChanges();
+    // search that title is available
+    const ibmForm = fixture.debugElement.query(By.css('.ibmFormTitle'))
+      .nativeElement;
+    expect(ibmForm.innerText).toContain('IBM Data Center Access');
+  });
+
+  it('should have four input fields (IBM Data Center)', () => {
+    // Click checkbox
+    const ibmDataCenterAccessCheckbox = fixture.debugElement.query(
+      By.css('input#ibmCheckbox')
+    ).nativeElement;
+
+    ibmDataCenterAccessCheckbox.click();
+    fixture.detectChanges();
+    // Query based on .ibmFormField
+    const ibmFormFields = fixture.debugElement.queryAll(
+      By.css('input.ibmFormField')
+    );
+    console.log(ibmFormFields);
+    // Test the count
+    expect(ibmFormFields.length).toEqual(4);
+  });
 });
