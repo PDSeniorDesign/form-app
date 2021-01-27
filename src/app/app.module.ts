@@ -12,24 +12,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
 import { AccessInformationComponent } from './form/employee-form/access-information/access-information.component';
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
+import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 import { EmployeeInformationComponent } from './form/employee-form/employee-information/employee-information.component';
-import { FormComponent } from './form/form.component';
 import { InformationComponent } from './form/employee-form/information/information.component';
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
-import { HeaderComponent } from './shared/layout';
 import { SharedModule } from './shared/shared.module';
-import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
-import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    FormComponent,
     InformationComponent,
     EmployeeInformationComponent,
     AccessInformationComponent,
@@ -52,7 +49,7 @@ import { ContractorFormComponent } from './form/contractor-form/contractor-form.
     MatInputModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
