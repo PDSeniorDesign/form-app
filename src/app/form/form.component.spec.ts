@@ -8,9 +8,8 @@ describe('FormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormComponent ]
-    })
-    .compileComponents();
+      declarations: [FormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -20,6 +19,7 @@ describe('FormComponent', () => {
   });
 
   it('should create', () => {
+    console.log('FROM HERE');
     expect(component).toBeTruthy();
   });
 });

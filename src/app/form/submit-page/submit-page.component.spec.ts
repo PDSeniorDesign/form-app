@@ -1,3 +1,4 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SubmitPageComponent } from './submit-page.component';
@@ -8,9 +9,8 @@ describe('SubmitPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubmitPageComponent ]
-    })
-    .compileComponents();
+      declarations: [SubmitPageComponent], providers: [HttpClient, HttpHandler]
+    }).compileComponents();
   });
 
   beforeEach(() => {
