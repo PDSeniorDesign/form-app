@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { FormType } from '../form/models/FormType';
-import { FormUserType } from '../form/models/FormUserType';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({

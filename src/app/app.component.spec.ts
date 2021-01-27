@@ -1,12 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './shared/layout';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent, HeaderComponent],
     }).compileComponents();
   });
 
@@ -22,10 +21,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('form-app');
   });
 
-  it('should render title', () => {
+  it('should render navbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('form-app app is running!');
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('nav .navbar-brand').textContent).toContain(
+      'PD Form App'
+    );
   });
 });
