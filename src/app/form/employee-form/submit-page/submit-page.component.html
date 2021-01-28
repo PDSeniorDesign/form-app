@@ -1,1 +1,63 @@
-<button (click)="onClick()">Submit</button>
+<div class="container">
+  <h3>Confirmation Page</h3>
+  <hr />
+
+  <!-- TODO: Need to add validators to fields to know when it is valid -->
+  <!-- Information -->
+  <div *ngIf="regForm.controls.information.touched">
+    <h4>Personal Information</h4>
+    <div *ngIf="regForm.value.information.firstName">
+      <h6>First Name</h6>
+      <p>{{ regForm.value.information.firstName }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.middleInitial">
+      <h6>Middle Initial</h6>
+      <p>{{ regForm.value.information.middleInitial }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.lastName">
+      <h6>Last Name</h6>
+      <p>{{ regForm.value.information.lastName }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.emailAddress">
+      <h6>Email Address</h6>
+      <p>{{ regForm.value.information.emailAddress }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.phoneNumber">
+      <h6>Phone Number</h6>
+      <p>{{ regForm.value.information.phoneNumber }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.address">
+      <h6>Address</h6>
+      <p>{{ regForm.value.information.address }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.city">
+      <h6>City</h6>
+      <p>{{ regForm.value.information.city }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.state">
+      <h6>State</h6>
+      <p>{{ regForm.value.information.state }}</p>
+    </div>
+    <div *ngIf="regForm.value.information.zipCode">
+      <h6>Zip Code</h6>
+      <p class="font-weight-light">{{ regForm.value.information.zipCode }}</p>
+    </div>
+  </div>
+  <!-- Employee Information -->
+  <div *ngIf="regForm.controls.employeeInformation.touched">
+    <h4>Employee Information</h4>
+    <div *ngIf="regForm.value.employeeInformation.employeeNumber">
+      <h6>Employee Number</h6>
+      <p class="font-weight-light">
+        {{ regForm.value.employeeInformation.employeeNumber }}
+      </p>
+    </div>
+    <div *ngIf="regForm.value.employeeInformation.employeeNumber">
+      <h6>Hosted ID</h6>
+      <p class="font-weight-light">
+        {{ regForm.value.employeeInformation.hostedId }}
+      </p>
+    </div>
+  </div>
+  <button (click)="onClick()">Submit</button>
+</div>
