@@ -25,6 +25,7 @@ export class ApiEndpointsService {
     );
     return urlBuilder.toString();
   }
+  
   // URL WITH QUERY PARAMS
   private createUrlWithQueryParameters(
     action: string, 
@@ -61,5 +62,5 @@ export class ApiEndpointsService {
     );
     return urlBuilder.toString();
   }
-  
+
 }
