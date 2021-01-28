@@ -14,22 +14,6 @@ export class SubmitPageComponent implements OnInit {
   ngOnInit(): void {
     this.formValues = this.regForm.value;
     console.log(JSON.stringify(this.formValues));
-    // console.log(Object.keys(this.formValues))
-    // Object.keys(this.formValues).forEach((k) => {
-    //   console.log(k);
-    // });
-  }
-
-  objectKeys(obj) {
-    return Object.keys(obj);
-  }
-
-  objectValues(obj) {
-    return Object.values(obj)
-  }
-
-  getFormValueSpecific(k, j) {
-    return (this.formValues[k])[j];
   }
 
   // For debugging purposes
