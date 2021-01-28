@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SubmitPageComponent } from './submit-page.component';
 
-fdescribe('SubmitPageComponent', () => {
+describe('SubmitPageComponent', () => {
   let component: SubmitPageComponent;
   let fixture: ComponentFixture<SubmitPageComponent>;
 
