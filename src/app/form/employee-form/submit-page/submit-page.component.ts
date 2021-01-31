@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/core/services';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 
 @Component({
   selector: 'app-submit-page',
@@ -8,7 +9,13 @@ import { ApiService } from 'src/app/core/services';
 })
 export class SubmitPageComponent implements OnInit {
   @Input() regForm;
-  constructor(private apiService: ApiService) {}
+  constructor( //Application Services
+    private apiHttpService: ApiHttpService,
+    private apiEndPointsService: ApiEndPointsService
+    ) {
+    
+  }
+
 
   ngOnInit(): void {}
 
