@@ -29,8 +29,8 @@ export class SubmitPageComponent implements OnInit {
   */
 
  onClick(): void {
-  this.apiHttpService.post(this.apiEndPointsService.getFieldsEndPoint(), JSON.stringify(this.regForm.value)); //Which endpoint am I sending the JSON data: fields? mappings? forms?
   console.log(this.regForm.value);
+  this.apiHttpService.post(this.apiEndPointsService.getFieldsEndPoint(), this.regForm.value); //Which endpoint am I sending the JSON data: fields? mappings? forms?
 }
 
 }
