@@ -62,6 +62,7 @@ export class ApiEndpointsService {
     return urlBuilder.toString();
   }
 
+  //Gets
   public getFieldsEndPoint(): string {
     return this.createUrl('fields');
   }
