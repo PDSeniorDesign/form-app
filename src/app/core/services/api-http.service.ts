@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ApiHttpService {
     constructor( private http: HttpClient) {    
+
     }
+
+    
 
     public get(url: string, options?: any) {
         return this.http.get(url, options);
     }
 
     public post(url: string, data: any, options?: any) {
-        data = this.reformatDataPost(data);
-        return this.http.post(url, data, options);
+        var reformatedData = this.reformatDataPost(data);
+        var headers={
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }
+        options = headers; //{ headers:headers };
+        console.log(reformatedData); //debugging
+        return this.http.post(url, reformatedData, options);
     }
 
     public put(url: string, data: any, options: any) {
@@ -25,21 +35,21 @@ export class ApiHttpService {
 
     //Reformats the data from the submit page to backend JSON compatible
     public reformatDataPost(data: any) {
-        var reformated = [
+        var reformated = 
             {
                 "lastName": data.information.lastName,
                 "firstName":data.information.firstName,
                 "middleInitial": data.information.middleInitial,
-                "employeeEmailAddress": data.information.employeeEmailAddress,
-                "businessPhoneNumber": data.information.businessPhoneNumber,
-                "businessStreetAddress": data.information.businessStreetAddress,
-                "businessCity": data.information.businessCity,
-                "businessState": data.information.businessState,
-                "businessZip": data.information.businessZip,
+                "employeeEmailAddress": data.information.emailAddress,
+                "businessPhoneNumber": data.information.phoneNumber,
+                "businessStreetAddress": data.information.address,
+                "businessCity": data.information.city,
+                "businessState": data.information.state,
+                "businessZip": data.information.zipCode,
                 "employeeNumber": data.employeeInformation.employeeNumber,
-                "hostedId": data.employeeInformation.hostedId,
+                "hostedId": data.employeeInformation.hostedId
             }
-        ]
+        
 
         console.log(JSON.stringify(reformated)); //for debugging
         return JSON.stringify(reformated);
