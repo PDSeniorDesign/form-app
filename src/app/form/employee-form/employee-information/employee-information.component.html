@@ -1,4 +1,4 @@
-<div [formGroup]="regForm">
+<div *ngIf="regForm" [formGroup]="regForm">
   <div formGroupName="employeeInformation">
     <!-- Employee Number -->
     <div class="row mb-4">

@@ -17,7 +17,8 @@ export class ApiHttpService {
         var reformatedData = this.reformatDataPost(data);
         var headers={
             headers: new HttpHeaders({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                
             })
         }
         options = headers; //{ headers:headers };
