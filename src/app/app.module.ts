@@ -22,6 +22,9 @@ import { SubmitPageComponent } from './form/employee-form/submit-page/submit-pag
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
+import { Constants } from './config/constants';
+import { ApiHttpService } from './core/services/api-http.service';
+import { ApiEndpointsService } from './core/services/api-endpoints.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    ApiEndpointsService,
+    ApiHttpService,
+    Constants,
   ],
   providers: [],
   bootstrap: [AppComponent],
