@@ -1,4 +1,4 @@
-export class QueryStringParamters {
+export class QueryStringParameters {
     private paramsAndValues: string[];
 
     constructor() {
