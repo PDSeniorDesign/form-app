@@ -22,6 +22,7 @@ import { SubmitPageComponent } from './form/employee-form/submit-page/submit-pag
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module'
 
 @NgModule({
   declarations: [
@@ -50,6 +51,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    CoreModule,
+  ],
+  exports: [
   ],
   providers: [],
   bootstrap: [AppComponent],
