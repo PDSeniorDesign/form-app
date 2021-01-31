@@ -12,7 +12,6 @@ export class ApiEndpointsService {
     private constants: Constants
   ) { }
 
-  /* #region URL CREATOR */
   // URL
   private createUrl(
     action: string, 
@@ -61,6 +60,22 @@ export class ApiEndpointsService {
       `${action}${encodedPathVariablesUrl}`
     );
     return urlBuilder.toString();
+  }
+
+  public getFieldsEndPoint(): string {
+    return this.createUrl('fields');
+  }
+
+  public getMappingEndPoint(): string {
+    return this.createUrl('mappings');
+  }
+
+  public getFormsEndPoint() : string {
+    return this.createUrl('forms')
+  }
+
+  public getServiceRequestEndPoint() : string {
+    return this.createUrl('service_requests')
   }
 
 }
