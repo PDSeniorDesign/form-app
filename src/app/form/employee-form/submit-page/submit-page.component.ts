@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/core/services';
+import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 
 @Component({
   selector: 'app-submit-page',
@@ -8,19 +9,33 @@ import { ApiService } from 'src/app/core/services';
 })
 export class SubmitPageComponent implements OnInit {
   @Input() regForm;
-  formValues: object;
-  constructor(private apiService: ApiService) {}
+  constructor(
+    //Application Services
+    private apiHttpService: ApiHttpService,
+    private apiEndPointsService: ApiEndpointsService
+  ) {}
 
-  ngOnInit(): void {
-    this.formValues = this.regForm.value;
-    console.log(JSON.stringify(this.formValues));
-  }
+  ngOnInit(): void {}
 
   // For debugging purposes
+  /*
   onClick(): void {
     // Example of request (Observable)
     this.apiService.getSample().subscribe((res) => console.log(res));
     console.log(this.regForm);
+  }
+  */
+
+  onClick(): void {
+    console.log(this.regForm.value); //debugging
+    this.apiHttpService
+      .post(
+        this.apiEndPointsService.getServiceRequestEndPoint(),
+        this.regForm.value
+      )
+      .subscribe(() => {
+        console.log('data sent');
+      });
   }
 }
 
