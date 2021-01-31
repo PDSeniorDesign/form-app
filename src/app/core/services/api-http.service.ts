@@ -36,11 +36,12 @@ export class ApiHttpService {
                 "businessCity": data.information.businessCity,
                 "businessState": data.information.businessState,
                 "businessZip": data.information.businessZip,
-                "employeeNumber": data.EmployeeInformationComponent.employeeNumber,
-                "hostedId": data.EmployeeInformationComponent.employeeNumber,
+                "employeeNumber": data.employeeInformation.employeeNumber,
+                "hostedId": data.employeeInformation.hostedId,
             }
         ]
 
+        console.log(JSON.stringify(reformated)); //for debugging
         return JSON.stringify(reformated);
     }
 
