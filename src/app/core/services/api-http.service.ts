@@ -11,6 +11,7 @@ export class ApiHttpService {
     }
 
     public post(url: string, data: any, options?: any) {
+        data = this.reformatDataPost(data);
         return this.http.post(url, data, options);
     }
 
@@ -20,6 +21,11 @@ export class ApiHttpService {
 
     public delete(url: string, options?: any) {
         return this.http.delete(url, options);
+    }
+
+    //Reformats the data from the submit page to backend JSON compatible
+    public reformatDataPost(data: any) {
+        
     }
 
 }
