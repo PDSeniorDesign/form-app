@@ -15,19 +15,22 @@ export class SubmitPageComponent implements OnInit {
     private apiEndPointsService: ApiEndpointsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  // For debugging purposes
-  /*
-  onClick(): void {
-    // Example of request (Observable)
-    this.apiService.getSample().subscribe((res) => console.log(res));
-    console.log(this.regForm);
+    //Example of getting data from backend to frontend by ID. Show in console.
+    console.log("submit init running");
+    this.apiHttpService
+    .get(
+      this.apiEndPointsService.getServiceRequestEndPointByID("39806e1c-5cfb-48e5-9f04-894165e02466"))
+    .subscribe((data: any) => {
+      console.log(data);
+      console.log('data retrived');
+    });
   }
-  */
-
+  
   onClick(): void {
     console.log(this.regForm.value); //debugging
+
     this.apiHttpService
       .post(
         this.apiEndPointsService.getServiceRequestEndPoint(),
