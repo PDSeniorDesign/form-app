@@ -79,4 +79,8 @@ export class ApiEndpointsService {
     return this.createUrl('service_requests')
   }
 
+  public getServiceRequestEndPointByID(id: string) : string {
+    return this.createUrlWithPathVariables('service_requests', [id]);
+  }
+
 }
