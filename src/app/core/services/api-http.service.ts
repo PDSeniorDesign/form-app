@@ -4,25 +4,35 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class ApiHttpService {
     constructor( private http: HttpClient) {    
-
     }
 
     
 
     public get(url: string, options?: any) {
-        return this.http.get(url, options);
-    }
 
-    public post(url: string, data: any, options?: any) {
-        var reformatedData = this.reformatDataPost(data);
         var headers={
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 
             })
-        }
-        options = headers; //{ headers:headers };
-        console.log(reformatedData); //debugging
+        };
+        options = headers;
+
+        return this.http.get(url, options);
+    }
+
+    public post(url: string, data: any, options?: any) {
+        var reformatedData = this.reformatDataPost(data);
+
+        var headers={
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                
+            })
+        };
+        options = headers;
+
+        //console.log(reformatedData); //debugging
         return this.http.post(url, reformatedData, options);
     }
 
