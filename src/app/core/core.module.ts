@@ -22,14 +22,6 @@ import { Constants } from '../config/constants';
   ]
 })
 
-/*export abstract class EnsureImportedOnceModule {
-  protected constructor(targetModule: any) {
-      if (targetModule) {
-          throw new Error(`${targetModule.constructor.name} has already been loaded.`);
-      }
-  }
-}*/
-
 export class CoreModule{
   public constructor(@Optional() @SkipSelf() parentModule?: CoreModule) {
     if (parentModule) {
