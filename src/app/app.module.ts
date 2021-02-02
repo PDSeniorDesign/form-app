@@ -22,7 +22,11 @@ import { SubmitPageComponent } from './form/employee-form/submit-page/submit-pag
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core.module'
+import { CoreModule } from './core/core.module';
+import { ContractorInformationComponent } from './form/contractor-form/contractor-information/contractor-information.component';
+import { CountyInformationComponent } from './form/contractor-form/county-information/county-information.component';
+import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
+import { SubmitComponent } from './form/contractor-form/submit/submit.component'
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { CoreModule } from './core/core.module'
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
+    ContractorInformationComponent,
+    CountyInformationComponent,
+    PolicyRulesComponent,
+    SubmitComponent,
   ],
   imports: [
     BrowserModule,

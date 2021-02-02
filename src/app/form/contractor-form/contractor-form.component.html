@@ -1,1 +1,26 @@
-<p>contractor-form works!</p>
+<form id="regForm" [formGroup]="form">
+  <mat-horizontal-stepper #stepper>
+    <mat-step
+      formGroupName="contractorInformation"
+      [stepControl]="form.get('contractorInformation')"
+    >
+      <ng-template matStepLabel>Contractor Information</ng-template>
+      <app-contractor-information [regForm]="form"></app-contractor-information>
+    </mat-step>
+    <mat-step
+      formGroupName="countyInformation"
+      [stepControl]="form.get('countyInformation')"
+    >
+      <ng-template matStepLabel>County Information</ng-template>
+      <app-county-information [regForm]="form"></app-county-information>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Registration Information</ng-template>
+      <app-policy-rules></app-policy-rules>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Submit</ng-template>
+      <app-submit [regForm]="form"></app-submit>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>

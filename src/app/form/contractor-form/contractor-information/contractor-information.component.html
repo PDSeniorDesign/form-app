@@ -1,0 +1,109 @@
+<div id="name-details" [formGroup]="regForm">
+  <div class="row mb-4" formGroupName="contractorInformation">
+    <!-- First Name -->
+    <div class="col-sm-3">
+      <label for="firstNameInput">First Name</label>
+      <input
+        id="firstNameInput"
+        placeholder="Enter first name"
+        formControlName="firstName"
+        class="form-control"
+      />
+    </div>
+    <!-- middle initial -->
+
+    <div class="col-sm-3">
+      <label for="middleInitialInput">Middle Initial</label>
+      <input
+        id="middleInitialInput"
+        class="form-control"
+        placeholder="Enter middle initial"
+        formControlName="middleInitial"
+      />
+    </div>
+    <!-- last Name -->
+
+    <div class="col-sm-3">
+      <label for="lastNameInput">Last Name</label>
+      <input
+        id="lastNameInput"
+        placeholder="Enter last name"
+        formControlName="lastName"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <!--Company Name -->
+  <div class="row mb-4" formGroupName="contractorInformation">
+    <div class="col-sm-3">
+      <label for="companyNameInput">Company Name</label>
+      <input
+        id="companyNameInput"
+        placeholder="Enter company name"
+        class="form-control"
+        formControlName="companyName"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="companyEmailAddressInput">Company Email Address</label>
+      <input
+        id="companyEmailAddressInput"
+        placeholder="Enter company email address"
+        class="form-control"
+        formControlName="companyEmailAddress"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="companyStreetAddressInput">Company Street Address</label>
+      <input
+        id="companyStreetAddressInput"
+        placeholder="Enter company street address"
+        class="form-control"
+        formControlName="companyStreetAddress"
+      />
+    </div>
+  </div>
+  <div class="row mb-4" formGroupName="contractorInformation">
+    <div class="col-sm-3">
+      <label for="cityInput">City</label>
+      <input
+        id="cityInput"
+        placeholder="Enter city"
+        class="form-control"
+        formControlName="city"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="stateInput">State</label>
+      <input
+        id="stateInput"
+        placeholder="Enter state"
+        class="form-control"
+        formControlName="state"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="zipCodeInput">Zip Code</label>
+      <input
+        id="zipCodeInput"
+        placeholder="Enter zip code"
+        class="form-control"
+        formControlName="zipCode"
+      />
+    </div>
+  </div>
+  <div class="row mb-4" formGroupName="contractorInformation">
+    <div class="col-sm-3">
+      <label for="phoneNumber">Phone Number</label>
+      <input
+        id="phoneNumberInput"
+        placeholder="Enter phone number"
+        class="form-control"
+        formControlName="phoneNumber"
+      />
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary mt-2" matStepperNext>
+    Next
+  </button>
+</div>
