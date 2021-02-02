@@ -79,4 +79,9 @@ export class ApiEndpointsService {
     return this.createUrl('service_requests')
   }
 
+  //for user id search
+  public getServiceRequestEndPointByID(id: string) : string {
+    return this.createUrlWithPathVariables('service_requests', [id]); //http://localhost:8080/123125
+  }
+
 }

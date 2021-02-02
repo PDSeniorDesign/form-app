@@ -3,11 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ApiHttpService {
-    constructor( private http: HttpClient) {    
+    constructor( private http: HttpClient) {   
 
     }
-
-    
 
     public get(url: string, options?: any) {
         return this.http.get(url, options);
