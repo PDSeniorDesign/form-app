@@ -8,12 +8,6 @@ export class ApiHttpService {
     }
 
     public get(url: string, options?: any) {
-        var headers={
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                
-            })
-        }
         return this.http.get(url, options);
     }
 
