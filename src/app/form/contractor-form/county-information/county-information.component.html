@@ -1,0 +1,95 @@
+<div id="name-details" [formGroup]="regForm">
+  <div class="row mb-4" formGroupName="countyInformation">
+    <!-- First Name -->
+    <div class="col-sm-3">
+      <label for="contactWorkOrderNumberInput">Contact Work Order Number</label>
+      <input
+        id="contactWorkOrderNumberInput"
+        placeholder="Enter contact work order number"
+        formControlName="contactWorkOrderNumber"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="contactExpirationDateInput">Contact Expiration Date</label>
+      <input
+        id="contactExpirationDateInput"
+        class="form-control"
+        placeholder="Enter contact expiration date"
+        formControlName="contactExpirationDate"
+      />
+    </div>
+  </div>
+  <div class="row mb-4" formGroupName="countyInformation">
+    <div class="col-sm-3">
+      <label for="countyEmailAddressInput">County Email Address</label>
+      <input
+        id="countyEmailAddressInput"
+        placeholder="Enter county email address"
+        class="form-control"
+        formControlName="countyEmailAddress"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="phoneNumberInput">Phone Number</label>
+      <input
+        id="phoneNumberInput"
+        placeholder="Enter phone number"
+        class="form-control"
+        formControlName="phoneNumber"
+      />
+    </div>
+  </div>
+  <div class="row mb-4" formGroupName="countyInformation">
+    <div class="col-sm-3">
+      <label for="departmentNameInput">Department Name</label>
+      <input
+        id="departmentNameInput"
+        placeholder="Enter department name"
+        class="form-control"
+        formControlName="departmentName"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="departmentNumberInput">Department Number</label>
+      <input
+        id="departmentNumberInput"
+        placeholder="Enter department number"
+        class="form-control"
+        formControlName="departmentNumber"
+      />
+    </div>
+  </div>
+  <div class="row mb-4" formGroupName="countyInformation">
+    <div class="col-sm-3">
+      <label for="businessStreetAddressInput">Business Street Address</label>
+      <input
+        id="businessStreetAddressInput"
+        placeholder="Enter business street address"
+        class="form-control"
+        formControlName="businessStreetAddress"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="cityInput">City</label>
+      <input
+        id="cityInput"
+        placeholder="Enter city"
+        class="form-control"
+        formControlName="city"
+      />
+    </div>
+    <div class="col-sm-3">
+      <label for="zipCodeInput">Zip Code</label>
+      <input
+        id="zipCodeInput"
+        placeholder="Enter zip code"
+        class="form-control"
+        formControlName="zipCode"
+      />
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary mt-2" matStepperNext>
+    Next
+  </button>
+</div>
