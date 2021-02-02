@@ -1,8 +1,7 @@
-import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { v4 as uuidv4 } from 'uuid';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
 import { StatusService } from 'src/app/core/services/status.service';
-import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service'
 
 @Component({
   selector: 'app-request-status',
@@ -18,7 +17,7 @@ export class RequestStatusComponent implements OnInit {
   lastNameParse: any;
 
 
-  constructor(private fb: FormBuilder, private apiEndPointsService: ApiEndpointsService, 
+  constructor(private apiEndPointsService: ApiEndpointsService, 
     private statusService: StatusService ) {}
 
   ngOnInit(): void {
