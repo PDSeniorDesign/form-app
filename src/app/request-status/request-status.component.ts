@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
+import { StatusService } from 'src/app/core/services/status.service';
+import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service'
 
 @Component({
   selector: 'app-request-status',
@@ -9,65 +11,50 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class RequestStatusComponent implements OnInit {
   @Input() regForm;
-  uuid: FormGroup;
-  //hide table on default
-  hideTable: boolean = false;
-  //test: to access information form group
-  informGroup: FormGroup;
-  //test: new uuid random and store in array for testing
-  randomU = uuidv4();
-  rand = [];
-  //test: array of the regForm group value
-  regArray = [];
-  id1 = 'ba048819-5157-42b6-ab48-f7bd6b9cf550';
+  //access three variable in form: id, request status, first name, last name
+  id: any;
+  requestStatusParse: any;
+  firstNameParse: any;
+  lastNameParse: any;
 
-  constructor(private fb: FormBuilder) {}
 
-  //don't erase: use it once form is initalized
-  applyFilter(filterValue: string) {
-    this.generateuuid();
-    //looks through all firstname field of regForm and then check if it matches the filterValue
-    this.regArray.filter((i) =>
-      i.value.toLowerCase().includes(filterValue.toLowerCase())
-    );
-  }
+  constructor(private fb: FormBuilder, private apiEndPointsService: ApiEndpointsService, 
+    private statusService: StatusService ) {}
 
   ngOnInit(): void {
-    this.initialize();
   }
 
-  initialize(): void {
-    this.uuid = this.fb.group({ uuidField: '' });
+  onClick(id:any): void {
+    //global to local to access id
+    //doing GET request
+    this.statusService.
+    searchGet(this.apiEndPointsService.getServiceRequestEndPointByID(id))
+    .subscribe((data: any) => {
+    this.parseObject(data,id);
+      console.log('data sent');
+      //debugging
+      console.log(data);
+    });
   }
 
-  showTable() {
-    //visible if clicked button
-    this.hideTable = !this.hideTable;
+  parseObject(data: any, id: any): void {
+    //get data from server in JSON string: ex: {"id":"", "firstName":"",...}
+    var jsonObject = JSON.stringify(data);
+
+    //get each pair in format {"id":""} then get only the value by key
+    //finally set it to global parse varaiables for now
+    this.id = JSON.parse(jsonObject);
+    this.id = this.id.id;
+
+    this.requestStatusParse = JSON.parse(jsonObject);
+    this.requestStatusParse = this.requestStatusParse.requestStatus;
+
+    this.firstNameParse = JSON.parse(jsonObject);
+    this.firstNameParse = this.firstNameParse.firstName;
+
+    this.lastNameParse = JSON.parse(jsonObject);
+    this.lastNameParse = this.lastNameParse.lastName;
   }
 
-  generateuuid() {
-    var id2 = '97795afa-3ade-4ad5-bf34-b396982535a5';
-    var id3 = 'c1fc0798-1b02-4d4f-83bb-c1e2f805360d';
 
-    this.regArray.push(this.id1);
-    this.regArray.push(id2);
-    this.regArray.push(id3);
-  }
-
-  onSubmit(): void {
-    uuidv4();
-    //this.informGroup = this.regForm.get('information');
-    //this.informGroup.setValue({firstName: 'Nancy', lastName: 'Drew', middleInitial: 'B',
-    //departmentName: 'Accounting',
-    //departmentNumber: '345'});
-    console.log(uuidv4());
-    console.log('ba048819-5157-42b6-ab48-f7bd6b9cf550');
-    //console.log(this.applyFilter('ba048819-5157-42b6-ab48-f7bd6b9cf550'));
-    //console.log(this.regForm.value)
-    //this.registrationData.push(this.regForm.value);
-    //this.registrationData.push(this.uuid.value);
-    //console.log(this.regForm.value);
-    //console.log(this.informGroup.value);
-    //console.log(this.ds.regisData.length);
-  }
 }
