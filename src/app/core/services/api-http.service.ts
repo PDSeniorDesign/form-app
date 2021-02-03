@@ -27,26 +27,5 @@ export class ApiHttpService {
         return this.http.get(`${environment.apiUrl}/service_requests/id/`+data, httpOptions);
     }
 
-    //Reformats the data from the submit page to backend JSON compatible
-    public reformatDataPost(data: any) {
-        var reformated = 
-            {
-                "lastName": data.information.lastName,
-                "firstName":data.information.firstName,
-                "middleInitial": data.information.middleInitial,
-                "employeeEmailAddress": data.information.emailAddress,
-                "businessPhoneNumber": data.information.phoneNumber,
-                "businessStreetAddress": data.information.address,
-                "businessCity": data.information.city,
-                "businessState": data.information.state,
-                "businessZip": data.information.zipCode,
-                "employeeNumber": data.employeeInformation.employeeNumber,
-                "hostedId": data.employeeInformation.hostedId
-            }
-
-        console.log(JSON.stringify(reformated)); //for debugging
-        return JSON.stringify(reformated);
-    }
-
 }
 
