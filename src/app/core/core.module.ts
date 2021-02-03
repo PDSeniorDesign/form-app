@@ -1,10 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//import { ApiService } from './services';
 import { ModuleWithProviders } from '@angular/core';
-import { ApiEndpointsService } from './services/api-endpoints.service';
 import { ApiHttpService } from './services/api-http.service';
-import { Constants } from '../config/constants';
 
 
 @NgModule({
@@ -16,9 +13,7 @@ import { Constants } from '../config/constants';
 
   ],
   providers: [
-    ApiEndpointsService,
     ApiHttpService,
-    Constants,
   ]
 })
 
