@@ -17,22 +17,22 @@ export class RequestStatusComponent implements OnInit {
   lastNameParse: any;
 
 
-  constructor(private apiHttpService: ApiHttpService, 
-    private statusService: StatusService ) {}
+  constructor(private apiHttpService: ApiHttpService,
+    private statusService: StatusService) { }
 
   ngOnInit(): void {
   }
 
-  onClick(id:any): void {
+  onClick(id: any): void {
     //global to local to access id
     //doing GET request
     this.apiHttpService.getID(id)
-    .subscribe((data: any) => {
-    this.parseObject(data,id);
-      console.log('data sent');
-      //debugging
-      console.log(data);
-    });
+      .subscribe((data: any) => {
+        this.parseObject(data, id);
+        console.log('data sent');
+        //debugging
+        console.log(data);
+      });
   }
 
   parseObject(data: any, id: any): void {
