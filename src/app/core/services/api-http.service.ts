@@ -11,7 +11,6 @@ export class ApiHttpService {
         const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type':  'application/json',
-              Authorization: 'my-auth-token'
             })
           };
         return this.http.post(`${environment.apiUrl}/service_requests`, data, httpOptions);
@@ -21,7 +20,6 @@ export class ApiHttpService {
         const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type':  'application/json',
-              Authorization: 'my-auth-token'
             })
           };
         return this.http.get(`${environment.apiUrl}/service_requests/id/`+data, httpOptions);
