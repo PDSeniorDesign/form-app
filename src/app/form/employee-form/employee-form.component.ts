@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class EmployeeFormComponent implements OnInit {
   form: FormGroup;
+  submitResponse: any; // Will hold the response if submission is successful
   constructor() {}
 
   ngOnInit(): void {

@@ -1,42 +1,44 @@
 <!-- Employee Form -->
-<form id="regForm" [formGroup]="form">
-  <!-- Information Step -->
-  <mat-horizontal-stepper #stepper>
-    <mat-step
-      formGroupName="information"
-      [stepControl]="form.get('information')"
-    >
-      <ng-template matStepLabel>Information</ng-template>
-      <app-information [regForm]="form"></app-information>
-    </mat-step>
-    <!-- Employee Information Step -->
-    <mat-step
-      formGroupName="employeeInformation"
-      [stepControl]="form.get('employeeInformation')"
-    >
-      <ng-template matStepLabel>Employee Information</ng-template>
-      <app-employee-information
-        [regForm]="form"
-      ></app-employee-information>
-    </mat-step>
-    <!-- Requestor Information -->
-    <mat-step>
-      <ng-template matStepLabel>Access Information</ng-template>
-      <app-access-information></app-access-information>
-    </mat-step>
-    <!-- Approvers -->
-    <!-- <mat-step>
+  <form *ngIf="!submitResponse; else elseBlock"id="regForm" [formGroup]="form">
+    <!-- Information Step -->
+    <mat-horizontal-stepper #stepper>
+      <mat-step
+        formGroupName="information"
+        [stepControl]="form.get('information')"
+      >
+        <ng-template matStepLabel>Information</ng-template>
+        <app-information [regForm]="form"></app-information>
+      </mat-step>
+      <!-- Employee Information Step -->
+      <mat-step
+        formGroupName="employeeInformation"
+        [stepControl]="form.get('employeeInformation')"
+      >
+        <ng-template matStepLabel>Employee Information</ng-template>
+        <app-employee-information [regForm]="form"></app-employee-information>
+      </mat-step>
+      <!-- Requestor Information -->
+      <mat-step>
+        <ng-template matStepLabel>Access Information</ng-template>
+        <app-access-information></app-access-information>
+      </mat-step>
+      <!-- Approvers -->
+      <!-- <mat-step>
     <ng-template matStepLabel>Approvers</ng-template>
   </mat-step> -->
-    <!-- Department -->
-    <mat-step>
-      <ng-template matStepLabel>Additional Information</ng-template>
-      <app-additional-information></app-additional-information>
-    </mat-step>
-    <!-- Submit -->
-    <mat-step>
-      <ng-template matStepLabel>Submit</ng-template>
-      <app-submit-page [regForm]="form"></app-submit-page>
-    </mat-step>
-  </mat-horizontal-stepper>
-</form>
+      <!-- Department -->
+      <mat-step>
+        <ng-template matStepLabel>Additional Information</ng-template>
+        <app-additional-information></app-additional-information>
+      </mat-step>
+      <!-- Submit -->
+      <mat-step>
+        <ng-template matStepLabel>Submit</ng-template>
+        <app-submit-page [regForm]="form"></app-submit-page>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+
+<ng-template #elseBlock>
+  <h1 class="page-title">Submit Page</h1>
+</ng-template>
