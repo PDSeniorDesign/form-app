@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
-//import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
 
 @Component({
   selector: 'app-submit-page',
@@ -28,11 +27,33 @@ export class SubmitPageComponent implements OnInit {
 
   onClick(): void {
     console.log(this.regForm.value); //debugging
-    this.apiHttpService.createForm(this.regForm.value)
+    this.apiHttpService.createForm(this.reformatDataPost(this.regForm.value))
       .subscribe(() => {
         console.log('data sent');
       });
   }
+
+  //Reformats the data from the submit page to backend JSON compatible
+  public reformatDataPost(data: any) {
+    var reformated = 
+        {
+            "lastName": data.information.lastName,
+            "firstName":data.information.firstName,
+            "middleInitial": data.information.middleInitial,
+            "employeeEmailAddress": data.information.emailAddress,
+            "businessPhoneNumber": data.information.phoneNumber,
+            "businessStreetAddress": data.information.address,
+            "businessCity": data.information.city,
+            "businessState": data.information.state,
+            "businessZip": data.information.zipCode,
+            "employeeNumber": data.employeeInformation.employeeNumber,
+            "hostedId": data.employeeInformation.hostedId
+        }
+
+    console.log(JSON.stringify(reformated)); //for debugging
+    return JSON.stringify(reformated);
+  }
+
 }
 
 /*
