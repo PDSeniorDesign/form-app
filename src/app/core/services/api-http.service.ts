@@ -5,8 +5,6 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class ApiHttpService {
 
-    private apiURL= environment.apiUrl;
-
     constructor( private http: HttpClient,) {   }
 
     public createForm(data: any) {
