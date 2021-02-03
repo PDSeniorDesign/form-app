@@ -1,35 +1,22 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiHttpService {
-    constructor( private http: HttpClient) {   
 
-    }
+    private apiURL= environment.apiUrl;
 
-    public get(url: string, options?: any) {
-        return this.http.get(url, options);
-    }
+    constructor( private http: HttpClient,) {   }
 
-    public post(url: string, data: any, options?: any) {
-        var reformatedData = this.reformatDataPost(data);
-        var headers={
+    public createForm(data: any) {
+        const httpOptions = {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                
+              'Content-Type':  'application/json',
+              Authorization: 'my-auth-token'
             })
-        }
-        options = headers; //{ headers:headers };
-        console.log(reformatedData); //debugging
-        return this.http.post(url, reformatedData, options);
-    }
-
-    public put(url: string, data: any, options: any) {
-        return this.http.put(url, data, options);
-    }
-
-    public delete(url: string, options?: any) {
-        return this.http.delete(url, options);
+          };
+        return this.http.post(`${environment.apiUrl}/service_requests`, data, httpOptions);
     }
 
     //Reformats the data from the submit page to backend JSON compatible
@@ -48,7 +35,6 @@ export class ApiHttpService {
                 "employeeNumber": data.employeeInformation.employeeNumber,
                 "hostedId": data.employeeInformation.hostedId
             }
-        
 
         console.log(JSON.stringify(reformated)); //for debugging
         return JSON.stringify(reformated);
