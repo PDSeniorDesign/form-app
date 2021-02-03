@@ -17,6 +17,16 @@ export class ApiHttpService {
         return this.http.post(`${environment.apiUrl}/service_requests`, data, httpOptions);
     }
 
+    public getID(data: any) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              Authorization: 'my-auth-token'
+            })
+          };
+        return this.http.get(`${environment.apiUrl}/service_requests/id/`+data, httpOptions);
+    }
+
     //Reformats the data from the submit page to backend JSON compatible
     public reformatDataPost(data: any) {
         var reformated = 
