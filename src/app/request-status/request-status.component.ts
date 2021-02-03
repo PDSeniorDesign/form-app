@@ -26,7 +26,7 @@ export class RequestStatusComponent implements OnInit {
   onClick(id:any): void {
     //global to local to access id
     //doing GET request
-    this.apiHttpService.getID(this.apiHttpService.getID(id))
+    this.apiHttpService.getID(id)
     .subscribe((data: any) => {
     this.parseObject(data,id);
       console.log('data sent');
