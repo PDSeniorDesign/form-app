@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { StatusService } from 'src/app/core/services/status.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class RequestStatusComponent implements OnInit {
   lastNameParse: any;
 
 
-  constructor(private apiEndPointsService: ApiEndpointsService, 
+  constructor(private apiHttpService: ApiHttpService, 
     private statusService: StatusService ) {}
 
   ngOnInit(): void {
@@ -26,8 +26,7 @@ export class RequestStatusComponent implements OnInit {
   onClick(id:any): void {
     //global to local to access id
     //doing GET request
-    this.statusService.
-    searchGet(this.apiEndPointsService.getServiceRequestEndPointByID(id))
+    this.apiHttpService.getID(this.apiHttpService.getID(id))
     .subscribe((data: any) => {
     this.parseObject(data,id);
       console.log('data sent');
