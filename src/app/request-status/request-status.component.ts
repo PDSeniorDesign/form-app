@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { StatusService } from 'src/app/core/services/status.service';
 
 @Component({
@@ -17,8 +15,7 @@ export class RequestStatusComponent implements OnInit {
   lastNameParse: any;
 
 
-  constructor(private apiHttpService: ApiHttpService,
-    private statusService: StatusService) { }
+  constructor(private statusService: StatusService) { }
 
   ngOnInit(): void {
   }
@@ -26,31 +23,24 @@ export class RequestStatusComponent implements OnInit {
   onClick(id: any): void {
     //global to local to access id
     //doing GET request
-    this.apiHttpService.getID(id)
-      .subscribe((data: any) => {
-        this.parseObject(data, id);
-        console.log('data sent');
-        //debugging
-        console.log(data);
-      });
+    this.statusService.searchGetID(id).subscribe(res => {
+      this.parseObject(res, id);
+      });    
   }
 
+  //turn information to JSON and parse to display individual properties
   parseObject(data: any, id: any): void {
-    //get data from server in JSON string: ex: {"id":"", "firstName":"",...}
-    var jsonObject = JSON.stringify(data);
-
-    //get each pair in format {"id":""} then get only the value by key
-    //finally set it to global parse varaiables for now
+    const jsonObject = JSON.stringify(data);
+    
     this.id = JSON.parse(jsonObject);
     this.id = this.id.id;
 
     this.requestStatusParse = JSON.parse(jsonObject);
-    this.requestStatusParse = this.requestStatusParse.requestStatus;
-
     this.firstNameParse = JSON.parse(jsonObject);
-    this.firstNameParse = this.firstNameParse.firstName;
-
     this.lastNameParse = JSON.parse(jsonObject);
+
+    this.requestStatusParse = this.requestStatusParse.requestStatus;
+    this.firstNameParse = this.firstNameParse.firstName;
     this.lastNameParse = this.lastNameParse.lastName;
   }
 
