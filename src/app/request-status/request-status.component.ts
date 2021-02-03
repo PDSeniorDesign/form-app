@@ -10,39 +10,26 @@ export class RequestStatusComponent implements OnInit {
   @Input() regForm;
   //access three variable in form: id, request status, first name, last name
   id: any;
-  requestStatusParse: any;
-  firstNameParse: any;
-  lastNameParse: any;
+  requestStatus: any;
+  firstName: any;
+  lastName: any;
 
+  constructor(private statusService: StatusService) {}
 
-  constructor(private statusService: StatusService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
+  //call service to display based on ID
   onClick(id: any): void {
-    //global to local to access id
-    //doing GET request
-    this.statusService.searchGetID(id).subscribe(res => {
-      this.parseObject(res, id);
-      });    
+    this.statusService.searchById(id).subscribe((res) => {
+      this.parseObject(res);
+    });
   }
 
-  //turn information to JSON and parse to display individual properties
-  parseObject(data: any, id: any): void {
-    const jsonObject = JSON.stringify(data);
-    
-    this.id = JSON.parse(jsonObject);
-    this.id = this.id.id;
-
-    this.requestStatusParse = JSON.parse(jsonObject);
-    this.firstNameParse = JSON.parse(jsonObject);
-    this.lastNameParse = JSON.parse(jsonObject);
-
-    this.requestStatusParse = this.requestStatusParse.requestStatus;
-    this.firstNameParse = this.firstNameParse.firstName;
-    this.lastNameParse = this.lastNameParse.lastName;
+  //set properties and access them
+  parseObject(data: any): void {
+    this.id = data.id;
+    this.requestStatus = data.requestStatus;
+    this.firstName = data.firstName;
+    this.lastName = data.lastName;
   }
-
-
 }
