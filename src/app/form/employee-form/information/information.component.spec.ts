@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppModule } from 'src/app/app.module';
 
 import { InformationComponent } from './information.component';
 
@@ -10,7 +11,7 @@ describe('InformationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [InformationComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, AppModule],
     }).compileComponents();
   });
 

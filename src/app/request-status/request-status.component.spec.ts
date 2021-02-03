@@ -1,5 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { AppModule } from '../app.module';
 
 import { RequestStatusComponent } from './request-status.component';
 
@@ -11,7 +13,7 @@ describe('RequestStatusComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [RequestStatusComponent],
       providers: [FormBuilder],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, HttpClientModule, AppModule],
     }).compileComponents();
   });
 

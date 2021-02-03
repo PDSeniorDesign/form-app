@@ -1,13 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
 import { HeaderComponent } from './shared/layout';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent, HeaderComponent],
-      imports: [AppRoutingModule],
+      imports: [AppRoutingModule, AppModule],
     }).compileComponents();
   });
 
