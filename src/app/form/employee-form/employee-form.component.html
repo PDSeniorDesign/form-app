@@ -1,5 +1,5 @@
 <!-- Employee Form -->
-<form id="regForm" [formGroup]="form">
+<form *ngIf="!hasSubmitted; else elseBlock" id="regForm" [formGroup]="form">
   <!-- Information Step -->
   <mat-horizontal-stepper #stepper>
     <mat-step
@@ -15,9 +15,7 @@
       [stepControl]="form.get('employeeInformation')"
     >
       <ng-template matStepLabel>Employee Information</ng-template>
-      <app-employee-information
-        [regForm]="form"
-      ></app-employee-information>
+      <app-employee-information [regForm]="form"></app-employee-information>
     </mat-step>
     <!-- Requestor Information -->
     <mat-step>
@@ -36,7 +34,16 @@
     <!-- Submit -->
     <mat-step>
       <ng-template matStepLabel>Submit</ng-template>
-      <app-submit-page [regForm]="form"></app-submit-page>
+      <app-submit-page
+        [regForm]="form"
+        [setSubmitResponse]="setSubmitResponse"
+      ></app-submit-page>
     </mat-step>
   </mat-horizontal-stepper>
 </form>
+
+<ng-template #elseBlock>
+  <h1 class="page-title">Submit Page</h1>
+  <p>Here is your uuid: {{ submitResponse.id }}.</p>
+  <p>Please save this for future reference.</p>
+</ng-template>

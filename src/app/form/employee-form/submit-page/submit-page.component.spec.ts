@@ -2,6 +2,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { SubmitPageComponent } from './submit-page.component';
 
 describe('SubmitPageComponent', () => {
@@ -11,7 +12,7 @@ describe('SubmitPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SubmitPageComponent],
-      providers: [HttpClient, HttpHandler],
+      providers: [HttpClient, HttpHandler, ApiHttpService],
     }).compileComponents();
   });
 
@@ -46,14 +47,10 @@ describe('SubmitPageComponent', () => {
   it('should have the form', () => {
     expect(component.regForm).toBeTruthy();
   });
-  it('should have form values in variable', () => {
-    expect(component.formValues).toEqual(component.regForm.value);
+  it("should have 2 h4's (Stepper Titles)", () => {
+    const titleSections = fixture.debugElement.queryAll(By.css('h4'));
+    expect(titleSections.length).toBe(2);
   });
-
-  // it("should have 2 h4's (Stepper Titles)", () => {
-  //   const titleSections = fixture.debugElement.queryAll(By.css('h4'));
-  //   expect(titleSections.length).toBe(2);
-  // });
 });
 
 /*

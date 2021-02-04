@@ -8,6 +8,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class EmployeeFormComponent implements OnInit {
   form: FormGroup;
+  submitResponse: object; // Will hold the response if submission is successful
+  hasSubmitted: boolean;
   constructor() {}
 
   ngOnInit(): void {
@@ -32,5 +34,14 @@ export class EmployeeFormComponent implements OnInit {
       // })
       // TODO: Fill out the rest
     });
+    this.hasSubmitted = false;
   }
+
+  // This function is passed down to submit step
+  // Will update variable to rerender and hold response object
+  setSubmitResponse = (res) => {
+    // Arrow function binds this
+    this.hasSubmitted = true;
+    this.submitResponse = res;
+  };
 }
