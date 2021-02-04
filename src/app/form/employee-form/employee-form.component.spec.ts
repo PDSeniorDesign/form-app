@@ -13,7 +13,7 @@ import { EmployeeInformationComponent } from './employee-information/employee-in
 import { InformationComponent } from './information/information.component';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 
-fdescribe('EmployeeFormComponent', () => {
+describe('EmployeeFormComponent', () => {
   let component: EmployeeFormComponent;
   let fixture: ComponentFixture<EmployeeFormComponent>;
 
@@ -50,20 +50,23 @@ fdescribe('EmployeeFormComponent', () => {
   it('should have submitResponse variable', () => {
     expect(component.submitResponse).toBeFalsy();
   });
-  it('should render submission page(template) if response is set', () => {
+  it('should render submission page(ng-template) if submitResponse and hasSubmitted is set', () => {
     component.submitResponse = {
       // This is a sample response
       sampleUUID: '2131-3211s-123d-1f',
       anotherObject: 'other object',
     };
+    component.hasSubmitted = true;
     fixture.detectChanges();
     // search that title is available
     const pageTitleElement = fixture.debugElement.query(By.css('h1.page-title'))
       .nativeElement;
 
+    // Has h1 tag with class page-title with Submit Page as innerText
     expect(pageTitleElement.innerText).toContain('Submit Page');
   });
-  it('should not render submission page(template) if response is not set', () => {
+  it('should not render hasSubmitted is false', () => {
+    // hasSubmitted is false by default
     fixture.detectChanges();
     // search that the form exists
     const formElement = fixture.debugElement.query(By.css('form#regForm'))
