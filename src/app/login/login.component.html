@@ -1,0 +1,19 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card fxFlex="50">
+    <mat-toolbar color="primary">Login</mat-toolbar>
+    <mat-card-title style="text-align:center;" color="primary">Welcome to PD</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]='login' fxLayoutAlign="stretch" fxLayout="column" class="login-form">
+            <mat-form-field appearance="outline"> 
+              <mat-label>Your Request Number</mat-label>
+              <input matInput placeholder="password" formControlName="password">
+            </mat-form-field>
+            <mat-card-actions>
+              <button mat-raised-button type="submit" (click)="onClick()">Login</button>
+              <button mat-raised-button type="button" [routerLink]="['/register']">Register</button>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>  
+  </mat-card>
+</div>
+
