@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AppComponent implements OnInit {
   title = 'form-app';
   registrationForm: FormGroup;
+  //show header based on different url
+  showheader: boolean;
+
+  //if navigation to login page is successful, then don't show header
+  constructor (private router: Router) {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        //if register or login page navigated, dont show
+        if (event.url === '/login' || event.url == '/register') {
+          this.showheader= false;
+        } else {
+          this.showheader= true;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.registrationForm = new FormGroup({
