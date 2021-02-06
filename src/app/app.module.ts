@@ -26,7 +26,14 @@ import { CoreModule } from './core/core.module';
 import { ContractorInformationComponent } from './form/contractor-form/contractor-information/contractor-information.component';
 import { CountyInformationComponent } from './form/contractor-form/county-information/county-information.component';
 import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
-import { SubmitComponent } from './form/contractor-form/submit/submit.component'
+import { SubmitComponent } from './form/contractor-form/submit/submit.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -44,6 +51,8 @@ import { SubmitComponent } from './form/contractor-form/submit/submit.component'
     CountyInformationComponent,
     PolicyRulesComponent,
     SubmitComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +69,11 @@ import { SubmitComponent } from './form/contractor-form/submit/submit.component'
     HttpClientModule,
     SharedModule,
     CoreModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatTabsModule,
+    MatRadioModule,
   ],
   exports: [
   ],
