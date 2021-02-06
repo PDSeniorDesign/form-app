@@ -1,0 +1,14 @@
+.mat-radio-button ~ .mat-radio-button {
+
+    padding: 1.5px;
+    padding-bottom: 1.5rem;
+    display: flex; flex-direction: column;
+  }
+  
+.login-form {
+    padding: 20px;
+}
+
+.main-div mat-card {
+    padding: 0px;
+}
