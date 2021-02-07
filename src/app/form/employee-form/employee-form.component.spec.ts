@@ -53,17 +53,18 @@ describe('EmployeeFormComponent', () => {
   it('should render submission page(ng-template) if submitResponse and hasSubmitted is set', () => {
     component.submitResponse = {
       // This is a sample response
-      sampleUUID: '2131-3211s-123d-1f',
+      sampleUUID: 1234,
       anotherObject: 'other object',
     };
     component.hasSubmitted = true;
     fixture.detectChanges();
     // search that title is available
-    const pageTitleElement = fixture.debugElement.query(By.css('h1.page-title'))
-      .nativeElement;
+    const pageTitleElement = fixture.debugElement.query(
+      By.css('h4.alert-heading')
+    ).nativeElement;
 
     // Has h1 tag with class page-title with Submit Page as innerText
-    expect(pageTitleElement.innerText).toContain('Submit Page');
+    expect(pageTitleElement.innerText).toContain('Thanks! Submission Received');
   });
   it('should not render hasSubmitted is false', () => {
     // hasSubmitted is false by default
