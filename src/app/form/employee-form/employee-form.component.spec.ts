@@ -74,4 +74,17 @@ describe('EmployeeFormComponent', () => {
 
     expect(formElement).toBeDefined();
   });
+  it('should have an alert card.', () => {
+    component.hasSubmitted = true;
+    component.submitResponse = {
+      requestNumber: 412341,
+    };
+    fixture.detectChanges();
+    const requestNum = fixture.debugElement.query(By.css('span#request-number'))
+      .nativeElement;
+    const alertBox = fixture.debugElement.query(By.css('h4.alert-heading'))
+      .nativeElement;
+    expect(alertBox.innerText).toContain('Thanks! Submission Received');
+    expect(requestNum.innerText).toContain(412341); // make sure requestNumber get rendered
+  });
 });
