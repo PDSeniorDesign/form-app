@@ -23,7 +23,13 @@
           If you want to continue a form, click the button below. Have your
           reference number ready.
         </p>
-        <button class="form-button">Continue Form</button>
+        <button
+          class="form-button"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+        >
+          Continue Form
+        </button>
       </div>
     </div>
     <div class="col-sm-6 pt-4">
@@ -37,7 +43,61 @@
           If you would like to continue completing a form, click the button
           below. Have your reference number ready.
         </p>
-        <button class="form-button">Continue form</button>
+        <button
+          class="form-button"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+        >
+          Continue form
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <!-- Request number -->
+          <div class="row">
+            <label for="requestNumberInput"
+              >Request Number (Six digit number)</label
+            >
+            <input
+              id="requestNumberInput"
+              type="text"
+              class="form-control"
+              placeholder="eg. 12345"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="form-button" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="form-button">Continue form</button>
       </div>
     </div>
   </div>
