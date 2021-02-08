@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { AppModule } from '../app.module';
 
 import { HomepageComponent } from './homepage.component';
 
@@ -10,6 +11,7 @@ describe('HomepageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomepageComponent],
+      imports: [AppModule],
     }).compileComponents();
   });
 
@@ -31,10 +33,10 @@ describe('HomepageComponent', () => {
       .nativeElement;
     expect(jumbotronTitle.innerText).toContain('Office of Public Defender');
   });
-  fit('should render form choice component when makingFormChoice is set to true', () => {
+  it('should render form action component when makingFormChoice is set to true', () => {
     component.makingFormChoice = true;
     fixture.detectChanges();
     const pTag = fixture.debugElement.query(By.css('p')).nativeElement;
-    expect(pTag.innerText).toContain('It works!');
+    expect(pTag.innerText).toContain('form-action-selection works!');
   });
 });
