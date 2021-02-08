@@ -1,104 +1,113 @@
-<!-- Page Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      <div class="jumbotron jumbotron-fluid mt-4">
-        <div class="container">
-          <h1 class="display-4">Office of Public Defender</h1>
-          <p class="lead">This is a form application to fill out forms</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Form selection -->
-  <div class="row">
-    <div class="col-sm-6 pt-4">
-      <h2>Employee</h2>
-      <div class="m-2">
-        <p>If you want to start a new employee form, click the button below.</p>
-        <button class="form-button">New Form</button>
-      </div>
-      <div class="m-2">
-        <p>
-          If you want to continue a form, click the button below. Have your
-          reference number ready.
-        </p>
-        <button
-          class="form-button"
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
-        >
-          Continue Form
-        </button>
-      </div>
-    </div>
-    <div class="col-sm-6 pt-4">
-      <h2>Contractor</h2>
-      <div class="m-2">
-        <p>If you would like to start a new form, click the button below.</p>
-        <button class="form-button">New Form</button>
-      </div>
-      <div class="m-2">
-        <p>
-          If you would like to continue completing a form, click the button
-          below. Have your reference number ready.
-        </p>
-        <button
-          class="form-button"
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
-        >
-          Continue form
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModalCenter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <!-- Request number -->
-          <div class="row">
-            <label for="requestNumberInput"
-              >Request Number (Six digit number)</label
-            >
-            <input
-              id="requestNumberInput"
-              type="text"
-              class="form-control"
-              placeholder="eg. 12345"
-            />
+<ng-container *ngIf="!makingFormChoice; else makeChoice">
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="jumbotron jumbotron-fluid mt-4">
+          <div class="container">
+            <h1 class="display-4">Office of Public Defender</h1>
+            <p class="lead">This is a form application to fill out forms</p>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="form-button" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="form-button">Continue form</button>
+    </div>
+    <!-- Form selection -->
+    <div class="row">
+      <div class="col-sm-6 pt-4">
+        <h2>Employee</h2>
+        <div class="m-2">
+          <p>
+            If you want to start a new employee form, click the button below.
+          </p>
+          <button class="form-button">New Form</button>
+        </div>
+        <div class="m-2">
+          <p>
+            If you want to continue a form, click the button below. Have your
+            reference number ready.
+          </p>
+          <button
+            class="form-button"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Continue Form
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-6 pt-4">
+        <h2>Contractor</h2>
+        <div class="m-2">
+          <p>If you would like to start a new form, click the button below.</p>
+          <button class="form-button">New Form</button>
+        </div>
+        <div class="m-2">
+          <p>
+            If you would like to continue completing a form, click the button
+            below. Have your reference number ready.
+          </p>
+          <button
+            class="form-button"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Continue form
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModalCenter"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <!-- Request number -->
+            <div class="row">
+              <label for="requestNumberInput"
+                >Request Number (Six digit number)</label
+              >
+              <input
+                id="requestNumberInput"
+                type="text"
+                class="form-control"
+                placeholder="eg. 12345"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="form-button" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="form-button">Continue form</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- Form choice (continue or new) -->
+<ng-template #makeChoice>
+  <p>It works!</p>
+</ng-template>
