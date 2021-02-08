@@ -1,9 +1,22 @@
 <!-- Request status -->
 <!-- Search and button box-->
 <div class="input-group mb-3">
-  <input #data type="text" class="form-control" placeholder="search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <input
+    #data
+    type="text"
+    class="form-control"
+    placeholder="search"
+    aria-label="Recipient's username"
+    aria-describedby="basic-addon2"
+  />
   <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" (click)="onClick(data.value)">Button</button>
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="onClick(data.value)"
+    >
+      Button
+    </button>
   </div>
 </div>
 
@@ -12,19 +25,19 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">UUID</th>
+        <th scope="col">Request Number</th>
         <th scope="col">Request Status</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
       </tr>
     </thead>
-      <tbody>
-        <tr>
-          <td scope="row">{{id}}</td>
-          <td>{{requestStatus}}</td>
-          <td>{{firstName}}</td>
-          <td>{{lastName}}</td>
-        </tr>
-      </tbody>  
+    <tbody>
+      <tr>
+        <td scope="row">{{ requestNumber }}</td>
+        <td>{{ requestStatus }}</td>
+        <td>{{ firstName }}</td>
+        <td>{{ lastName }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
