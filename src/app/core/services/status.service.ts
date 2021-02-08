@@ -10,6 +10,6 @@ export class StatusService {
   constructor(private http: HttpClient) {}
 
   public searchById(id: any) {
-    return this.http.get(`${this.apiUrl}/service_requests/${id}`);
+    return this.http.get(`${this.apiUrl}/request_statuses/${id}`);
   }
 }

@@ -9,8 +9,8 @@ import { StatusService } from 'src/app/core/services/status.service';
 export class RequestStatusComponent implements OnInit {
   @Input() regForm;
   //access three variable in form: id, request status, first name, last name
-  id: any;
-  requestStatus: any;
+  requestNumber: any;
+  requestStatus: any; 
   firstName: any;
   lastName: any;
 
@@ -27,7 +27,7 @@ export class RequestStatusComponent implements OnInit {
 
   //set properties and access them
   parseObject(data: any): void {
-    this.id = data.id;
+    this.requestNumber = data.requestNumber;
     this.requestStatus = data.requestStatus;
     this.firstName = data.firstName;
     this.lastName = data.lastName;
