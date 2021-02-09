@@ -3,7 +3,7 @@
  * or continued.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-form-action-selection',
@@ -12,9 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormActionSelectionComponent implements OnInit {
   showChoices: boolean;
+  // Will toggle showing the prompt (from HomepageComponent)
+  @Input() toggleMakingChoices;
   constructor() {}
 
   ngOnInit(): void {
     this.showChoices = true;
+  }
+  /**
+   * Will toggle the show choices variable,
+   * will be used for asking requestNumber
+   */
+  toggleShowChoices(): void {
+    this.showChoices ? (this.showChoices = false) : (this.showChoices = true);
   }
 }

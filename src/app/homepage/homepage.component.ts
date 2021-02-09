@@ -15,7 +15,9 @@ export class HomepageComponent implements OnInit {
   /** Will switch makingFormChoice to
    * true, which will render form-action-selection
    */
-  toggleMakingChoices(): void {
-    this.makingFormChoice = true;
-  }
+  toggleMakingChoices = () => {
+    this.makingFormChoice
+      ? (this.makingFormChoice = false)
+      : (this.makingFormChoice = true);
+  };
 }

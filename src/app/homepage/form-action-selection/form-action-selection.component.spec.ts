@@ -31,9 +31,9 @@ describe('FormActionSelectionComponent', () => {
 
     expect(titleElement.innerText).toContain('What would you like to do?');
   });
-  it('should show two buttons', () => {
+  it('should show three buttons', () => {
     const buttons = fixture.debugElement.queryAll(By.css('button'));
-    expect(buttons.length).toBe(2);
+    expect(buttons.length).toBe(3);
   });
   it('should show the reference number prompt if showChoices is false', () => {
     // change showChoices to false
@@ -45,5 +45,18 @@ describe('FormActionSelectionComponent', () => {
       By.css('input.referenceNumberPrompt')
     ).nativeElement;
     expect(referenceNumberInput).toBeDefined();
+  });
+  // TODO: Move this test to homepage component
+  it('should change showChoices to false when clicked', () => {
+    // showing choices
+    component.showChoices = true;
+    fixture.detectChanges();
+
+    // toggle
+    component.toggleShowChoices();
+    fixture.detectChanges();
+
+    // check that showChoices is false
+    expect(component.showChoices).toBeFalse();
   });
 });
