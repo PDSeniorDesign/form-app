@@ -11,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-action-selection.component.css'],
 })
 export class FormActionSelectionComponent implements OnInit {
+  showChoices: boolean;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showChoices = true;
+  }
 }

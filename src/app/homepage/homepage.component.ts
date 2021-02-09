@@ -12,4 +12,10 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.makingFormChoice = false;
   }
+  /** Will switch makingFormChoice to
+   * true, which will render form-action-selection
+   */
+  toggleMakingChoices(): void {
+    this.makingFormChoice = true;
+  }
 }

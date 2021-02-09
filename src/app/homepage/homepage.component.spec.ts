@@ -36,7 +36,7 @@ describe('HomepageComponent', () => {
   it('should render form action component when makingFormChoice is set to true', () => {
     component.makingFormChoice = true;
     fixture.detectChanges();
-    const pTag = fixture.debugElement.query(By.css('p')).nativeElement;
-    expect(pTag.innerText).toContain('form-action-selection works!');
+    const pTag = fixture.debugElement.query(By.css('h1.page-title')).nativeElement;
+    expect(pTag.innerText).toContain('What would you like to do?');
   });
 });
