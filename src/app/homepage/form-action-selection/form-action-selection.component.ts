@@ -3,8 +3,10 @@
  * or continued.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, Input, OnInit } from '@angular/core';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
   selector: 'app-form-action-selection',
@@ -37,7 +39,10 @@ export class FormActionSelectionComponent implements OnInit {
   showChoices: boolean;
   // Will toggle showing the prompt (from HomepageComponent)
   @Input() toggleMakingChoices;
-  constructor() {}
+  constructor(
+    private apiHttpService: ApiHttpService,
+    private formDataService: FormDataService
+  ) {}
 
   ngOnInit(): void {
     this.showChoices = true;
@@ -49,4 +54,7 @@ export class FormActionSelectionComponent implements OnInit {
   toggleShowChoices(): void {
     this.showChoices ? (this.showChoices = false) : (this.showChoices = true);
   }
+
+  // Grabbing form
+  handleGetFormClick(): void {}
 }

@@ -1,7 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormActionSelectionComponent } from './form-action-selection.component';
 
 describe('FormActionSelectionComponent', () => {
@@ -11,7 +12,8 @@ describe('FormActionSelectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FormActionSelectionComponent],
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, HttpClientModule],
+      providers: [ApiHttpService],
     }).compileComponents();
   });
 
@@ -79,5 +81,16 @@ describe('FormActionSelectionComponent', () => {
       .nativeElement;
     //Should not show the old header
     expect(headerPrompt.innerText).not.toContain('Enter request number');
+  });
+  it('should have the retrieve form button', () => {
+    // Show the request number prompt
+    component.showChoices = false;
+    fixture.detectChanges();
+
+    // grab retrieve form button
+    const retrieveFormButton = fixture.debugElement.query(
+      By.css('button#retrieveBtn')
+    ).nativeElement;
+    expect(retrieveFormButton).toBeDefined();
   });
 });
