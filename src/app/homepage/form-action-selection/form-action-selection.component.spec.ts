@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormActionSelectionComponent } from './form-action-selection.component';
 
@@ -10,6 +11,7 @@ describe('FormActionSelectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FormActionSelectionComponent],
+      imports: [BrowserAnimationsModule],
     }).compileComponents();
   });
 
@@ -59,14 +61,23 @@ describe('FormActionSelectionComponent', () => {
     // check that showChoices is false
     expect(component.showChoices).toBeFalse();
   });
-  it('should show request number prompt when showChoices is false', () => {
+  // This is for the requet number prompt
+  it('should not show request number prompt when cancel button is pressed(request number prompt)', () => {
     // set show choices to false
     component.showChoices = false;
     fixture.detectChanges();
 
-    // Check that the request number prompt is showing
-    const requestNumberPrompt = fixture.nativeElement.querySelector('h1');
-    expect(requestNumberPrompt.innerText).toContain('Enter request number');
-    
-  })
+    // grab the button and simultate a click
+    const cancelButton = fixture.debugElement.query(
+      By.css('button#requestNumberPromptCancelBtn')
+    ).nativeElement;
+    cancelButton.click();
+    fixture.detectChanges();
+
+    // Check that the request number prompt is not showing
+    const headerPrompt = fixture.debugElement.query(By.css('h1.page-title'))
+      .nativeElement;
+    //Should not show the old header
+    expect(headerPrompt.innerText).not.toContain('Enter request number');
+  });
 });

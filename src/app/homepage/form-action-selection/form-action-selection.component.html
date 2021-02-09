@@ -1,5 +1,5 @@
 <ng-container *ngIf="showChoices; else referenceNumberPrompt">
-  <div class="center">
+  <div class="center" [@myAnimation]>
     <div class="row">
       <h1 class="page-title">What would you like to do?</h1>
     </div>
@@ -28,10 +28,19 @@
       <h3 class="page-title mx-auto">Enter request number</h3>
     </div>
     <div class="row">
-      <input class="referenceNumberPrompt mx-auto form-control" placeholder="eg. 123456" />
+      <input
+        class="referenceNumberPrompt mx-auto form-control"
+        placeholder="eg. 123456"
+      />
     </div>
     <div class="row">
-      <button class="mx-auto mt-2">Cancel</button>
+      <button
+        id="requestNumberPromptCancelBtn"
+        class="mx-auto mt-2"
+        (click)="toggleShowChoices()"
+      >
+        Cancel
+      </button>
     </div>
   </div>
 </ng-template>
