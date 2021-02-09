@@ -56,5 +56,5 @@ export class FormActionSelectionComponent implements OnInit {
   }
 
   // Grabbing form
-  handleGetFormClick(): void {}
+  handleRetrieveFormClick(): void {}
 }

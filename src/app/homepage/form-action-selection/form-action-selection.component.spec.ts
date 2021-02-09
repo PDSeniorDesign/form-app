@@ -93,4 +93,21 @@ describe('FormActionSelectionComponent', () => {
     ).nativeElement;
     expect(retrieveFormButton).toBeDefined();
   });
+  it('should call the handleRetrieveFormClick() on click of handle retrieve button', () => {
+    // render the request number prompt
+    component.showChoices = false;
+    fixture.detectChanges();
+
+    // spy on handleRetrieveFormClick()
+    spyOn(component, 'handleRetrieveFormClick');
+
+    // click the retrieve button
+    const retrieveFormButton = fixture.debugElement.query(
+      By.css('button#retrieveBtn')
+    ).nativeElement;
+    retrieveFormButton.click();
+
+    // make sure the function was called
+    expect(component.handleRetrieveFormClick).toHaveBeenCalled();
+  });
 });
