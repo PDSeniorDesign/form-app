@@ -59,4 +59,14 @@ describe('FormActionSelectionComponent', () => {
     // check that showChoices is false
     expect(component.showChoices).toBeFalse();
   });
+  it('should show request number prompt when showChoices is false', () => {
+    // set show choices to false
+    component.showChoices = false;
+    fixture.detectChanges();
+
+    // Check that the request number prompt is showing
+    const requestNumberPrompt = fixture.nativeElement.querySelector('h1');
+    expect(requestNumberPrompt.innerText).toContain('Enter request number');
+    
+  })
 });

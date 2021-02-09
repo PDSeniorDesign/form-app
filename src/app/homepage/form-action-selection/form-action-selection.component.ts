@@ -4,11 +4,34 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-form-action-selection',
   templateUrl: './form-action-selection.component.html',
   styleUrls: ['./form-action-selection.component.css'],
+  animations: [
+    trigger('myAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 1,
+          })
+        ),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class FormActionSelectionComponent implements OnInit {
   showChoices: boolean;
