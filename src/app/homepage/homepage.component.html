@@ -1,6 +1,6 @@
-<ng-container *ngIf="!makingFormChoice; else makeChoice">
+<ng-container *ngIf="!makingFormChoice; else makeChoice" >
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" [@myAnimation]>
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="jumbotron jumbotron-fluid mt-4">
@@ -109,5 +109,5 @@
 
 <!-- Form choice (continue or new) -->
 <ng-template #makeChoice>
-  <app-form-action-selection [toggleMakingChoices]="toggleMakingChoices"></app-form-action-selection>
+  <app-form-action-selection [toggleMakingChoices]="toggleMakingChoices" [@myAnimation]></app-form-action-selection>
 </ng-template>
