@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AppModule } from '../app.module';
 import { HomepageComponent } from './homepage.component';
@@ -10,7 +11,7 @@ describe('HomepageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomepageComponent],
-      imports: [AppModule],
+      imports: [AppModule, FormsModule],
     }).compileComponents();
   });
 
@@ -64,8 +65,8 @@ describe('HomepageComponent', () => {
     component.stepCounter = 3;
     fixture.detectChanges();
 
-    const testText = fixture.debugElement.query(By.css('p')).nativeElement;
-    expect(testText.innerText).toContain('request number prompt works');
+    const testText = fixture.debugElement.query(By.css('h3')).nativeElement;
+    expect(testText.innerText).toContain('Enter Request Number');
   });
   it('should increase step number when nextStep() is invoked', () => {
     component.stepCounter = 0;
@@ -224,13 +225,42 @@ describe('HomepageComponent', () => {
     spyOn(component, 'nextStep');
 
     // grab continue form btn
-    const newFormBtn = fixture.debugElement.query(
-      By.css('button#newFormBtn')
-    ).nativeElement;
+    const newFormBtn = fixture.debugElement.query(By.css('button#newFormBtn'))
+      .nativeElement;
     newFormBtn.click();
 
     // test that the function were called
     expect(component.selectNewForm).toHaveBeenCalled();
     expect(component.nextStep).toHaveBeenCalled();
+  });
+  it('should have an input where request number will be inputted', () => {
+    // switch to step 3
+    component.stepCounter = 3;
+    fixture.detectChanges();
+
+    // grab the input
+    const inputElement = fixture.debugElement.query(By.css('input'))
+      .nativeElement;
+
+    // test that it is there
+    expect(inputElement).not.toBeNull();
+  });
+  // request number input
+  it('should bind to requestNumber variable', () => {
+    // switch to step 3
+    component.stepCounter = 3;
+    fixture.detectChanges();
+
+    // grab elem
+    const inputElem = fixture.debugElement.query(
+      By.css('input#requestNumberInput')
+    );
+    //update value and dispatch event so angular can notice change
+    inputElem.nativeElement.value = '12345';
+    inputElem.nativeNode.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    
+    // test
+    expect(component.requestNumber).toBe(12345);
   });
 });

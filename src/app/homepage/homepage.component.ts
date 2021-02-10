@@ -71,4 +71,8 @@ export class HomepageComponent implements OnInit {
   selectNewForm(): void {
     this.continueForm = false;
   }
+  // testing
+  printRequestNumber(): void {
+    console.log(this.requestNumber);
+  }
 }

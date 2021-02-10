@@ -13,20 +13,13 @@
     </div>
     <!-- Form selection -->
     <div class="row">
-      <div class="col-sm-6 pt-4">
-        <h2>Employee</h2>
+      <div class="col-sm-6 pt-4 mx-auto">
+        <h2>Start a form</h2>
         <div class="m-2">
           <p>Start form</p>
           <button id="startFormBtn" class="form-button" (click)="nextStep()">
             Start form
           </button>
-        </div>
-      </div>
-      <div class="col-sm-6 pt-4">
-        <h2>Contractor</h2>
-        <div class="m-2">
-          <p>To view contractor form options, click the button below.</p>
-          <button class="form-button">New Form</button>
         </div>
       </div>
     </div>
@@ -40,6 +33,8 @@
     </div>
     <div class="row">
       <button
+        mat-button
+        color="primary"
         id="employeeBtn"
         class="mx-auto"
         (click)="selectEmployee(); nextStep()"
@@ -49,6 +44,8 @@
     </div>
     <div class="row">
       <button
+        mat-button
+        color="primary"
         id="contractorBtn"
         class="mx-auto"
         (click)="selectContractor(); nextStep()"
@@ -57,7 +54,7 @@
       </button>
     </div>
     <div class="row">
-      <button class="go-back-btn mx-auto" (click)="previousStep()">
+      <button mat-button class="go-back-btn mx-auto" (click)="previousStep()">
         Go back
       </button>
     </div>
@@ -71,6 +68,8 @@
     </div>
     <div class="row">
       <button
+        mat-button
+        color="primary"
         id="continueFormBtn"
         class="mx-auto"
         (click)="selectContinueForm(); nextStep()"
@@ -80,6 +79,8 @@
     </div>
     <div class="row">
       <button
+        mat-button
+        color="primary"
         id="newFormBtn"
         class="mx-auto"
         (click)="selectNewForm(); nextStep()"
@@ -88,7 +89,7 @@
       </button>
     </div>
     <div class="row">
-      <button class="go-back-btn mx-auto" (click)="previousStep()">
+      <button mat-button class="mx-auto" (click)="previousStep()">
         Go back
       </button>
     </div>
@@ -97,7 +98,46 @@
 
 <ng-template [ngIf]="stepCounter === 3">
   <div class="center">
-    <p>request number prompt works!</p>
-    <button class="go-back-btn" (click)="previousStep()">Go back</button>
+    <div class="row">
+      <h3>Enter Request Number</h3>
+    </div>
+    <div class="row">
+      <!--<input
+        id="requestNumber"
+        type="number"
+        placeholder="eg. 1234567"
+        class="form-control mx-auto"
+      /> -->
+      <mat-form-field class="full-width" floatLabel="never">
+        <!-- <mat-label>Favorite food</mat-label> -->
+        <input
+          id="requestNumberInput"
+          type="number"
+          matInput
+          placeholder="Ex. 123456"
+          class="mx-auto"
+          [(ngModel)]="requestNumber"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        color="primary"
+        class="mx-auto mt-2"
+        (click)="printRequestNumber()"
+      >
+        Retrieve form
+      </button>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        class="go-back-btn mx-auto mt-2"
+        (click)="previousStep()"
+      >
+        Go back
+      </button>
+    </div>
   </div>
 </ng-template>

@@ -17,3 +17,7 @@ div {
 .go-back-btn {
   border-radius: 10px;
 }
+
+.full-width {
+  width: 100%;
+}
