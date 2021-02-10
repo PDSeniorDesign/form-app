@@ -1,4 +1,4 @@
-<ng-container *ngIf="stepCounter === 0">
+<ng-template [ngIf]="stepCounter === 0">
   <!-- Page Content -->
   <div class="container" [@myAnimation]>
     <div class="row">
@@ -29,4 +29,16 @@
       </div>
     </div>
   </div>
-</ng-container>
+</ng-template>
+
+<ng-template [ngIf]="stepCounter === 1">
+  <p>user selection step works!</p>
+</ng-template>
+
+<ng-template [ngIf]="stepCounter === 2">
+  <p>form type selection works!</p>
+</ng-template>
+
+<ng-template [ngIf]="stepCounter === 3">
+  <p>request number prompt works!</p>
+</ng-template>
