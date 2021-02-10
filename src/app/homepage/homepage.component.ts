@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -43,7 +44,7 @@ export class HomepageComponent implements OnInit {
   continueForm: boolean;
   // Where we will store request number
   requestNumber: number;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     // Will render homepage by default
@@ -68,7 +69,18 @@ export class HomepageComponent implements OnInit {
   selectContinueForm(): void {
     this.continueForm = true;
   }
+  // TODO: test this method
+  // TODO: possible edge case, the user type was never set
+  /** If the user calls this function it means they are ready to redirect. */
   selectNewForm(): void {
+    this.continueForm = false;
+    if (this.userType === 'employee') {
+      // navigate to the employee route
+      this.router.navigate(['/employee-form']);
+    } else if (this.userType === 'contractor') {
+      // navigate to the contractor route
+      this.router.navigate(['/contractor-form']);
+    }
     this.continueForm = false;
   }
   // testing
