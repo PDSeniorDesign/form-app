@@ -26,7 +26,8 @@ import { CoreModule } from './core/core.module';
 import { ContractorInformationComponent } from './form/contractor-form/contractor-information/contractor-information.component';
 import { CountyInformationComponent } from './form/contractor-form/county-information/county-information.component';
 import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
-import { SubmitComponent } from './form/contractor-form/submit/submit.component'
+import { SubmitComponent } from './form/contractor-form/submit/submit.component';
+import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component'
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SubmitComponent } from './form/contractor-form/submit/submit.component'
     CountyInformationComponent,
     PolicyRulesComponent,
     SubmitComponent,
+    FormActionSelectionComponent,
   ],
   imports: [
     BrowserModule,

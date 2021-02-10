@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { AppModule } from '../app.module';
 
 import { HomepageComponent } from './homepage.component';
 
@@ -8,9 +10,9 @@ describe('HomepageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomepageComponent ]
-    })
-    .compileComponents();
+      declarations: [HomepageComponent],
+      imports: [AppModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +23,28 @@ describe('HomepageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have makingFormChoice be false by default', () => {
+    expect(component.makingFormChoice).toBeFalse();
+  });
+  it('should render the homepage as default', () => {
+    const jumbotronTitle = fixture.debugElement.query(By.css('h1.display-4'))
+      .nativeElement;
+    expect(jumbotronTitle.innerText).toContain('Office of Public Defender');
+  });
+  it('should render form action component when makingFormChoice is set to true', () => {
+    component.makingFormChoice = true;
+    fixture.detectChanges();
+    const pTag = fixture.debugElement.query(By.css('h1.page-title'))
+      .nativeElement;
+    expect(pTag.innerText).toContain('What would you like to do?');
+  });
+  it('should toggle makingChoices', () => {
+    component.makingFormChoice = true;
+    fixture.detectChanges();
+
+    component.toggleMakingChoices();
+    expect(component.makingFormChoice).toBeFalse();
   });
 });
