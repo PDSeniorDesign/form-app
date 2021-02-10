@@ -24,27 +24,21 @@ describe('HomepageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should have makingFormChoice be false by default', () => {
-    expect(component.makingFormChoice).toBeFalse();
+  it('should have userType variable', () => {
+    expect(component.userType).toBeUndefined();
+  });
+  it('should have continueForm variabe', () => {
+    expect(component.continueForm).toBeUndefined();
+  });
+  it('should have requestNumber variable', () => {
+    expect(component.requestNumber).toBeUndefined();
+  });
+  it('should have stepCounter variable and should be set to 0', () => {
+    expect(component.stepCounter).toBe(0);
   });
   it('should render the homepage as default', () => {
     const jumbotronTitle = fixture.debugElement.query(By.css('h1.display-4'))
       .nativeElement;
     expect(jumbotronTitle.innerText).toContain('Office of Public Defender');
-  });
-  it('should render form action component when makingFormChoice is set to true', () => {
-    component.makingFormChoice = true;
-    fixture.detectChanges();
-    const pTag = fixture.debugElement.query(By.css('h1.page-title'))
-      .nativeElement;
-    expect(pTag.innerText).toContain('What would you like to do?');
-  });
-  it('should toggle makingChoices', () => {
-    component.makingFormChoice = true;
-    fixture.detectChanges();
-
-    component.toggleMakingChoices();
-    expect(component.makingFormChoice).toBeFalse();
   });
 });
