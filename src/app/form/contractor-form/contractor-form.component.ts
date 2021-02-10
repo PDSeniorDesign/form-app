@@ -1,10 +1,32 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
 @Component({
   selector: 'app-contractor-form',
   templateUrl: './contractor-form.component.html',
   styleUrls: ['./contractor-form.component.css'],
+  animations: [
+    trigger('myAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 1,
+          })
+        ),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class ContractorFormComponent implements OnInit {
   form: FormGroup;
