@@ -35,15 +35,45 @@
 
 <ng-template [ngIf]="stepCounter === 1">
   <div class="center" [@myAnimation]>
-    <p>user selection step works!</p>
-    <button class="go-back-btn" (click)="previousStep()">Go back</button>
+    <div class="row">
+      <h3>Are you an employee or contractor?</h3>
+    </div>
+    <div class="row">
+      <button
+        id="employeeBtn"
+        class="mx-auto"
+        (click)="selectEmployee(); nextStep()"
+      >
+        Employee
+      </button>
+    </div>
+    <div class="row">
+      <button
+        id="contractorBtn"
+        class="mx-auto"
+        (click)="selectContractor(); nextStep()"
+      >
+        Contractor
+      </button>
+    </div>
+    <div class="row">
+      <button class="go-back-btn mx-auto" (click)="previousStep()">
+        Go back
+      </button>
+    </div>
   </div>
 </ng-template>
 
 <ng-template [ngIf]="stepCounter === 2">
-  <div class="center">
-    <p>form type selection works!</p>
-    <button class="go-back-btn" (click)="previousStep()">Go back</button>
+  <div class="center" [@myAnimation]>
+    <div class="row">
+      <h3>Would you like to continue a form or start a new one?</h3>
+    </div>
+    <div class="row">
+      <button class="go-back-btn mx-auto" (click)="previousStep()">
+        Go back
+      </button>
+    </div>
   </div>
 </ng-template>
 

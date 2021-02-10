@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AppModule } from '../app.module';
-
 import { HomepageComponent } from './homepage.component';
 
 describe('HomepageComponent', () => {
@@ -47,8 +46,8 @@ describe('HomepageComponent', () => {
     fixture.detectChanges();
 
     // Grab an element to test if it rendered
-    const testText = fixture.debugElement.query(By.css('p')).nativeElement;
-    expect(testText.innerText).toContain('user selection step works!');
+    const testText = fixture.debugElement.query(By.css('h3')).nativeElement;
+    expect(testText.innerText).toContain('Are you an employee or contractor?');
   });
   it('should render the form type selection, whether new or continue form, when stepCounter is 2', () => {
     // Set the stepcounter to two
@@ -56,8 +55,10 @@ describe('HomepageComponent', () => {
     fixture.detectChanges();
 
     // grab element to check that it rendered
-    const testText = fixture.debugElement.query(By.css('p')).nativeElement;
-    expect(testText.innerText).toContain('form type selection works!');
+    const testText = fixture.debugElement.query(By.css('h3')).nativeElement;
+    expect(testText.innerText).toContain(
+      'Would you like to continue a form or start a new one?'
+    );
   });
   it('should render the request number prompt if the stepCounter is 3', () => {
     component.stepCounter = 3;
@@ -104,5 +105,68 @@ describe('HomepageComponent', () => {
 
     // make sure it was called
     expect(component.previousStep).toHaveBeenCalled();
+  });
+  it('should have a contractor and employee option', () => {
+    // go to step one
+    component.stepCounter = 1;
+    fixture.detectChanges();
+
+    // grab both buttons
+    const employeeBtn = fixture.debugElement.query(By.css('button#employeeBtn'))
+      .nativeElement;
+    const contractorBtn = fixture.debugElement.query(
+      By.css('button#contractorBtn')
+    ).nativeElement;
+
+    // test that they exist
+    expect(employeeBtn.innerText).toContain('Employee');
+    expect(contractorBtn.innerText).toContain('Contractor');
+  });
+  it('should change userType to employee', () => {
+    component.selectEmployee();
+    expect(component.userType).toBe('employee');
+  });
+  it('should change userType to contactor', () => {
+    component.selectContractor();
+    expect(component.userType).toBe('contractor');
+  });
+  // employee button
+  it('should call selectEmployee() and nextStep() on click', () => {
+    // set step to 1
+    component.stepCounter = 1;
+    fixture.detectChanges();
+
+    // spy on selectEmployee() and nextStep()
+    spyOn(component, 'selectEmployee');
+    spyOn(component, 'nextStep');
+
+    // grab element and simulate click
+    const employeeBtn = fixture.debugElement.query(By.css('button#employeeBtn'))
+      .nativeElement;
+    employeeBtn.click();
+
+    // check that they were called
+    expect(component.selectEmployee).toHaveBeenCalled();
+    expect(component.nextStep).toHaveBeenCalled();
+  });
+  // contractor button
+  it('should call selectContractor() and nextStep() on click', () => {
+    // set step to 1
+    component.stepCounter = 1;
+    fixture.detectChanges();
+
+    // spy on selectEmployee() and nextStep()
+    spyOn(component, 'selectContractor');
+    spyOn(component, 'nextStep');
+
+    // grab element and simulate click
+    const contractorBtn = fixture.debugElement.query(
+      By.css('button#contractorBtn')
+    ).nativeElement;
+    contractorBtn.click();
+
+    // check that they were called
+    expect(component.selectContractor).toHaveBeenCalled();
+    expect(component.nextStep).toHaveBeenCalled();
   });
 });

@@ -59,4 +59,10 @@ export class HomepageComponent implements OnInit {
   previousStep(): void {
     this.stepCounter -= 1;
   }
+  selectEmployee(): void {
+    this.userType = 'employee';
+  }
+  selectContractor(): void {
+    this.userType = 'contractor';
+  }
 }
