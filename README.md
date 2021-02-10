@@ -65,6 +65,9 @@ That brings us to another point, if you are implementing something new make sure
 
 Before commiting please format your code with `prettier`. This is a tool that formats the code for you. Since this is what is currently being used, this is the recommended formmater. If you use [Visual Studio Code](https://code.visualstudio.com/Download), there is a [plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for the formatter that you can install. There are some [shortcuts](https://stackoverflow.com/questions/29973357/how-do-you-format-code-in-visual-studio-code-vscode) you can use.
 
+#### Test Server
+When a pull request or commit gets pushed to the master branch, it will automatically trigger the test server to update. The test server is [here](https://pacific-waters-97783.herokuapp.com/). It should mirror what is on the `master` branch.
+
 ## Authors
 
 👤 **Adrian Palomares**
