@@ -169,4 +169,68 @@ describe('HomepageComponent', () => {
     expect(component.selectContractor).toHaveBeenCalled();
     expect(component.nextStep).toHaveBeenCalled();
   });
+  it('should set continueForm to true', () => {
+    component.selectContinueForm();
+    expect(component.continueForm).toBeTrue();
+  });
+  it('should set continueForm to false', () => {
+    component.selectNewForm();
+    expect(component.continueForm).toBeFalse();
+  });
+  it('should have new from and continue form buttons', () => {
+    // set to step 2
+    component.stepCounter = 2;
+    fixture.detectChanges();
+
+    // grab elements
+    const newFormBtn = fixture.debugElement.query(By.css('button#newFormBtn'))
+      .nativeElement;
+    const continueFormBtn = fixture.debugElement.query(
+      By.css('button#continueFormBtn')
+    ).nativeElement;
+
+    // check their innerText
+    expect(newFormBtn.innerText).toContain('New form');
+    expect(continueFormBtn.innerText).toContain('Continue form');
+  });
+  // continue form btn
+  it('should call selectContinueForm() and nextStep() on click', () => {
+    // set step 2
+    component.stepCounter = 2;
+    fixture.detectChanges();
+
+    // spy on selectContinueForm() and nextStep()
+    spyOn(component, 'selectContinueForm');
+    spyOn(component, 'nextStep');
+
+    // grab continue form btn
+    const continueFormBtn = fixture.debugElement.query(
+      By.css('button#continueFormBtn')
+    ).nativeElement;
+    continueFormBtn.click();
+
+    // test that the function were called
+    expect(component.selectContinueForm).toHaveBeenCalled();
+    expect(component.nextStep).toHaveBeenCalled();
+  });
+  // new form button
+  it('should call selectNewForm() and nextStep()', () => {
+    // set step 2
+    component.stepCounter = 2;
+    fixture.detectChanges();
+
+    // spy on selectNewForm() and nextStep()
+    spyOn(component, 'selectNewForm');
+    spyOn(component, 'nextStep');
+
+    // grab continue form btn
+    const newFormBtn = fixture.debugElement.query(
+      By.css('button#newFormBtn')
+    ).nativeElement;
+    newFormBtn.click();
+
+    // test that the function were called
+    expect(component.selectNewForm).toHaveBeenCalled();
+    expect(component.nextStep).toHaveBeenCalled();
+  });
 });

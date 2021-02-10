@@ -65,4 +65,10 @@ export class HomepageComponent implements OnInit {
   selectContractor(): void {
     this.userType = 'contractor';
   }
+  selectContinueForm(): void {
+    this.continueForm = true;
+  }
+  selectNewForm(): void {
+    this.continueForm = false;
+  }
 }
