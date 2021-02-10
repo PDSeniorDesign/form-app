@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -5,6 +6,28 @@ import { FormControl, FormGroup } from '@angular/forms';
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.css'],
+  animations: [
+    trigger('myAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 1,
+          })
+        ),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class EmployeeFormComponent implements OnInit {
   form: FormGroup;

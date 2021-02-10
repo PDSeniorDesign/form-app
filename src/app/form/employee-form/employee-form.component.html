@@ -1,5 +1,10 @@
 <!-- Employee Form -->
-<form *ngIf="!hasSubmitted; else elseBlock" id="regForm" [formGroup]="form">
+<form
+  *ngIf="!hasSubmitted; else elseBlock"
+  id="regForm"
+  [formGroup]="form"
+  [@myAnimation]
+>
   <!-- Information Step -->
   <mat-horizontal-stepper #stepper>
     <mat-step
