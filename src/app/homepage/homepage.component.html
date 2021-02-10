@@ -1,4 +1,4 @@
-<ng-container *ngIf="!makingFormChoice; else makeChoice" >
+<ng-template [ngIf]="stepCounter === 0">
   <!-- Page Content -->
   <div class="container" [@myAnimation]>
     <div class="row">
@@ -13,101 +13,131 @@
     </div>
     <!-- Form selection -->
     <div class="row">
-      <div class="col-sm-6 pt-4">
-        <h2>Employee</h2>
+      <div class="col-sm-6 pt-4 mx-auto">
+        <h2>Start a form</h2>
         <div class="m-2">
-          <p>To view employee form options, click the button below.</p>
-          <button (click)="toggleMakingChoices()" class="form-button">
-            New Form
+          <p>Start form</p>
+          <button id="startFormBtn" class="form-button" (click)="nextStep()">
+            Start form
           </button>
-        </div>
-        <!-- <div class="m-2">
-          <p>
-            If you want to continue a form, click the button below. Have your
-            reference number ready.
-          </p>
-          <button
-            class="form-button"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-          >
-            Continue Form
-          </button>
-        </div> -->
-      </div>
-      <div class="col-sm-6 pt-4">
-        <h2>Contractor</h2>
-        <div class="m-2">
-          <p>To view contractor form options, click the button below.</p>
-          <button class="form-button">New Form</button>
-        </div>
-        <!-- <div class="m-2">
-          <p>
-            If you would like to continue completing a form, click the button
-            below. Have your reference number ready.
-          </p>
-          <button
-            class="form-button"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-          >
-            Continue form
-          </button>
-        </div> -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="exampleModalCenter"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <!-- Request number -->
-            <div class="row">
-              <label for="requestNumberInput"
-                >Request Number (Six digit number)</label
-              >
-              <input
-                id="requestNumberInput"
-                type="text"
-                class="form-control"
-                placeholder="eg. 12345"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="form-button" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="form-button">Continue form</button>
         </div>
       </div>
     </div>
   </div>
-</ng-container>
+</ng-template>
 
-<!-- Form choice (continue or new) -->
-<ng-template #makeChoice>
-  <app-form-action-selection [toggleMakingChoices]="toggleMakingChoices" [@myAnimation]></app-form-action-selection>
+<ng-template [ngIf]="stepCounter === 1">
+  <div class="center" [@myAnimation]>
+    <div class="row">
+      <h3>Are you an employee or contractor?</h3>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        color="primary"
+        id="employeeBtn"
+        class="mx-auto"
+        (click)="selectEmployee(); nextStep()"
+      >
+        Employee
+      </button>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        color="primary"
+        id="contractorBtn"
+        class="mx-auto"
+        (click)="selectContractor(); nextStep()"
+      >
+        Contractor
+      </button>
+    </div>
+    <div class="row">
+      <button mat-button class="go-back-btn mx-auto" (click)="previousStep()">
+        Go back
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="stepCounter === 2">
+  <div class="center" [@myAnimation]>
+    <div class="row">
+      <h3>Would you like to continue a form or start a new one?</h3>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        color="primary"
+        id="continueFormBtn"
+        class="mx-auto"
+        (click)="selectContinueForm(); nextStep()"
+      >
+        Continue form
+      </button>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        color="primary"
+        id="newFormBtn"
+        class="mx-auto"
+        (click)="selectNewForm(); nextStep()"
+      >
+        New form
+      </button>
+    </div>
+    <div class="row">
+      <button mat-button class="mx-auto" (click)="previousStep()">
+        Go back
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="stepCounter === 3">
+  <div class="center">
+    <div class="row">
+      <h3>Enter Request Number</h3>
+    </div>
+    <div class="row">
+      <!--<input
+        id="requestNumber"
+        type="number"
+        placeholder="eg. 1234567"
+        class="form-control mx-auto"
+      /> -->
+      <mat-form-field class="full-width" floatLabel="never">
+        <!-- <mat-label>Favorite food</mat-label> -->
+        <input
+          id="requestNumberInput"
+          type="number"
+          matInput
+          placeholder="Ex. 123456"
+          class="mx-auto"
+          [(ngModel)]="requestNumber"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        color="primary"
+        class="mx-auto mt-2"
+        (click)="printRequestNumber()"
+      >
+        Retrieve form
+      </button>
+    </div>
+    <div class="row">
+      <button
+        mat-button
+        class="go-back-btn mx-auto mt-2"
+        (click)="previousStep()"
+      >
+        Go back
+      </button>
+    </div>
+  </div>
 </ng-template>

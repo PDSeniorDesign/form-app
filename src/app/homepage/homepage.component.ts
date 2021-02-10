@@ -28,18 +28,51 @@ import { animate, style, transition, trigger } from '@angular/animations';
   ],
 })
 export class HomepageComponent implements OnInit {
-  makingFormChoice: boolean;
+  /**
+   * @description this variable is responsible for keeping track
+   * of the steps. (0 = homepage, 1 = Asking the user's type, 2 = Asking if
+   * continuing a form or creating a new one, 3 = Getting the request number, if continuing
+   * form)
+   *
+   */
+  stepCounter: number;
+
+  // Whether the user is an employee or contractor
+  userType: string;
+  // Whether the user will continue a form or create a new one
+  continueForm: boolean;
+  // Where we will store request number
+  requestNumber: number;
   constructor() {}
 
   ngOnInit(): void {
-    this.makingFormChoice = false;
+    // Will render homepage by default
+    this.stepCounter = 0;
   }
-  /** Will switch makingFormChoice to
-   * true, which will render form-action-selection
+  /**
+   *  TODO: Add conditionals to prevent step from going below -1 or
+   * higher than 3
    */
-  toggleMakingChoices = () => {
-    this.makingFormChoice
-      ? (this.makingFormChoice = false)
-      : (this.makingFormChoice = true);
-  };
+  nextStep(): void {
+    this.stepCounter += 1;
+  }
+  previousStep(): void {
+    this.stepCounter -= 1;
+  }
+  selectEmployee(): void {
+    this.userType = 'employee';
+  }
+  selectContractor(): void {
+    this.userType = 'contractor';
+  }
+  selectContinueForm(): void {
+    this.continueForm = true;
+  }
+  selectNewForm(): void {
+    this.continueForm = false;
+  }
+  // testing
+  printRequestNumber(): void {
+    console.log(this.requestNumber);
+  }
 }
