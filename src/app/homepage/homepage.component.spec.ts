@@ -66,4 +66,43 @@ describe('HomepageComponent', () => {
     const testText = fixture.debugElement.query(By.css('p')).nativeElement;
     expect(testText.innerText).toContain('request number prompt works');
   });
+  it('should increase step number when nextStep() is invoked', () => {
+    component.stepCounter = 0;
+    component.nextStep();
+    expect(component.stepCounter).toBe(1);
+  });
+  it('should decrease step number when previousStep() is invoked', () => {
+    component.stepCounter = 1;
+    component.previousStep();
+    expect(component.stepCounter).toBe(0);
+  });
+  it('should call nextStep() when start form button is clicked', () => {
+    // spy on function
+    spyOn(component, 'nextStep');
+
+    // grab button
+    const startFormBtn = fixture.debugElement.query(
+      By.css('button#startFormBtn')
+    ).nativeElement;
+    startFormBtn.click();
+
+    // check that it was called
+    expect(component.nextStep).toHaveBeenCalled();
+  });
+  it('should call previousStep() when go back button is pressed', () => {
+    // go to step one (where go back button will be)
+    component.stepCounter = 1;
+    fixture.detectChanges();
+
+    // spy on function
+    spyOn(component, 'previousStep');
+
+    // get the button and simulate click
+    const goBackBtn = fixture.debugElement.query(By.css('button.go-back-btn'))
+      .nativeElement;
+    goBackBtn.click();
+
+    // make sure it was called
+    expect(component.previousStep).toHaveBeenCalled();
+  });
 });

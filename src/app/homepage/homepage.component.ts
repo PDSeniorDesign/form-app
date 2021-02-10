@@ -46,6 +46,17 @@ export class HomepageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    // Will render homepage by default
     this.stepCounter = 0;
+  }
+  /**
+   *  TODO: Add conditionals to prevent step from going below -1 or
+   * higher than 3
+   */
+  nextStep(): void {
+    this.stepCounter += 1;
+  }
+  previousStep(): void {
+    this.stepCounter -= 1;
   }
 }

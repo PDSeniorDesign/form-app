@@ -16,8 +16,10 @@
       <div class="col-sm-6 pt-4">
         <h2>Employee</h2>
         <div class="m-2">
-          <p>To view employee form options, click the button below.</p>
-          <button class="form-button">New Form</button>
+          <p>Start form</p>
+          <button id="startFormBtn" class="form-button" (click)="nextStep()">
+            Start form
+          </button>
         </div>
       </div>
       <div class="col-sm-6 pt-4">
@@ -32,13 +34,22 @@
 </ng-template>
 
 <ng-template [ngIf]="stepCounter === 1">
-  <p>user selection step works!</p>
+  <div class="center" [@myAnimation]>
+    <p>user selection step works!</p>
+    <button class="go-back-btn" (click)="previousStep()">Go back</button>
+  </div>
 </ng-template>
 
 <ng-template [ngIf]="stepCounter === 2">
-  <p>form type selection works!</p>
+  <div class="center">
+    <p>form type selection works!</p>
+    <button class="go-back-btn" (click)="previousStep()">Go back</button>
+  </div>
 </ng-template>
 
 <ng-template [ngIf]="stepCounter === 3">
-  <p>request number prompt works!</p>
+  <div class="center">
+    <p>request number prompt works!</p>
+    <button class="go-back-btn" (click)="previousStep()">Go back</button>
+  </div>
 </ng-template>

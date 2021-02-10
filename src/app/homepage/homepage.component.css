@@ -5,3 +5,15 @@ div {
 .form-button {
   border-radius: 10px;
 }
+
+.center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.go-back-btn {
+  border-radius: 10px;
+}
