@@ -89,9 +89,25 @@
       [stepControl]="form.get('employeeInformation')"
     >
       <ng-template matStepLabel>Employee Information</ng-template>
-      <app-employee-information [regForm]="form"></app-employee-information>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Employee Number</mat-label>
+          <input type="text" matInput formControlName="employeeNumber" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Hosted ID</mat-label>
+          <input type="text" matInput formControlName="hostedId" />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
     </mat-step>
-    <!-- Requestor Information -->
+    <!-- Access Information -->
     <mat-step>
       <ng-template matStepLabel>Access Information</ng-template>
       <app-access-information></app-access-information>

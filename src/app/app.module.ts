@@ -16,7 +16,7 @@ import { ContractorFormComponent } from './form/contractor-form/contractor-form.
 import { AccessInformationComponent } from './form/employee-form/access-information/access-information.component';
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
-import { EmployeeInformationComponent } from './form/employee-form/employee-information/employee-information.component';
+
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
@@ -32,7 +32,6 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
   declarations: [
     AppComponent,
     HomepageComponent,
-    EmployeeInformationComponent,
     AccessInformationComponent,
     AdditionalInformationComponent,
     RequestStatusComponent,

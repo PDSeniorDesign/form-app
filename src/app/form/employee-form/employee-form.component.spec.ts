@@ -9,8 +9,6 @@ import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { AccessInformationComponent } from './access-information/access-information.component';
 import { AdditionalInformationComponent } from './additional-information/additional-information.component';
 import { EmployeeFormComponent } from './employee-form.component';
-import { EmployeeInformationComponent } from './employee-information/employee-information.component';
-import { InformationComponent } from './information/information.component';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 
 describe('EmployeeFormComponent', () => {
@@ -23,8 +21,6 @@ describe('EmployeeFormComponent', () => {
         EmployeeFormComponent,
         AccessInformationComponent,
         AdditionalInformationComponent,
-        EmployeeInformationComponent,
-        InformationComponent,
         SubmitPageComponent,
       ],
       imports: [
