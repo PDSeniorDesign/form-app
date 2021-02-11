@@ -13,34 +13,35 @@
       [stepControl]="form.get('information')"
     >
       <ng-template matStepLabel>Personal Information</ng-template>
-      <h2 class="mat-display-1" style="margin-bottom: 32px;">Personal Information</h2>
-      <!-- <app-information [regForm]="form" [@myAnimation]></app-information> -->
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Personal Information
+      </h2>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>First Name</mat-label>
-          <input type="text" matInput formControlName="firstName" />
+          <input #firstNameInput type="text" matInput formControlName="firstName" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Middle Initial</mat-label>
           <input type="text" matInput formControlName="middleInitial" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Last Name</mat-label>
           <input type="text" matInput formControlName="lastName" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Email</mat-label>
           <input type="text" matInput formControlName="emailAddress" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Phone number</mat-label>
           <input type="phone" matInput formControlName="phoneNumber" />
         </mat-form-field>
@@ -55,34 +56,36 @@
       [stepControl]="form.get('information')"
     >
       <ng-template matStepLabel>Address</ng-template>
-      <h2 class="mat-display-1" style="margin-bottom: 32px;">Address</h2>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">Address</h2>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Street Address</mat-label>
           <input type="text" matInput formControlName="address" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>City</mat-label>
           <input type="text" matInput formControlName="city" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>State</mat-label>
           <input type="text" matInput formControlName="state" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%;">
+        <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Zip Code</mat-label>
           <input type="text" matInput formControlName="zipCode" />
         </mat-form-field>
       </div>
       <div>
         <button mat-raised-button matStepperPrevious>Previous</button>
-        <button mat-raised-button matStepperNext color="primary" class="ml-2">Next</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
       </div>
     </mat-step>
     <!-- Employee Information Step -->
@@ -91,22 +94,26 @@
       [stepControl]="form.get('employeeInformation')"
     >
       <ng-template matStepLabel>Employee Information</ng-template>
-      <h2 class="mat-display-1" style="margin-bottom: 32px;">Employee Information</h2>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Employee Information
+      </h2>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%;">
+        <mat-form-field appearance="outline" style="width: 70%">
           <mat-label>Employee Number</mat-label>
           <input type="text" matInput formControlName="employeeNumber" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field appearance="outline" style="width: 70%;">
+        <mat-form-field appearance="outline" style="width: 70%">
           <mat-label>Hosted ID</mat-label>
           <input type="text" matInput formControlName="hostedId" />
         </mat-form-field>
       </div>
       <div>
         <button mat-raised-button matStepperPrevious>Previous</button>
-        <button mat-raised-button matStepperNext color="primary" class="ml-2">Next</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
       </div>
     </mat-step>
     <!-- Access Information -->
