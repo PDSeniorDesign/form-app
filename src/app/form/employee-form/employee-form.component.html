@@ -4,15 +4,125 @@
   id="regForm"
   [formGroup]="form"
   [@myAnimation]
+  class="container"
 >
-  <!-- Information Step -->
+  <!-- Personal Information Step -->
   <mat-horizontal-stepper #stepper>
     <mat-step
       formGroupName="information"
       [stepControl]="form.get('information')"
     >
-      <ng-template matStepLabel>Information</ng-template>
-      <app-information [regForm]="form"></app-information>
+      <ng-template matStepLabel>Personal Information</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Personal Information
+      </h2>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>First Name</mat-label>
+          <input
+            id="firstNameInput"
+            #firstNameInput
+            type="text"
+            matInput
+            formControlName="firstName"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Middle Initial</mat-label>
+          <input
+            id="middleInitialInput"
+            type="text"
+            matInput
+            formControlName="middleInitial"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Last Name</mat-label>
+          <input
+            id="lastNameInput"
+            type="text"
+            matInput
+            formControlName="lastName"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Email</mat-label>
+          <input
+            id="emailAddressInput"
+            type="text"
+            matInput
+            formControlName="emailAddress"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Phone number</mat-label>
+          <input
+            id="phoneNumberInput"
+            type="phone"
+            matInput
+            formControlName="phoneNumber"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
+    </mat-step>
+    <!-- Address Step -->
+    <mat-step
+      formGroupName="information"
+      [stepControl]="form.get('information')"
+    >
+      <ng-template matStepLabel>Address</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">Address</h2>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Street Address</mat-label>
+          <input
+            id="addressInput"
+            type="text"
+            matInput
+            formControlName="address"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>City</mat-label>
+          <input id="cityInput" type="text" matInput formControlName="city" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>State</mat-label>
+          <input id="stateInput" type="text" matInput formControlName="state" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Zip Code</mat-label>
+          <input
+            id="zipCodeInput"
+            type="text"
+            matInput
+            formControlName="zipCode"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
+      </div>
     </mat-step>
     <!-- Employee Information Step -->
     <mat-step
@@ -20,9 +130,39 @@
       [stepControl]="form.get('employeeInformation')"
     >
       <ng-template matStepLabel>Employee Information</ng-template>
-      <app-employee-information [regForm]="form"></app-employee-information>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Employee Information
+      </h2>
+      <div>
+        <mat-form-field appearance="outline" style="width: 70%">
+          <mat-label>Employee Number</mat-label>
+          <input
+            id="employeeNumberInput"
+            type="text"
+            matInput
+            formControlName="employeeNumber"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" style="width: 70%">
+          <mat-label>Hosted ID</mat-label>
+          <input
+            id="hostedIdInput"
+            type="text"
+            matInput
+            formControlName="hostedId"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
+      </div>
     </mat-step>
-    <!-- Requestor Information -->
+    <!-- Access Information -->
     <mat-step>
       <ng-template matStepLabel>Access Information</ng-template>
       <app-access-information></app-access-information>
