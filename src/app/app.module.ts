@@ -17,7 +17,6 @@ import { AccessInformationComponent } from './form/employee-form/access-informat
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 import { EmployeeInformationComponent } from './form/employee-form/employee-information/employee-information.component';
-import { InformationComponent } from './form/employee-form/information/information.component';
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
@@ -27,13 +26,12 @@ import { ContractorInformationComponent } from './form/contractor-form/contracto
 import { CountyInformationComponent } from './form/contractor-form/county-information/county-information.component';
 import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
 import { SubmitComponent } from './form/contractor-form/submit/submit.component';
-import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component'
+import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    InformationComponent,
     EmployeeInformationComponent,
     AccessInformationComponent,
     AdditionalInformationComponent,
@@ -62,10 +60,9 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
     HttpClientModule,
     SharedModule,
     CoreModule,
-    FormsModule
+    FormsModule,
   ],
-  exports: [
-  ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent],
 })

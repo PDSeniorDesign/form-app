@@ -4,15 +4,84 @@
   id="regForm"
   [formGroup]="form"
   [@myAnimation]
+  class="container"
 >
-  <!-- Information Step -->
+  <!-- Personal Information Step -->
   <mat-horizontal-stepper #stepper>
     <mat-step
       formGroupName="information"
       [stepControl]="form.get('information')"
     >
-      <ng-template matStepLabel>Information</ng-template>
-      <app-information [regForm]="form"></app-information>
+      <ng-template matStepLabel>Personal Information</ng-template>
+      <!-- <app-information [regForm]="form" [@myAnimation]></app-information> -->
+      <div>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input type="text" matInput formControlName="firstName" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Middle Initial</mat-label>
+          <input type="text" matInput formControlName="middleInitial" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input type="text" matInput formControlName="lastName" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="text" matInput formControlName="emailAddress" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Phone number</mat-label>
+          <input type="text" matInput formControlName="phoneNumber" />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
+    </mat-step>
+    <!-- Address Step -->
+    <mat-step
+      formGroupName="information"
+      [stepControl]="form.get('information')"
+    >
+      <ng-template matStepLabel>Address</ng-template>
+      <div>
+        <mat-form-field>
+          <mat-label>Street Address</mat-label>
+          <input type="text" matInput formControlName="address" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input type="text" matInput formControlName="city" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <input type="text" matInput formControlName="state" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Zip Code</mat-label>
+          <input type="text" matInput formControlName="zipCode" />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary">Next</button>
+      </div>
     </mat-step>
     <!-- Employee Information Step -->
     <mat-step
