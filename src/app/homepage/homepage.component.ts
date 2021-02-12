@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
+import { ApiHttpService } from '../core/services/api-http.service';
+import { FormDataService } from '../core/services/form-data.service';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -44,7 +46,11 @@ export class HomepageComponent implements OnInit {
   continueForm: boolean;
   // Where we will store request number
   requestNumber: number;
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private apiHttpService: ApiHttpService,
+    private formDataService: FormDataService
+  ) {}
 
   ngOnInit(): void {
     // Will render homepage by default
@@ -82,6 +88,19 @@ export class HomepageComponent implements OnInit {
       this.router.navigate(['/contractor-form']);
     }
     this.continueForm = false;
+  }
+  /** This function is responsible for retrieving the form  */
+  retrieveForm(): void {
+    // use service to grab form
+    this.apiHttpService
+      .getFormByRequestNumber(this.requestNumber)
+      .subscribe((res) => {
+        // Save form to service
+        this.formDataService.formData = res;
+        // navigate to employee form
+        //TODO: take into consideration what kind of form (empl or contractor)
+        this.router.navigate(['/employee-form']);
+      });
   }
   // testing
   printRequestNumber(): void {

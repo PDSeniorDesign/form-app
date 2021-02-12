@@ -16,13 +16,13 @@ export class ApiHttpService {
         return this.http.post(`${environment.apiUrl}/service_requests`, data, httpOptions);
     }
 
-    public getID(data: any) {
+    public getFormByRequestNumber(data: any) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
             })
         };
-        return this.http.get(`${environment.apiUrl}` + data, httpOptions);
+        return this.http.get(`${environment.apiUrl}/service_requests/` + data, httpOptions);
     }
 
 }

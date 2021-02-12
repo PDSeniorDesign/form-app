@@ -61,13 +61,13 @@ describe('HomepageComponent', () => {
       'Would you like to continue a form or start a new one?'
     );
   });
-  it('should render the request number prompt if the stepCounter is 3', () => {
-    component.stepCounter = 3;
-    fixture.detectChanges();
+  // it('should render the request number prompt if the stepCounter is 3', () => {
+  //   component.stepCounter = 3;
+  //   fixture.detectChanges();
 
-    const testText = fixture.debugElement.query(By.css('h3')).nativeElement;
-    expect(testText.innerText).toContain('Enter Request Number');
-  });
+  //   const testText = fixture.debugElement.query(By.css('h3')).nativeElement;
+  //   expect(testText.innerText).toContain('Enter Request Number');
+  // });
   it('should increase step number when nextStep() is invoked', () => {
     component.stepCounter = 0;
     component.nextStep();
@@ -259,8 +259,28 @@ describe('HomepageComponent', () => {
     inputElem.nativeElement.value = '12345';
     inputElem.nativeNode.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    
+
     // test
     expect(component.requestNumber).toBe(12345);
+  });
+  it('should call retrieveForm() when pressed', () => {
+    // go to step 3
+    component.stepCounter = 3;
+    fixture.detectChanges();
+
+    // grab button
+    const retrieveFormBtn = fixture.debugElement.query(
+      By.css('button#retrieveFormBtn')
+    );
+
+    // spy on retrieveForm
+    spyOn(component, 'retrieveForm');
+
+    // click button
+    retrieveFormBtn.nativeElement.click();
+    fixture.detectChanges();
+
+    // make sure it was called
+    expect(component.retrieveForm).toHaveBeenCalled();
   });
 });

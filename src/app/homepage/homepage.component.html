@@ -99,7 +99,7 @@
 <ng-template [ngIf]="stepCounter === 3">
   <div class="center" [@myAnimation]>
     <div class="row">
-      <h3>Enter Request Number</h3>
+      <!-- <h3>Enter Request Number</h3> -->
     </div>
     <div class="row">
       <!--<input
@@ -108,8 +108,12 @@
         placeholder="eg. 1234567"
         class="form-control mx-auto"
       /> -->
-      <mat-form-field class="full-width" floatLabel="never">
-        <!-- <mat-label>Favorite food</mat-label> -->
+      <mat-form-field
+        class="full-width"
+        floatLabel="never"
+        appearance="outline"
+      >
+        <mat-label>Request Number</mat-label>
         <input
           id="requestNumberInput"
           type="number"
@@ -118,14 +122,16 @@
           class="mx-auto"
           [(ngModel)]="requestNumber"
         />
+        <mat-hint>Enter 6 digit request number</mat-hint>
       </mat-form-field>
     </div>
     <div class="row">
       <button
+        id="retrieveFormBtn"
         mat-button
         color="primary"
         class="mx-auto mt-2"
-        (click)="printRequestNumber()"
+        (click)="retrieveForm()"
       >
         Retrieve form
       </button>
