@@ -1,5 +1,10 @@
+/**
+ * NOTE:
+ * If creating unit tests for this component make sure to call
+ * fixture.detectChanges() FIRST BEFORE ANYTHING.
+ */
+
 import { HttpClientModule } from '@angular/common/http';
-import { ElementRef, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -7,6 +12,7 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppModule } from 'src/app/app.module';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { FormDataService } from 'src/app/core/services/form-data.service';
 import { AccessInformationComponent } from './access-information/access-information.component';
 import { AdditionalInformationComponent } from './additional-information/additional-information.component';
 import { EmployeeFormComponent } from './employee-form.component';
@@ -15,8 +21,12 @@ import { SubmitPageComponent } from './submit-page/submit-page.component';
 describe('EmployeeFormComponent', () => {
   let component: EmployeeFormComponent;
   let fixture: ComponentFixture<EmployeeFormComponent>;
+  let formDataService: FormDataService;
 
   beforeEach(async () => {
+    let formDataServiceStub = {
+      formData: undefined,
+    };
     await TestBed.configureTestingModule({
       declarations: [
         EmployeeFormComponent,
@@ -31,14 +41,23 @@ describe('EmployeeFormComponent', () => {
         BrowserAnimationsModule,
         AppModule,
       ],
-      providers: [ApiHttpService],
+      providers: [
+        ApiHttpService,
+        { provide: FormDataService, useValue: formDataServiceStub },
+      ],
     }).compileComponents();
+    formDataService = TestBed.inject(FormDataService);
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmployeeFormComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    /**
+     * commented this line because the first call to fixture.detectChanges() will call
+     * the components ngOnInit. In one of the tests I needed to change the service(formDataService) and basically recall
+     * ngOnInit myself. So make sure to call fixture.detectChanges() first in your unit tests.
+     */
+    // fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -48,6 +67,7 @@ describe('EmployeeFormComponent', () => {
     expect(component.submitResponse).toBeFalsy();
   });
   it('should render submission page(ng-template) if submitResponse and hasSubmitted is set', () => {
+    fixture.detectChanges();
     component.submitResponse = {
       // This is a sample response
       sampleUUID: 1234,
@@ -73,6 +93,7 @@ describe('EmployeeFormComponent', () => {
     expect(formElement).toBeDefined();
   });
   it('should have an alert card.', () => {
+    fixture.detectChanges();
     component.hasSubmitted = true;
     component.submitResponse = {
       requestNumber: 412341,
@@ -86,6 +107,7 @@ describe('EmployeeFormComponent', () => {
     expect(requestNum.innerText).toContain(412341); // make sure requestNumber get rendered
   });
   it('should sync data up with form group (personal information)', () => {
+    fixture.detectChanges();
     // grab all the components from step 1
     const firstNameIn = fixture.debugElement.query(
       By.css('input#firstNameInput')
@@ -132,6 +154,7 @@ describe('EmployeeFormComponent', () => {
     expect(component.form.value.information.phoneNumber).toEqual('3234445555');
   });
   it('should sync up input values with formgroup (address)', () => {
+    fixture.detectChanges();
     // grab all the components from step 2 (address)
     const addressIn = fixture.debugElement.query(By.css('input#addressInput'));
     const cityIn = fixture.debugElement.query(By.css('input#cityInput'));
@@ -159,6 +182,7 @@ describe('EmployeeFormComponent', () => {
     expect(component.form.value.information.zipCode).toEqual('12345');
   });
   it('should sync data up with formgroup (employee information)', () => {
+    fixture.detectChanges();
     // grab all elements
     const employeeNumberIn = fixture.debugElement.query(
       By.css('input#employeeNumberInput')
@@ -181,5 +205,115 @@ describe('EmployeeFormComponent', () => {
       '12345'
     );
     expect(component.form.value.employeeInformation.hostedId).toEqual('123');
+  });
+  /**
+   * When the user selects to retrieve a form in the homepage component,
+   * The retrieved form gets set to a service. If there is a form set in the
+   * FormDataService when EmployeeFromComponent is rendered it will fill out the
+   * form with the data.
+   * TODO: Finish test, test all fields
+   */
+  it('should render retrieved form if formDataService has a form', () => {
+    // Setting a form to service
+    formDataService.formData = {
+      requestNumber: 392735,
+      createDate: '02/11/2021 19:43:36',
+      submitDate: null,
+      requestStatus: null,
+      registrationType: null,
+      requestType: null,
+      lastName: 'Doe',
+      firstName: 'John',
+      middleInitial: 'A',
+      employeeNumber: 1234,
+      hostedId: 12345,
+      departmentName: null,
+      departmentNumber: null,
+      companyName: null,
+      companyEmailAddress: null,
+      departmentEmailAddress: null,
+      countyEmailAddress: null,
+      employeeEmailAddress: 'testemail@email.com',
+      businessStreetAddress: '123 Street',
+      businessCity: 'A City',
+      businessState: 'CA',
+      businessZip: '12345',
+      businessPhoneNumber: '3235555555',
+      workMailingAddress: null,
+      companyStreetAddress: null,
+      companyCity: null,
+      companyState: null,
+      companyZip: null,
+      companyPhoneNumber: null,
+      countyPhoneNumber: null,
+      workPhoneNumber: null,
+      contractWorkOrderNumber: null,
+      contractExpirationDate: null,
+      customerSignature: null,
+      customerSignatureDate: null,
+      ibmLogOnId: null,
+      majorGroupCode: null,
+      lsoGroupCode: null,
+      securityAuthorization: null,
+      tsoAccess: false,
+      tsoGroupCode: null,
+      binNumber: null,
+      subGroup1: null,
+      subGroup2: null,
+      subGroup3: null,
+      onlineAccess: false,
+      systemApplication: null,
+      groupName: null,
+      oldGroup: null,
+      apsAo: null,
+      dmvSystemCode: null,
+      jaiSystemLocation: null,
+      unixRequestType: null,
+      unixLogOnId: null,
+      unixApplication: null,
+      unixAccessGroup: null,
+      unixAccountNumber: null,
+      billingAccountNumber: null,
+      accessType: null,
+      internetApplication: false,
+      exchangeEmail: false,
+      emailEncryption: false,
+      laCountyGovAccess: false,
+      tokenlessAuthentication: false,
+      lacMobileWifiAccess: false,
+      cherwellSms: false,
+      windowsRightsMgmt: false,
+      gmailAccess: false,
+      yahooMailAccess: false,
+      otherEmailDomain: null,
+      businessJustification: null,
+      defaultCountyWidePolicy: false,
+      departmentPolicyRule0: false,
+      departmentPolicyRule1: false,
+      departmentPolicyRule2: false,
+      departmentPolicyRule3: false,
+      departmentPolicyRule4: false,
+      socialNetworkingFacebook: false,
+      socialNetworkingTwitter: false,
+      socialNetworkingLinkedIn: false,
+      complete: false,
+    };
+
+    fixture.detectChanges();
+
+    // what is in the form group
+    const informationValues = component.form.value.information;
+    const employeeInformationValues = component.form.value.employeeInformation;
+    expect(informationValues['firstName']).toEqual('John');
+    expect(informationValues['middleInitial']).toEqual('A');
+    expect(informationValues['lastName']).toEqual('Doe');
+    expect(informationValues['emailAddress']).toEqual('testemail@email.com');
+    expect(informationValues['phoneNumber']).toEqual('3235555555');
+    expect(informationValues['address']).toEqual('123 Street');
+    expect(informationValues['city']).toEqual('A City');
+    expect(informationValues['state']).toEqual('CA');
+    expect(informationValues['zipCode']).toEqual('12345');
+    expect(employeeInformationValues['employeeNumber']).toEqual(1234);
+    expect(employeeInformationValues['hostedId']).toEqual(12345);
   });
 });
