@@ -1,55 +1,56 @@
 <div class="container contact-form">
-  <h3>Confirmation Page</h3>
+  <h3>You're Almost Done!</h3>
+  <p>Please confirm the information below and click submit</p>
 
   <!-- Information -->
   <div class="row">
     <div class="col">
       <h5>Personal Information</h5>
 
-        <div>
-          <h6>First Name</h6>
-          <div class="sub-group">
-            <p>
-              {{ regForm.value.personalInformation.firstName || "N/A" }}
-            </p>
-          </div>
+      <div>
+        <h6>First Name</h6>
+        <div class="sub-group">
+          <p>
+            {{ regForm.value.personalInformation.firstName || "N/A" }}
+          </p>
         </div>
+      </div>
 
-        <div>
-          <h6>Middle Initial</h6>
-          <div class="sub-group">
-            <p>
-              {{ regForm.value.personalInformation.middleInitial || "N/A" }}
-            </p>
-          </div>
+      <div>
+        <h6>Middle Initial</h6>
+        <div class="sub-group">
+          <p>
+            {{ regForm.value.personalInformation.middleInitial || "N/A" }}
+          </p>
         </div>
+      </div>
 
-        <div>
-          <h6>Last Name</h6>
-          <div class="subgroup">
-            <p>
-              {{ regForm.value.personalInformation.lastName || "N/A" }}
-            </p>
-          </div>
+      <div>
+        <h6>Last Name</h6>
+        <div class="subgroup">
+          <p>
+            {{ regForm.value.personalInformation.lastName || "N/A" }}
+          </p>
         </div>
+      </div>
 
-        <div>
-          <h6>Email Address</h6>
-          <div class="subgroup">
-            <p>
-              {{ regForm.value.personalInformation.emailAddress || "N/A" }}
-            </p>
-          </div>
+      <div>
+        <h6>Email Address</h6>
+        <div class="subgroup">
+          <p>
+            {{ regForm.value.personalInformation.emailAddress || "N/A" }}
+          </p>
         </div>
+      </div>
 
-        <div>
-          <h6>Phone Number</h6>
-          <div class="subgroup">
-            <p>
-              {{ regForm.value.personalInformation.phoneNumber || "N/A" }}
-            </p>
-          </div>
+      <div>
+        <h6>Phone Number</h6>
+        <div class="subgroup">
+          <p>
+            {{ regForm.value.personalInformation.phoneNumber || "N/A" }}
+          </p>
         </div>
+      </div>
     </div>
 
     <!-- Address Information -->
@@ -118,7 +119,11 @@
       </div>
 
     </div>
+
   </div>
 
-  <button class="btnContact" (click)="onClick()">Submit</button>
+  <div class="text-center">
+    <button class="btnContact" (click)="onClick()">Submit</button>
+  </div>
+
 </div>
