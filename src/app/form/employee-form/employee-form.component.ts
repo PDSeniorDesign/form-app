@@ -134,6 +134,13 @@ export class EmployeeFormComponent implements OnInit {
   // This function is passed down to submit step
   // Will update variable to rerender and hold response object
   setSubmitResponse = (res) => {
+
+    //stop here if form has invalid content
+    if(this.form.invalid) {
+      console.log("Invalid content of forms")//debug
+      return;
+    }
+
     // Arrow function binds this
     this.hasSubmitted = true;
     this.submitResponse = res;
