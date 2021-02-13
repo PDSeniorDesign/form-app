@@ -131,6 +131,11 @@ export class EmployeeFormComponent implements OnInit {
     }
   }
 
+  //getter for easy access to form fields
+  get getMessage() {
+    return this.form.controls;
+  }
+
   // This function is passed down to submit step
   // Will update variable to rerender and hold response object
   setSubmitResponse = (res) => {
