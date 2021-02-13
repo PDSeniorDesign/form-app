@@ -40,7 +40,7 @@ export class EmployeeFormComponent implements OnInit {
     console.log('from comp', this.formDataService.formData);
     if (this.formDataService.formData != undefined) {
       this.form = new FormGroup({
-        information: new FormGroup({
+        personalInformation: new FormGroup({
           lastName: new FormControl(this.formDataService.formData['lastName'], 
           Validators.required
           ),
@@ -56,9 +56,10 @@ export class EmployeeFormComponent implements OnInit {
             [Validators.required, Validators.email]
           ),
           phoneNumber: new FormControl(
-            this.formDataService.formData['businessPhoneNumber'], 
-            Validators.required
+            this.formDataService.formData['businessPhoneNumber']
           ),
+        }),
+        addressInformation: new FormGroup({
           address: new FormControl(
             this.formDataService.formData['businessStreetAddress'], 
             Validators.required
@@ -87,7 +88,7 @@ export class EmployeeFormComponent implements OnInit {
       });
     } else {
       this.form = new FormGroup({
-        information: new FormGroup({
+        personalInformation: new FormGroup({
           lastName: new FormControl(null,
             Validators.required
             ),
@@ -98,9 +99,9 @@ export class EmployeeFormComponent implements OnInit {
           emailAddress: new FormControl(null,
             [Validators.required, Validators.email]
             ),
-          phoneNumber: new FormControl(null,
-            Validators.required
-            ),
+          phoneNumber: new FormControl(null),
+        }),
+        addressInformation: new FormGroup({
           address: new FormControl(null,
             Validators.required
             ),
