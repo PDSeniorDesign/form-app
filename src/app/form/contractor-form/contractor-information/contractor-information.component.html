@@ -8,7 +8,9 @@
         placeholder="Enter first name"
         formControlName="firstName"
         class="form-control"
+        required
       />
+      <mat-error>First name is required and letters only</mat-error>
     </div>
     <!-- middle initial -->
 
@@ -19,7 +21,9 @@
         class="form-control"
         placeholder="Enter middle initial"
         formControlName="middleInitial"
+        pattern="[a-zA-Z ]*" 
       />
+      <mat-error>Middle Initial letters only</mat-error>
     </div>
     <!-- last Name -->
 
@@ -30,7 +34,10 @@
         placeholder="Enter last name"
         formControlName="lastName"
         class="form-control"
+        required
+        pattern="[a-zA-Z ]*" 
       />
+      <mat-error>Last name is required and letters only</mat-error>
     </div>
   </div>
   <!--Company Name -->
@@ -42,7 +49,9 @@
         placeholder="Enter company name"
         class="form-control"
         formControlName="companyName"
+        required
       />
+      <mat-error>Company name is required</mat-error>
     </div>
     <div class="col-sm-3">
       <label for="companyEmailAddressInput">Company Email Address</label>
@@ -51,7 +60,9 @@
         placeholder="Enter company email address"
         class="form-control"
         formControlName="companyEmailAddress"
+        required
       />
+      <mat-error>Company email is required with correct email format</mat-error>
     </div>
     <div class="col-sm-3">
       <label for="companyStreetAddressInput">Company Street Address</label>
@@ -60,7 +71,9 @@
         placeholder="Enter company street address"
         class="form-control"
         formControlName="companyStreetAddress"
+        required
       />
+      <mat-error>Company street address is required</mat-error>
     </div>
   </div>
   <div class="row mb-4" formGroupName="contractorInformation">
@@ -71,7 +84,9 @@
         placeholder="Enter city"
         class="form-control"
         formControlName="city"
+        required
       />
+      <mat-error>Company city is required and letters only</mat-error>
     </div>
     <div class="col-sm-3">
       <label for="stateInput">State</label>
@@ -80,7 +95,9 @@
         placeholder="Enter state"
         class="form-control"
         formControlName="state"
+        required
       />
+      <mat-error>Company state is required and letters only</mat-error>
     </div>
     <div class="col-sm-3">
       <label for="zipCodeInput">Zip Code</label>
@@ -89,7 +106,10 @@
         placeholder="Enter zip code"
         class="form-control"
         formControlName="zipCode"
+        required
+        pattern="[0-9]*"
       />
+      <mat-error>Company zipcode is required and numbers only of length 5-7</mat-error>
     </div>
   </div>
   <div class="row mb-4" formGroupName="contractorInformation">
@@ -100,7 +120,10 @@
         placeholder="Enter phone number"
         class="form-control"
         formControlName="phoneNumber"
+        required
+        pattern="[0-9]{10}"
       />
+      <mat-error>Phone number is required and must be 10 digit</mat-error>
     </div>
   </div>
   <button type="button" class="btn btn-primary mt-2" matStepperNext>
