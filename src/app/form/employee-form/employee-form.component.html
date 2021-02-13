@@ -25,7 +25,11 @@
             type="text"
             matInput
             formControlName="firstName"
+            [ngClass] = "{ 'is invalid': submitted && getMessage.firstName.errors}"
           />
+          <div *ngIf = "submitted && getMessage.firstName.errors" class="invalid-entry">
+            <div *ngIf = "f.firstName.errors.required">First Name is required</div>
+          </div>
         </mat-form-field>
       </div>
       <div>
@@ -47,7 +51,11 @@
             type="text"
             matInput
             formControlName="lastName"
+            [ngClass] = "{ 'is invalid': submitted && getMessage.lastName.errors}"
           />
+          <div *ngIf = "submitted && getMessage.lastName.errors" class="invalid-entry">
+            <div *ngIf = "f.lastName.errors.required">Last Name is required</div>
+          </div>
         </mat-form-field>
       </div>
       <div>
