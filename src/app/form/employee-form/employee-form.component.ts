@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
@@ -41,53 +41,86 @@ export class EmployeeFormComponent implements OnInit {
     if (this.formDataService.formData != undefined) {
       this.form = new FormGroup({
         information: new FormGroup({
-          lastName: new FormControl(this.formDataService.formData['lastName']),
+          lastName: new FormControl(this.formDataService.formData['lastName'], 
+          Validators.required
+          ),
           firstName: new FormControl(
-            this.formDataService.formData['firstName']
+            this.formDataService.formData['firstName'], 
+            Validators.required
           ),
           middleInitial: new FormControl(
             this.formDataService.formData['middleInitial']
           ),
           emailAddress: new FormControl(
-            this.formDataService.formData['employeeEmailAddress']
+            this.formDataService.formData['employeeEmailAddress'], 
+            [Validators.required, Validators.email]
           ),
           phoneNumber: new FormControl(
-            this.formDataService.formData['businessPhoneNumber']
+            this.formDataService.formData['businessPhoneNumber'], 
+            Validators.required
           ),
           address: new FormControl(
-            this.formDataService.formData['businessStreetAddress']
+            this.formDataService.formData['businessStreetAddress'], 
+            Validators.required
           ),
-          city: new FormControl(this.formDataService.formData['businessCity']),
+          city: new FormControl(this.formDataService.formData['businessCity'], 
+          Validators.required
+          ), 
           state: new FormControl(
-            this.formDataService.formData['businessState']
+            this.formDataService.formData['businessState'], 
+            Validators.required
           ),
           zipCode: new FormControl(
-            this.formDataService.formData['businessZip']
+            this.formDataService.formData['businessZip'],
+            Validators.required
           ),
         }),
         employeeInformation: new FormGroup({
           employeeNumber: new FormControl(
-            this.formDataService.formData['employeeNumber']
+            this.formDataService.formData['employeeNumber'],
+            [Validators.required, Validators.minLength(4), Validators.maxLength(4)]
           ),
-          hostedId: new FormControl(this.formDataService.formData['hostedId']),
+          hostedId: new FormControl(this.formDataService.formData['hostedId'],
+          Validators.required
+          ),
         }),
       });
     } else {
       this.form = new FormGroup({
         information: new FormGroup({
-          lastName: new FormControl(null),
-          firstName: new FormControl(null),
+          lastName: new FormControl(null,
+            Validators.required
+            ),
+          firstName: new FormControl(null,
+            Validators.required
+            ),
           middleInitial: new FormControl(null),
-          emailAddress: new FormControl(null),
-          phoneNumber: new FormControl(null),
-          address: new FormControl(null),
-          city: new FormControl(null),
-          state: new FormControl(null),
-          zipCode: new FormControl(null),
+          emailAddress: new FormControl(null,
+            [Validators.required, Validators.email]
+            ),
+          phoneNumber: new FormControl(null,
+            Validators.required
+            ),
+          address: new FormControl(null,
+            Validators.required
+            ),
+          city: new FormControl(null,
+            Validators.required
+            ),
+          state: new FormControl(null,
+            Validators.required
+            ),
+          zipCode: new FormControl(null,
+            Validators.required
+            ),
         }),
         employeeInformation: new FormGroup({
-          employeeNumber: new FormControl(null),
-          hostedId: new FormControl(null),
+          employeeNumber: new FormControl(null,
+            [Validators.required, Validators.minLength(4), Validators.maxLength(4)]
+            ),
+          hostedId: new FormControl(null,
+            Validators.required
+            ),
         }),
         // accessInformation: TODO: Fill this out later
         // additionalInformation: new FormGroup({
