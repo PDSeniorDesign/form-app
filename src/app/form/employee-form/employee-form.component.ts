@@ -42,21 +42,23 @@ export class EmployeeFormComponent implements OnInit {
       this.form = new FormGroup({
         personalInformation: new FormGroup({
           lastName: new FormControl(this.formDataService.formData['lastName'], 
-          Validators.required
+          [Validators.required, Validators.pattern("[a-z A-Z]*")]
           ),
           firstName: new FormControl(
             this.formDataService.formData['firstName'], 
-            Validators.required
+            [Validators.required, Validators.pattern("[a-z A-Z]*")]
           ),
           middleInitial: new FormControl(
-            this.formDataService.formData['middleInitial']
+            this.formDataService.formData['middleInitial'],
+            Validators.pattern("[a-z A-Z]*")
           ),
           emailAddress: new FormControl(
             this.formDataService.formData['employeeEmailAddress'], 
             [Validators.required, Validators.email]
           ),
           phoneNumber: new FormControl(
-            this.formDataService.formData['businessPhoneNumber']
+            this.formDataService.formData['businessPhoneNumber'],
+            [Validators.required, Validators.pattern("[0-9]{10}")]
           ),
         }),
         addressInformation: new FormGroup({
@@ -65,21 +67,21 @@ export class EmployeeFormComponent implements OnInit {
             Validators.required
           ),
           city: new FormControl(this.formDataService.formData['businessCity'], 
-          Validators.required
+          [Validators.required, Validators.pattern("[a-z A-Z]*")]
           ), 
           state: new FormControl(
             this.formDataService.formData['businessState'], 
-            Validators.required
+            [Validators.required, Validators.pattern("[a-z A-Z]*")]
           ),
           zipCode: new FormControl(
             this.formDataService.formData['businessZip'],
-            Validators.required
+            [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern("[0-9]*")]
           ),
         }),
         employeeInformation: new FormGroup({
           employeeNumber: new FormControl(
             this.formDataService.formData['employeeNumber'],
-            [Validators.required, Validators.minLength(4), Validators.maxLength(4)]
+            [Validators.required]
           ),
           hostedId: new FormControl(this.formDataService.formData['hostedId'],
           Validators.required
@@ -90,34 +92,38 @@ export class EmployeeFormComponent implements OnInit {
       this.form = new FormGroup({
         personalInformation: new FormGroup({
           lastName: new FormControl(null,
-            Validators.required
+            [Validators.required, Validators.pattern("[a-z A-Z]*")]
             ),
           firstName: new FormControl(null,
-            Validators.required
+            [Validators.required, Validators.pattern("[a-z A-Z]*")]
             ),
-          middleInitial: new FormControl(null),
+          middleInitial: new FormControl(null,
+            Validators.pattern("[a-z A-Z]*")
+            ),
           emailAddress: new FormControl(null,
             [Validators.required, Validators.email]
             ),
-          phoneNumber: new FormControl(null),
+          phoneNumber: new FormControl(null,
+            [Validators.required, Validators.pattern("[0-9]{10}")]
+            ),
         }),
         addressInformation: new FormGroup({
           address: new FormControl(null,
             Validators.required
             ),
           city: new FormControl(null,
-            Validators.required
+            [Validators.required, Validators.pattern("[a-z A-Z]*")]
             ),
           state: new FormControl(null,
-            Validators.required
+            [Validators.required, Validators.pattern("[a-z A-Z]*")]
             ),
           zipCode: new FormControl(null,
-            Validators.required
+            [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern("[0-9]*")]
             ),
         }),
         employeeInformation: new FormGroup({
           employeeNumber: new FormControl(null,
-            [Validators.required, Validators.minLength(4), Validators.maxLength(4)]
+            [Validators.required]
             ),
           hostedId: new FormControl(null,
             Validators.required
@@ -133,9 +139,9 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   //getter for error messages
-  // public hasError = (controlName: string, errorName: string) => {
-  //   return this.form.controls[controlName].hasError(errorName);
-  // }
+  public hasError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
+  }
 
 
   // This function is passed down to submit step
