@@ -7,7 +7,7 @@
   class="container"
 >
   <!-- Personal Information Step -->
-  <mat-horizontal-stepper #stepper>
+  <mat-horizontal-stepper #stepper linear>
     <mat-step
       formGroupName="information"
       [stepControl]="form.get('information')"
@@ -85,7 +85,7 @@
             [ngClass] = "{ 'is invalid': submitted && getMessage.phoneNumber.errors}"
           />
           <div *ngIf = "submitted && getMessage.phoneNumber.errors" class="invalid-entry">
-            <div *ngIf = "getMessage.phoneNumber.errors.required">phoneNumber is required</div>
+            <div *ngIf = "getMessage.phoneNumber.errors.required">Phone number is required</div>
           </div>
         </mat-form-field>
       </div>
