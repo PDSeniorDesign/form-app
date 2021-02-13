@@ -28,7 +28,7 @@
             [ngClass] = "{ 'is invalid': submitted && getMessage.firstName.errors}"
           />
           <div *ngIf = "submitted && getMessage.firstName.errors" class="invalid-entry">
-            <div *ngIf = "f.firstName.errors.required">First Name is required</div>
+            <div *ngIf = "getMessage.firstName.errors.required">First Name is required</div>
           </div>
         </mat-form-field>
       </div>
@@ -54,7 +54,7 @@
             [ngClass] = "{ 'is invalid': submitted && getMessage.lastName.errors}"
           />
           <div *ngIf = "submitted && getMessage.lastName.errors" class="invalid-entry">
-            <div *ngIf = "f.lastName.errors.required">Last Name is required</div>
+            <div *ngIf = "getMessage.lastName.errors.required">Last Name is required</div>
           </div>
         </mat-form-field>
       </div>
@@ -66,7 +66,12 @@
             type="text"
             matInput
             formControlName="emailAddress"
+            [ngClass] = "{ 'is invalid': submitted && getMessage.emailAddress.errors}"
           />
+          <div *ngIf = "submitted && getMessage.emailAddress.errors" class="invalid-entry">
+            <div *ngIf = "getMessage.emailAddress.errors.required">Email is required</div>
+            <div *ngIf = "getMessage.emailAddress.errors.email">Email must be a valid email address</div>
+          </div>
         </mat-form-field>
       </div>
       <div>
@@ -77,7 +82,11 @@
             type="phone"
             matInput
             formControlName="phoneNumber"
+            [ngClass] = "{ 'is invalid': submitted && getMessage.phoneNumber.errors}"
           />
+          <div *ngIf = "submitted && getMessage.phoneNumber.errors" class="invalid-entry">
+            <div *ngIf = "getMessage.phoneNumber.errors.required">phoneNumber is required</div>
+          </div>
         </mat-form-field>
       </div>
       <div>
