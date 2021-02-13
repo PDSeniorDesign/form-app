@@ -1,81 +1,124 @@
-<div class="container">
-  <h1>Confirmation Page</h1>
-  <hr />
+<div class="container contact-form">
+  <h3>Confirmation Page</h3>
 
-  <!-- TODO: Need to add validators to fields to know when it is valid -->
   <!-- Information -->
-  <div>
-    <h4 class="mb-2">Personal Information</h4>
-    <div>
-      <h6>First Name</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.personalInformation.firstName || "N/A" }}
-      </p>
+  <div class="row">
+    <div class="col">
+      <h5>Personal Information</h5>
+
+        <div>
+          <h6>First Name</h6>
+          <div class="sub-group">
+            <p>
+              {{ regForm.value.personalInformation.firstName || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6>Middle Initial</h6>
+          <div class="sub-group">
+            <p>
+              {{ regForm.value.personalInformation.middleInitial || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6>Last Name</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.personalInformation.lastName || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6>Email Address</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.personalInformation.emailAddress || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6>Phone Number</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.personalInformation.phoneNumber || "N/A" }}
+            </p>
+          </div>
+        </div>
     </div>
-    <div>
-      <h6>Middle Initial</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.personalInformation.middleInitial || "N/A" }}
-      </p>
+
+    <!-- Address Information -->
+    <div class="col">
+      <h5>Address Information</h5>
+
+      <div>
+        <h6>Street</h6>
+        <div class="subgroup">
+          <p>
+            {{ regForm.value.addressInformation.address || "N/A" }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h6>City</h6>
+        <div class="subgroup">
+          <p>
+            {{ regForm.value.addressInformation.city || "N/A" }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h6>State</h6>
+        <div class="subgroup">
+          <p>
+            {{ regForm.value.addressInformation.state || "N/A" }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h6>Zip Code</h6>
+        <div class="subgroup">
+          <p>
+            {{ regForm.value.addressInformation.zipCode || "N/A" }}
+          </p>
+        </div>
+      </div>
+
     </div>
-    <div>
-      <h6>Last Name</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.personalInformation.lastName || "N/A" }}
-      </p>
-    </div>
-    <div>
-      <h6>Email Address</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.personalInformation.emailAddress || "N/A" }}
-      </p>
-    </div>
-    <div>
-      <h6>Phone Number</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.personalInformation.phoneNumber || "N/A" }}
-      </p>
-    </div>
-    <div>
-      <h6>Address</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.addressInformation.address || "N/A" }}
-      </p>
-    </div>
-    <div>
-      <h6>City</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.addressInformation.city || "N/A" }}
-      </p>
-    </div>
-    <div>
-      <h6>State</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.addressInformation.state || "N/A" }}
-      </p>
-    </div>
-    <div>
-      <h6>Zip Code</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.addressInformation.zipCode || "N/A" }}
-      </p>
+
+
+    <!-- Employee Information -->
+    <div class="col">
+      <h5>Employee Information</h5>
+
+      <div>
+        <h6>Employee Number</h6>
+        <div class="subgroup">
+          <p class="font-weight-light">
+            {{ regForm.value.employeeInformation.employeeNumber || "N/A" }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <h6>Hosted ID</h6>
+        <div class="subgroup">
+          <p class="font-weight-light">
+            {{ regForm.value.employeeInformation.hostedId || "N/A" }}
+          </p>
+        </div>
+      </div>
+
     </div>
   </div>
-  <!-- Employee Information -->
-  <div>
-    <h4 class="mb-2 mt-2">Employee Information</h4>
-    <div>
-      <h6>Employee Number</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.employeeInformation.employeeNumber || "N/A" }}
-      </p>
-    </div>
-    <div>
-      <h6>Hosted ID</h6>
-      <p class="font-weight-light">
-        {{ regForm.value.employeeInformation.hostedId || "N/A" }}
-      </p>
-    </div>
-  </div>
-  <button (click)="onClick()">Submit</button>
+
+  <button class="btnContact" (click)="onClick()">Submit</button>
 </div>
