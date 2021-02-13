@@ -136,6 +136,7 @@ export class EmployeeFormComponent implements OnInit {
     return this.form.controls;
   }
 
+
   // This function is passed down to submit step
   // Will update variable to rerender and hold response object
   setSubmitResponse = (res) => {
