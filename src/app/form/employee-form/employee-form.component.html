@@ -9,8 +9,8 @@
   <!-- Personal Information Step -->
   <mat-horizontal-stepper #stepper linear>
     <mat-step
-      formGroupName="information"
-      [stepControl]="form.get('information')"
+      formGroupName="personalInformation"
+      [stepControl]="form.get('personalInformation')"
     >
       <ng-template matStepLabel>Personal Information</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
@@ -95,8 +95,8 @@
     </mat-step>
     <!-- Address Step -->
     <mat-step
-      formGroupName="information"
-      [stepControl]="form.get('information')"
+      formGroupName="addressInformation"
+      [stepControl]="form.get('addressInformation')"
     >
       <ng-template matStepLabel>Address</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">Address</h2>
