@@ -27,6 +27,11 @@ body{
     font-family: 'Kaushan Script';
 }
 
+.instruction {
+    margin-top: -5;
+    margin-bottom: 5%;
+}
+
 .contact-form h5 {
     margin-bottom: 12%;
     text-decoration: underline;
