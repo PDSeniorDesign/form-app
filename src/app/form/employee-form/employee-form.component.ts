@@ -163,7 +163,8 @@ export class EmployeeFormComponent implements OnInit {
 
 }
 
-
+//changes the ErrorStateMatcher to include dirty
+//removes the error message and red boxes after clicking next
 export class InstantErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null,
                form: FormGroupDirective | NgForm | null): boolean {
