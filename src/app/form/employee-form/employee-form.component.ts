@@ -36,6 +36,7 @@ export class EmployeeFormComponent implements OnInit {
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
+  errorStateMatcher = new InstantErrorStateMatcher;
   constructor(private formDataService: FormDataService) {}
 
   ngOnInit(): void {
@@ -163,8 +164,9 @@ export class EmployeeFormComponent implements OnInit {
 }
 
 
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null) : boolean {
-//       return control.dirty && control.touched && control.invalid;
-//     }
-// }
+export class InstantErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null,
+               form: FormGroupDirective | NgForm | null): boolean {
+    return control && control.invalid && (control.dirty || control.touched);
+  }
+}
