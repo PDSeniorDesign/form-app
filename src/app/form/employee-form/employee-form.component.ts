@@ -1,6 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
+import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
@@ -34,6 +36,7 @@ export class EmployeeFormComponent implements OnInit {
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
+  errorStateMatcher = new InstantErrorStateMatcher;
   constructor(private formDataService: FormDataService) {}
 
   ngOnInit(): void {
@@ -157,4 +160,14 @@ export class EmployeeFormComponent implements OnInit {
     this.hasSubmitted = true;
     this.submitResponse = res;
   };
+
+}
+
+//changes the ErrorStateMatcher to include dirty
+//removes the error message and red boxes after clicking next
+export class InstantErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null,
+               form: FormGroupDirective | NgForm | null): boolean {
+    return control && control.invalid && (control.dirty || control.touched);
+  }
 }
