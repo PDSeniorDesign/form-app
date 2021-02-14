@@ -41,41 +41,48 @@ export class EmployeeFormComponent implements OnInit {
     if (this.formDataService.formData != undefined) {
       this.form = new FormGroup({
         personalInformation: new FormGroup({
-          lastName: new FormControl(this.formDataService.formData['lastName'], 
-          [Validators.required, Validators.pattern("[a-z A-Z]*")]
-          ),
+          lastName: new FormControl(this.formDataService.formData['lastName'], [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
           firstName: new FormControl(
-            this.formDataService.formData['firstName'], 
-            [Validators.required, Validators.pattern("[a-z A-Z]*")]
+            this.formDataService.formData['firstName'],
+            [Validators.required, Validators.pattern('[a-z A-Z]*')]
           ),
           middleInitial: new FormControl(
             this.formDataService.formData['middleInitial'],
-            Validators.pattern("[a-z A-Z]*")
+            Validators.pattern('[a-z A-Z]*')
           ),
           emailAddress: new FormControl(
-            this.formDataService.formData['employeeEmailAddress'], 
+            this.formDataService.formData['employeeEmailAddress'],
             [Validators.required, Validators.email]
           ),
           phoneNumber: new FormControl(
             this.formDataService.formData['businessPhoneNumber'],
-            [Validators.required, Validators.pattern("[0-9]{10}")]
+            [Validators.required, Validators.pattern('[0-9]{10}')]
           ),
         }),
         addressInformation: new FormGroup({
           address: new FormControl(
-            this.formDataService.formData['businessStreetAddress'], 
+            this.formDataService.formData['businessStreetAddress'],
             Validators.required
           ),
-          city: new FormControl(this.formDataService.formData['businessCity'], 
-          [Validators.required, Validators.pattern("[a-z A-Z]*")]
-          ), 
+          city: new FormControl(this.formDataService.formData['businessCity'], [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
           state: new FormControl(
-            this.formDataService.formData['businessState'], 
-            [Validators.required, Validators.pattern("[a-z A-Z]*")]
+            this.formDataService.formData['businessState'],
+            [Validators.required, Validators.pattern('[a-z A-Z]*')]
           ),
           zipCode: new FormControl(
             this.formDataService.formData['businessZip'],
-            [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern("[0-9]*")]
+            [
+              Validators.required,
+              Validators.minLength(5),
+              Validators.maxLength(7),
+              Validators.pattern('[0-9]*'),
+            ]
           ),
         }),
         employeeInformation: new FormGroup({
@@ -83,51 +90,56 @@ export class EmployeeFormComponent implements OnInit {
             this.formDataService.formData['employeeNumber'],
             [Validators.required]
           ),
-          hostedId: new FormControl(this.formDataService.formData['hostedId'],
-          Validators.required
+          hostedId: new FormControl(
+            this.formDataService.formData['hostedId'],
+            Validators.required
           ),
         }),
       });
     } else {
       this.form = new FormGroup({
         personalInformation: new FormGroup({
-          lastName: new FormControl(null,
-            [Validators.required, Validators.pattern("[a-z A-Z]*")]
-            ),
-          firstName: new FormControl(null,
-            [Validators.required, Validators.pattern("[a-z A-Z]*")]
-            ),
-          middleInitial: new FormControl(null,
-            Validators.pattern("[a-z A-Z]*")
-            ),
-          emailAddress: new FormControl(null,
-            [Validators.required, Validators.email]
-            ),
-          phoneNumber: new FormControl(null,
-            [Validators.required, Validators.pattern("[0-9]{10}")]
-            ),
+          lastName: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          firstName: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          middleInitial: new FormControl(
+            null,
+            Validators.pattern('[a-z A-Z]*')
+          ),
+          emailAddress: new FormControl(null, [
+            Validators.required,
+            Validators.email,
+          ]),
+          phoneNumber: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[0-9]{10}'),
+          ]),
         }),
         addressInformation: new FormGroup({
-          address: new FormControl(null,
-            Validators.required
-            ),
-          city: new FormControl(null,
-            [Validators.required, Validators.pattern("[a-z A-Z]*")]
-            ),
-          state: new FormControl(null,
-            [Validators.required, Validators.pattern("[a-z A-Z]*")]
-            ),
-          zipCode: new FormControl(null,
-            [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern("[0-9]*")]
-            ),
+          address: new FormControl(null, Validators.required),
+          city: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          state: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          zipCode: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(7),
+            Validators.pattern('[0-9]*'),
+          ]),
         }),
         employeeInformation: new FormGroup({
-          employeeNumber: new FormControl(null,
-            [Validators.required]
-            ),
-          hostedId: new FormControl(null,
-            Validators.required
-            ),
+          employeeNumber: new FormControl(null, [Validators.required]),
+          hostedId: new FormControl(null, Validators.required),
         }),
         // accessInformation: TODO: Fill this out later
         // additionalInformation: new FormGroup({
@@ -138,22 +150,9 @@ export class EmployeeFormComponent implements OnInit {
     }
   }
 
-  //getter for error messages
-  public hasError = (controlName: string, errorName: string) => {
-    return this.form.controls[controlName].hasError(errorName);
-  }
-
-
   // This function is passed down to submit step
   // Will update variable to rerender and hold response object
   setSubmitResponse = (res) => {
-
-    // //stop here if form has invalid content
-    // if(this.form.invalid) {
-    //   console.log("Invalid content of forms")//debug
-    //   return;
-    // }
-
     // Arrow function binds this
     this.hasSubmitted = true;
     this.submitResponse = res;
