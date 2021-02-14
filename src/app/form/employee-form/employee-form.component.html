@@ -27,6 +27,7 @@
             formControlName="firstName"
             required
             pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>First name is required and must be letters only</mat-error>
@@ -41,6 +42,7 @@
             matInput
             formControlName="middleInitial"
             pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-error>Middle initial must be letters only</mat-error>
         </mat-form-field>
@@ -55,6 +57,7 @@
             formControlName="lastName"
             required
             pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>Last name is required and must be letters only</mat-error>
@@ -69,6 +72,7 @@
             matInput
             formControlName="emailAddress"
             required
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-error>Email is required with correct email format</mat-error>
         </mat-form-field>
@@ -83,6 +87,7 @@
             formControlName="phoneNumber"
             required
             pattern="[0-9]{10}"
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-error>Phone number is required and must be 10 digit</mat-error>
         </mat-form-field>
@@ -107,14 +112,10 @@
             matInput
             formControlName="address"
             required
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error
-            *ngIf="
-              form.get('addressInformation.address').touched &&
-              form.get('addressInformation.address').dirty
-            "
-            >Street address is required</mat-error
+          <mat-error>Street address is required</mat-error
           >
         </mat-form-field>
       </div>
@@ -128,14 +129,10 @@
             formControlName="city"
             required
             pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error
-            *ngIf="
-              form.get('addressInformation.city').touched &&
-              form.get('addressInformation.city').dirty
-            "
-            >City is required and must be letters only</mat-error
+          <mat-error>City is required and must be letters only</mat-error
           >
         </mat-form-field>
       </div>
@@ -149,14 +146,10 @@
             formControlName="state"
             required
             pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error
-            *ngIf="
-              form.get('addressInformation.city').touched &&
-              form.get('addressInformation.city').dirty
-            "
-            >State is required and must be letters only</mat-error
+          <mat-error>State is required and must be letters only</mat-error
           >
         </mat-form-field>
       </div>
@@ -170,15 +163,11 @@
             formControlName="zipCode"
             required
             pattern="[0-9]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error
-            *ngIf="
-              form.get('addressInformation.address').touched &&
-              form.get('addressInformation.address').dirty
-            "
-            >Zipcode is required and must be numbers only with length
-            5-7</mat-error
+          <mat-error>Zipcode is required and must be numbers only with length
+           5-7</mat-error
           >
         </mat-form-field>
       </div>
@@ -207,14 +196,10 @@
             matInput
             formControlName="employeeNumber"
             required
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error
-            *ngIf="
-              form.get('employeeInformation.employeeNumber').touched &&
-              form.get('employeeInformation.employeeNumber').dirty
-            "
-            >Employee number is required</mat-error>
+          <mat-error>Employee number is required</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -226,14 +211,10 @@
             matInput
             formControlName="hostedId"
             required
+            [errorStateMatcher] = "errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error
-            *ngIf="
-              form.get('employeeInformation.hostedId').touched &&
-              form.get('employeeInformation.hostedId').dirty
-            "
-            >Hosted id is required</mat-error>
+          <mat-error>Hosted id is required</mat-error>
         </mat-form-field>
       </div>
       <div>
