@@ -109,36 +109,55 @@
             required
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Street address is required</mat-error>
+          <mat-error
+            *ngIf="
+              form.get('addressInformation.address').touched &&
+              form.get('addressInformation.address').dirty
+            "
+            >Street address is required</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>City</mat-label>
-          <input 
-          id="cityInput" 
-          type="text" matInput 
-          formControlName="city"
-          required
-          pattern="[a-zA-Z ]*" 
+          <input
+            id="cityInput"
+            type="text"
+            matInput
+            formControlName="city"
+            required
+            pattern="[a-zA-Z ]*"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>City is required and must be letters only</mat-error>
+          <mat-error
+            *ngIf="
+              form.get('addressInformation.city').touched &&
+              form.get('addressInformation.city').dirty
+            "
+            >City is required and must be letters only</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>State</mat-label>
-          <input 
-          id="stateInput" 
-          type="text" 
-          matInput 
-          formControlName="state"
-          required
-          pattern="[a-zA-Z ]*" 
+          <input
+            id="stateInput"
+            type="text"
+            matInput
+            formControlName="state"
+            required
+            pattern="[a-zA-Z ]*"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>State is required and must be letters only</mat-error>
+          <mat-error
+            *ngIf="
+              form.get('addressInformation.city').touched &&
+              form.get('addressInformation.city').dirty
+            "
+            >State is required and must be letters only</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
@@ -153,7 +172,14 @@
             pattern="[0-9]*"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Zipcode is required and must be numbers only with length 5-7</mat-error>
+          <mat-error
+            *ngIf="
+              form.get('addressInformation.address').touched &&
+              form.get('addressInformation.address').dirty
+            "
+            >Zipcode is required and must be numbers only with length
+            5-7</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
@@ -183,7 +209,12 @@
             required
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Employee number is required</mat-error>
+          <mat-error
+            *ngIf="
+              form.get('employeeInformation.employeeNumber').touched &&
+              form.get('employeeInformation.employeeNumber').dirty
+            "
+            >Employee number is required</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -197,7 +228,12 @@
             required
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Hosted id is required</mat-error>
+          <mat-error
+            *ngIf="
+              form.get('employeeInformation.hostedId').touched &&
+              form.get('employeeInformation.hostedId').dirty
+            "
+            >Hosted id is required</mat-error>
         </mat-form-field>
       </div>
       <div>
