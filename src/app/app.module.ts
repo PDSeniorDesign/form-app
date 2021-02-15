@@ -27,6 +27,10 @@ import { CountyInformationComponent } from './form/contractor-form/county-inform
 import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
 import { SubmitComponent } from './form/contractor-form/submit/submit.component';
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { ProfileComponent } from './admin/profile/profile.component';
+import { AdminRequestComponent } from './admin/admin-request/admin-request.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
     PolicyRulesComponent,
     SubmitComponent,
     FormActionSelectionComponent,
+    AdminComponent,
+    AdminHeaderComponent,
+    ProfileComponent,
+    AdminRequestComponent,
   ],
   imports: [
     BrowserModule,
