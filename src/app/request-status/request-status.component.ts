@@ -32,4 +32,5 @@ export class RequestStatusComponent implements OnInit {
     this.firstName = data.firstName;
     this.lastName = data.lastName;
   }
+
 }
