@@ -47,6 +47,7 @@
       </div>
     </div>
     <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
+      <!-- TODO: Needs the Type of Request section -->
       <h2 class="mat-title">Unix Access</h2>
       <div>
         <mat-form-field>
@@ -60,7 +61,38 @@
           <input matInput />
         </mat-form-field>
       </div>
-
+      <div>
+        <mat-form-field>
+          <mat-label>Access Group</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Account Number</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="renderSecurIdAccess === true" class="secur-id-access-form">
+      <h2 class="mat-title">SecurID Access</h2>
+      <div>
+        <mat-form-field>
+          <mat-label>Billing Account Number</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Access Type</mat-label>
+          <select matNativeControl required>
+            <option value="SecurID VPN">SecurID VPN</option>
+            <option value="Adapative Authentication VPN">
+              Adapative Authentication VPN
+            </option>
+          </select>
+        </mat-form-field>
+      </div>
     </div>
     <button mat-raised-button color="primary" matStepperNext>Next</button>
   </div>
