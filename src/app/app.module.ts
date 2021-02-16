@@ -27,6 +27,7 @@ import { CountyInformationComponent } from './form/contractor-form/county-inform
 import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
 import { SubmitComponent } from './form/contractor-form/submit/submit.component';
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
     SharedModule,
     CoreModule,
     FormsModule,
+    MatCheckboxModule,
   ],
   exports: [],
   providers: [],
