@@ -145,13 +145,13 @@ describe('EmployeeFormComponent', () => {
     fixture.detectChanges();
 
     // make sure it reflects on the formgroup
-    expect(component.form.value.information.firstName).toEqual('John');
-    expect(component.form.value.information.middleInitial).toEqual('A');
-    expect(component.form.value.information.lastName).toEqual('Doe');
-    expect(component.form.value.information.emailAddress).toEqual(
+    expect(component.form.value.personalInformation.firstName).toEqual('John');
+    expect(component.form.value.personalInformation.middleInitial).toEqual('A');
+    expect(component.form.value.personalInformation.lastName).toEqual('Doe');
+    expect(component.form.value.personalInformation.emailAddress).toEqual(
       'email@email.com'
     );
-    expect(component.form.value.information.phoneNumber).toEqual('3234445555');
+    expect(component.form.value.personalInformation.phoneNumber).toEqual('3234445555');
   });
   it('should sync up input values with formgroup (address)', () => {
     fixture.detectChanges();
@@ -176,10 +176,10 @@ describe('EmployeeFormComponent', () => {
     // update view
     fixture.detectChanges();
     console.log(component.form.value.information);
-    expect(component.form.value.information.address).toEqual('123 street');
-    expect(component.form.value.information.city).toEqual('city');
-    expect(component.form.value.information.state).toEqual('CA');
-    expect(component.form.value.information.zipCode).toEqual('12345');
+    expect(component.form.value.personalInformation.address).toEqual('123 street');
+    expect(component.form.value.personalInformation.city).toEqual('city');
+    expect(component.form.value.personalInformation.state).toEqual('CA');
+    expect(component.form.value.personalInformation.zipCode).toEqual('12345');
   });
   it('should sync data up with formgroup (employee information)', () => {
     fixture.detectChanges();
@@ -302,17 +302,21 @@ describe('EmployeeFormComponent', () => {
     fixture.detectChanges();
 
     // what is in the form group
-    const informationValues = component.form.value.information;
+    const personalInformationValues = component.form.value.personalInformation;
+    const addressInformationValues = component.form.value.addressInformation;
     const employeeInformationValues = component.form.value.employeeInformation;
-    expect(informationValues['firstName']).toEqual('John');
-    expect(informationValues['middleInitial']).toEqual('A');
-    expect(informationValues['lastName']).toEqual('Doe');
-    expect(informationValues['emailAddress']).toEqual('testemail@email.com');
-    expect(informationValues['phoneNumber']).toEqual('3235555555');
-    expect(informationValues['address']).toEqual('123 Street');
-    expect(informationValues['city']).toEqual('A City');
-    expect(informationValues['state']).toEqual('CA');
-    expect(informationValues['zipCode']).toEqual('12345');
+
+    expect(personalInformationValues['firstName']).toEqual('John');
+    expect(personalInformationValues['middleInitial']).toEqual('A');
+    expect(personalInformationValues['lastName']).toEqual('Doe');
+    expect(personalInformationValues['emailAddress']).toEqual('testemail@email.com');
+    expect(personalInformationValues['phoneNumber']).toEqual('3235555555');
+
+    expect(addressInformationValues['address']).toEqual('123 Street');
+    expect(addressInformationValues['city']).toEqual('A City');
+    expect(addressInformationValues['state']).toEqual('CA');
+    expect(addressInformationValues['zipCode']).toEqual('12345');
+
     expect(employeeInformationValues['employeeNumber']).toEqual(1234);
     expect(employeeInformationValues['hostedId']).toEqual(12345);
   });
