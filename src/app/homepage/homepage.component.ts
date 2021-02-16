@@ -97,9 +97,13 @@ export class HomepageComponent implements OnInit {
       .subscribe((res) => {
         // Save form to service
         this.formDataService.formData = res;
-        // navigate to employee form
-        //TODO: take into consideration what kind of form (empl or contractor)
-        this.router.navigate(['/employee-form']);
+        // navigate to employee form if the
+        // user chose employeee
+        if (this.userType === 'employee') {
+          this.router.navigate(['/employee-form']);
+        } else {
+          this.router.navigate(['/contractor-form']);
+        }
       });
   }
   // testing
