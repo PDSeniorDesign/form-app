@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccessInformationComponent implements OnInit {
   renderIBMForm: boolean;
+  renderUnixEnvAccess: boolean;
+  renderSecurIdAccess: boolean;
   constructor() {}
 
   ngOnInit(): void {
     this.renderIBMForm = false;
+    this.renderUnixEnvAccess = false;
+    this.renderSecurIdAccess = false;
   }
 
   checkboxUpdate(e): void {
