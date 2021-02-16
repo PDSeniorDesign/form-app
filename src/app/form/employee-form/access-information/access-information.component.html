@@ -46,6 +46,22 @@
         </mat-form-field>
       </div>
     </div>
+    <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
+      <h2 class="mat-title">Unix Access</h2>
+      <div>
+        <mat-form-field>
+          <mat-label>Login ID</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Application</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+
+    </div>
     <button mat-raised-button color="primary" matStepperNext>Next</button>
   </div>
 </div>
