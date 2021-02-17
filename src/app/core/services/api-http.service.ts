@@ -27,5 +27,7 @@ export class ApiHttpService {
     );
   }
 
-  public saveForm(data: any) {}
+  public saveForm(requestNumber: any, data: any) {
+    return this.http.put(`${environment.apiUrl}/service_requests/${requestNumber}`, data, this.httpOptions);
+  }
 }

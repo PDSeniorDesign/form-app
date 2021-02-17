@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -44,7 +45,10 @@ export class EmployeeFormComponent implements OnInit {
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
   errorStateMatcher = new InstantErrorStateMatcher();
-  constructor(private formDataService: FormDataService) {}
+  constructor(
+    private formDataService: FormDataService,
+    private apiHttpService: ApiHttpService
+  ) {}
 
   ngOnInit(): void {
     console.log('from comp', this.formDataService.formData);
@@ -190,6 +194,24 @@ export class EmployeeFormComponent implements OnInit {
   // This function is responsible for saving the form
   save = () => {
     console.log('save');
+    // A form is already in formData Service
+    if (this.formDataService != undefined) {
+      console.log('from formData', this.formDataService.formData);
+      this.apiHttpService.saveForm(this.formDataService.formData.requestNumber, this.form.value).subscribe(res => {
+        // TODO: Returns null because api does not give back response
+        console.log(res);
+        this.formDataService.formData = res;
+      });
+    } else {
+      // Create a form and set to service
+      this.apiHttpService
+      .createForm(this.form.value)
+      .subscribe((res) => {
+        console.log(res)
+        this.formDataService.formData = res;
+      });
+    }
+
   };
 }
 
