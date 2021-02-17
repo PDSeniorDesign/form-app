@@ -1,6 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
+import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
@@ -34,60 +36,113 @@ export class EmployeeFormComponent implements OnInit {
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
+  errorStateMatcher = new InstantErrorStateMatcher;
   constructor(private formDataService: FormDataService) {}
 
   ngOnInit(): void {
     console.log('from comp', this.formDataService.formData);
     if (this.formDataService.formData != undefined) {
       this.form = new FormGroup({
-        information: new FormGroup({
-          lastName: new FormControl(this.formDataService.formData['lastName']),
+        personalInformation: new FormGroup({
+          lastName: new FormControl(this.formDataService.formData['lastName'], [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
           firstName: new FormControl(
-            this.formDataService.formData['firstName']
+            this.formDataService.formData['firstName'],
+            [Validators.required, Validators.pattern('[a-z A-Z]*')]
           ),
           middleInitial: new FormControl(
-            this.formDataService.formData['middleInitial']
+            this.formDataService.formData['middleInitial'],
+            Validators.pattern('[a-z A-Z]*')
           ),
           emailAddress: new FormControl(
-            this.formDataService.formData['employeeEmailAddress']
+            this.formDataService.formData['employeeEmailAddress'],
+            [Validators.required, Validators.email]
           ),
           phoneNumber: new FormControl(
-            this.formDataService.formData['businessPhoneNumber']
+            this.formDataService.formData['businessPhoneNumber'],
+            [Validators.required, Validators.pattern('[0-9]{10}')]
           ),
+        }),
+        addressInformation: new FormGroup({
           address: new FormControl(
-            this.formDataService.formData['businessStreetAddress']
+            this.formDataService.formData['businessStreetAddress'],
+            Validators.required
           ),
-          city: new FormControl(this.formDataService.formData['businessCity']),
+          city: new FormControl(this.formDataService.formData['businessCity'], [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
           state: new FormControl(
-            this.formDataService.formData['businessState']
+            this.formDataService.formData['businessState'],
+            [Validators.required, Validators.pattern('[a-z A-Z]*')]
           ),
           zipCode: new FormControl(
-            this.formDataService.formData['businessZip']
+            this.formDataService.formData['businessZip'],
+            [
+              Validators.required,
+              Validators.minLength(5),
+              Validators.maxLength(7),
+              Validators.pattern('[0-9]*'),
+            ]
           ),
         }),
         employeeInformation: new FormGroup({
           employeeNumber: new FormControl(
-            this.formDataService.formData['employeeNumber']
+            this.formDataService.formData['employeeNumber'],
+            [Validators.required]
           ),
-          hostedId: new FormControl(this.formDataService.formData['hostedId']),
+          hostedId: new FormControl(
+            this.formDataService.formData['hostedId'],
+            Validators.required
+          ),
         }),
       });
     } else {
       this.form = new FormGroup({
-        information: new FormGroup({
-          lastName: new FormControl(null),
-          firstName: new FormControl(null),
-          middleInitial: new FormControl(null),
-          emailAddress: new FormControl(null),
-          phoneNumber: new FormControl(null),
-          address: new FormControl(null),
-          city: new FormControl(null),
-          state: new FormControl(null),
-          zipCode: new FormControl(null),
+        personalInformation: new FormGroup({
+          lastName: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          firstName: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          middleInitial: new FormControl(
+            null,
+            Validators.pattern('[a-z A-Z]*')
+          ),
+          emailAddress: new FormControl(null, [
+            Validators.required,
+            Validators.email,
+          ]),
+          phoneNumber: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[0-9]{10}'),
+          ]),
+        }),
+        addressInformation: new FormGroup({
+          address: new FormControl(null, Validators.required),
+          city: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          state: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          zipCode: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(7),
+            Validators.pattern('[0-9]*'),
+          ]),
         }),
         employeeInformation: new FormGroup({
-          employeeNumber: new FormControl(null),
-          hostedId: new FormControl(null),
+          employeeNumber: new FormControl(null, [Validators.required]),
+          hostedId: new FormControl(null, Validators.required),
         }),
         // accessInformation: TODO: Fill this out later
         // additionalInformation: new FormGroup({
@@ -105,4 +160,14 @@ export class EmployeeFormComponent implements OnInit {
     this.hasSubmitted = true;
     this.submitResponse = res;
   };
+
+}
+
+//changes the ErrorStateMatcher to include dirty
+//removes the error message and red boxes after clicking next
+export class InstantErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null,
+               form: FormGroupDirective | NgForm | null): boolean {
+    return control && control.invalid && (control.dirty || control.touched);
+  }
 }

@@ -7,10 +7,10 @@
   class="container"
 >
   <!-- Personal Information Step -->
-  <mat-horizontal-stepper #stepper>
+  <mat-horizontal-stepper #stepper linear>
     <mat-step
-      formGroupName="information"
-      [stepControl]="form.get('information')"
+      formGroupName="personalInformation"
+      [stepControl]="form.get('personalInformation')"
     >
       <ng-template matStepLabel>Personal Information</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
@@ -25,7 +25,12 @@
             type="text"
             matInput
             formControlName="firstName"
+            required
+            pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-hint>Required</mat-hint>
+          <mat-error>First name is required and must be letters only</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -36,7 +41,10 @@
             type="text"
             matInput
             formControlName="middleInitial"
+            pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-error>Middle initial must be letters only</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -47,7 +55,12 @@
             type="text"
             matInput
             formControlName="lastName"
+            required
+            pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-hint>Required</mat-hint>
+          <mat-error>Last name is required and must be letters only</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -58,7 +71,10 @@
             type="text"
             matInput
             formControlName="emailAddress"
+            required
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-error>Email is required with correct email format</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -69,17 +85,22 @@
             type="phone"
             matInput
             formControlName="phoneNumber"
+            required
+            pattern="[0-9]{10}"
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-error>Phone number is required and must be 10 digit</mat-error>
         </mat-form-field>
       </div>
       <div>
         <button mat-raised-button matStepperNext color="primary">Next</button>
       </div>
     </mat-step>
+
     <!-- Address Step -->
     <mat-step
-      formGroupName="information"
-      [stepControl]="form.get('information')"
+      formGroupName="addressInformation"
+      [stepControl]="form.get('addressInformation')"
     >
       <ng-template matStepLabel>Address</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">Address</h2>
@@ -91,19 +112,46 @@
             type="text"
             matInput
             formControlName="address"
+            required
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-hint>Required</mat-hint>
+          <mat-error>Street address is required</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>City</mat-label>
-          <input id="cityInput" type="text" matInput formControlName="city" />
+          <input
+            id="cityInput"
+            type="text"
+            matInput
+            formControlName="city"
+            required
+            pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
+          />
+          <mat-hint>Required</mat-hint>
+          <mat-error>City is required and must be letters only</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>State</mat-label>
-          <input id="stateInput" type="text" matInput formControlName="state" />
+          <input
+            id="stateInput"
+            type="text"
+            matInput
+            formControlName="state"
+            required
+            pattern="[a-zA-Z ]*"
+            [errorStateMatcher] = "errorStateMatcher"
+          />
+          <mat-hint>Required</mat-hint>
+          <mat-error>State is required and must be letters only</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
@@ -114,7 +162,14 @@
             type="text"
             matInput
             formControlName="zipCode"
+            required
+            pattern="[0-9]*"
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-hint>Required</mat-hint>
+          <mat-error>Zipcode is required and must be numbers only with length
+           5-7</mat-error
+          >
         </mat-form-field>
       </div>
       <div>
@@ -141,7 +196,11 @@
             type="text"
             matInput
             formControlName="employeeNumber"
+            required
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-hint>Required</mat-hint>
+          <mat-error>Employee number is required</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -152,7 +211,11 @@
             type="text"
             matInput
             formControlName="hostedId"
+            required
+            [errorStateMatcher] = "errorStateMatcher"
           />
+          <mat-hint>Required</mat-hint>
+          <mat-error>Hosted id is required</mat-error>
         </mat-form-field>
       </div>
       <div>

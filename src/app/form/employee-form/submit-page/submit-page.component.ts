@@ -26,15 +26,15 @@ export class SubmitPageComponent implements OnInit {
   //Reformats the data from the submit page to backend JSON compatible
   public reformatDataPost(data: any) {
     var reformated = {
-      lastName: data.information.lastName,
-      firstName: data.information.firstName,
-      middleInitial: data.information.middleInitial,
-      employeeEmailAddress: data.information.emailAddress,
-      businessPhoneNumber: data.information.phoneNumber,
-      businessStreetAddress: data.information.address,
-      businessCity: data.information.city,
-      businessState: data.information.state,
-      businessZip: data.information.zipCode,
+      lastName: data.personalInformation.lastName,
+      firstName: data.personalInformation.firstName,
+      middleInitial: data.personalInformation.middleInitial,
+      employeeEmailAddress: data.personalInformation.emailAddress,
+      businessPhoneNumber: data.personalInformation.phoneNumber,
+      businessStreetAddress: data.addressInformation.address,
+      businessCity: data.addressInformation.city,
+      businessState: data.addressInformation.state,
+      businessZip: data.addressInformation.zipCode,
       employeeNumber: data.employeeInformation.employeeNumber,
       hostedId: data.employeeInformation.hostedId,
     };

@@ -31,6 +31,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { AdminRequestComponent } from './admin/admin-request/admin-request.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { AdminRequestComponent } from './admin/admin-request/admin-request.compo
     SharedModule,
     CoreModule,
     FormsModule,
+    MatCheckboxModule,
   ],
   exports: [],
   providers: [],
