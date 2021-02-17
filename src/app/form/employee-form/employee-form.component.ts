@@ -193,9 +193,9 @@ export class EmployeeFormComponent implements OnInit {
 
   // This function is responsible for saving the form
   save = () => {
-    console.log('save');
+    console.log('current form data', this.formDataService.formData);
     // A form is already in formData Service
-    if (this.formDataService != undefined) {
+    if (this.formDataService.formData != undefined) {
       console.log('from formData', this.formDataService.formData);
       this.apiHttpService.saveForm(this.formDataService.formData.requestNumber, this.form.value).subscribe(res => {
         // TODO: Returns null because api does not give back response
