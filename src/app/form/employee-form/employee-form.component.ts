@@ -179,6 +179,7 @@ export class EmployeeFormComponent implements OnInit {
         }),
         // TODO: Fill out the rest
       });
+      // To show the form instead of the submit page
       this.hasSubmitted = false;
     }
   }
@@ -197,21 +198,20 @@ export class EmployeeFormComponent implements OnInit {
     // A form is already in formData Service
     if (this.formDataService.formData != undefined) {
       console.log('from formData', this.formDataService.formData);
-      this.apiHttpService.saveForm(this.formDataService.formData.requestNumber, this.form.value).subscribe(res => {
-        // TODO: Returns null because api does not give back response
+      this.apiHttpService
+        .saveForm(this.formDataService.formData.requestNumber, this.form.value)
+        .subscribe((res) => {
+          console.log(res);
+          // Set the formData to the response
+          this.formDataService.formData = res;
+        });
+    } else {
+      // Create a form and set to service
+      this.apiHttpService.createForm(this.form.value).subscribe((res) => {
         console.log(res);
         this.formDataService.formData = res;
       });
-    } else {
-      // Create a form and set to service
-      this.apiHttpService
-      .createForm(this.form.value)
-      .subscribe((res) => {
-        console.log(res)
-        this.formDataService.formData = res;
-      });
     }
-
   };
 }
 
