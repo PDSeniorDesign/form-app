@@ -1,114 +1,88 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CdkStepper } from '@angular/cdk/stepper';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { AppModule } from 'src/app/app.module';
 import { EmployeeFormComponent } from '../employee-form.component';
-
 import { AccessInformationComponent } from './access-information.component';
 
-describe('AccessInformationComponent', () => {
+fdescribe('AccessInformationComponent', () => {
   let component: AccessInformationComponent;
   let fixture: ComponentFixture<AccessInformationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AccessInformationComponent, EmployeeFormComponent],
+      imports: [FormsModule, ReactiveFormsModule, AppModule],
+      providers: [CdkStepper],
     }).compileComponents();
   });
 
-  beforeEach(() => {
+  beforeEach(inject([FormBuilder], (fb: FormBuilder) => {
     fixture = TestBed.createComponent(AccessInformationComponent);
     component = fixture.componentInstance;
+    component.form = fb.group({
+      accessInformation: fb.group({
+        ibmLogonId: [null],
+      }),
+    });
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  // TODO: Test other checkboxes
-  it('should trigger function on checkbox click (IBM DATA CENTER)', () => {
-    spyOn(component, 'checkboxUpdate').and.callThrough();
-    // IBM Data Center Access element
-    const ibmDataCenterAccessCheckbox = fixture.debugElement.query(
-      By.css('input#ibmCheckbox')
-    ).nativeElement;
-
-    expect(ibmDataCenterAccessCheckbox.checked).toBeFalsy();
-
-    // Simulating a click
-    ibmDataCenterAccessCheckbox.click();
-    fixture.detectChanges();
-
-    expect(ibmDataCenterAccessCheckbox.checked).toBeTruthy();
-    expect(component.checkboxUpdate).toHaveBeenCalled();
-  });
-
-  it('should render the form on click (IBM DATA CENTER)', () => {
-    expect(component.renderIBMForm).toBeFalse();
-    // Container where forms will render
-    const accessInformationFormsDiv = fixture.debugElement.query(
-      By.css('div.accessInformationForms')
-    ).nativeElement;
-
-    // Make sure it is not rendered
-    expect(fixture.debugElement.query(By.css('.ibmForm'))).toBeFalsy();
-
-    const ibmDataCenterAccessCheckbox = fixture.debugElement.query(
-      By.css('input#ibmCheckbox')
-    ).nativeElement;
-
-    ibmDataCenterAccessCheckbox.click();
-    fixture.detectChanges();
-
-    expect(component.renderIBMForm).toBeTrue();
-    expect(accessInformationFormsDiv.hasChildNodes()).toBeTrue();
-    expect(fixture.debugElement.query(By.css('.ibmForm'))).toBeTruthy(); // Should be rendered
-  });
-
-  it('should unrender when reclicked', () => {
-    // renderIBMForm will be false at first
-
-    // Reclick
-    const ibmDataCenterAccessCheckbox = fixture.debugElement.query(
-      By.css('input#ibmCheckbox')
-    ).nativeElement;
-
-    ibmDataCenterAccessCheckbox.click();
-    ibmDataCenterAccessCheckbox.click();
+  fit('should match input values to formgroup (IBM data center)', () => {
+    // Create formgroup
 
     fixture.detectChanges();
-    // Check that form is gone
-    expect(component.renderIBMForm).toBeFalse();
-    expect(fixture.debugElement.query(By.css('.ibmForm'))).toBeFalsy();
-  });
 
-  it('should have title IBM Data Center when form renders (IBM DATA CENTER)', () => {
-    // Click checkbox
-    const ibmDataCenterAccessCheckbox = fixture.debugElement.query(
-      By.css('input#ibmCheckbox')
-    ).nativeElement;
-
-    ibmDataCenterAccessCheckbox.click();
+    // Have to click elements to render forms
+    component.renderIBMForm = true;
+    component.renderUnixEnvAccess = true;
+    component.renderSecurIdAccess = true;
     fixture.detectChanges();
-    // search that title is available
-    const ibmForm = fixture.debugElement.query(By.css('.ibmFormTitle'))
-      .nativeElement;
-    expect(ibmForm.innerText).toContain('IBM Data Center Access');
-  });
 
-  it('should have four input fields (IBM Data Center)', () => {
-    // Click checkbox
-    const ibmDataCenterAccessCheckbox = fixture.debugElement.query(
-      By.css('input#ibmCheckbox')
-    ).nativeElement;
-
-    ibmDataCenterAccessCheckbox.click();
-    fixture.detectChanges();
-    // Query based on .ibmFormField
-    const ibmFormFields = fixture.debugElement.queryAll(
-      By.css('input.ibmFormField')
+    // Grab input elements
+    const logonIn = fixture.debugElement.query(By.css('input#ibmLogonIdInput'));
+    console.log(logonIn);
+    const majorGroupCodeInput = fixture.debugElement.query(
+      By.css('input#ibmMajorGroupCodeInput')
     );
-    console.log(ibmFormFields);
-    // Test the count
-    expect(ibmFormFields.length).toEqual(4);
+    const lsoGroupCodeInput = fixture.debugElement.query(
+      By.css('input#ibmLsoGroupCodeInput')
+    );
+    const securityAuthIn = fixture.debugElement.query(
+      By.css('input#ibmSecurityAuthInput')
+    );
+
+    // Change input values
+    logonIn.nativeElement.value = 'samplelogon';
+    majorGroupCodeInput.nativeElement.value = 'majorcode';
+    lsoGroupCodeInput.nativeElement.value = 'groupcode';
+    securityAuthIn.nativeElement.value = 'security';
+    fixture.detectChanges();
+
+    // Dispatch events
+    logonIn.nativeNode.dispatchEvent(new Event('input'));
+    majorGroupCodeInput.nativeElement.dispatchEvent(new Event('input'));
+    lsoGroupCodeInput.nativeElement.dispatchEvent(new Event('input'));
+    securityAuthIn.nativeNode.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    console.log(component.form);
+    // check that the form groups are updated
+    expect(component.form.value.accessInformation.ibmLogonId).toEqual(
+      'samplelogon'
+    );
   });
+
+  // TODO: Test other checkboxes
 });

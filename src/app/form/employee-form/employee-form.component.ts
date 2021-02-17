@@ -48,6 +48,12 @@ export class EmployeeFormComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('from comp', this.formDataService.formData);
+    /**
+     * If there is a form in the form data service, then it most likely
+     * means that the user is coming from the homepage. Meaning that they
+     * are continuing a form.
+     */
+    // TODO: Work on filling Access Information if user is continuing form
     if (this.formDataService.formData != undefined) {
       this.form = new FormGroup({
         personalInformation: new FormGroup({
@@ -107,6 +113,7 @@ export class EmployeeFormComponent implements OnInit {
         }),
       });
     } else {
+      // Starting a new form
       this.form = new FormGroup({
         personalInformation: new FormGroup({
           lastName: new FormControl(null, [
@@ -151,9 +158,21 @@ export class EmployeeFormComponent implements OnInit {
           employeeNumber: new FormControl(null, [Validators.required]),
           hostedId: new FormControl(null, Validators.required),
         }),
-        // accessInformation: TODO: Fill this out later
-        // additionalInformation: new FormGroup({
-        // })
+        accessInformation: new FormGroup({
+          // IBM Data Center Access
+          ibmLogonId: new FormControl(null),
+          majorGroupCode: new FormControl(null),
+          lsoGroupCode: new FormControl(null),
+          securityAuthorization: new FormControl(null),
+          // Unix Environment Access
+          unixLogonId: new FormControl(null),
+          application: new FormControl(null),
+          accessGroup: new FormControl(null),
+          accountNumber: new FormControl(null),
+          // SecurID Remote Access
+          billingAccountNumber: new FormControl(null),
+          accessType: new FormControl(null),
+        }),
         // TODO: Fill out the rest
       });
       this.hasSubmitted = false;

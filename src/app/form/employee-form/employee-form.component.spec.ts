@@ -18,7 +18,7 @@ import { AdditionalInformationComponent } from './additional-information/additio
 import { EmployeeFormComponent } from './employee-form.component';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 
-fdescribe('EmployeeFormComponent', () => {
+describe('EmployeeFormComponent', () => {
   let component: EmployeeFormComponent;
   let fixture: ComponentFixture<EmployeeFormComponent>;
   let formDataService: FormDataService;
