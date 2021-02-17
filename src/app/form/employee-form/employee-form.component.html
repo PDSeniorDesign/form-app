@@ -27,7 +27,7 @@
             formControlName="firstName"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>First name is required and must be letters only</mat-error>
@@ -42,7 +42,7 @@
             matInput
             formControlName="middleInitial"
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-error>Middle initial must be letters only</mat-error>
         </mat-form-field>
@@ -57,7 +57,7 @@
             formControlName="lastName"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>Last name is required and must be letters only</mat-error>
@@ -72,7 +72,7 @@
             matInput
             formControlName="emailAddress"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-error>Email is required with correct email format</mat-error>
         </mat-form-field>
@@ -87,13 +87,23 @@
             formControlName="phoneNumber"
             required
             pattern="[0-9]{10}"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-error>Phone number is required and must be 10 digit</mat-error>
         </mat-form-field>
       </div>
-      <div>
+      <div class="button-container">
         <button mat-raised-button matStepperNext color="primary">Next</button>
+        <span class="spacer"></span>
+        <button
+          id="personal-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
+          Save
+        </button>
       </div>
     </mat-step>
 
@@ -113,11 +123,10 @@
             matInput
             formControlName="address"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Street address is required</mat-error
-          >
+          <mat-error>Street address is required</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -130,11 +139,10 @@
             formControlName="city"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>City is required and must be letters only</mat-error
-          >
+          <mat-error>City is required and must be letters only</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -147,11 +155,10 @@
             formControlName="state"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>State is required and must be letters only</mat-error
-          >
+          <mat-error>State is required and must be letters only</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -164,18 +171,29 @@
             formControlName="zipCode"
             required
             pattern="[0-9]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Zipcode is required and must be numbers only with length
-           5-7</mat-error
+          <mat-error
+            >Zipcode is required and must be numbers only with length
+            5-7</mat-error
           >
         </mat-form-field>
       </div>
-      <div>
+      <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
         <button mat-raised-button matStepperNext color="primary" class="ml-2">
           Next
+        </button>
+        <span class="spacer"></span>
+        <button
+          id="address-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
+          Save
         </button>
       </div>
     </mat-step>
@@ -197,7 +215,7 @@
             matInput
             formControlName="employeeNumber"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>Employee number is required</mat-error>
@@ -212,16 +230,26 @@
             matInput
             formControlName="hostedId"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>Hosted id is required</mat-error>
         </mat-form-field>
       </div>
-      <div>
+      <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
         <button mat-raised-button matStepperNext color="primary" class="ml-2">
           Next
+        </button>
+        <span class="spacer"></span>
+        <button
+          id="employee-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
+          Save
         </button>
       </div>
     </mat-step>
