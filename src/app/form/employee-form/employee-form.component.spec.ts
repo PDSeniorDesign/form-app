@@ -18,7 +18,7 @@ import { AdditionalInformationComponent } from './additional-information/additio
 import { EmployeeFormComponent } from './employee-form.component';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 
-describe('EmployeeFormComponent', () => {
+fdescribe('EmployeeFormComponent', () => {
   let component: EmployeeFormComponent;
   let fixture: ComponentFixture<EmployeeFormComponent>;
   let formDataService: FormDataService;
@@ -151,7 +151,9 @@ describe('EmployeeFormComponent', () => {
     expect(component.form.value.personalInformation.emailAddress).toEqual(
       'email@email.com'
     );
-    expect(component.form.value.personalInformation.phoneNumber).toEqual('3234445555');
+    expect(component.form.value.personalInformation.phoneNumber).toEqual(
+      '3234445555'
+    );
   });
   it('should sync up input values with formgroup (address)', () => {
     fixture.detectChanges();
@@ -176,10 +178,12 @@ describe('EmployeeFormComponent', () => {
     // update view
     fixture.detectChanges();
     console.log(component.form.value.information);
-    expect(component.form.value.personalInformation.address).toEqual('123 street');
-    expect(component.form.value.personalInformation.city).toEqual('city');
-    expect(component.form.value.personalInformation.state).toEqual('CA');
-    expect(component.form.value.personalInformation.zipCode).toEqual('12345');
+    expect(component.form.value.addressInformation.address).toEqual(
+      '123 street'
+    );
+    expect(component.form.value.addressInformation.city).toEqual('city');
+    expect(component.form.value.addressInformation.state).toEqual('CA');
+    expect(component.form.value.addressInformation.zipCode).toEqual('12345');
   });
   it('should sync data up with formgroup (employee information)', () => {
     fixture.detectChanges();
@@ -309,7 +313,9 @@ describe('EmployeeFormComponent', () => {
     expect(personalInformationValues['firstName']).toEqual('John');
     expect(personalInformationValues['middleInitial']).toEqual('A');
     expect(personalInformationValues['lastName']).toEqual('Doe');
-    expect(personalInformationValues['emailAddress']).toEqual('testemail@email.com');
+    expect(personalInformationValues['emailAddress']).toEqual(
+      'testemail@email.com'
+    );
     expect(personalInformationValues['phoneNumber']).toEqual('3235555555');
 
     expect(addressInformationValues['address']).toEqual('123 Street');
@@ -319,5 +325,57 @@ describe('EmployeeFormComponent', () => {
 
     expect(employeeInformationValues['employeeNumber']).toEqual(1234);
     expect(employeeInformationValues['hostedId']).toEqual(12345);
+  });
+  it('should call save() when clicked (personal info save button)', () => {
+    fixture.detectChanges();
+    // Grab the button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#personal-info-save-btn')
+    ).nativeElement;
+
+    // spy on the save() function
+    spyOn(component, 'save');
+
+    // simulate a click
+    saveBtn.click();
+    fixture.detectChanges();
+
+    // make sure it was called
+    expect(component.save).toHaveBeenCalled();
+  });
+
+  it('should call save() when clickekd (address info save button)', () => {
+    fixture.detectChanges();
+    // Grab the button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#address-info-save-btn')
+    ).nativeElement;
+
+    // spy on the save() function
+    spyOn(component, 'save');
+
+    // simulate a click
+    saveBtn.click();
+    fixture.detectChanges();
+
+    // make sure it was called
+    expect(component.save).toHaveBeenCalled();
+  });
+  it('should call save() when clicked (employee info save button)', () => {
+    fixture.detectChanges();
+    // Grab the button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#employee-info-save-btn')
+    ).nativeElement;
+
+    // spy on the save() function
+    spyOn(component, 'save');
+
+    // simulate a click
+    saveBtn.click();
+    fixture.detectChanges();
+
+    // make sure it was called
+    expect(component.save).toHaveBeenCalled();
   });
 });

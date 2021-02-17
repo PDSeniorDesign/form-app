@@ -167,6 +167,11 @@ export class EmployeeFormComponent implements OnInit {
     this.hasSubmitted = true;
     this.submitResponse = res;
   };
+
+  // This function is responsible for saving the form
+  save = () => {
+    console.log('save');
+  };
 }
 
 //changes the ErrorStateMatcher to include dirty

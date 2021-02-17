@@ -95,7 +95,15 @@
       <div class="button-container">
         <button mat-raised-button matStepperNext color="primary">Next</button>
         <span class="spacer"></span>
-        <button mat-raised-button color="accent">Save</button>
+        <button
+          id="personal-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
+          Save
+        </button>
       </div>
     </mat-step>
 
@@ -178,7 +186,13 @@
           Next
         </button>
         <span class="spacer"></span>
-        <button mat-raised-button class="save-button" color="accent">
+        <button
+          id="address-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
           Save
         </button>
       </div>
@@ -228,7 +242,13 @@
           Next
         </button>
         <span class="spacer"></span>
-        <button mat-raised-button class="save-button" color="accent">
+        <button
+          id="employee-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
           Save
         </button>
       </div>
