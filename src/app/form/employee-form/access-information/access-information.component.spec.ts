@@ -33,6 +33,10 @@ fdescribe('AccessInformationComponent', () => {
         majorGroupCode: [null],
         lsoGroupCode: [null],
         securityAuthorization: [null],
+        unixLogonId: [null],
+        application: [null],
+        accessGroup: [null],
+        accountNumber: [null],
       }),
     });
     fixture.detectChanges();
@@ -42,7 +46,7 @@ fdescribe('AccessInformationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should match input values to formgroup (IBM data center)', () => {
+  it('should match input values to formgroup (IBM data center)', () => {
     // Create formgroup
 
     fixture.detectChanges();
@@ -94,6 +98,53 @@ fdescribe('AccessInformationComponent', () => {
     expect(
       component.form.value.accessInformation.securityAuthorization
     ).toEqual('security');
+  });
+  it('should match input values to formgroup (Unix Environment Access)', () => {
+    // Have to click elements to render forms
+    component.renderIBMForm = true;
+    component.renderUnixEnvAccess = true;
+    component.renderSecurIdAccess = true;
+    fixture.detectChanges();
+
+    // grab elements
+    const logonIdIn = fixture.debugElement.query(
+      By.css('input#unixLogonIdInput')
+    );
+    const applicationIn = fixture.debugElement.query(
+      By.css('input#applicationInput')
+    );
+    const accessGroupIn = fixture.debugElement.query(
+      By.css('input#accessGroupInput')
+    );
+    const accountNumIn = fixture.debugElement.query(
+      By.css('input#accountNumberInput')
+    );
+
+    // update values
+    logonIdIn.nativeElement.value = 'logon';
+    applicationIn.nativeElement.value = 'applicationInput';
+    accessGroupIn.nativeElement.value = 'accessgroup';
+    accountNumIn.nativeElement.value = 'accountnum';
+    fixture.detectChanges();
+
+    // dispatch events
+    logonIdIn.nativeElement.dispatchEvent(new Event('input'));
+    applicationIn.nativeElement.dispatchEvent(new Event('input'));
+    accessGroupIn.nativeElement.dispatchEvent(new Event('input'));
+    accountNumIn.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    // check if they match
+    expect(component.form.value.accessInformation.unixLogonId).toEqual('logon');
+    expect(component.form.value.accessInformation.application).toEqual(
+      'applicationInput'
+    );
+    expect(component.form.value.accessInformation.accessGroup).toEqual(
+      'accessgroup'
+    );
+    expect(component.form.value.accessInformation.accountNumber).toEqual(
+      'accountnum'
+    );
   });
 
   // TODO: Test other checkboxes

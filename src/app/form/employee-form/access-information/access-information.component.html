@@ -62,27 +62,31 @@
       <!-- TODO: Needs the Type of Request section -->
       <h2 class="mat-title">Unix Access</h2>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>Login ID</mat-label>
-          <input matInput />
+          <input id="unixLogonIdInput" matInput formControlName="unixLogonId" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>Application</mat-label>
-          <input matInput />
+          <input id="applicationInput" matInput formControlName="application" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>Access Group</mat-label>
-          <input matInput />
+          <input id="accessGroupInput" matInput formControlName="accessGroup" />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>Account Number</mat-label>
-          <input matInput />
+          <input
+            id="accountNumberInput"
+            matInput
+            formControlName="accountNumber"
+          />
         </mat-form-field>
       </div>
     </div>
