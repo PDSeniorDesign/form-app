@@ -6,28 +6,26 @@ import { environment } from 'src/environments/environment';
 export class ApiHttpService {
   constructor(private http: HttpClient) {}
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
+
   public createForm(data: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
     return this.http.post(
       `${environment.apiUrl}/service_requests`,
       data,
-      httpOptions
+      this.httpOptions
     );
   }
 
   public getFormByRequestNumber(data: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
     return this.http.get(
       `${environment.apiUrl}/service_requests/` + data,
-      httpOptions
+      this.httpOptions
     );
   }
+
+  public saveForm(data: any) {}
 }
