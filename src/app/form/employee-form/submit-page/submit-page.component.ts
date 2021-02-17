@@ -7,6 +7,12 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
   templateUrl: './submit-page.component.html',
   styleUrls: ['./submit-page.component.css'],
 })
+
+/**
+ * An idea: check if form is saved to FormDataService in ngOnInit,
+ * if so then make regForm the form in FormDataService. Will prevent the
+ * need to have if else statement in onClick()
+ */
 export class SubmitPageComponent implements OnInit {
   @Input() regForm;
   @Input() setSubmitResponse; // Function to update parent (employee-form.component)
