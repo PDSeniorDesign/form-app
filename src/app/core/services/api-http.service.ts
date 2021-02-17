@@ -12,10 +12,28 @@ export class ApiHttpService {
     }),
   };
 
+  //Reformats the data from the submit page to backend JSON compatible
+  public reformatDataPost(data: any) {
+    const reformated = {
+      lastName: data.personalInformation.lastName,
+      firstName: data.personalInformation.firstName,
+      middleInitial: data.personalInformation.middleInitial,
+      employeeEmailAddress: data.personalInformation.emailAddress,
+      businessPhoneNumber: data.personalInformation.phoneNumber,
+      businessStreetAddress: data.addressInformation.address,
+      businessCity: data.addressInformation.city,
+      businessState: data.addressInformation.state,
+      businessZip: data.addressInformation.zipCode,
+      employeeNumber: data.employeeInformation.employeeNumber,
+      hostedId: data.employeeInformation.hostedId,
+    };
+    return JSON.stringify(reformated);
+  }
+
   public createForm(data: any) {
     return this.http.post(
       `${environment.apiUrl}/service_requests`,
-      data,
+      this.reformatDataPost(data),
       this.httpOptions
     );
   }
@@ -28,6 +46,10 @@ export class ApiHttpService {
   }
 
   public saveForm(requestNumber: any, data: any) {
-    return this.http.put(`${environment.apiUrl}/service_requests/${requestNumber}`, data, this.httpOptions);
+    return this.http.put(
+      `${environment.apiUrl}/service_requests/${requestNumber}`,
+      this.reformatDataPost(data),
+      this.httpOptions
+    );
   }
 }
