@@ -90,19 +90,29 @@
         </mat-form-field>
       </div>
     </div>
+
+    <!-- SecurID Access form -->
     <div *ngIf="renderSecurIdAccess === true" class="secur-id-access-form">
       <h2 class="mat-title">SecurID Access</h2>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>Billing Account Number</mat-label>
-          <input matInput />
+          <input
+            id="billingAccountInput"
+            matInput
+            formControlName="billingAccountNumber"
+          />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>Access Type</mat-label>
-          <select matNativeControl required>
-            <option value="SecurID VPN">SecurID VPN</option>
+          <select
+            formControlName="accessType"
+            id="accessTypeSelect"
+            matNativeControl
+          >
+            <option selected="SecurIDVPN">SecurID VPN</option>
             <option value="Adapative Authentication VPN">
               Adapative Authentication VPN
             </option>
@@ -112,7 +122,13 @@
     </div>
     <div class="button-container">
       <button mat-raised-button matStepperPrevious>Previous</button>
-      <button mat-raised-button matStepperNext color="primary" class="ml-2">
+      <button
+        mat-raised-button
+        matStepperNext
+        color="primary"
+        class="ml-2"
+        (click)="printForm()"
+      >
         Next
       </button>
       <span class="spacer"></span>

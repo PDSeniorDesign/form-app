@@ -37,6 +37,8 @@ fdescribe('AccessInformationComponent', () => {
         application: [null],
         accessGroup: [null],
         accountNumber: [null],
+        billingAccountNumber: [null],
+        accessType: [null],
       }),
     });
     fixture.detectChanges();
@@ -144,6 +146,40 @@ fdescribe('AccessInformationComponent', () => {
     );
     expect(component.form.value.accessInformation.accountNumber).toEqual(
       'accountnum'
+    );
+  });
+  fit('should match input values to formgroup (SecurID Access)', () => {
+    // Have to click elements to render forms
+    component.renderIBMForm = true;
+    component.renderUnixEnvAccess = true;
+    component.renderSecurIdAccess = true;
+    fixture.detectChanges();
+
+    // grab elements
+    const billingAccIn = fixture.debugElement.query(
+      By.css('input#billingAccountInput')
+    );
+    const accessTypeSelect = fixture.debugElement.query(
+      By.css('select#accessTypeSelect')
+    );
+
+    // update values
+    billingAccIn.nativeElement.value = '1234';
+    accessTypeSelect.nativeElement.value = 'SecurID VPN';
+    fixture.detectChanges();
+
+    // dispatch events
+    billingAccIn.nativeElement.dispatchEvent(new Event('input'));
+    accessTypeSelect.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    console.log(component.form);
+    // check if they match
+    expect(component.form.value.accessInformation.billingAccountNumber).toEqual(
+      '1234'
+    );
+    expect(component.form.value.accessInformation.accessType).toEqual(
+      'SecurID VPN'
     );
   });
 
