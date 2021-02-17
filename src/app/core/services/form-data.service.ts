@@ -8,5 +8,5 @@ import { Injectable } from '@angular/core';
  * between components;
  */
 export class FormDataService {
-  public formData: object;
+  public formData: any;
 }
