@@ -1,71 +1,99 @@
 <!-- TODO: Work on naming and values -->
 <div>
-  <h4>Select Access Options</h4>
+  <h1 class="mat-headline">Select Access Options</h1>
   <div>
-    <!-- IBM Data Center Access -->
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="ibmCheckbox"
-        value="option1"
-        (change)="checkboxUpdate($event)"
-      />
-      <label class="form-check-label" for="ibmCheckbox"
-        >IBM Data Center Access</label
+    <!-- TODO: Add styling,flexbox -->
+    <section>
+      <mat-checkbox [(ngModel)]="renderIBMForm"
+        >IBM Data Center Access</mat-checkbox
       >
-    </div>
-    <!-- Unix Environment Access -->
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox2"
-        value="option2"
-      />
-      <label class="form-check-label" for="inlineCheckbox2"
-        >Unix Environment Access</label
+      <mat-checkbox [(ngModel)]="renderUnixEnvAccess"
+        >Unix Environement Access</mat-checkbox
       >
-    </div>
-    <!-- SecurID -->
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox3"
-        value="option3"
-      />
-      <label class="form-check-label" for="inlineCheckbox3"
-        >SecurID Remote Access</label
+      <mat-checkbox [(ngModel)]="renderSecurIdAccess"
+        >SecurID Remote Access</mat-checkbox
       >
-    </div>
+    </section>
   </div>
   <!-- Options -->
   <!-- The forms will render here -->
   <div class="accessInformationForms">
     <div *ngIf="renderIBMForm === true" class="ibmForm">
-      <h5 class="ibmFormTitle mt-4">IBM Data Center Access</h5>
-      <div class="row mb-4">
-        <div class="col-sm-2">
-          <label for="ibmLogonId">Logon ID</label>
-          <input id="ibmLogonId" class="ibmFormField form-control" />
-        </div>
-        <div class="col-sm-2">
-          <label for="2DigitMajorGroupCode">2-DIGIT MAJOR GROUP CODE</label>
-          <input id="2DigitMajorGroupCode" class="ibmFormField form-control" />
-        </div>
-        <div class="col-sm-2">
-          <label for="2DigitLSOGroupCode">2-DIGIT LSO GROUP CODE</label>
-          <input id="2DigitLSOGroupCode" class="ibmFormField form-control" />
-        </div>
-        <div class="col-sm-2">
-          <label for="securityAuthorization">Security Authorization</label>
-          <input id="securityAuthorization" class="ibmFormField form-control" />
-        </div>
+      <h2 class="mat-title">IBM Access Information</h2>
+      <div>
+        <!-- TODO: Add a heading here -->
+        <mat-form-field>
+          <mat-label>Logon ID</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>2-Digit Major Group Code</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>2-Digit LSO Group Code</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Security Authorization</mat-label>
+          <input matInput />
+        </mat-form-field>
       </div>
     </div>
-    <button type="button" class="btn btn-primary mt-2" matStepperNext>
-      Next
-    </button>
+    <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
+      <!-- TODO: Needs the Type of Request section -->
+      <h2 class="mat-title">Unix Access</h2>
+      <div>
+        <mat-form-field>
+          <mat-label>Login ID</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Application</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Access Group</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Account Number</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="renderSecurIdAccess === true" class="secur-id-access-form">
+      <h2 class="mat-title">SecurID Access</h2>
+      <div>
+        <mat-form-field>
+          <mat-label>Billing Account Number</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Access Type</mat-label>
+          <select matNativeControl required>
+            <option value="SecurID VPN">SecurID VPN</option>
+            <option value="Adapative Authentication VPN">
+              Adapative Authentication VPN
+            </option>
+          </select>
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" matStepperNext>Next</button>
   </div>
 </div>
