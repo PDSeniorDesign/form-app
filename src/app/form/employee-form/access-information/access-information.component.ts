@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-access-information',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./access-information.component.css'],
 })
 export class AccessInformationComponent implements OnInit {
+  // Ref to form
+  @Input() form;
   renderIBMForm: boolean;
   renderUnixEnvAccess: boolean;
   renderSecurIdAccess: boolean;
@@ -27,5 +29,8 @@ export class AccessInformationComponent implements OnInit {
       default:
         console.log('default case');
     }
+  }
+  printForm() {
+    console.log(this.form);
   }
 }
