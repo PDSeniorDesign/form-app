@@ -30,6 +30,9 @@ fdescribe('AccessInformationComponent', () => {
     component.form = fb.group({
       accessInformation: fb.group({
         ibmLogonId: [null],
+        majorGroupCode: [null],
+        lsoGroupCode: [null],
+        securityAuthorization: [null],
       }),
     });
     fixture.detectChanges();
@@ -82,6 +85,15 @@ fdescribe('AccessInformationComponent', () => {
     expect(component.form.value.accessInformation.ibmLogonId).toEqual(
       'samplelogon'
     );
+    expect(component.form.value.accessInformation.majorGroupCode).toEqual(
+      'majorcode'
+    );
+    expect(component.form.value.accessInformation.lsoGroupCode).toEqual(
+      'groupcode'
+    );
+    expect(
+      component.form.value.accessInformation.securityAuthorization
+    ).toEqual('security');
   });
 
   // TODO: Test other checkboxes

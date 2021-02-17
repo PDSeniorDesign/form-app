@@ -28,21 +28,33 @@
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>2-Digit Major Group Code</mat-label>
-          <input id="ibmMajorGroupCodeInput" matInput />
+          <input
+            id="ibmMajorGroupCodeInput"
+            matInput
+            formControlName="majorGroupCode"
+          />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>2-Digit LSO Group Code</mat-label>
-          <input id="ibmLsoGroupCodeInput" matInput />
+          <input
+            id="ibmLsoGroupCodeInput"
+            matInput
+            formControlName="lsoGroupCode"
+          />
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field formGroupName="accessInformation">
           <mat-label>Security Authorization</mat-label>
-          <input id="ibmSecurityAuthInput" matInput />
+          <input
+            id="ibmSecurityAuthInput"
+            matInput
+            formControlName="securityAuthorization"
+          />
         </mat-form-field>
       </div>
     </div>
