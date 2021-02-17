@@ -12,7 +12,7 @@ import { AppModule } from 'src/app/app.module';
 import { EmployeeFormComponent } from '../employee-form.component';
 import { AccessInformationComponent } from './access-information.component';
 
-fdescribe('AccessInformationComponent', () => {
+describe('AccessInformationComponent', () => {
   let component: AccessInformationComponent;
   let fixture: ComponentFixture<AccessInformationComponent>;
 
@@ -148,7 +148,7 @@ fdescribe('AccessInformationComponent', () => {
       'accountnum'
     );
   });
-  fit('should match input values to formgroup (SecurID Access)', () => {
+  it('should match input values to formgroup (SecurID Access)', () => {
     // Have to click elements to render forms
     component.renderIBMForm = true;
     component.renderUnixEnvAccess = true;
@@ -165,15 +165,15 @@ fdescribe('AccessInformationComponent', () => {
 
     // update values
     billingAccIn.nativeElement.value = '1234';
-    accessTypeSelect.nativeElement.value = 'SecurID VPN';
+    accessTypeSelect.nativeElement.value =
+      accessTypeSelect.nativeElement.options[0].value;
     fixture.detectChanges();
 
     // dispatch events
     billingAccIn.nativeElement.dispatchEvent(new Event('input'));
-    accessTypeSelect.nativeElement.dispatchEvent(new Event('input'));
+    accessTypeSelect.nativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges();
 
-    console.log(component.form);
     // check if they match
     expect(component.form.value.accessInformation.billingAccountNumber).toEqual(
       '1234'
