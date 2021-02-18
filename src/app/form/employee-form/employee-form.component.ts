@@ -41,6 +41,8 @@ import { ApiHttpService } from 'src/app/core/services/api-http.service';
   ],
 })
 export class EmployeeFormComponent implements OnInit {
+  // If form is saved or continued this will be populated in order to show
+  requestNumber: number;
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
@@ -59,6 +61,9 @@ export class EmployeeFormComponent implements OnInit {
      */
     // TODO: Work on filling Access Information if user is continuing form
     if (this.formDataService.formData != undefined) {
+      // Set request number
+      this.requestNumber = this.formDataService.formData.requestNumber;
+
       this.form = new FormGroup({
         personalInformation: new FormGroup({
           lastName: new FormControl(this.formDataService.formData['lastName'], [

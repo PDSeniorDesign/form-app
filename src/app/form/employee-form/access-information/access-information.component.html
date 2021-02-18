@@ -1,6 +1,10 @@
 <!-- TODO: Work on naming and values -->
 <div>
   <h1 class="mat-headline">Select Access Options</h1>
+  <p *ngIf="requestNumber">
+    Your request number: <span style="color: red">{{ requestNumber }}</span>
+  </p>
+
   <div>
     <!-- TODO: Add styling,flexbox -->
     <section>
