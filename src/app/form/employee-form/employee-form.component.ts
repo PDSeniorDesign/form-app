@@ -215,6 +215,9 @@ export class EmployeeFormComponent implements OnInit {
       this.apiHttpService.createForm(this.form.value).subscribe((res) => {
         console.log(res);
         this.formDataService.formData = res;
+
+        // Set request number so it can display on page
+        this.requestNumber = this.formDataService.formData.requestNumber;
       });
     }
   };
