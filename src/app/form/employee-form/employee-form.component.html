@@ -16,6 +16,9 @@
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Personal Information
       </h2>
+      <p *ngIf="requestNumber">
+        Your request number: <span style="color: red">{{ requestNumber }}</span>
+      </p>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>First Name</mat-label>
@@ -114,6 +117,10 @@
     >
       <ng-template matStepLabel>Address</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">Address</h2>
+      <p *ngIf="requestNumber">
+        Your request number: <span style="color: red">{{ requestNumber }}</span>
+      </p>
+
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Street Address</mat-label>
@@ -206,6 +213,10 @@
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Employee Information
       </h2>
+      <p *ngIf="requestNumber">
+        Your request number: <span style="color: red">{{ requestNumber }}</span>
+      </p>
+
       <div>
         <mat-form-field appearance="outline" style="width: 70%">
           <mat-label>Employee Number</mat-label>
@@ -256,7 +267,11 @@
     <!-- Access Information -->
     <mat-step>
       <ng-template matStepLabel>Access Information</ng-template>
-      <app-access-information [form]="form"></app-access-information>
+      <app-access-information
+        [form]="form"
+        [handleSave]="save"
+        [requestNumber]="requestNumber"
+      ></app-access-information>
     </mat-step>
     <!-- Approvers -->
     <!-- <mat-step>

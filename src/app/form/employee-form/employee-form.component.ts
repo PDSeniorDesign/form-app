@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -40,11 +41,16 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
   ],
 })
 export class EmployeeFormComponent implements OnInit {
+  // If form is saved or continued this will be populated in order to show
+  requestNumber: number;
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
   errorStateMatcher = new InstantErrorStateMatcher();
-  constructor(private formDataService: FormDataService) {}
+  constructor(
+    private formDataService: FormDataService,
+    private apiHttpService: ApiHttpService
+  ) {}
 
   ngOnInit(): void {
     console.log('from comp', this.formDataService.formData);
@@ -55,6 +61,9 @@ export class EmployeeFormComponent implements OnInit {
      */
     // TODO: Work on filling Access Information if user is continuing form
     if (this.formDataService.formData != undefined) {
+      // Set request number
+      this.requestNumber = this.formDataService.formData.requestNumber;
+
       this.form = new FormGroup({
         personalInformation: new FormGroup({
           lastName: new FormControl(this.formDataService.formData['lastName'], [
@@ -175,6 +184,7 @@ export class EmployeeFormComponent implements OnInit {
         }),
         // TODO: Fill out the rest
       });
+      // To show the form instead of the submit page
       this.hasSubmitted = false;
     }
   }
@@ -189,7 +199,27 @@ export class EmployeeFormComponent implements OnInit {
 
   // This function is responsible for saving the form
   save = () => {
-    console.log('save');
+    console.log('current form data', this.formDataService.formData);
+    // A form is already in formData Service
+    if (this.formDataService.formData != undefined) {
+      console.log('from formData', this.formDataService.formData);
+      this.apiHttpService
+        .saveForm(this.formDataService.formData.requestNumber, this.form.value)
+        .subscribe((res) => {
+          console.log(res);
+          // Set the formData to the response
+          this.formDataService.formData = res;
+        });
+    } else {
+      // Create a form and set to service
+      this.apiHttpService.createForm(this.form.value).subscribe((res) => {
+        console.log(res);
+        this.formDataService.formData = res;
+
+        // Set request number so it can display on page
+        this.requestNumber = this.formDataService.formData.requestNumber;
+      });
+    }
   };
 }
 

@@ -8,6 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AccessInformationComponent implements OnInit {
   // Ref to form
   @Input() form;
+  // Ref to save function
+  @Input() handleSave;
+  // Ref to requestNumber form parent elem (employee-form)
+  @Input() requestNumber;
+
   renderIBMForm: boolean;
   renderUnixEnvAccess: boolean;
   renderSecurIdAccess: boolean;
