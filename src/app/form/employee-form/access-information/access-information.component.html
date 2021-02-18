@@ -132,7 +132,14 @@
         Next
       </button>
       <span class="spacer"></span>
-      <button mat-raised-button class="save-button" color="accent">Save</button>
+      <button
+        mat-raised-button
+        class="save-button"
+        color="accent"
+        (click)="handleSave()"
+      >
+        Save
+      </button>
     </div>
   </div>
 </div>
