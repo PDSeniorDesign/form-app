@@ -122,6 +122,21 @@ export class EmployeeFormComponent implements OnInit {
             Validators.required
           ),
         }),
+        accessInformation: new FormGroup({
+          // IBM Data Center Access
+          ibmLogonId: new FormControl(null),
+          majorGroupCode: new FormControl(null),
+          lsoGroupCode: new FormControl(null),
+          securityAuthorization: new FormControl(null),
+          // Unix Environment Access
+          unixLogonId: new FormControl(null),
+          application: new FormControl(null),
+          accessGroup: new FormControl(null),
+          accountNumber: new FormControl(null),
+          // SecurID Remote Access
+          billingAccountNumber: new FormControl(null),
+          accessType: new FormControl(null),
+        }),
       });
     } else {
       // Starting a new form
