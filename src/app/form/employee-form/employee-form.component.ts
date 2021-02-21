@@ -186,9 +186,19 @@ export class EmployeeFormComponent implements OnInit {
         }),
         accessInformation: new FormGroup({
           // IBM Data Center Access
-          ibmLogonId: new FormControl(null),
-          majorGroupCode: new FormControl(null),
-          lsoGroupCode: new FormControl(null),
+          ibmLogonId: new FormControl(null, [
+            
+          ]),
+          majorGroupCode: new FormControl(null, [
+            Validators.pattern('[0-9]{2}'),
+            Validators.minLength(2),
+            Validators.maxLength(2),
+          ]),
+          lsoGroupCode: new FormControl(null, [
+            Validators.pattern('[0-9]{2}'),
+            Validators.minLength(2),
+            Validators.maxLength(2),
+          ]),
           securityAuthorization: new FormControl(null),
           // Unix Environment Access
           unixLogonId: new FormControl(null),
