@@ -1,11 +1,22 @@
 <div class="container contact-form">
   <h3>You're Almost Done!</h3>
-  <p class="instruction">Please confirm your information below and click submit</p>
+  <p class="instruction">
+    Please confirm your information below and click submit
+  </p>
 
   <!-- Information -->
   <div class="row">
     <div class="col">
-      <h5>Personal Information</h5>
+      <h4>
+        <button
+          class="btnSub"
+          mat-raised-button
+          color="accent"
+          (click)="move(0)"
+        >
+          Personal
+        </button>
+      </h4>
 
       <div>
         <h6>First Name</h6>
@@ -55,7 +66,16 @@
 
     <!-- Address Information -->
     <div class="col">
-      <h5>Address Information</h5>
+      <h4>
+        <button
+          class="btnSub"
+          mat-raised-button
+          color="accent"
+          (click)="move(2)"
+        >
+          Address
+        </button>
+      </h4>
 
       <div>
         <h6>Street</h6>
@@ -92,13 +112,20 @@
           </p>
         </div>
       </div>
-
     </div>
-
 
     <!-- Employee Information -->
     <div class="col">
-      <h5>Employee Information</h5>
+      <h4>
+        <button
+          class="btnSub"
+          mat-raised-button
+          color="accent"
+          (click)="move(3)"
+        >
+          Employee
+        </button>
+      </h4>
 
       <div>
         <h6>Employee Number</h6>
@@ -117,13 +144,116 @@
           </p>
         </div>
       </div>
-
     </div>
 
+    <!-- Access Information -->
+
+    <div class="col">
+      <h4>
+        <button
+          class="btnSub"
+          mat-raised-button
+          color="accent"
+          (click)="move(4)"
+        >
+          Access
+        </button>
+      </h4>
+
+      <div *ngIf="regForm.value.accessInformation.renderIBMForm === true">
+        <div>
+          <h6>Logon ID</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.ibmLogonId || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6>2-Digit Major Group Code</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.majorGroupCode || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6>2-Digit LSO Group Code</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.lsoGroupCode || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6>Security Authorization</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.securityAuthorization || "N/A" }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess === true">
+        <div>
+          <h6>Login ID</h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.unixLogonId || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6></h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.application || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6></h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.accessGroup || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h6></h6>
+          <div class="subgroup">
+            <p>
+              {{ regForm.value.accessInformation.accountNumber || "N/A" }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="col">
+      <h4>
+        <button
+          class="btnSub"
+          mat-raised-button
+          color="accent"
+          (click)="move(5)"
+        >
+          Additional
+        </button>
+      </h4>
+    </div>
   </div>
 
   <div class="text-center">
     <button class="btnContact" (click)="onClick()">Submit</button>
   </div>
-
 </div>
