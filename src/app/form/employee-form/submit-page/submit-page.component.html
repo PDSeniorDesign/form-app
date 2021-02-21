@@ -1,7 +1,8 @@
 <div class="container contact-form">
   <h3>You're Almost Done!</h3>
   <p class="instruction">
-    Please confirm your information below and click submit
+    Please confirm the information below. If there is any mistake, click on the
+    heading to go back and make changes. Click Submit once done!
   </p>
 
   <!-- Information -->
@@ -160,6 +161,10 @@
         </button>
       </h4>
 
+      <div>
+        <p>Testing: {{ regForm.value.accessInformation.renderIBMForm }}</p>
+      </div>
+
       <div *ngIf="regForm.value.accessInformation.renderIBMForm === true">
         <div>
           <h6>Logon ID</h6>
@@ -192,7 +197,9 @@
           <h6>Security Authorization</h6>
           <div class="subgroup">
             <p>
-              {{ regForm.value.accessInformation.securityAuthorization || "N/A" }}
+              {{
+                regForm.value.accessInformation.securityAuthorization || "N/A"
+              }}
             </p>
           </div>
         </div>
@@ -234,7 +241,6 @@
             </p>
           </div>
         </div>
-
       </div>
     </div>
 
