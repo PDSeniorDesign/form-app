@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { formatCurrency } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ControlContainer,
   FormControl,
@@ -12,6 +12,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-employee-form',
@@ -41,6 +42,7 @@ import { ApiHttpService } from 'src/app/core/services/api-http.service';
   ],
 })
 export class EmployeeFormComponent implements OnInit {
+  @ViewChild('stepper') stepper: MatStepper;
   // If form is saved or continued this will be populated in order to show
   requestNumber: number;
   form: FormGroup;
