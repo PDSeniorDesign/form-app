@@ -16,12 +16,18 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
 export class SubmitPageComponent implements OnInit {
   @Input() regForm;
   @Input() setSubmitResponse; // Function to update parent (employee-form.component)
+  stepper: any;
+  
   constructor(
     private apiHttpService: ApiHttpService,
     private formDataService: FormDataService
   ) {}
 
   ngOnInit(): void {}
+
+  move(index: number) {
+    this.stepper.selectedIndex = index;
+  }
 
   onClick(): void {
     console.log(this.regForm.value); //debugging
