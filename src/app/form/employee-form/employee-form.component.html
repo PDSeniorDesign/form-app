@@ -7,7 +7,7 @@
   class="container"
 >
   <!-- Personal Information Step -->
-  <mat-horizontal-stepper #stepper linear>
+  <mat-horizontal-stepper #stepper linear [(index)]="currentIndex" (selectionChange)="setIndex($event)">
     <mat-step
       formGroupName="personalInformation"
       [stepControl]="form.get('personalInformation')"
@@ -276,7 +276,7 @@
     <!-- Approvers -->
     <!-- <mat-step>
     <ng-template matStepLabel>Approvers</ng-template>
-  </mat-step> -->
+    </mat-step> -->
     <!-- Department -->
     <mat-step>
       <ng-template matStepLabel>Additional Information</ng-template>
