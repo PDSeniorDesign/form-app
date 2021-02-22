@@ -18,7 +18,7 @@ import { AdditionalInformationComponent } from './additional-information/additio
 import { EmployeeFormComponent } from './employee-form.component';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 
-describe('EmployeeFormComponent', () => {
+fdescribe('EmployeeFormComponent', () => {
   let component: EmployeeFormComponent;
   let fixture: ComponentFixture<EmployeeFormComponent>;
   let formDataService: FormDataService;
@@ -376,6 +376,21 @@ describe('EmployeeFormComponent', () => {
     fixture.detectChanges();
 
     // make sure it was called
+    expect(component.save).toHaveBeenCalled();
+  });
+  it('should call save when save button is clicke (access information step)', () => {
+    fixture.detectChanges();
+    // Get ref to access info button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#access-info-save-btn')
+    ).nativeElement;
+
+    // spy on save function
+    spyOn(component, 'save');
+
+    saveBtn.click();
+    fixture.detectChanges();
+
     expect(component.save).toHaveBeenCalled();
   });
 });
