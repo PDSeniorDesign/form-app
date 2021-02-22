@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StatusService } from 'src/app/core/services/status.service';
-import { ApiHttpService} from 'src/app/core/services/api-http.service';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 
 @Component({
   selector: 'app-request-status',
@@ -11,19 +11,20 @@ export class RequestStatusComponent implements OnInit {
   @Input() regForm;
   //access three variable in form: id, request status, first name, last name
   requestNumber: any;
-  requestStatus: any; 
+  requestStatus: any;
   firstName: any;
   lastName: any;
 
   //save each request into array for display
-  personData:Array<any> = [];  
+  personData: Array<any> = [];
 
   constructor(private statusService: StatusService) {}
 
   ngOnInit(): void {
-    this.statusService.display().subscribe((res)=>{
-      console.log(res)
-     this.personData = res});
+    this.statusService.display().subscribe((res) => {
+      console.log(res);
+      this.personData = res;
+    });
   }
 
   //call service to display based on ID
@@ -36,8 +37,8 @@ export class RequestStatusComponent implements OnInit {
   //debugging: view details on button click
   viewDetails(id: any): void {
     this.statusService.searchById(id).subscribe((res) => {
-      console.log(res)
-    })
+      console.log(res);
+    });
   }
 
   //set properties and access them
@@ -47,5 +48,4 @@ export class RequestStatusComponent implements OnInit {
     this.firstName = data.firstName;
     this.lastName = data.lastName;
   }
-
 }
