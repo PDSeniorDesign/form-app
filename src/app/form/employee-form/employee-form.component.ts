@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { formatCurrency } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ControlContainer,
   FormControl,
@@ -12,6 +12,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-employee-form',
@@ -41,11 +42,14 @@ import { ApiHttpService } from 'src/app/core/services/api-http.service';
   ],
 })
 export class EmployeeFormComponent implements OnInit {
+  @ViewChild('stepper') private myStepper: MatStepper;
+
   // If form is saved or continued this will be populated in order to show
   requestNumber: number;
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
+  currentIndex: number = 0;
   errorStateMatcher = new InstantErrorStateMatcher();
   constructor(
     private formDataService: FormDataService,
@@ -120,6 +124,21 @@ export class EmployeeFormComponent implements OnInit {
             Validators.required
           ),
         }),
+        accessInformation: new FormGroup({
+          // IBM Data Center Access
+          ibmLogonId: new FormControl(null),
+          majorGroupCode: new FormControl(null),
+          lsoGroupCode: new FormControl(null),
+          securityAuthorization: new FormControl(null),
+          // Unix Environment Access
+          unixLogonId: new FormControl(null),
+          application: new FormControl(null),
+          accessGroup: new FormControl(null),
+          accountNumber: new FormControl(null),
+          // SecurID Remote Access
+          billingAccountNumber: new FormControl(null),
+          accessType: new FormControl(null),
+        }),
       });
     } else {
       // Starting a new form
@@ -169,9 +188,17 @@ export class EmployeeFormComponent implements OnInit {
         }),
         accessInformation: new FormGroup({
           // IBM Data Center Access
-          ibmLogonId: new FormControl(null),
-          majorGroupCode: new FormControl(null),
-          lsoGroupCode: new FormControl(null),
+          ibmLogonId: new FormControl(null, []),
+          majorGroupCode: new FormControl(null, [
+            Validators.pattern('[0-9]{2}'),
+            Validators.minLength(2),
+            Validators.maxLength(2),
+          ]),
+          lsoGroupCode: new FormControl(null, [
+            Validators.pattern('[0-9]{2}'),
+            Validators.minLength(2),
+            Validators.maxLength(2),
+          ]),
           securityAuthorization: new FormControl(null),
           // Unix Environment Access
           unixLogonId: new FormControl(null),
@@ -188,6 +215,12 @@ export class EmployeeFormComponent implements OnInit {
       this.hasSubmitted = false;
     }
   }
+
+  /*This functions is passed down to submit step
+   *and it will change the index of the stepper*/
+  setIndex = (currentIndex: number) => {
+    this.myStepper.selectedIndex = currentIndex;
+  };
 
   // This function is passed down to submit step
   // Will update variable to rerender and hold response object

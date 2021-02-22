@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
@@ -16,12 +16,18 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
 export class SubmitPageComponent implements OnInit {
   @Input() regForm;
   @Input() setSubmitResponse; // Function to update parent (employee-form.component)
+  @Input() moveIndex;
+
   constructor(
     private apiHttpService: ApiHttpService,
     private formDataService: FormDataService
   ) {}
 
   ngOnInit(): void {}
+
+  move(index: number) {
+    this.moveIndex(index);
+  }
 
   onClick(): void {
     console.log(this.regForm.value); //debugging

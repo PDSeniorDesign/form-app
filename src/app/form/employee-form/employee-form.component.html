@@ -276,7 +276,7 @@
     <!-- Approvers -->
     <!-- <mat-step>
     <ng-template matStepLabel>Approvers</ng-template>
-  </mat-step> -->
+    </mat-step> -->
     <!-- Department -->
     <mat-step>
       <ng-template matStepLabel>Additional Information</ng-template>
@@ -288,6 +288,7 @@
       <app-submit-page
         [regForm]="form"
         [setSubmitResponse]="setSubmitResponse"
+        [moveIndex]="setIndex"
       ></app-submit-page>
     </mat-step>
   </mat-horizontal-stepper>
