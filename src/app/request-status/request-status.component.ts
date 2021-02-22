@@ -18,7 +18,7 @@ export class RequestStatusComponent implements OnInit {
   //save each request into array for display
   personData:Array<any> = [];  
 
-  constructor(private statusService: StatusService, private ApiHttpService: ApiHttpService) {}
+  constructor(private statusService: StatusService) {}
 
   ngOnInit(): void {
     this.statusService.display().subscribe((res)=>{
@@ -35,7 +35,7 @@ export class RequestStatusComponent implements OnInit {
 
   //debugging: view details on button click
   viewDetails(id: any): void {
-    this.ApiHttpService.getFormByRequestNumber(id).subscribe((res) => {
+    this.statusService.searchById(id).subscribe((res) => {
       console.log(res)
     })
   }
