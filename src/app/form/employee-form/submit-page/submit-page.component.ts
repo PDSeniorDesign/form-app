@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
@@ -16,8 +16,9 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
 export class SubmitPageComponent implements OnInit {
   @Input() regForm;
   @Input() setSubmitResponse; // Function to update parent (employee-form.component)
-  stepper: any;
-  
+  @Input() index: number;
+  @Output() indexChangeEmployee = new EventEmitter<number>();
+
   constructor(
     private apiHttpService: ApiHttpService,
     private formDataService: FormDataService
@@ -26,7 +27,8 @@ export class SubmitPageComponent implements OnInit {
   ngOnInit(): void {}
 
   move(index: number) {
-    this.stepper.selectedIndex = index;
+    this.index = index;
+    this.indexChangeEmployee.emit(this.index);
   }
 
   onClick(): void {
