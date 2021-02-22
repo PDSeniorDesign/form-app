@@ -14,7 +14,7 @@ export class StatusService {
     return this.http.get(`${this.apiUrl}/request_statuses/${id}`);
   }
   //display request into observable array
-  public display() :Observable<any> {
+  public display(): Observable<any> {
     return this.http.get(`${this.apiUrl}/service_requests`);
-  }  
+  }
 }

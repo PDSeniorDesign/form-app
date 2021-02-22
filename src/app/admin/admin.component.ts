@@ -9,21 +9,19 @@ import { Router } from '@angular/router';
   //smoother router transitions
 })
 export class AdminComponent implements OnInit {
-
   //router-page count
   step: number;
 
   //store admin password
-  adminPassword:string;
+  adminPassword: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   //navigate to request status page
   seeRequest() {
-   return this.router.navigate(['/admin/request-status']);
+    return this.router.navigate(['/admin/request-status']);
   }
 
   //navigate to profile page
@@ -34,10 +32,8 @@ export class AdminComponent implements OnInit {
   isHomeRoute() {
     return this.router.url === '/admin';
   }
-  
 
   adminLogin(): void {
     console.log(this.adminPassword);
   }
-
 }

@@ -33,7 +33,6 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-
       {
         path: 'request-status',
         component: RequestStatusComponent,
@@ -41,10 +40,9 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
-      }
-    ]
-
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
