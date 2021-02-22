@@ -13,7 +13,6 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { MatStepper } from '@angular/material/stepper';
-//import { SubmitPageComponent } from "../employee-form/submit-page/submit-page.component"
 
 @Component({
   selector: 'app-employee-form',
@@ -43,8 +42,7 @@ import { MatStepper } from '@angular/material/stepper';
   ],
 })
 export class EmployeeFormComponent implements OnInit {
-  //@ViewChild( SubmitPageComponent ) child;
-  //@ViewChild('stepper') private myStepper: MatStepper;
+  @ViewChild('stepper') private myStepper: MatStepper;
 
   // If form is saved or continued this will be populated in order to show
   requestNumber: number;
@@ -190,9 +188,7 @@ export class EmployeeFormComponent implements OnInit {
         }),
         accessInformation: new FormGroup({
           // IBM Data Center Access
-          ibmLogonId: new FormControl(null, [
-            
-          ]),
+          ibmLogonId: new FormControl(null, []),
           majorGroupCode: new FormControl(null, [
             Validators.pattern('[0-9]{2}'),
             Validators.minLength(2),
@@ -220,13 +216,11 @@ export class EmployeeFormComponent implements OnInit {
     }
   }
 
-  // changeStep(index: number) {
-  //   this.myStepper.selectedIndex = index;
-  // }
-
-  setIndex(event) {
-    this.currentIndex = event;
-  }
+  /*This functions is passed down to submit step
+   *and it will change the index of the stepper*/
+  setIndex = (currentIndex: number) => {
+    this.myStepper.selectedIndex = currentIndex;
+  };
 
   // This function is passed down to submit step
   // Will update variable to rerender and hold response object

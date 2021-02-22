@@ -7,7 +7,7 @@
   class="container"
 >
   <!-- Personal Information Step -->
-  <mat-horizontal-stepper #stepper linear [(index)]="currentIndex" (selectionChange)="setIndex($event)">
+  <mat-horizontal-stepper #stepper linear>
     <mat-step
       formGroupName="personalInformation"
       [stepControl]="form.get('personalInformation')"
@@ -288,6 +288,7 @@
       <app-submit-page
         [regForm]="form"
         [setSubmitResponse]="setSubmitResponse"
+        [moveIndex]="setIndex"
       ></app-submit-page>
     </mat-step>
   </mat-horizontal-stepper>
