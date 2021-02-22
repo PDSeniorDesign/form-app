@@ -13,6 +13,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { MatStepper } from '@angular/material/stepper';
+//import { SubmitPageComponent } from "../employee-form/submit-page/submit-page.component"
 
 @Component({
   selector: 'app-employee-form',
@@ -42,12 +43,15 @@ import { MatStepper } from '@angular/material/stepper';
   ],
 })
 export class EmployeeFormComponent implements OnInit {
-  @ViewChild('stepper') stepper: MatStepper;
+  //@ViewChild( SubmitPageComponent ) child;
+  //@ViewChild('stepper') private myStepper: MatStepper;
+
   // If form is saved or continued this will be populated in order to show
   requestNumber: number;
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
+  currentIndex: number = 0;
   errorStateMatcher = new InstantErrorStateMatcher();
   constructor(
     private formDataService: FormDataService,
@@ -214,6 +218,14 @@ export class EmployeeFormComponent implements OnInit {
       // To show the form instead of the submit page
       this.hasSubmitted = false;
     }
+  }
+
+  // changeStep(index: number) {
+  //   this.myStepper.selectedIndex = index;
+  // }
+
+  setIndex(event) {
+    this.currentIndex = event;
   }
 
   // This function is passed down to submit step
