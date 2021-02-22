@@ -16,8 +16,7 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
 export class SubmitPageComponent implements OnInit {
   @Input() regForm;
   @Input() setSubmitResponse; // Function to update parent (employee-form.component)
-  @Input() index: number;
-  @Output() indexChangeEmployee = new EventEmitter<number>();
+  @Input() moveIndex;
 
   constructor(
     private apiHttpService: ApiHttpService,
@@ -27,8 +26,7 @@ export class SubmitPageComponent implements OnInit {
   ngOnInit(): void {}
 
   move(index: number) {
-    this.index = index;
-    this.indexChangeEmployee.emit(this.index);
+    this.moveIndex(index);
   }
 
   onClick(): void {
