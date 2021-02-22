@@ -51,6 +51,12 @@ export class EmployeeFormComponent implements OnInit {
   hasSubmitted: boolean;
   currentIndex: number = 0;
   errorStateMatcher = new InstantErrorStateMatcher();
+
+  // Render booleans for the Access Information Step
+  renderIBMForm: boolean;
+  renderUnixEnvAccess: boolean;
+  renderSecurIdAccess: boolean;
+
   constructor(
     private formDataService: FormDataService,
     private apiHttpService: ApiHttpService
