@@ -1,18 +1,16 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { formatCurrency } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
-  ControlContainer,
   FormControl,
   FormGroup,
   FormGroupDirective,
-  Validators,
   NgForm,
+  Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { FormDataService } from 'src/app/core/services/form-data.service';
-import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { MatStepper } from '@angular/material/stepper';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -51,6 +49,12 @@ export class EmployeeFormComponent implements OnInit {
   hasSubmitted: boolean;
   currentIndex: number = 0;
   errorStateMatcher = new InstantErrorStateMatcher();
+
+  // Render booleans for the Access Information Step
+  renderIBMForm: boolean;
+  renderUnixEnvAccess: boolean;
+  renderSecurIdAccess: boolean;
+
   constructor(
     private formDataService: FormDataService,
     private apiHttpService: ApiHttpService
@@ -218,20 +222,20 @@ export class EmployeeFormComponent implements OnInit {
 
   /*This functions is passed down to submit step
    *and it will change the index of the stepper*/
-  setIndex = (currentIndex: number) => {
+  setIndex = (currentIndex: number): void => {
     this.myStepper.selectedIndex = currentIndex;
   };
 
   // This function is passed down to submit step
   // Will update variable to rerender and hold response object
-  setSubmitResponse = (res) => {
+  setSubmitResponse = (response: object): void => {
     // Arrow function binds this
     this.hasSubmitted = true;
-    this.submitResponse = res;
+    this.submitResponse = response;
   };
 
   // This function is responsible for saving the form
-  save = () => {
+  save = (): void => {
     console.log('current form data', this.formDataService.formData);
     // A form is already in formData Service
     if (this.formDataService.formData != undefined) {
@@ -254,6 +258,11 @@ export class EmployeeFormComponent implements OnInit {
       });
     }
   };
+
+  // A testing function to log the form
+  printForm(): void {
+    console.log(this.form);
+  }
 }
 
 //changes the ErrorStateMatcher to include dirty

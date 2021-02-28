@@ -7,7 +7,7 @@
   class="container"
 >
   <!-- Personal Information Step -->
-  <mat-horizontal-stepper #stepper linear>
+  <mat-horizontal-stepper #stepper>
     <mat-step
       formGroupName="personalInformation"
       [stepControl]="form.get('personalInformation')"
@@ -204,6 +204,7 @@
         </button>
       </div>
     </mat-step>
+
     <!-- Employee Information Step -->
     <mat-step
       formGroupName="employeeInformation"
@@ -264,14 +265,186 @@
         </button>
       </div>
     </mat-step>
-    <!-- Access Information -->
+
+    <!-- Access Information Step-->
     <mat-step>
       <ng-template matStepLabel>Access Information</ng-template>
-      <app-access-information
-        [form]="form"
-        [handleSave]="save"
-        [requestNumber]="requestNumber"
-      ></app-access-information>
+      <!-- TODO: Work on naming and values -->
+      <div>
+        <h1 class="mat-headline">Select Access Options</h1>
+        <p *ngIf="requestNumber">
+          Your request number:
+          <span style="color: red">{{ requestNumber }}</span>
+        </p>
+
+        <div>
+          <!-- TODO: Add styling,flexbox -->
+          <section>
+            <mat-checkbox
+              [(ngModel)]="renderIBMForm"
+              [ngModelOptions]="{ standalone: true }"
+              >IBM Data Center Access</mat-checkbox
+            >
+            <mat-checkbox
+              [(ngModel)]="renderUnixEnvAccess"
+              [ngModelOptions]="{ standalone: true }"
+              >Unix Environement Access</mat-checkbox
+            >
+            <mat-checkbox
+              [(ngModel)]="renderSecurIdAccess"
+              [ngModelOptions]="{ standalone: true }"
+              >SecurID Remote Access</mat-checkbox
+            >
+          </section>
+        </div>
+        <!-- Options -->
+        <!-- The forms will render here after the user checks the corresponding checkbox-->
+        <div class="accessInformationForms">
+          <div *ngIf="renderIBMForm === true" class="ibmForm">
+            <h2 class="mat-title">IBM Access Information</h2>
+            <div>
+              <!-- TODO: Add a heading here -->
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Logon ID</mat-label>
+                <input
+                  id="ibmLogonIdInput"
+                  matInput
+                  formControlName="ibmLogonId"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>2-Digit Major Group Code</mat-label>
+                <input
+                  id="ibmMajorGroupCodeInput"
+                  matInput
+                  formControlName="majorGroupCode"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>2-Digit LSO Group Code</mat-label>
+                <input
+                  id="ibmLsoGroupCodeInput"
+                  matInput
+                  formControlName="lsoGroupCode"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Security Authorization</mat-label>
+                <input
+                  id="ibmSecurityAuthInput"
+                  matInput
+                  formControlName="securityAuthorization"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
+            <!-- TODO: Needs the Type of Request section -->
+            <h2 class="mat-title">Unix Access</h2>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Login ID</mat-label>
+                <input
+                  id="unixLogonIdInput"
+                  matInput
+                  formControlName="unixLogonId"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Application</mat-label>
+                <input
+                  id="applicationInput"
+                  matInput
+                  formControlName="application"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Access Group</mat-label>
+                <input
+                  id="accessGroupInput"
+                  matInput
+                  formControlName="accessGroup"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Account Number</mat-label>
+                <input
+                  id="accountNumberInput"
+                  matInput
+                  formControlName="accountNumber"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- SecurID Access form -->
+          <div
+            *ngIf="renderSecurIdAccess === true"
+            class="secur-id-access-form"
+          >
+            <h2 class="mat-title">SecurID Access</h2>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Billing Account Number</mat-label>
+                <input
+                  id="billingAccountInput"
+                  matInput
+                  formControlName="billingAccountNumber"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Access Type</mat-label>
+                <select
+                  formControlName="accessType"
+                  id="accessTypeSelect"
+                  matNativeControl
+                >
+                  <option selected="SecurIDVPN">SecurID VPN</option>
+                  <option value="Adapative Authentication VPN">
+                    Adapative Authentication VPN
+                  </option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="button-container">
+            <button mat-raised-button matStepperPrevious>Previous</button>
+            <button
+              mat-raised-button
+              matStepperNext
+              color="primary"
+              class="ml-2"
+              (click)="printForm()"
+            >
+              Next
+            </button>
+            <span class="spacer"></span>
+            <button
+              id="access-info-save-btn"
+              mat-raised-button
+              class="save-button"
+              color="accent"
+              (click)="save()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
     </mat-step>
     <!-- Approvers -->
     <!-- <mat-step>
