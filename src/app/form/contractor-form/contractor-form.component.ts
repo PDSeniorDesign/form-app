@@ -35,6 +35,7 @@ import { ApiHttpService } from 'src/app/core/services/api-http.service';
 export class ContractorFormComponent implements OnInit {
   formContractor: FormGroup;
   errorStateMatcher = new InstantErrorStateMatcher();
+  hasSubmitted: boolean;
 
   constructor(private formDataService: FormDataService,
     private apiHttpService: ApiHttpService) {}
@@ -133,6 +134,8 @@ export class ContractorFormComponent implements OnInit {
         accessType: new FormControl(null),
       })
     });
+
+    this.hasSubmitted = false;
   }
 }
 
