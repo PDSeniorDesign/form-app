@@ -22,9 +22,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { ContractorInformationComponent } from './form/contractor-form/contractor-information/contractor-information.component';
-import { CountyInformationComponent } from './form/contractor-form/county-information/county-information.component';
-import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
 import { SubmitComponent } from './form/contractor-form/submit/submit.component';
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { AdminComponent } from './admin/admin.component';
@@ -43,9 +40,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
-    ContractorInformationComponent,
-    CountyInformationComponent,
-    PolicyRulesComponent,
     SubmitComponent,
     FormActionSelectionComponent,
     AdminComponent,
