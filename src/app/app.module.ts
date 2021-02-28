@@ -30,6 +30,7 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     FormsModule,
     MatCheckboxModule,
+    MatButtonToggleModule,
   ],
   exports: [],
   providers: [],

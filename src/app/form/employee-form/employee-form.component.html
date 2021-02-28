@@ -279,7 +279,7 @@
 
         <div>
           <!-- TODO: Add styling,flexbox -->
-          <section>
+          <!-- <section>
             <mat-checkbox
               [(ngModel)]="renderIBMForm"
               [ngModelOptions]="{ standalone: true }"
@@ -295,7 +295,23 @@
               [ngModelOptions]="{ standalone: true }"
               >SecurID Remote Access</mat-checkbox
             >
-          </section>
+          </section> -->
+          <!-- Access choices -->
+          <p>
+            <mat-button-toggle (click)="toggleFormRender('ibm')"
+              >IBM Access Information
+            </mat-button-toggle>
+          </p>
+          <p>
+            <mat-button-toggle (click)="toggleFormRender('unix')"
+              >Unix Environment Access</mat-button-toggle
+            >
+          </p>
+          <p>
+            <mat-button-toggle (click)="toggleFormRender('securid')"
+              >SecurID Remote Access</mat-button-toggle
+            >
+          </p>
         </div>
         <!-- Options -->
         <!-- The forms will render here after the user checks the corresponding checkbox-->
