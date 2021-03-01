@@ -7,7 +7,7 @@
   class="container"
 >
   <!-- Personal Information Step -->
-  <mat-horizontal-stepper #stepper linear>
+  <mat-horizontal-stepper #stepper>
     <mat-step
       formGroupName="personalInformation"
       [stepControl]="form.get('personalInformation')"
@@ -16,6 +16,9 @@
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Personal Information
       </h2>
+      <p *ngIf="requestNumber">
+        Your request number: <span style="color: red">{{ requestNumber }}</span>
+      </p>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>First Name</mat-label>
@@ -27,7 +30,7 @@
             formControlName="firstName"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>First name is required and must be letters only</mat-error>
@@ -42,7 +45,7 @@
             matInput
             formControlName="middleInitial"
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-error>Middle initial must be letters only</mat-error>
         </mat-form-field>
@@ -57,7 +60,7 @@
             formControlName="lastName"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>Last name is required and must be letters only</mat-error>
@@ -72,7 +75,7 @@
             matInput
             formControlName="emailAddress"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-error>Email is required with correct email format</mat-error>
         </mat-form-field>
@@ -87,13 +90,23 @@
             formControlName="phoneNumber"
             required
             pattern="[0-9]{10}"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-error>Phone number is required and must be 10 digit</mat-error>
         </mat-form-field>
       </div>
-      <div>
+      <div class="button-container">
         <button mat-raised-button matStepperNext color="primary">Next</button>
+        <span class="spacer"></span>
+        <button
+          id="personal-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
+          Save
+        </button>
       </div>
     </mat-step>
 
@@ -104,6 +117,10 @@
     >
       <ng-template matStepLabel>Address</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">Address</h2>
+      <p *ngIf="requestNumber">
+        Your request number: <span style="color: red">{{ requestNumber }}</span>
+      </p>
+
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Street Address</mat-label>
@@ -113,11 +130,10 @@
             matInput
             formControlName="address"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Street address is required</mat-error
-          >
+          <mat-error>Street address is required</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -130,11 +146,10 @@
             formControlName="city"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>City is required and must be letters only</mat-error
-          >
+          <mat-error>City is required and must be letters only</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -147,11 +162,10 @@
             formControlName="state"
             required
             pattern="[a-zA-Z ]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>State is required and must be letters only</mat-error
-          >
+          <mat-error>State is required and must be letters only</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -164,21 +178,33 @@
             formControlName="zipCode"
             required
             pattern="[0-9]*"
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
-          <mat-error>Zipcode is required and must be numbers only with length
-           5-7</mat-error
+          <mat-error
+            >Zipcode is required and must be numbers only with length
+            5-7</mat-error
           >
         </mat-form-field>
       </div>
-      <div>
+      <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
         <button mat-raised-button matStepperNext color="primary" class="ml-2">
           Next
         </button>
+        <span class="spacer"></span>
+        <button
+          id="address-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
+          Save
+        </button>
       </div>
     </mat-step>
+
     <!-- Employee Information Step -->
     <mat-step
       formGroupName="employeeInformation"
@@ -188,6 +214,10 @@
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Employee Information
       </h2>
+      <p *ngIf="requestNumber">
+        Your request number: <span style="color: red">{{ requestNumber }}</span>
+      </p>
+
       <div>
         <mat-form-field appearance="outline" style="width: 70%">
           <mat-label>Employee Number</mat-label>
@@ -197,7 +227,7 @@
             matInput
             formControlName="employeeNumber"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>Employee number is required</mat-error>
@@ -212,28 +242,214 @@
             matInput
             formControlName="hostedId"
             required
-            [errorStateMatcher] = "errorStateMatcher"
+            [errorStateMatcher]="errorStateMatcher"
           />
           <mat-hint>Required</mat-hint>
           <mat-error>Hosted id is required</mat-error>
         </mat-form-field>
       </div>
-      <div>
+      <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
         <button mat-raised-button matStepperNext color="primary" class="ml-2">
           Next
         </button>
+        <span class="spacer"></span>
+        <button
+          id="employee-info-save-btn"
+          mat-raised-button
+          class="save-button"
+          color="accent"
+          (click)="save()"
+        >
+          Save
+        </button>
       </div>
     </mat-step>
-    <!-- Access Information -->
+
+    <!-- Access Information Step-->
     <mat-step>
       <ng-template matStepLabel>Access Information</ng-template>
-      <app-access-information></app-access-information>
+      <!-- TODO: Work on naming and values -->
+      <div>
+        <h1 class="mat-headline">Select Access Options</h1>
+        <p *ngIf="requestNumber">
+          Your request number:
+          <span style="color: red">{{ requestNumber }}</span>
+        </p>
+
+        <div>
+          <!-- TODO: Add styling,flexbox -->
+          <section>
+            <mat-checkbox
+              [(ngModel)]="renderIBMForm"
+              [ngModelOptions]="{ standalone: true }"
+              >IBM Data Center Access</mat-checkbox
+            >
+            <mat-checkbox
+              [(ngModel)]="renderUnixEnvAccess"
+              [ngModelOptions]="{ standalone: true }"
+              >Unix Environement Access</mat-checkbox
+            >
+            <mat-checkbox
+              [(ngModel)]="renderSecurIdAccess"
+              [ngModelOptions]="{ standalone: true }"
+              >SecurID Remote Access</mat-checkbox
+            >
+          </section>
+        </div>
+        <!-- Options -->
+        <!-- The forms will render here after the user checks the corresponding checkbox-->
+        <div class="accessInformationForms">
+          <div *ngIf="renderIBMForm === true" class="ibmForm">
+            <h2 class="mat-title">IBM Access Information</h2>
+            <div>
+              <!-- TODO: Add a heading here -->
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Logon ID</mat-label>
+                <input
+                  id="ibmLogonIdInput"
+                  matInput
+                  formControlName="ibmLogonId"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>2-Digit Major Group Code</mat-label>
+                <input
+                  id="ibmMajorGroupCodeInput"
+                  matInput
+                  formControlName="majorGroupCode"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>2-Digit LSO Group Code</mat-label>
+                <input
+                  id="ibmLsoGroupCodeInput"
+                  matInput
+                  formControlName="lsoGroupCode"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Security Authorization</mat-label>
+                <input
+                  id="ibmSecurityAuthInput"
+                  matInput
+                  formControlName="securityAuthorization"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
+            <!-- TODO: Needs the Type of Request section -->
+            <h2 class="mat-title">Unix Access</h2>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Login ID</mat-label>
+                <input
+                  id="unixLogonIdInput"
+                  matInput
+                  formControlName="unixLogonId"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Application</mat-label>
+                <input
+                  id="applicationInput"
+                  matInput
+                  formControlName="application"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Access Group</mat-label>
+                <input
+                  id="accessGroupInput"
+                  matInput
+                  formControlName="accessGroup"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Account Number</mat-label>
+                <input
+                  id="accountNumberInput"
+                  matInput
+                  formControlName="accountNumber"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- SecurID Access form -->
+          <div
+            *ngIf="renderSecurIdAccess === true"
+            class="secur-id-access-form"
+          >
+            <h2 class="mat-title">SecurID Access</h2>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Billing Account Number</mat-label>
+                <input
+                  id="billingAccountInput"
+                  matInput
+                  formControlName="billingAccountNumber"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field formGroupName="accessInformation">
+                <mat-label>Access Type</mat-label>
+                <select
+                  formControlName="accessType"
+                  id="accessTypeSelect"
+                  matNativeControl
+                >
+                  <option selected="SecurIDVPN">SecurID VPN</option>
+                  <option value="Adapative Authentication VPN">
+                    Adapative Authentication VPN
+                  </option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="button-container">
+            <button mat-raised-button matStepperPrevious>Previous</button>
+            <button
+              mat-raised-button
+              matStepperNext
+              color="primary"
+              class="ml-2"
+              (click)="printForm()"
+            >
+              Next
+            </button>
+            <span class="spacer"></span>
+            <button
+              id="access-info-save-btn"
+              mat-raised-button
+              class="save-button"
+              color="accent"
+              (click)="save()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
     </mat-step>
     <!-- Approvers -->
     <!-- <mat-step>
     <ng-template matStepLabel>Approvers</ng-template>
-  </mat-step> -->
+    </mat-step> -->
     <!-- Department -->
     <mat-step>
       <ng-template matStepLabel>Additional Information</ng-template>
@@ -245,6 +461,7 @@
       <app-submit-page
         [regForm]="form"
         [setSubmitResponse]="setSubmitResponse"
+        [moveIndex]="setIndex"
       ></app-submit-page>
     </mat-step>
   </mat-horizontal-stepper>

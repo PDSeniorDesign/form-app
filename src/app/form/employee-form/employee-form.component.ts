@@ -1,8 +1,15 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { formatCurrency } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ControlContainer, FormControl, FormGroup, FormGroupDirective, Validators, NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatStepper } from '@angular/material/stepper';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
@@ -33,15 +40,38 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
   ],
 })
 export class EmployeeFormComponent implements OnInit {
+  @ViewChild('stepper') private myStepper: MatStepper;
+
+  // If form is saved or continued this will be populated in order to show
+  requestNumber: number;
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
-  errorStateMatcher = new InstantErrorStateMatcher;
-  constructor(private formDataService: FormDataService) {}
+  currentIndex: number = 0;
+  errorStateMatcher = new InstantErrorStateMatcher();
+
+  // Render booleans for the Access Information Step
+  renderIBMForm: boolean;
+  renderUnixEnvAccess: boolean;
+  renderSecurIdAccess: boolean;
+
+  constructor(
+    private formDataService: FormDataService,
+    private apiHttpService: ApiHttpService
+  ) {}
 
   ngOnInit(): void {
     console.log('from comp', this.formDataService.formData);
+    /**
+     * If there is a form in the form data service, then it most likely
+     * means that the user is coming from the homepage. Meaning that they
+     * are continuing a form.
+     */
+    // TODO: Work on filling Access Information if user is continuing form
     if (this.formDataService.formData != undefined) {
+      // Set request number
+      this.requestNumber = this.formDataService.formData.requestNumber;
+
       this.form = new FormGroup({
         personalInformation: new FormGroup({
           lastName: new FormControl(this.formDataService.formData['lastName'], [
@@ -98,8 +128,24 @@ export class EmployeeFormComponent implements OnInit {
             Validators.required
           ),
         }),
+        accessInformation: new FormGroup({
+          // IBM Data Center Access
+          ibmLogonId: new FormControl(null),
+          majorGroupCode: new FormControl(null),
+          lsoGroupCode: new FormControl(null),
+          securityAuthorization: new FormControl(null),
+          // Unix Environment Access
+          unixLogonId: new FormControl(null),
+          application: new FormControl(null),
+          accessGroup: new FormControl(null),
+          accountNumber: new FormControl(null),
+          // SecurID Remote Access
+          billingAccountNumber: new FormControl(null),
+          accessType: new FormControl(null),
+        }),
       });
     } else {
+      // Starting a new form
       this.form = new FormGroup({
         personalInformation: new FormGroup({
           lastName: new FormControl(null, [
@@ -144,30 +190,88 @@ export class EmployeeFormComponent implements OnInit {
           employeeNumber: new FormControl(null, [Validators.required]),
           hostedId: new FormControl(null, Validators.required),
         }),
-        // accessInformation: TODO: Fill this out later
-        // additionalInformation: new FormGroup({
-        // })
+        accessInformation: new FormGroup({
+          // IBM Data Center Access
+          ibmLogonId: new FormControl(null, []),
+          majorGroupCode: new FormControl(null, [
+            Validators.pattern('[0-9]{2}'),
+            Validators.minLength(2),
+            Validators.maxLength(2),
+          ]),
+          lsoGroupCode: new FormControl(null, [
+            Validators.pattern('[0-9]{2}'),
+            Validators.minLength(2),
+            Validators.maxLength(2),
+          ]),
+          securityAuthorization: new FormControl(null),
+          // Unix Environment Access
+          unixLogonId: new FormControl(null),
+          application: new FormControl(null),
+          accessGroup: new FormControl(null),
+          accountNumber: new FormControl(null),
+          // SecurID Remote Access
+          billingAccountNumber: new FormControl(null),
+          accessType: new FormControl(null),
+        }),
         // TODO: Fill out the rest
       });
+      // To show the form instead of the submit page
       this.hasSubmitted = false;
     }
   }
 
-  // This function is passed down to submit step
-  // Will update variable to rerender and hold response object
-  setSubmitResponse = (res) => {
-    // Arrow function binds this
-    this.hasSubmitted = true;
-    this.submitResponse = res;
+  /*This functions is passed down to submit step
+   *and it will change the index of the stepper*/
+  setIndex = (currentIndex: number): void => {
+    this.myStepper.selectedIndex = currentIndex;
   };
 
+  // This function is passed down to submit step
+  // Will update variable to rerender and hold response object
+  setSubmitResponse = (response: object): void => {
+    // Arrow function binds this
+    this.hasSubmitted = true;
+    this.submitResponse = response;
+  };
+
+  // This function is responsible for saving the form
+  save = (): void => {
+    console.log('current form data', this.formDataService.formData);
+    // A form is already in formData Service
+    if (this.formDataService.formData != undefined) {
+      console.log('from formData', this.formDataService.formData);
+      this.apiHttpService
+        .saveForm(this.formDataService.formData.requestNumber, this.form.value)
+        .subscribe((res) => {
+          console.log(res);
+          // Set the formData to the response
+          this.formDataService.formData = res;
+        });
+    } else {
+      // Create a form and set to service
+      this.apiHttpService.createForm(this.form.value).subscribe((res) => {
+        console.log(res);
+        this.formDataService.formData = res;
+
+        // Set request number so it can display on page
+        this.requestNumber = this.formDataService.formData.requestNumber;
+      });
+    }
+  };
+
+  // A testing function to log the form
+  printForm(): void {
+    console.log(this.form);
+  }
 }
 
 //changes the ErrorStateMatcher to include dirty
 //removes the error message and red boxes after clicking next
 export class InstantErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null,
-               form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     return control && control.invalid && (control.dirty || control.touched);
   }
 }

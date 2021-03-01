@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppModule } from 'src/app/app.module';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
-import { AccessInformationComponent } from './access-information/access-information.component';
 import { AdditionalInformationComponent } from './additional-information/additional-information.component';
 import { EmployeeFormComponent } from './employee-form.component';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
@@ -30,7 +29,6 @@ describe('EmployeeFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         EmployeeFormComponent,
-        AccessInformationComponent,
         AdditionalInformationComponent,
         SubmitPageComponent,
       ],
@@ -145,13 +143,15 @@ describe('EmployeeFormComponent', () => {
     fixture.detectChanges();
 
     // make sure it reflects on the formgroup
-    expect(component.form.value.information.firstName).toEqual('John');
-    expect(component.form.value.information.middleInitial).toEqual('A');
-    expect(component.form.value.information.lastName).toEqual('Doe');
-    expect(component.form.value.information.emailAddress).toEqual(
+    expect(component.form.value.personalInformation.firstName).toEqual('John');
+    expect(component.form.value.personalInformation.middleInitial).toEqual('A');
+    expect(component.form.value.personalInformation.lastName).toEqual('Doe');
+    expect(component.form.value.personalInformation.emailAddress).toEqual(
       'email@email.com'
     );
-    expect(component.form.value.information.phoneNumber).toEqual('3234445555');
+    expect(component.form.value.personalInformation.phoneNumber).toEqual(
+      '3234445555'
+    );
   });
   it('should sync up input values with formgroup (address)', () => {
     fixture.detectChanges();
@@ -176,10 +176,12 @@ describe('EmployeeFormComponent', () => {
     // update view
     fixture.detectChanges();
     console.log(component.form.value.information);
-    expect(component.form.value.information.address).toEqual('123 street');
-    expect(component.form.value.information.city).toEqual('city');
-    expect(component.form.value.information.state).toEqual('CA');
-    expect(component.form.value.information.zipCode).toEqual('12345');
+    expect(component.form.value.addressInformation.address).toEqual(
+      '123 street'
+    );
+    expect(component.form.value.addressInformation.city).toEqual('city');
+    expect(component.form.value.addressInformation.state).toEqual('CA');
+    expect(component.form.value.addressInformation.zipCode).toEqual('12345');
   });
   it('should sync data up with formgroup (employee information)', () => {
     fixture.detectChanges();
@@ -302,18 +304,225 @@ describe('EmployeeFormComponent', () => {
     fixture.detectChanges();
 
     // what is in the form group
-    const informationValues = component.form.value.information;
+    const personalInformationValues = component.form.value.personalInformation;
+    const addressInformationValues = component.form.value.addressInformation;
     const employeeInformationValues = component.form.value.employeeInformation;
-    expect(informationValues['firstName']).toEqual('John');
-    expect(informationValues['middleInitial']).toEqual('A');
-    expect(informationValues['lastName']).toEqual('Doe');
-    expect(informationValues['emailAddress']).toEqual('testemail@email.com');
-    expect(informationValues['phoneNumber']).toEqual('3235555555');
-    expect(informationValues['address']).toEqual('123 Street');
-    expect(informationValues['city']).toEqual('A City');
-    expect(informationValues['state']).toEqual('CA');
-    expect(informationValues['zipCode']).toEqual('12345');
+
+    expect(personalInformationValues['firstName']).toEqual('John');
+    expect(personalInformationValues['middleInitial']).toEqual('A');
+    expect(personalInformationValues['lastName']).toEqual('Doe');
+    expect(personalInformationValues['emailAddress']).toEqual(
+      'testemail@email.com'
+    );
+    expect(personalInformationValues['phoneNumber']).toEqual('3235555555');
+
+    expect(addressInformationValues['address']).toEqual('123 Street');
+    expect(addressInformationValues['city']).toEqual('A City');
+    expect(addressInformationValues['state']).toEqual('CA');
+    expect(addressInformationValues['zipCode']).toEqual('12345');
+
     expect(employeeInformationValues['employeeNumber']).toEqual(1234);
     expect(employeeInformationValues['hostedId']).toEqual(12345);
+  });
+  it('should call save() when clicked (personal info save button)', () => {
+    fixture.detectChanges();
+    // Grab the button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#personal-info-save-btn')
+    ).nativeElement;
+
+    // spy on the save() function
+    spyOn(component, 'save');
+
+    // simulate a click
+    saveBtn.click();
+    fixture.detectChanges();
+
+    // make sure it was called
+    expect(component.save).toHaveBeenCalled();
+  });
+
+  it('should call save() when clickekd (address info save button)', () => {
+    fixture.detectChanges();
+    // Grab the button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#address-info-save-btn')
+    ).nativeElement;
+
+    // spy on the save() function
+    spyOn(component, 'save');
+
+    // simulate a click
+    saveBtn.click();
+    fixture.detectChanges();
+
+    // make sure it was called
+    expect(component.save).toHaveBeenCalled();
+  });
+  it('should call save() when clicked (employee info save button)', () => {
+    fixture.detectChanges();
+    // Grab the button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#employee-info-save-btn')
+    ).nativeElement;
+
+    // spy on the save() function
+    spyOn(component, 'save');
+
+    // simulate a click
+    saveBtn.click();
+    fixture.detectChanges();
+
+    // make sure it was called
+    expect(component.save).toHaveBeenCalled();
+  });
+  it('should call save when save button is clicke (access information step)', () => {
+    fixture.detectChanges();
+    // Get ref to access info button
+    const saveBtn = fixture.debugElement.query(
+      By.css('button#access-info-save-btn')
+    ).nativeElement;
+
+    // spy on save function
+    spyOn(component, 'save');
+
+    saveBtn.click();
+    fixture.detectChanges();
+
+    expect(component.save).toHaveBeenCalled();
+  });
+  it('should match input values to formgroup (IBM data center)', () => {
+    // Create formgroup
+
+    fixture.detectChanges();
+
+    // Have to click elements to render forms
+    component.renderIBMForm = true;
+    component.renderUnixEnvAccess = true;
+    component.renderSecurIdAccess = true;
+    fixture.detectChanges();
+
+    // Grab input elements
+    const logonIn = fixture.debugElement.query(By.css('input#ibmLogonIdInput'));
+    console.log(logonIn);
+    const majorGroupCodeInput = fixture.debugElement.query(
+      By.css('input#ibmMajorGroupCodeInput')
+    );
+    const lsoGroupCodeInput = fixture.debugElement.query(
+      By.css('input#ibmLsoGroupCodeInput')
+    );
+    const securityAuthIn = fixture.debugElement.query(
+      By.css('input#ibmSecurityAuthInput')
+    );
+
+    // Change input values
+    logonIn.nativeElement.value = 'samplelogon';
+    majorGroupCodeInput.nativeElement.value = 'majorcode';
+    lsoGroupCodeInput.nativeElement.value = 'groupcode';
+    securityAuthIn.nativeElement.value = 'security';
+    fixture.detectChanges();
+
+    // Dispatch events
+    logonIn.nativeNode.dispatchEvent(new Event('input'));
+    majorGroupCodeInput.nativeElement.dispatchEvent(new Event('input'));
+    lsoGroupCodeInput.nativeElement.dispatchEvent(new Event('input'));
+    securityAuthIn.nativeNode.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    console.log(component.form);
+    // check that the form groups are updated
+    expect(component.form.value.accessInformation.ibmLogonId).toEqual(
+      'samplelogon'
+    );
+    expect(component.form.value.accessInformation.majorGroupCode).toEqual(
+      'majorcode'
+    );
+    expect(component.form.value.accessInformation.lsoGroupCode).toEqual(
+      'groupcode'
+    );
+    expect(
+      component.form.value.accessInformation.securityAuthorization
+    ).toEqual('security');
+  });
+  it('should match input values to formgroup (Unix Environment Access)', () => {
+    // Have to click elements to render forms
+    component.renderIBMForm = true;
+    component.renderUnixEnvAccess = true;
+    component.renderSecurIdAccess = true;
+    fixture.detectChanges();
+
+    // grab elements
+    const logonIdIn = fixture.debugElement.query(
+      By.css('input#unixLogonIdInput')
+    );
+    const applicationIn = fixture.debugElement.query(
+      By.css('input#applicationInput')
+    );
+    const accessGroupIn = fixture.debugElement.query(
+      By.css('input#accessGroupInput')
+    );
+    const accountNumIn = fixture.debugElement.query(
+      By.css('input#accountNumberInput')
+    );
+
+    // update values
+    logonIdIn.nativeElement.value = 'logon';
+    applicationIn.nativeElement.value = 'applicationInput';
+    accessGroupIn.nativeElement.value = 'accessgroup';
+    accountNumIn.nativeElement.value = 'accountnum';
+    fixture.detectChanges();
+
+    // dispatch events
+    logonIdIn.nativeElement.dispatchEvent(new Event('input'));
+    applicationIn.nativeElement.dispatchEvent(new Event('input'));
+    accessGroupIn.nativeElement.dispatchEvent(new Event('input'));
+    accountNumIn.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    // check if they match
+    expect(component.form.value.accessInformation.unixLogonId).toEqual('logon');
+    expect(component.form.value.accessInformation.application).toEqual(
+      'applicationInput'
+    );
+    expect(component.form.value.accessInformation.accessGroup).toEqual(
+      'accessgroup'
+    );
+    expect(component.form.value.accessInformation.accountNumber).toEqual(
+      'accountnum'
+    );
+  });
+  it('should match input values to formgroup (SecurID Access)', () => {
+    // Have to click elements to render forms
+    component.renderIBMForm = true;
+    component.renderUnixEnvAccess = true;
+    component.renderSecurIdAccess = true;
+    fixture.detectChanges();
+
+    // grab elements
+    const billingAccIn = fixture.debugElement.query(
+      By.css('input#billingAccountInput')
+    );
+    const accessTypeSelect = fixture.debugElement.query(
+      By.css('select#accessTypeSelect')
+    );
+
+    // update values
+    billingAccIn.nativeElement.value = '1234';
+    accessTypeSelect.nativeElement.value =
+      accessTypeSelect.nativeElement.options[0].value;
+    fixture.detectChanges();
+
+    // dispatch events
+    billingAccIn.nativeElement.dispatchEvent(new Event('input'));
+    accessTypeSelect.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    // check if they match
+    expect(component.form.value.accessInformation.billingAccountNumber).toEqual(
+      '1234'
+    );
+    expect(component.form.value.accessInformation.accessType).toEqual(
+      'SecurID VPN'
+    );
   });
 });
