@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { StatusService } from '../core/services/status.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,22 +11,37 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  //router-page count
-  step: number;
-
   //store admin password
-  adminPassword:string;
+  adminPassword: any = "";
   //sessionStorage
   adminSession: any;
+  //boolena to show header
+  showheader: boolean;
+  //backend password
+  backendP: any = "hello";
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
+  //if navigation to login page is successful, then don't show header
+  constructor(private router: Router, private statusService: StatusService) {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        //if register or login page navigated, dont show
+        if (
+          event.url == '/admin/request-status' ||
+          event.url == '/admin/profile'
+        ) {
+          this.showheader = false;
+        } else {
+          this.showheader = true;
+        }
+      }
+    });
   }
+
+  ngOnInit(): void {}
 
   //navigate to request status page
   seeRequest() {
-   return this.router.navigate(['/admin/request-status']);
+    return this.router.navigate(['/admin/request-status']);
   }
 
   //navigate to profile page
@@ -36,12 +52,25 @@ export class AdminComponent implements OnInit {
   isHomeRoute() {
     return this.router.url === '/admin';
   }
-  
 
   adminLogin(): void {
-    console.log(this.adminPassword);
-    this.adminSession = sessionStorage.setItem('adminPassword', this.adminPassword);
-    console.log(sessionStorage.getItem('adminPassword'));
-  }
 
+    //check against password
+
+
+    if (this.adminPassword.toString() == this.backendP.toString()) {
+
+      //this.statusService.login(JSON.parse(this.adminPassword)).subscribe((res) => {
+       // console.log(res)
+       // this.statusService.adminPassword = res;
+     // });
+
+
+
+      this.statusService.adminPassword = this.adminPassword;
+      this.adminPassword = sessionStorage.setItem('adminPassword', this.adminPassword.toString());
+      console.log(sessionStorage.getItem('adminPassword'));
+      this.seeProfile();
+    }
+  }
 }
