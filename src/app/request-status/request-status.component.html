@@ -30,24 +30,15 @@
         <th scope="col">Request Status</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
-        <th scope="col">Create Date</th>
-        <th scope="col">Submit Date</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of personData">
         <td scope="row">{{ item.requestNumber }}</td>
-<<<<<<< HEAD
-        <td>{{ item.requestStatus }}</td>
-        <td>{{ item.firstName }}</td>
-=======
         <td>{{ item.requestStatus}}</td>
         <td>{{ item.firstName}}</td>
->>>>>>> admin
         <td>{{ item.lastName }}</td>
-        <td>{{item.createDate}}</td>
-        <td>{{ item.submitDate}}</td>
         <td>
           <button class="btn btn-sm btn-info" (click)="viewDetails(item.requestNumber)">Details</button>
         </td>
