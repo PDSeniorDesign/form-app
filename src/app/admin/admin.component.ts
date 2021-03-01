@@ -10,26 +10,14 @@ import { StatusService } from '../core/services/status.service';
   //smoother router transitions
 })
 export class AdminComponent implements OnInit {
-<<<<<<< HEAD
-  //router-page count
-  step: number;
-
   //store admin password
-  adminPassword: string;
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
-=======
-
-  //store admin password
-  adminPassword: any = "";
+  adminPassword: any = '';
   //sessionStorage
   adminSession: any;
   //boolena to show header
   showheader: boolean;
   //backend password
-  backendP: any = "hello";
+  backendP: any = 'hello';
 
   //if navigation to login page is successful, then don't show header
   constructor(private router: Router, private statusService: StatusService) {
@@ -47,7 +35,6 @@ export class AdminComponent implements OnInit {
       }
     });
   }
->>>>>>> admin
 
   ngOnInit(): void {}
 
@@ -66,27 +53,21 @@ export class AdminComponent implements OnInit {
   }
 
   adminLogin(): void {
-<<<<<<< HEAD
-    console.log(this.adminPassword);
-=======
-
     //check against password
 
-
     if (this.adminPassword.toString() == this.backendP.toString()) {
-
       //this.statusService.login(JSON.parse(this.adminPassword)).subscribe((res) => {
-       // console.log(res)
-       // this.statusService.adminPassword = res;
-     // });
-
-
+      // console.log(res)
+      // this.statusService.adminPassword = res;
+      // });
 
       this.statusService.adminPassword = this.adminPassword;
-      this.adminPassword = sessionStorage.setItem('adminPassword', this.adminPassword.toString());
+      this.adminPassword = sessionStorage.setItem(
+        'adminPassword',
+        this.adminPassword.toString()
+      );
       console.log(sessionStorage.getItem('adminPassword'));
       this.seeProfile();
     }
->>>>>>> admin
   }
 }
