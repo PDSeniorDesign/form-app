@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StatusService {
-
   //block url
   static isNextStep: boolean;
   apiUrl: string = environment.apiUrl;
@@ -16,12 +15,16 @@ export class StatusService {
   constructor(private http: HttpClient) {}
 
   public searchById(id: any) {
-    return this.http.get(`${this.apiUrl}/admin/${this.adminPassword}/service_requests/${id}`);
+    return this.http.get(
+      `${this.apiUrl}/admin/${this.adminPassword}/service_requests/${id}`
+    );
   }
 
   //display request into observable array
   public display(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/admin/${this.adminPassword}/service_requests`);
+    return this.http.get(
+      `${this.apiUrl}/admin/${this.adminPassword}/service_requests`
+    );
   }
 
   //reset password
@@ -42,14 +45,10 @@ export class StatusService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'responseType': 'text'
+        responseType: 'text',
       }),
     };
 
     return this.http.get(`${this.apiUrl}/admin/` + password);
-  }
-  //display request into observable array
-  public display(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/service_requests`);
   }
 }
