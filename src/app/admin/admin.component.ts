@@ -15,6 +15,8 @@ export class AdminComponent implements OnInit {
 
   //store admin password
   adminPassword:string;
+  //sessionStorage
+  adminSession: any;
 
   constructor(private router: Router) { }
 
@@ -38,6 +40,8 @@ export class AdminComponent implements OnInit {
 
   adminLogin(): void {
     console.log(this.adminPassword);
+    this.adminSession = sessionStorage.setItem('adminPassword', this.adminPassword);
+    console.log(sessionStorage.getItem('adminPassword'));
   }
 
 }
