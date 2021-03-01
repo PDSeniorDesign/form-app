@@ -1,3 +1,5 @@
+
+<app-admin-header></app-admin-header>
 <div class="container">
     <div class="row">
         <h2 class="mx-auto mt-2">Change password</h2>
@@ -9,7 +11,8 @@
         floatLabel="never"
         appearance="outline">
         <mat-label>Current password</mat-label>
-        <input id="adminPasswordInput" type="password" matInput placeholder="password" 
+        <input id="adminPasswordInput" type="text" matInput placeholder="password" 
+        [(ngModel)] = "oldPassword"
         class="mx-auto"
         />
         </mat-form-field>
@@ -20,7 +23,8 @@
         floatLabel="never"
         appearance="outline">
         <mat-label>New password</mat-label>
-        <input id="adminPasswordInput" type="password" matInput placeholder="password" 
+        <input id="newPassword" type="text" matInput placeholder="password" 
+        [(ngModel)] = newPassword
         class="mx-auto"
         />
         </mat-form-field>
@@ -31,6 +35,7 @@
         mat-button
         color="primary"
         class="mx-auto mt-2"
+        (click)="updatePass()"
         >
         Submit
         </button>

@@ -1,4 +1,27 @@
-<app-admin-header></app-admin-header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" *ngIf="showheader">
+    <div class="container">
+      <a class="navbar-brand" href="/admin">PD Form App</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/admin">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
 
 <div *ngIf="isHomeRoute()">
     <div class="container">
@@ -12,7 +35,7 @@
             floatLabel="never"
             appearance="outline">
             <mat-label>Admin password</mat-label>
-            <input id="adminPasswordInput" type="password" matInput placeholder="password" 
+            <input id="adminPasswordInput" type="text" matInput placeholder="password" 
             [(ngModel)] = "adminPassword"
             class="mx-auto"
             />
@@ -24,7 +47,7 @@
             mat-button
             color="primary"
             class="mx-auto mt-2"
-            (click)= "adminLogin(); seeProfile()">
+            (click)= "adminLogin();">
             Login
             </button>
         </div>

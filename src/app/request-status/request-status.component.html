@@ -1,5 +1,6 @@
 <!-- Request status -->
 <!-- Search and button box-->
+<app-admin-header></app-admin-header>
 <div class="input-group mb-3">
   <input
     #data
@@ -37,8 +38,13 @@
     <tbody>
       <tr *ngFor="let item of personData">
         <td scope="row">{{ item.requestNumber }}</td>
+<<<<<<< HEAD
         <td>{{ item.requestStatus }}</td>
         <td>{{ item.firstName }}</td>
+=======
+        <td>{{ item.requestStatus}}</td>
+        <td>{{ item.firstName}}</td>
+>>>>>>> admin
         <td>{{ item.lastName }}</td>
         <td>{{item.createDate}}</td>
         <td>{{ item.submitDate}}</td>

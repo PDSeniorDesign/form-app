@@ -8,5 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class AdminHeaderComponent implements OnInit {
   constructor() {}
 
+<<<<<<< HEAD
   ngOnInit(): void {}
+=======
+  
+
+  constructor() { 
+    
+  }
+
+  ngOnInit(): void {
+  }
+
+>>>>>>> admin
 }

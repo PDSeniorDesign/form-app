@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+<<<<<<< HEAD
 import { StatusService } from './status.service';
 
 
@@ -19,3 +20,6 @@ else {
   return Helper.isNextStep || true;  // allow navigation
 }
 }
+=======
+import { AuthService } from './auth.service';
+>>>>>>> admin

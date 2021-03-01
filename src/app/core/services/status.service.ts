@@ -7,11 +7,46 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StatusService {
+
+  //block url
+  static isNextStep: boolean;
   apiUrl: string = environment.apiUrl;
+  //hold password for admin
+  public adminPassword: any;
   constructor(private http: HttpClient) {}
 
   public searchById(id: any) {
-    return this.http.get(`${this.apiUrl}/request_statuses/${id}`);
+    return this.http.get(`${this.apiUrl}/admin/${this.adminPassword}/service_requests/${id}`);
+  }
+
+  //display request into observable array
+  public display(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/admin/${this.adminPassword}/service_requests`);
+  }
+
+  //reset password
+  public resetPass(old: any, newPass: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.patch(
+      `${this.apiUrl}/admin/reset_password/${JSON.stringify(newPass)}`,
+      old,
+      httpOptions
+    );
+  }
+
+  public login(password: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'responseType': 'text'
+      }),
+    };
+
+    return this.http.get(`${this.apiUrl}/admin/` + password);
   }
   //display request into observable array
   public display(): Observable<any> {
