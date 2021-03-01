@@ -299,7 +299,9 @@
           <!-- Access choices -->
           <!-- IBM Access info button -->
           <div class="access-option-button">
-            <mat-button-toggle (click)="toggleFormRender('ibm')"
+            <mat-button-toggle
+              id="ibm-access-btn"
+              (click)="toggleFormRender('ibm')"
               >IBM Access Information
             </mat-button-toggle>
             <div *ngIf="renderIBMForm === true" class="ibmForm">
@@ -349,7 +351,9 @@
 
           <!-- Unix Environment button -->
           <div class="access-option-button">
-            <mat-button-toggle (click)="toggleFormRender('unix')"
+            <mat-button-toggle
+              id="unix-access-btn"
+              (click)="toggleFormRender('unix')"
               >Unix Environment Access</mat-button-toggle
             >
             <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
@@ -399,7 +403,9 @@
 
           <!-- SecurId button -->
           <div class="access-option-button">
-            <mat-button-toggle (click)="toggleFormRender('securid')"
+            <mat-button-toggle
+              id="securid-access-btn"
+              (click)="toggleFormRender('securid')"
               >SecurID Remote Access</mat-button-toggle
             >
             <div
@@ -500,9 +506,9 @@
     <!-- <h3 class="page-title">Submit Page</h3> -->
     <p>
       Here is your reference number:
-      <span id="request-number" class="font-weight-bold">{{
-        submitResponse.requestNumber
-      }}</span>
+      <span id="request-number" class="font-weight-bold"
+        >{{ submitResponse.requestNumber }}</span
+      >
     </p>
     <p>Please save this for future reference.</p>
   </div>

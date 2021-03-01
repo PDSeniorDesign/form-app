@@ -17,7 +17,7 @@ import { AdditionalInformationComponent } from './additional-information/additio
 import { EmployeeFormComponent } from './employee-form.component';
 import { SubmitPageComponent } from './submit-page/submit-page.component';
 
-describe('EmployeeFormComponent', () => {
+fdescribe('EmployeeFormComponent', () => {
   let component: EmployeeFormComponent;
   let fixture: ComponentFixture<EmployeeFormComponent>;
   let formDataService: FormDataService;
@@ -524,5 +524,57 @@ describe('EmployeeFormComponent', () => {
     expect(component.form.value.accessInformation.accessType).toEqual(
       'SecurID VPN'
     );
+  });
+  it('should call toggleFormRender when IBM Access Form Button is clicked (Access Info step)', () => {
+    // Need to call fixture.detectChanges()
+    fixture.detectChanges();
+
+    // Grab ref to button
+    const ibmAccessBtn = fixture.debugElement.query(By.css('#ibm-access-btn'))
+      .nativeElement;
+
+    // spy on function
+    spyOn(component, 'toggleFormRender');
+
+    // simulate a click
+    ibmAccessBtn.click();
+
+    // check that function was called
+    expect(component.toggleFormRender).toHaveBeenCalled();
+  });
+  it('should call toggleFormRender when IBM Access Form Button is clicked (Access Info step)', () => {
+    // Need to call fixture.detectChanges()
+    fixture.detectChanges();
+
+    // Grab ref to button
+    const ibmAccessBtn = fixture.debugElement.query(By.css('#unix-access-btn'))
+      .nativeElement;
+
+    // spy on function
+    spyOn(component, 'toggleFormRender');
+
+    // simulate a click
+    ibmAccessBtn.click();
+
+    // check that function was called
+    expect(component.toggleFormRender).toHaveBeenCalled();
+  });
+  it('should call toggleFormRender when IBM Access Form Button is clicked (Access Info step)', () => {
+    // Need to call fixture.detectChanges()
+    fixture.detectChanges();
+
+    // Grab ref to button
+    const ibmAccessBtn = fixture.debugElement.query(
+      By.css('#securid-access-btn')
+    ).nativeElement;
+
+    // spy on function
+    spyOn(component, 'toggleFormRender');
+
+    // simulate a click
+    ibmAccessBtn.click();
+
+    // check that function was called
+    expect(component.toggleFormRender).toHaveBeenCalled();
   });
 });
