@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StatusService } from 'src/app/core/services/status.service';
-import { ApiHttpService } from 'src/app/core/services/api-http.service';
 
 @Component({
   selector: 'app-request-status',
@@ -16,15 +15,15 @@ export class RequestStatusComponent implements OnInit {
   lastName: any;
 
   //save each request into array for display
-  personData: Array<any> = [];
+  personData:Array<any> = [];
 
   constructor(private statusService: StatusService) {}
 
+  //load array when component loaded
   ngOnInit(): void {
-    this.statusService.display().subscribe((res) => {
-      console.log(res);
-      this.personData = res;
-    });
+    this.statusService.display().subscribe((res)=>{
+       console.log(res)
+      this.personData = res});
   }
 
   //call service to display based on ID
