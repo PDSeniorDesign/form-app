@@ -67,7 +67,7 @@ export class AdminComponent implements OnInit {
         this.adminPassword.toString()
       );
       console.log(sessionStorage.getItem('adminPassword'));
-      this.seeProfile();
+      this.seeRequest();
     }
   }
 }
