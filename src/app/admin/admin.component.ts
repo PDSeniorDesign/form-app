@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Router, NavigationEnd } from '@angular/router';
-import { StatusService } from '../core/services/status.service';
+import { AdminService } from '../core/services/admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -19,14 +18,14 @@ export class AdminComponent implements OnInit {
   //backend password
   backendP: any = 'hello';
 
-  //if navigation to login page is successful, then don't show header
-  constructor(private router: Router, private statusService: StatusService) {
+  //if navigation to login page is successful, then don't show login header
+  constructor(private router: Router, private adminService: AdminService) {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         //if register or login page navigated, dont show
         if (
-          event.url == '/admin/request-status' ||
-          event.url == '/admin/profile'
+          event.url == '/admin/service-requests' ||
+          event.url == '/admin/reset-password'
         ) {
           this.showheader = false;
         } else {
@@ -39,13 +38,13 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {}
 
   //navigate to request status page
-  seeRequest() {
-    return this.router.navigate(['/admin/request-status']);
+  seeServiceRequest() {
+    return this.router.navigate(['/admin/service-requests']);
   }
 
-  //navigate to profile page
-  seeProfile() {
-    return this.router.navigate(['/admin/profile']);
+  //navigate to reset password
+  seeResetPassword() {
+    return this.router.navigate(['/admin/reset-password']);
   }
 
   isHomeRoute() {
@@ -61,13 +60,13 @@ export class AdminComponent implements OnInit {
       // this.statusService.adminPassword = res;
       // });
 
-      this.statusService.adminPassword = this.adminPassword;
+      this.adminService.adminPassword = this.adminPassword;
       this.adminPassword = sessionStorage.setItem(
         'adminPassword',
         this.adminPassword.toString()
       );
       console.log(sessionStorage.getItem('adminPassword'));
-      this.seeRequest();
+      this.seeServiceRequest();
     }
   }
 }
