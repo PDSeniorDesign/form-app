@@ -263,6 +263,26 @@ export class EmployeeFormComponent implements OnInit {
   printForm(): void {
     console.log(this.form);
   }
+
+  /**
+   * @description This function is used by the buttons in access information step
+   * 
+   * @param formName The form boolean that is going to be toggled.
+   * Possible opitons: Ibm Access Infromation('ibm'), Unix Environment Access('unix'), SecurID Remote Access('securid')
+   */
+  toggleFormRender = (formName: string): void => {
+    switch (formName) {
+      case 'ibm':
+        this.renderIBMForm = !this.renderIBMForm;
+        break;
+      case 'unix':
+        this.renderUnixEnvAccess = !this.renderUnixEnvAccess;
+        break;
+      case 'securid':
+        this.renderSecurIdAccess = !this.renderSecurIdAccess;
+        break;
+    }
+  };
 }
 
 //changes the ErrorStateMatcher to include dirty

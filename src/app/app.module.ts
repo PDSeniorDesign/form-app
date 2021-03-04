@@ -19,9 +19,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
-import { ContractorInformationComponent } from './form/contractor-form/contractor-information/contractor-information.component';
-import { CountyInformationComponent } from './form/contractor-form/county-information/county-information.component';
-import { PolicyRulesComponent } from './form/contractor-form/policy-rules/policy-rules.component';
 import { SubmitComponent } from './form/contractor-form/submit/submit.component';
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
@@ -30,6 +27,7 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -40,9 +38,6 @@ import { SharedModule } from './shared/shared.module';
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
-    ContractorInformationComponent,
-    CountyInformationComponent,
-    PolicyRulesComponent,
     SubmitComponent,
     FormActionSelectionComponent,
     AdminComponent,
@@ -67,6 +62,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     FormsModule,
     MatCheckboxModule,
+    MatButtonToggleModule,
   ],
   exports: [],
   providers: [],
