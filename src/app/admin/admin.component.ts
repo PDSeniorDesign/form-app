@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AdminService } from '../core/services/admin.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -9,14 +10,14 @@ import { AdminService } from '../core/services/admin.service';
   //smoother router transitions
 })
 export class AdminComponent implements OnInit {
-  //store admin password
+  //store admin password in ngModel directive
   adminPassword: any = '';
   //sessionStorage
   adminSession: any;
   //boolena to show header
   showheader: boolean;
-  //backend password
-  backendP: any = 'hello';
+  //handle Error message to block out user: 404
+  error: HttpErrorResponse = null;
 
   //if navigation to login page is successful, then don't show login header
   constructor(private router: Router, private adminService: AdminService) {
@@ -52,21 +53,24 @@ export class AdminComponent implements OnInit {
   }
 
   adminLogin(): void {
-    //check against password
-
-    if (this.adminPassword.toString() == this.backendP.toString()) {
-      //this.statusService.login(JSON.parse(this.adminPassword)).subscribe((res) => {
-      // console.log(res)
-      // this.statusService.adminPassword = res;
-      // });
-
-      this.adminService.adminPassword = this.adminPassword;
-      this.adminPassword = sessionStorage.setItem(
-        'adminPassword',
-        this.adminPassword.toString()
-      );
-      console.log(sessionStorage.getItem('adminPassword'));
-      this.seeServiceRequest();
-    }
+    //save user password to session storage
+    this.adminService.adminPassword = this.adminPassword;
+    this.adminPassword = sessionStorage.setItem(
+      this.adminService.adminKeyName = 'adminPassword',
+      this.adminPassword.toString()
+    );
+    
+    //call display request service: if 404 error from API, then redirected to login page
+    this.adminService.display().subscribe(
+      (res) => {
+        console.log(res);
+        this.seeServiceRequest();
+      },
+      (error) => {
+        if (error.status == 403) {
+          this.isHomeRoute();
+        }
+      }
+    );
   }
 }
