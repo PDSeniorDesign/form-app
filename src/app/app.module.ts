@@ -27,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
+import { AuthGuard } from './core/services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { ResetPasswordComponent } from './admin/reset-password/reset-password.co
     MatButtonToggleModule,
   ],
   exports: [],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
