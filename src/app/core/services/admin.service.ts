@@ -40,9 +40,18 @@ export class AdminService {
   public resetPassword(old: any, newPass: any) {
     return this.http.patch(
       `${environment.apiUrl}/admin/reset_password/${newPass}`,
-      old,
+      this.reformatAdminDdata(old),
       this.httpOptions
     );
+  }
+
+  //reformat Admin password into JSON compatible format
+  public reformatAdminDdata(data: any) {
+    const reformated = {
+      id: 1,
+      password: data
+    };
+    return JSON.stringify(reformated);
   }
 
   //logout user
