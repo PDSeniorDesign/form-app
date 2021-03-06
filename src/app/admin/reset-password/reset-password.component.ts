@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { AdminService } from 'src/app/core/services/admin.service';
   styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent implements OnInit {
+  @Input() adminPassword;
   //update passwords
   oldPassword: any;
   newPassword: any;
@@ -20,8 +21,8 @@ export class ResetPasswordComponent implements OnInit {
     this.adminService
       .resetPassword(this.oldPassword, this.newPassword)
       .subscribe((res) => {
-        console.log(res);
-        //console.log(newP)
+        this.adminService.adminPassword = this.newPassword;
+        sessionStorage.setItem(this.adminService.adminKeyName, this.adminService.adminPassword.toString())
       });
   }
 }
