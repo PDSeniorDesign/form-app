@@ -12,8 +12,12 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
-      if (sessionStorage.getItem(this.adminService.adminKeyName) != null)
-      return true;
+      //if session Storge (password) isnt empty, then loggin, else redirect to home
+      if (sessionStorage.getItem(this.adminService.adminKeyName) != null) {
+        //once logged in, logout if url changed outside
+        return true;
+      }
+
       this.router.navigate(['/admin']);
       return false;
   }
