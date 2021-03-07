@@ -28,6 +28,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
 import { AuthGuard } from './core/services/auth.guard';
+import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AuthGuard } from './core/services/auth.guard';
     AdminHeaderComponent,
     ServiceRequestsComponent,
     ResetPasswordComponent,
+    ServiceRequestsDetailComponent,
   ],
   imports: [
     BrowserModule,
