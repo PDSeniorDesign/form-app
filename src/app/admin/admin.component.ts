@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { AdminService } from '../core/services/admin.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -26,6 +27,7 @@ export class AdminComponent implements OnInit {
         //if register or login page navigated, dont show
         if (
           event.url == '/admin/service-requests' ||
+          //event.url == '//admin/service-requests/'
           event.url == '/admin/reset-password'
         ) {
           this.showheader = false;
