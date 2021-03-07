@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-service-requests',
@@ -15,9 +16,9 @@ export class ServiceRequestsComponent implements OnInit {
   lastName: any;
 
   //save each request into array for display
-  personData: Array<any> = [];
+  @Input() personData: Array<any> = [];
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.adminService.display().subscribe((res) => {
