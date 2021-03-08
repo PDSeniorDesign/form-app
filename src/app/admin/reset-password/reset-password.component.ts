@@ -9,8 +9,8 @@ import { AdminService } from 'src/app/core/services/admin.service';
 export class ResetPasswordComponent implements OnInit {
   @Input() adminPassword;
   //update passwords
-  oldPassword: any;
-  newPassword: any;
+  oldPassword: string;
+  newPassword: string;
 
   constructor(private adminService: AdminService) {}
 

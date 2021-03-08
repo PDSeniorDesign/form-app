@@ -15,43 +15,48 @@ export class AdminService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-
-    }),
-  };
-
   //access service_requests for admins by id
   public searchById(id: any) {
+    //set the password in headers
+    var httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'password': this.adminPassword,
+      }),
+    };
+
     return this.http.get(
-      `${environment.apiUrl}/admin/${sessionStorage.getItem(this.adminKeyName)}/service_requests/${id}`
+      `${environment.apiUrl}/admin/service_requests/${id}`, httpOptions
     );
   }
 
   //display all service_requests in observable array
   public display(): Observable<any> {
+    var httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'password': this.adminPassword,
+      }),
+    };
     return this.http.get(
-      `${environment.apiUrl}/admin/${sessionStorage.getItem(this.adminKeyName)}/service_requests`
+      `${environment.apiUrl}/admin/service_requests`, httpOptions
     );
   }
 
   //reset password
-  public resetPassword(old: any, newPass: any) {
-    return this.http.patch(
-      `${environment.apiUrl}/admin/reset_password/${newPass}`,
-      this.reformatAdminDdata(old),
-      this.httpOptions
-    );
-  }
+  public resetPassword(old: string, newPass: string) {
 
-  //reformat Admin password into JSON compatible format
-  public reformatAdminDdata(data: any) {
-    const reformated = {
-      id: 1,
-      password: data
+    var httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'password': old,
+        'new-password': newPass,
+      }),
     };
-    return JSON.stringify(reformated);
+
+    return this.http.patch(
+      `${environment.apiUrl}/admin/reset_password`, httpOptions, httpOptions
+    );
   }
 
   //logout user
