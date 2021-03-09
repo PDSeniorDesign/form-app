@@ -3,7 +3,11 @@
   <h5 class="mat-caption">Description goes here</h5>
   <div class="flex-container">
     <div class="flex-column">
-      <mat-button-toggle>Internet Access </mat-button-toggle>
+      <mat-button-toggle
+        [checked]="internetAccess"
+        (change)="internetAccess = $event.source.checked"
+        >Internet Access
+      </mat-button-toggle>
     </div>
     <div class="flex-column">
       <mat-button-toggle>Email Account</mat-button-toggle>
@@ -33,7 +37,7 @@
     <!-- This is a spacer to help align items properly -->
     <div class="flex-column"></div>
   </div>
-
+  <!-- <button (click)="sampleFunction()">Test</button> -->
   <div class="button-container">
     <button mat-raised-button matStepperPrevious>Previous</button>
     <button
