@@ -1,137 +1,59 @@
-<div>
-  <h4>Applications Requested</h4>
-  <div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox1"
-        value="option1"
-      />
-      <label class="form-check-label" for="inlineCheckbox1"
-        >Internet(Default Policy)</label
-      >
+<div style="width: 85%">
+  <h2 class="mat-display-1">Applications Requested</h2>
+  <h5 class="mat-caption">Description goes here</h5>
+  <div class="flex-container">
+    <div class="flex-column">
+      <mat-button-toggle>Internet Access </mat-button-toggle>
     </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox2"
-        value="option2"
-      />
-      <label class="form-check-label" for="inlineCheckbox2"
-        >Exchange Email</label
-      >
+    <div class="flex-column">
+      <mat-button-toggle>Email Account</mat-button-toggle>
     </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox3"
-        value="option3"
-      />
-      <label class="form-check-label" for="inlineCheckbox3"
-        >Email Encryption</label
-      >
-    </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox3"
-        value="option3"
-      />
-      <label class="form-check-label" for="inlineCheckbox3"
-        >LAcounty.gov Access</label
-      >
+    <div class="flex-column">
+      <mat-button-toggle>Email Encryption</mat-button-toggle>
     </div>
   </div>
-  <!-- Second row -->
-  <div class="mt-2">
-    <div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox1"
-          value="option1"
-        />
-        <label class="form-check-label" for="inlineCheckbox1"
-          >Tokenless Authentication</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox2"
-          value="option2"
-        />
-        <label class="form-check-label" for="inlineCheckbox2"
-          >LACMobile WiFi Access</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineCheckbox3"
-          >Cherwelll SMS</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineCheckbox3"
-          >Windows Rights Mgmt (WRM)</label
-        >
-      </div>
+  <div class="flex-container">
+    <div class="flex-column">
+      <mat-button-toggle>LACounty.gov Access</mat-button-toggle>
+    </div>
+    <div class="flex-column">
+      <mat-button-toggle>Tokenless Authentication</mat-button-toggle>
+    </div>
+    <div class="flex-column">
+      <mat-button-toggle>LACMobile</mat-button-toggle>
     </div>
   </div>
-  <!-- NEW, UPDATE, DELETE PRIOR -->
-  <div class="mt-2">
-    <h4>Type of Registration</h4>
-    <div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio1"
-          value="option1"
-        />
-        <label class="form-check-label" for="inlineRadio1">New</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio2"
-          value="option2"
-        />
-        <label class="form-check-label" for="inlineRadio2">Delete Prior</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineRadio3">Update Prior</label>
-      </div>
+  <div class="flex-container">
+    <div class="flex-column">
+      <mat-button-toggle>Cherwell SMS</mat-button-toggle>
     </div>
+    <div class="flex-column" style="justify-content: left">
+      <mat-button-toggle>Window Rights Management</mat-button-toggle>
+    </div>
+    <!-- This is a spacer to help align items properly -->
+    <div class="flex-column"></div>
   </div>
-  <button type="button" class="btn btn-primary mt-2" matStepperNext>
-    Next
-  </button>
+
+  <div class="button-container">
+    <button mat-raised-button matStepperPrevious>Previous</button>
+    <button
+      mat-raised-button
+      matStepperNext
+      color="primary"
+      class="ml-2"
+      (click)="printForm()"
+    >
+      Next
+    </button>
+    <span class="spacer"></span>
+    <button
+      id="access-info-save-btn"
+      mat-raised-button
+      class="save-button"
+      color="accent"
+      (click)="save()"
+    >
+      Save
+    </button>
+  </div>
 </div>
