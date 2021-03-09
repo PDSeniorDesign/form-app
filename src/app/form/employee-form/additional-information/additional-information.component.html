@@ -1,137 +1,91 @@
-<div>
-  <h4>Applications Requested</h4>
-  <div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox1"
-        value="option1"
-      />
-      <label class="form-check-label" for="inlineCheckbox1"
-        >Internet(Default Policy)</label
+<div style="width: 85%">
+  <h2 class="mat-display-1">Applications Requested</h2>
+  <h5 class="mat-caption">Description goes here</h5>
+  <div class="flex-container">
+    <div class="flex-column">
+      <mat-button-toggle
+        [checked]="internetAccess"
+        (change)="internetAccess = $event.source.checked"
+        >Internet Access
+      </mat-button-toggle>
+    </div>
+    <div class="flex-column">
+      <mat-button-toggle
+        [checked]="emailAccount"
+        (change)="emailAccount = $event.source.checked"
+        >Email Account</mat-button-toggle
       >
     </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox2"
-        value="option2"
-      />
-      <label class="form-check-label" for="inlineCheckbox2"
-        >Exchange Email</label
-      >
-    </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox3"
-        value="option3"
-      />
-      <label class="form-check-label" for="inlineCheckbox3"
-        >Email Encryption</label
-      >
-    </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="inlineCheckbox3"
-        value="option3"
-      />
-      <label class="form-check-label" for="inlineCheckbox3"
-        >LAcounty.gov Access</label
+    <div class="flex-column">
+      <mat-button-toggle
+        [checked]="emailEncryption"
+        (change)="emailEncryption = $event.source.checked"
+        >Email Encryption</mat-button-toggle
       >
     </div>
   </div>
-  <!-- Second row -->
-  <div class="mt-2">
-    <div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox1"
-          value="option1"
-        />
-        <label class="form-check-label" for="inlineCheckbox1"
-          >Tokenless Authentication</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox2"
-          value="option2"
-        />
-        <label class="form-check-label" for="inlineCheckbox2"
-          >LACMobile WiFi Access</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineCheckbox3"
-          >Cherwelll SMS</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineCheckbox3"
-          >Windows Rights Mgmt (WRM)</label
-        >
-      </div>
+  <div class="flex-container">
+    <div class="flex-column">
+      <mat-button-toggle
+        [checked]="laCountyAccess"
+        (change)="laCountyAccess = $event.source.checked"
+        >LACounty.gov Access</mat-button-toggle
+      >
+    </div>
+    <div class="flex-column">
+      <mat-button-toggle
+        [checked]="tokenlessAuth"
+        (change)="tokenlessAuth = $event.source.checked"
+        >Tokenless Authentication</mat-button-toggle
+      >
+    </div>
+    <div class="flex-column">
+      <mat-button-toggle
+        [checked]="lacMobile"
+        (change)="lacMobile = $event.source.checked"
+        >LACMobile</mat-button-toggle
+      >
     </div>
   </div>
-  <!-- NEW, UPDATE, DELETE PRIOR -->
-  <div class="mt-2">
-    <h4>Type of Registration</h4>
-    <div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio1"
-          value="option1"
-        />
-        <label class="form-check-label" for="inlineRadio1">New</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio2"
-          value="option2"
-        />
-        <label class="form-check-label" for="inlineRadio2">Delete Prior</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="inlineRadioOptions"
-          id="inlineRadio3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineRadio3">Update Prior</label>
-      </div>
+  <div class="flex-container">
+    <div class="flex-column">
+      <mat-button-toggle
+        [checked]="cherwellSMS"
+        (change)="cherwellSMS = $event.source.checked"
+        >Cherwell SMS</mat-button-toggle
+      >
     </div>
+    <div class="flex-column" style="justify-content: left">
+      <mat-button-toggle
+        [checked]="windowsManagement"
+        (change)="windowsManagement = $event.source.checked"
+        >Window Rights Management</mat-button-toggle
+      >
+    </div>
+    <!-- This is a spacer to help align items properly -->
+    <div class="flex-column"></div>
   </div>
-  <button type="button" class="btn btn-primary mt-2" matStepperNext>
-    Next
-  </button>
+  <!-- <button (click)="sampleFunction()">Test</button> -->
+  <div class="button-container">
+    <button mat-raised-button matStepperPrevious>Previous</button>
+    <button
+      mat-raised-button
+      matStepperNext
+      color="primary"
+      class="ml-2"
+      (click)="printForm()"
+    >
+      Next
+    </button>
+    <span class="spacer"></span>
+    <button
+      id="access-info-save-btn"
+      mat-raised-button
+      class="save-button"
+      color="accent"
+      (click)="save()"
+    >
+      Save
+    </button>
+  </div>
 </div>
