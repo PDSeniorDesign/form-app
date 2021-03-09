@@ -271,17 +271,19 @@
       <ng-template matStepLabel>Access Information</ng-template>
       <!-- TODO: Work on naming and values -->
       <div>
-        <h1 class="mat-headline">Select Access Options</h1>
+        <h2 class="mat-display-1" style="margin-bottom: 16px">
+          Access Options
+        </h2>
         <p *ngIf="requestNumber">
           Your request number:
           <span style="color: red">{{ requestNumber }}</span>
         </p>
 
-        <div>
+        <div class="row">
           <!-- Access choices -->
 
           <!-- IBM Access info button -->
-          <div class="access-option-button">
+          <div class="access-option-button col-sm-12 col-md-4">
             <mat-button-toggle
               id="ibm-access-btn"
               (click)="toggleFormRender('ibm')"
@@ -333,7 +335,7 @@
           </div>
 
           <!-- Unix Environment button -->
-          <div class="access-option-button">
+          <div class="access-option-button col-sm-12 col-md-4">
             <mat-button-toggle
               id="unix-access-btn"
               (click)="toggleFormRender('unix')"
@@ -385,7 +387,7 @@
           </div>
 
           <!-- SecurId button -->
-          <div class="access-option-button">
+          <div class="access-option-button col-sm-12 col-md-4">
             <mat-button-toggle
               id="securid-access-btn"
               (click)="toggleFormRender('securid')"
@@ -485,9 +487,9 @@
     <hr />
     <p>
       Here is your reference number:
-      <span id="request-number" class="font-weight-bold"
-        >{{ submitResponse.requestNumber }}</span
-      >
+      <span id="request-number" class="font-weight-bold">{{
+        submitResponse.requestNumber
+      }}</span>
     </p>
     <p>Please save this for future reference.</p>
   </div>
