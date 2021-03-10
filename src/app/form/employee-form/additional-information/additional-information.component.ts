@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
@@ -5,6 +6,28 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
   selector: 'app-additional-information',
   templateUrl: './additional-information.component.html',
   styleUrls: ['./additional-information.component.css'],
+  animations: [
+    trigger('myAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 1,
+          })
+        ),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class AdditionalInformationComponent implements OnInit {
   // Functions from parent component (employee-form)

@@ -1,14 +1,14 @@
 <div style="width: 85%">
   <h2 class="mat-display-1">Applications Requested</h2>
 
-  <div *ngIf="options.size">
+  <div *ngIf="options.size" @myAnimation>
     <p>Options selected</p>
     <mat-chip-list class="example-chip">
       <mat-chip class="example-box" *ngFor="let option of options">
         {{ option }} <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
-    <hr />
+    <hr @myAnimation/>
   </div>
   <h3 class="mat-title">Select the following options</h3>
   <div class="flex-container">
