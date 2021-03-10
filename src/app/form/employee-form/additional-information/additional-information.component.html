@@ -22,15 +22,17 @@
     </div>
     <div class="flex-column">
       <mat-button-toggle
+        id="emailAccount"
         [checked]="emailAccount"
-        (change)="emailAccount = $event.source.checked"
+        (change)="onButtonChange($event, 'Email Account')"
         >Email Account</mat-button-toggle
       >
     </div>
     <div class="flex-column">
       <mat-button-toggle
+        id="emailEncryption"
         [checked]="emailEncryption"
-        (change)="emailEncryption = $event.source.checked"
+        (change)="onButtonChange($event, 'Email Encryption')"
         >Email Encryption</mat-button-toggle
       >
     </div>
@@ -38,22 +40,25 @@
   <div class="flex-container">
     <div class="flex-column">
       <mat-button-toggle
+        id="laCountyAccess"
         [checked]="laCountyAccess"
-        (change)="laCountyAccess = $event.source.checked"
+        (change)="onButtonChange($event, 'LA County Access')"
         >LACounty.gov Access</mat-button-toggle
       >
     </div>
     <div class="flex-column">
       <mat-button-toggle
+        id="tokenlessAuth"
         [checked]="tokenlessAuth"
-        (change)="tokenlessAuth = $event.source.checked"
+        (change)="onButtonChange($event, 'Tokenless Authentication')"
         >Tokenless Authentication</mat-button-toggle
       >
     </div>
     <div class="flex-column">
       <mat-button-toggle
+        id="lacMobile"
         [checked]="lacMobile"
-        (change)="lacMobile = $event.source.checked"
+        (change)="onButtonChange($event, 'LAC Mobile')"
         >LACMobile</mat-button-toggle
       >
     </div>
@@ -61,15 +66,17 @@
   <div class="flex-container">
     <div class="flex-column">
       <mat-button-toggle
+        id="cherwellSMS"
         [checked]="cherwellSMS"
-        (change)="cherwellSMS = $event.source.checked"
+        (change)="onButtonChange($event, 'Cherwell SMS')"
         >Cherwell SMS</mat-button-toggle
       >
     </div>
     <div class="flex-column" style="justify-content: left">
       <mat-button-toggle
+        id="windowsManagement"
         [checked]="windowsManagement"
-        (change)="windowsManagement = $event.source.checked"
+        (change)="onButtonChange($event, 'Windows Rights Management')"
         >Window Rights Management</mat-button-toggle
       >
     </div>
