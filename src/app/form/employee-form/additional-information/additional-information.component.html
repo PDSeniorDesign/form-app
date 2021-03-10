@@ -1,11 +1,22 @@
 <div style="width: 85%">
   <h2 class="mat-display-1">Applications Requested</h2>
-  <h5 class="mat-caption">Description goes here</h5>
+
+  <div>
+    <p>Options selected</p>
+    <mat-chip-list class="example-chip">
+      <mat-chip class="example-box" *ngFor="let option of options">
+        {{ option }} <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <hr />
+  </div>
+  <!-- <h5 class="mat-caption">Description goes here</h5> -->
   <div class="flex-container">
     <div class="flex-column">
       <mat-button-toggle
+        id="internetAccess"
         [checked]="internetAccess"
-        (change)="internetAccess = $event.source.checked"
+        (change)="onButtonChange($event, 'Internet Access')"
         >Internet Access
       </mat-button-toggle>
     </div>

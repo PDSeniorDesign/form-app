@@ -2,7 +2,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -27,7 +30,7 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 @NgModule({
   declarations: [
@@ -63,6 +66,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     FormsModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    MatFormFieldModule,
+    MatChipsModule
+
   ],
   exports: [],
   providers: [],
