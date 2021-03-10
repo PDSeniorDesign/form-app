@@ -12,9 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
-import { AdminRequestComponent } from './admin/admin-request/admin-request.component';
 import { AdminComponent } from './admin/admin.component';
-import { ProfileComponent } from './admin/profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -25,16 +23,18 @@ import { EmployeeFormComponent } from './form/employee-form/employee-form.compon
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
+import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
+import { AuthGuard } from './core/services/auth.guard';
+import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     AdditionalInformationComponent,
-    RequestStatusComponent,
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
@@ -42,8 +42,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     FormActionSelectionComponent,
     AdminComponent,
     AdminHeaderComponent,
-    ProfileComponent,
-    AdminRequestComponent,
+    ServiceRequestsComponent,
+    ResetPasswordComponent,
+    ServiceRequestsDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +66,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatButtonToggleModule,
   ],
   exports: [],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
