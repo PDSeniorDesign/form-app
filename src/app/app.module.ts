@@ -2,7 +2,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -13,9 +16,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AdminComponent } from './admin/admin.component';
+import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
+import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
+import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { AuthGuard } from './core/services/auth.guard';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
 import { SubmitComponent } from './form/contractor-form/submit/submit.component';
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
@@ -24,11 +31,6 @@ import { SubmitPageComponent } from './form/employee-form/submit-page/submit-pag
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SharedModule } from './shared/shared.module';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
-import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
-import { AuthGuard } from './core/services/auth.guard';
-import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,9 @@ import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/
     FormsModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    MatFormFieldModule,
+    MatChipsModule
+
   ],
   exports: [],
   providers: [AuthGuard],
