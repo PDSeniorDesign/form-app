@@ -4,7 +4,7 @@
   <div *ngIf="options.size" @myAnimation>
     <p>Options selected</p>
     <mat-chip-list class="example-chip">
-      <mat-chip class="example-box" *ngFor="let option of options">
+      <mat-chip @myAnimation class="example-box" *ngFor="let option of options">
         {{ option }} <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
