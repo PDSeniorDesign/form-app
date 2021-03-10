@@ -15,12 +15,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
-import { AdminRequestComponent } from './admin/admin-request/admin-request.component';
 import { AdminComponent } from './admin/admin.component';
-import { ProfileComponent } from './admin/profile/profile.component';
+import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
+import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
+import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { AuthGuard } from './core/services/auth.guard';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
 import { SubmitComponent } from './form/contractor-form/submit/submit.component';
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
@@ -28,16 +30,13 @@ import { EmployeeFormComponent } from './form/employee-form/employee-form.compon
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { RequestStatusComponent } from './request-status/request-status.component';
 import { SharedModule } from './shared/shared.module';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     AdditionalInformationComponent,
-    RequestStatusComponent,
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
@@ -45,8 +44,9 @@ import { SharedModule } from './shared/shared.module';
     FormActionSelectionComponent,
     AdminComponent,
     AdminHeaderComponent,
-    ProfileComponent,
-    AdminRequestComponent,
+    ServiceRequestsComponent,
+    ResetPasswordComponent,
+    ServiceRequestsDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +71,7 @@ import { SharedModule } from './shared/shared.module';
 
   ],
   exports: [],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

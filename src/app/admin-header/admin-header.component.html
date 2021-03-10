@@ -17,13 +17,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/admin/profile">Reset Password</a>
+            <a class="nav-link" routerLink="/admin/reset-password">Reset Password</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/admin/request-status">Service Request</a>
+            <a class="nav-link" routerLink="/admin/service-requests">Service Request</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" href="/admin">Logout</a>
+            <a class="nav-link" (click)="logOut()">Logout</a>
           </li>
         </ul>
       </div>

@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         //if register or login page navigated, dont show
-        if (event.url === '/admin' || event.url == '/admin/request-status' ||
-         event.url == '/admin/profile') {
+        if (event.url === '/admin' || event.url == '/admin/service-requests' ||
+         event.url == '/admin/reset-password') {
           this.showheader= false;
         } else {
           this.showheader= true;
