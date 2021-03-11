@@ -38,8 +38,10 @@ export class ContractorFormComponent implements OnInit {
   errorStateMatcher = new InstantErrorStateMatcher();
   hasSubmitted: boolean;
 
-  constructor(private formDataService: FormDataService,
-    private apiHttpService: ApiHttpService) {}
+  constructor(
+    private formDataService: FormDataService,
+    private apiHttpService: ApiHttpService
+    ) {}
 
   ngOnInit(): void {
     this.formContractor = new FormGroup({
@@ -104,15 +106,15 @@ export class ContractorFormComponent implements OnInit {
           ),
       }),
       policyRulesInformation: new FormGroup ({
-        applyDefaultCountywidePolicyIsChecked: new FormControl(null),
-        departmentPolicyRule0IsChecked: new FormControl(null),
-        departmentPolicyRule1IsChecked: new FormControl(null),
-        departmentPolicyRule2IsChecked: new FormControl(null),
-        departmentPolicyRule3IsChecked: new FormControl(null),
-        departmentPolicyRule4IsChecked: new FormControl(null),
-        socialNetworkingFacebookIsChecked: new FormControl(null),
-        socialNetworkingTwitterIsChecked: new FormControl(null),
-        socialNetworkingLinkedInIsChecked: new FormControl(null),
+        applyDefaultCountywidePolicyIsChecked: new FormControl(false),
+        departmentPolicyRule0IsChecked: new FormControl(false),
+        departmentPolicyRule1IsChecked: new FormControl(false),
+        departmentPolicyRule2IsChecked: new FormControl(false),
+        departmentPolicyRule3IsChecked: new FormControl(false),
+        departmentPolicyRule4IsChecked: new FormControl(false),
+        socialNetworkingFacebookIsChecked: new FormControl(false),
+        socialNetworkingTwitterIsChecked: new FormControl(false),
+        socialNetworkingLinkedInIsChecked: new FormControl(false),
         typeOfRegistration: new FormControl(null),
       }),
       accessInformation: new FormGroup ({
@@ -140,7 +142,9 @@ export class ContractorFormComponent implements OnInit {
   }
 
   onClick(): void {
-    console.log(JSON.stringify(this.formContractor.value));
+    console.log(JSON.stringify(this.formContractor.value)); //debugging
+
+    this.apiHttpService.createContractForm(this.formContractor.value);
   }
 }
 
