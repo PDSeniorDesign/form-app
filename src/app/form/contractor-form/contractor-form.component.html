@@ -19,7 +19,6 @@
           <mat-label>First Name</mat-label>
           <input
             id="firstNameInput"
-            #firstNameInput
             type="text"
             matInput
             formControlName="firstName"
@@ -188,7 +187,6 @@
       <!--<app-contractor-information [regForm]="formContractor"></app-contractor-information>-->
     </mat-step>
 
-
     <!-- County Step -->
     <mat-step
       formGroupName="countyInformation"
@@ -203,7 +201,7 @@
           <mat-label>Contract Work Order No</mat-label>
           <input
             id="contractWorkOrderNumberInput"
-            type="phone"
+            type="text"
             matInput
             formControlName="contractWorkOrderNumber"
             required
@@ -220,9 +218,11 @@
           <mat-label>Contract Expiration Date</mat-label>
           <input
             id="contactExpirationDateInput"
-            type="phone"
+            type="date"
+            min="2021-03-03"
             matInput
-            formControlName="contactExpirationDate"
+            placeholder="Choose a Date"
+            formControlName="contractExpirationDate"
             required
             [errorStateMatcher]="errorStateMatcher"
           />
@@ -285,7 +285,7 @@
           <mat-label>Department number</mat-label>
           <input
             id="departmentNumberInput"
-            type="phone"
+            type="text"
             matInput
             formControlName="departmentNumber"
             required
@@ -352,7 +352,11 @@
       <!-- <app-county-information [regForm]="formContractor"></app-county-information> -->
     </mat-step>
 
-    <mat-step>
+    <!-- Polity Rules Step-->
+    <mat-step
+      formGroupName="policyRulesInformation"
+      [stepControl]="formContractor.get('policyRulesInformation')"
+    >
       <ng-template matStepLabel>Registration</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Registration Information
@@ -396,37 +400,29 @@
       <!-- First Row -->
       <div>
         <div class="form-check form-check-inline">
-          <input
+          <mat-checkbox
             class="form-check-input"
-            type="checkbox"
-            id="applyDefaultCountywidePolicyIsCheckedInput"
-            fromControlName="applyDefaultCountywidePolicyIsChecked"
-          />
-          <label class="form-check-label" for="inlineCheckbox1"
-            >Apply default Countywide Policy</label
+            id="applyDefaultCountyWidePolicyIsCheckedInput"
+            fromControlName="applyDefaultCountyWidePolicyIsChecked"
+            >Appply Default Countywide Policy</mat-checkbox
           >
         </div>
         <div class="form-check form-check-inline">
-          <input
+          <mat-checkbox
             class="form-check-input"
-            type="checkbox"
             id="departmentPolicyRule0IsCheckedInput"
             fromControlName="departmentPolicyRule0IsChecked"
-          />
-          <label class="form-check-label" for="inlineCheckbox2"
-            >Department Policy Rule 0</label
+            >Department Policy Rule 0</mat-checkbox
           >
         </div>
         <div class="form-check form-check-inline">
-          <input
+          <mat-checkbox
             class="form-check-input"
-            type="checkbox"
             id="departmentPolicyRule1IsCheckedInput"
             fromControlName="departmentPolicyRule1IsChecked"
-          />
-          <label class="form-check-label" for="inlineCheckbox3"
-            >Department Policy Rule 1</label
           >
+            Department Policy Rule 1
+          </mat-checkbox>
         </div>
       </div>
 
@@ -434,36 +430,27 @@
       <div class="mt-2">
         <div>
           <div class="form-check form-check-inline">
-            <input
+            <mat-checkbox
               class="form-check-input"
-              type="checkbox"
               id="departmentPolicyRule2IsCheckedInput"
               fromControlName="departmentPolicyRule2IsChecked"
-            />
-            <label class="form-check-label" for="inlineCheckbox1"
-              >Department Policy Rule 2</label
+              >Department Policy Rule 2</mat-checkbox
             >
           </div>
           <div class="form-check form-check-inline">
-            <input
+            <mat-checkbox
               class="form-check-input"
-              type="checkbox"
               id="departmentPolicyRule3IsCheckedInput"
               fromControlName="departmentPolicyRule3IsChecked"
-            />
-            <label class="form-check-label" for="inlineCheckbox2"
-              >Department Policy Rule 3</label
+              >Department Policy Rule 3</mat-checkbox
             >
           </div>
           <div class="form-check form-check-inline">
-            <input
+            <mat-checkbox
               class="form-check-input"
-              type="checkbox"
               id="departmentPolicyRule4IsCheckedInput"
               fromControlName="departmentPolicyRule4IsChecked"
-            />
-            <label class="form-check-label" for="inlineCheckbox3"
-              >Department Policy Rule 4</label
+              >Department Policy Rule 4</mat-checkbox
             >
           </div>
         </div>
@@ -473,36 +460,27 @@
       <div class="mt-2">
         <div>
           <div class="form-check form-check-inline">
-            <input
+            <mat-checkbox
               class="form-check-input"
-              type="checkbox"
               id="socialNetworkingFacebookIsCheckedInput"
               fromControlName="socialNetworkingFacebookIsChecked"
-            />
-            <label class="form-check-label" for="inlineCheckbox1"
-              >Social Networking Facebook</label
+              >Social Networking Facebook</mat-checkbox
             >
           </div>
           <div class="form-check form-check-inline">
-            <input
+            <mat-checkbox
               class="form-check-input"
-              type="checkbox"
               id="socialNetworkingTwitterIsCheckedInput"
               fromControlName="socialNetworkingTwitterIsChecked"
-            />
-            <label class="form-check-label" for="inlineCheckbox2"
-              >Social Networking Twitter</label
+              >Social Networking Twitter</mat-checkbox
             >
           </div>
           <div class="form-check form-check-inline">
-            <input
+            <mat-checkbox
               class="form-check-input"
-              type="checkbox"
               id="socialNetworkingLinkedInIsCheckedInput"
               fromControlName="socialNetworkingLinkedInIsChecked"
-            />
-            <label class="form-check-label" for="inlineCheckbox3"
-              >Social Networking LinkedIn</label
+              >Social Networking LinkedIn</mat-checkbox
             >
           </div>
         </div>
@@ -521,7 +499,6 @@
               id="typeOfRegistrationInput"
               value="new"
               fromControlName="typeOfRegistration"
-              required
             />
             <label class="form-check-label" for="inlineRadio1">New</label>
           </div>
@@ -533,7 +510,6 @@
               id="typeOfRegistrationInput"
               value="delete"
               fromControlName="typeOfRegistration"
-              required
             />
             <label class="form-check-label" for="inlineRadio2"
               >Delete Prior</label
@@ -547,7 +523,6 @@
               id="typeOfRegistrationInput"
               value="update"
               fromControlName="typeOfRegistration"
-              required
             />
             <label class="form-check-label" for="inlineRadio3"
               >Update Prior</label
@@ -570,7 +545,290 @@
     <!-- SUBMIT SECTION -->
     <mat-step>
       <ng-template matStepLabel>Submit</ng-template>
-      
+      <div class="container contact-form">
+        <h3>You're Almost Done!</h3>
+        <p class="instruction">
+          Please confirm the information below. If there is any mistake, click
+          on the heading to go back and make changes. Click Submit once done!
+        </p>
+
+        <!-- Contractor Information -->
+        <div class="row">
+          <div class="col">
+            <h4>
+              <button class="btnSub" mat-raised-button color="accent">
+                Contractor
+              </button>
+            </h4>
+
+            <div>
+              <h6>First Name</h6>
+              <div class="sub-group">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation.firstName ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Middle Initial</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation.middleInitial ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Last Name</h6>
+              <div class="sub-group">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation.lastName || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Company Name</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation.companyName ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Company Email</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation
+                      .companyEmailAddress || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Company Street Address</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation
+                      .companyStreetAddress || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>City</h6>
+              <div class="subgroup">
+                <p>
+                  {{ formContractor.value.contractorInformation.city || "N/A" }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>State</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation.state || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Zipcode</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation.zipCode || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Phone Number</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorInformation.phoneNumber ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- County Information -->
+          <div class="col">
+            <h4>
+              <button class="btnSub" mat-raised-button color="accent">
+                County
+              </button>
+            </h4>
+
+            <div>
+              <h6>Contract Work Order No</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation
+                      .contractWorkOrderNumber || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Contract Expiration Date</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation
+                      .contractExpirationDate || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>County Email Address</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation.countyEmailAddress ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Phone Number</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation.phoneNumber || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Department Name</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation.departmentName ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Department Number</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation.departmentNumber ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Business Street Address</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation
+                      .businessStreetAddress || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Business City</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation.businessCity || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Business Zipcode</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.countyInformation.businessZipCode ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Policy Rules Information -->
+          <div class="col">
+            <h4>
+              <button class="btnSub" mat-raised-button color="accent">
+                Policy Rules
+              </button>
+            </h4>
+
+            <div>
+              <h6>Selected Policies</h6>
+              <div class="subgroup">
+                <div>Default County Wide Policy</div>
+              </div>
+            </div>
+
+            <div>
+              <h6>Selected Social Networking</h6>
+              <div class="subgroup">
+                <p class="font-weight-light"></p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Type Of Registration</h6>
+              <div class="subgroup">
+                <p class="font-weight-light"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Access Information -->
+
+        <!-- Additional Information -->
+
+        <div class="text-center">
+          <button class="btnContact" (click)="onClick()">Submit</button>
+        </div>
+      </div>
 
       <!--<app-submit [regForm]="formContractor"></app-submit>-->
     </mat-step>

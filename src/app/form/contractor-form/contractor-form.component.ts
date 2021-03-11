@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ModuleWithComponentFactories, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
@@ -113,7 +113,7 @@ export class ContractorFormComponent implements OnInit {
         socialNetworkingFacebookIsChecked: new FormControl(null),
         socialNetworkingTwitterIsChecked: new FormControl(null),
         socialNetworkingLinkedInIsChecked: new FormControl(null),
-        typeOfRegistration: new FormControl(null, Validators.required),
+        typeOfRegistration: new FormControl(null),
       }),
       accessInformation: new FormGroup ({
         //IBM Data Center Access
@@ -140,7 +140,7 @@ export class ContractorFormComponent implements OnInit {
   }
 
   onClick(): void {
-    
+    console.log(JSON.stringify(this.formContractor.value));
   }
 }
 
