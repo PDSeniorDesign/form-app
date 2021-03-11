@@ -289,7 +289,7 @@
               (click)="toggleFormRender('ibm')"
               >IBM Access Information
             </mat-button-toggle>
-            <div *ngIf="renderIBMForm === true" class="ibmForm">
+            <div class="ibmForm">
               <div>
                 <!-- TODO: Add a heading here -->
                 <mat-form-field formGroupName="accessInformation">
@@ -341,7 +341,7 @@
               (click)="toggleFormRender('unix')"
               >Unix Environment Access</mat-button-toggle
             >
-            <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
+            <div class="unix-access-form">
               <!-- TODO: Needs the Type of Request section -->
               <div>
                 <mat-form-field formGroupName="accessInformation">
@@ -393,10 +393,7 @@
               (click)="toggleFormRender('securid')"
               >SecurID Remote Access</mat-button-toggle
             >
-            <div
-              *ngIf="renderSecurIdAccess === true"
-              class="secur-id-access-form"
-            >
+            <div class="secur-id-access-form">
               <div>
                 <mat-form-field formGroupName="accessInformation">
                   <mat-label>Billing Account Number</mat-label>
