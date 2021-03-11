@@ -6,7 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -61,6 +62,7 @@ import { SharedModule } from './shared/shared.module';
     MatSelectModule,
     MatRadioModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatCardModule, 
     AppRoutingModule,
