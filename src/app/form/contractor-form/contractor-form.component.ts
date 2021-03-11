@@ -1,9 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-contractor-form',
@@ -79,7 +80,7 @@ export class ContractorFormComponent implements OnInit {
         contractWorkOrderNumber: new FormControl(null,
           Validators.required
           ),
-        contactExpirationDate: new FormControl(null,
+        contractExpirationDate: new FormControl(null,
           [Validators.required] //Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]
           ),
         countyEmailAddress: new FormControl(null,
@@ -136,6 +137,10 @@ export class ContractorFormComponent implements OnInit {
     });
 
     this.hasSubmitted = false;
+  }
+
+  onClick(): void {
+    
   }
 }
 
