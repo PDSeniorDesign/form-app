@@ -5,6 +5,7 @@
   class="container"
 >
   <mat-horizontal-stepper #stepper linear>
+    <!-- Contractor Step -->
     <mat-step
       formGroupName="contractorInformation"
       [stepControl]="formContractor.get('contractorInformation')"
@@ -187,12 +188,16 @@
       <!--<app-contractor-information [regForm]="formContractor"></app-contractor-information>-->
     </mat-step>
 
+
+    <!-- County Step -->
     <mat-step
       formGroupName="countyInformation"
       [stepControl]="formContractor.get('countyInformation')"
     >
       <ng-template matStepLabel>County</ng-template>
-      <h2 class="mat-display-1" style="margin-bottom: 32px">County Information</h2>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        County Information
+      </h2>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Contract Work Order No</mat-label>
@@ -221,7 +226,7 @@
             required
             [errorStateMatcher]="errorStateMatcher"
           />
-          <mat-error>Contract experiration date is required</mat-error>
+          <mat-error>Contract expiration date is required</mat-error>
         </mat-form-field>
       </div>
       <div>
@@ -349,7 +354,45 @@
 
     <mat-step>
       <ng-template matStepLabel>Registration</ng-template>
-      <h2 class="mat-display-1" style="margin-bottom: 32px">Registration Information</h2>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Registration Information
+      </h2>
+      <!-- Information -->
+      <div>
+        <br />
+        <h6>Policy Rules Descriptions:</h6>
+        <p>
+          <small
+            >Apply default Countywide Policy: block Pornography, Adult/Mature,
+            Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
+            Personals/Dating, Social Networking, Phishing,
+            Spyware/Effect/Malware, Hacking, Proxy Avoidance and Remote Access
+            Tools.<br />
+            Department Policy Rule 0: Allow full access, no restrictions.<br />
+            Department Policy Rule 1: Allow access to Pornography, Adult/Mature,
+            Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
+            Personals/Dating, Social Networking.<br />
+            Department Policy Rule 2: Allow access to Phishing,
+            Spyware/Effect/Malware, Hacking, Proxy Avoidance, Remote Access
+            Tools.<br />
+            Department Policy Rule 3: Countywide Global Policy + add’l
+            categories (chosen by your department).<br />
+            Department Policy Rule 4: Remove categories from the Global Policy
+            (chosen by your department).<br />
+            Social Networking Facebook / Twitter / LinkedIn: Allow access to
+            Facebook, Twitter, and LinkedIn, respectively.<br />
+            <br />
+            <span style="color: red"
+              >Please Note: Policy Rules “0” through “4” and Social Networking
+              Facebook, Twitter and LinkedIn are not setup by default. Your
+              department must have already submitted an approved “Category
+              Selection Worksheet” before you can request to have rules “0”
+              through “4” applied.</span
+            ></small
+          >
+        </p>
+      </div>
+
       <!-- First Row -->
       <div>
         <div class="form-check form-check-inline">
@@ -457,7 +500,6 @@
               type="checkbox"
               id="socialNetworkingLinkedInIsCheckedInput"
               fromControlName="socialNetworkingLinkedInIsChecked"
-              
             />
             <label class="form-check-label" for="inlineCheckbox3"
               >Social Networking LinkedIn</label
@@ -467,6 +509,7 @@
       </div>
 
       <!-- NEW, UPDATE, DELETE PRIOR -->
+
       <div class="mt-2">
         <h4>Type of Registration</h4>
         <div>
@@ -511,7 +554,7 @@
             >
           </div>
         </div>
-        <br>
+        <br />
       </div>
 
       <div class="button-container">
@@ -521,46 +564,15 @@
         </button>
       </div>
 
-      <div>
-        <br>
-        <h6>Policy Rules Descriptions:</h6>
-        <p>
-          <small
-            >Apply default Countywide Policy: block Pornography, Adult/Mature,
-            Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
-            Personals/Dating, Social Networking, Phishing,
-            Spyware/Effect/Malware, Hacking, Proxy Avoidance and Remote Access
-            Tools.<br />
-            Department Policy Rule 0: Allow full access, no restrictions.<br />
-            Department Policy Rule 1: Allow access to Pornography, Adult/Mature,
-            Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
-            Personals/Dating, Social Networking.<br />
-            Department Policy Rule 2: Allow access to Phishing,
-            Spyware/Effect/Malware, Hacking, Proxy Avoidance, Remote Access
-            Tools.<br />
-            Department Policy Rule 3: Countywide Global Policy + add’l
-            categories (chosen by your department).<br />
-            Department Policy Rule 4: Remove categories from the Global Policy
-            (chosen by your department).<br />
-            Social Networking Facebook / Twitter / LinkedIn: Allow access to
-            Facebook, Twitter, and LinkedIn, respectively.<br />
-            <br>
-            <span style="color: red"
-              >Please Note: Policy Rules “0” through “4” and Social Networking
-              Facebook, Twitter and LinkedIn are not setup by default. Your
-              department must have already submitted an approved “Category
-              Selection Worksheet” before you can request to have rules “0”
-              through “4” applied.</span
-            ></small
-          >
-        </p>
-      </div>
       <!-- <app-policy-rules></app-policy-rules> -->
     </mat-step>
 
+    <!-- SUBMIT SECTION -->
     <mat-step>
       <ng-template matStepLabel>Submit</ng-template>
-      <app-submit [regForm]="formContractor"></app-submit>
+      
+
+      <!--<app-submit [regForm]="formContractor"></app-submit>-->
     </mat-step>
   </mat-horizontal-stepper>
 </form>
