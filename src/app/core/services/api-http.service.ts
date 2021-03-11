@@ -30,11 +30,45 @@ export class ApiHttpService {
     return JSON.stringify(reformated);
   }
 
+  public reformatContractData(data:any) {
+    const reformated = {
+      //contractor info
+      lastName: data.contractorInformation.lastName,
+      firstName: data.contractorInformation.firstName,
+      middleInitial: data.contractorInformation.middleInitial,
+      companyName: data.contractorInformation.companyName,
+      companyEmailAddress: data.contractorInformation.companyEmailAddress,
+      companyStreetAddress: data.contractorInformation.companyStreetAddress,
+      companyCity: data.contractorInformation.city,
+      companyState: data.contractorInformation.state,
+      companyZip: data.contractorInformation.zipCode,
+      companyPhoneNumber: data.contractorInformation.phoneNumber,
+      //county info
+      contractWorkOrderNumber: data.countyInformation.contractWorkOrderNumber,
+      contractExpirationDate: data.countyInformation.contractExpirationDate,
+      countyEmailAddress: data.countyInformation.countyEmailAddress,
+      businessPhoneNumber: data.countyInformation.phoneNumber,
+      departmentName: data.countyInformation.departmentName,
+      departmentNumber: data.countyInformation.departmentNumber,
+      businessStreetAddress: data.countyInformation.businessStreetAddress,
+      businessCity: data.countyInformation.businessCity,
+      businessZip: data.countyInformation.businessZipCode,
+    }
+    return JSON.stringify(reformated);
+  }
+
   public createForm(data: any) {
     return this.http.post(
       `${environment.apiUrl}/service_requests`,
       this.reformatDataPost(data),
       this.httpOptions
+    );
+  }
+
+  public createContractForm(data: any) {
+    return this.http.post(`${environment.apiUrl}/service_requests`,
+    this.reformatContractData(data),
+    this.httpOptions
     );
   }
 
