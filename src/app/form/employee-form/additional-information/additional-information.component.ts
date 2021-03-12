@@ -31,25 +31,34 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
 })
 export class AdditionalInformationComponent implements OnInit {
   // Functions from parent component (employee-form)
-  @Input() printForm;
-  @Input() save;
+  @Input() printForm: () => void;
+  @Input() save: () => void;
 
   // These variable represent if the user wants access to these items
-  internetAccess: boolean = false;
-  emailAccount: boolean = false;
-  emailEncryption: boolean = false;
-  laCountyAccess: boolean = false;
-  tokenlessAuth: boolean = false;
-  lacMobile: boolean = false;
-  cherwellSMS: boolean = false;
-  windowsManagement: boolean = false;
+  internetAccess: boolean;
+  emailAccount: boolean;
+  emailEncryption: boolean;
+  laCountyAccess: boolean;
+  tokenlessAuth: boolean;
+  lacMobile: boolean;
+  cherwellSMS: boolean;
+  windowsManagement: boolean;
 
   // Options will be used for the chips
   options = new Set();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.internetAccess = false;
+    this.emailAccount = false;
+    this.emailEncryption = false;
+    this.laCountyAccess = false;
+    this.tokenlessAuth = false;
+    this.lacMobile = false;
+    this.cherwellSMS = false;
+    this.windowsManagement = false;
+  }
 
   /**
    *
@@ -69,7 +78,7 @@ export class AdditionalInformationComponent implements OnInit {
   }
 
   // FOR TESTING PURPOSES
-  sampleFunction() {
+  sampleFunction(): void {
     console.log('Internet Access: ', this.internetAccess);
     console.log('Email Account: ', this.emailAccount);
     console.log('Email Encryption: ', this.emailEncryption);

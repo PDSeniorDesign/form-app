@@ -2,35 +2,39 @@
   <h2 class="mat-display-1">Applications Requested</h2>
 
   <div *ngIf="options.size" @myAnimation>
-    <p>Options selected</p>
+    <p id="hello">Options selected</p>
     <mat-chip-list class="example-chip">
       <mat-chip @myAnimation class="example-box" *ngFor="let option of options">
         {{ option }} <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
-    <hr @myAnimation/>
+    <hr @myAnimation />
   </div>
   <h3 class="mat-title">Select the following options</h3>
   <div class="flex-container">
-    <div class="flex-column">
+    <!-- For some reason need to also apply to parent in order for this style to work, access-option-button -->
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="internetAccess"
+        class="access-option-button"
         [checked]="internetAccess"
         (change)="onButtonChange($event, 'Internet Access')"
         >Internet Access
       </mat-button-toggle>
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="emailAccount"
+        class="access-option-button"
         [checked]="emailAccount"
         (change)="onButtonChange($event, 'Email Account')"
         >Email Account</mat-button-toggle
       >
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="emailEncryption"
+        class="access-option-button"
         [checked]="emailEncryption"
         (change)="onButtonChange($event, 'Email Encryption')"
         >Email Encryption</mat-button-toggle
@@ -38,25 +42,28 @@
     </div>
   </div>
   <div class="flex-container">
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="laCountyAccess"
+        class="access-option-button"
         [checked]="laCountyAccess"
         (change)="onButtonChange($event, 'LA County Access')"
         >LACounty.gov Access</mat-button-toggle
       >
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="tokenlessAuth"
+        class="access-option-button"
         [checked]="tokenlessAuth"
         (change)="onButtonChange($event, 'Tokenless Authentication')"
         >Tokenless Authentication</mat-button-toggle
       >
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="lacMobile"
+        class="access-option-button"
         [checked]="lacMobile"
         (change)="onButtonChange($event, 'LAC Mobile')"
         >LACMobile</mat-button-toggle
@@ -64,17 +71,19 @@
     </div>
   </div>
   <div class="flex-container">
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="cherwellSMS"
+        class="access-option-button"
         [checked]="cherwellSMS"
         (change)="onButtonChange($event, 'Cherwell SMS')"
         >Cherwell SMS</mat-button-toggle
       >
     </div>
-    <div class="flex-column" style="justify-content: left">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="windowsManagement"
+        class="access-option-button"
         [checked]="windowsManagement"
         (change)="onButtonChange($event, 'Windows Rights Management')"
         >Window Rights Management</mat-button-toggle
