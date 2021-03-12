@@ -454,11 +454,12 @@
     </mat-step>
 
     <!-- Department -->
-    <mat-step>
+    <mat-step [stepControl]="form.get('additionalInformation')">
       <ng-template matStepLabel>Additional Information</ng-template>
       <app-additional-information
         [printForm]="printForm"
         [save]="save"
+        [form]="form"
       ></app-additional-information>
     </mat-step>
     <!-- Submit -->
