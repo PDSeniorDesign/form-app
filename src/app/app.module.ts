@@ -3,12 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,7 +29,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthGuard } from './core/services/auth.guard';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
-import { SubmitComponent } from './form/contractor-form/submit/submit.component';
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
@@ -40,7 +44,6 @@ import { SharedModule } from './shared/shared.module';
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
-    SubmitComponent,
     FormActionSelectionComponent,
     AdminComponent,
     AdminHeaderComponent,
@@ -59,6 +62,12 @@ import { SharedModule } from './shared/shared.module';
     MatListModule,
     MatStepperModule,
     MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatCardModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
@@ -67,8 +76,7 @@ import { SharedModule } from './shared/shared.module';
     MatCheckboxModule,
     MatButtonToggleModule,
     MatFormFieldModule,
-    MatChipsModule
-
+    MatChipsModule,
   ],
   exports: [],
   providers: [AuthGuard],

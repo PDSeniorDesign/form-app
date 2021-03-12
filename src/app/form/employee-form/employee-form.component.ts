@@ -68,80 +68,93 @@ export class EmployeeFormComponent implements OnInit {
      * are continuing a form.
      */
     // TODO: Work on filling Access Information if user is continuing form
-    if (this.formDataService.formData != undefined) {
+    if (this.formDataService.formData !== undefined) {
       // Set request number
       this.requestNumber = this.formDataService.formData.requestNumber;
 
       this.form = new FormGroup({
         personalInformation: new FormGroup({
-          lastName: new FormControl(this.formDataService.formData['lastName'], [
+          lastName: new FormControl(this.formDataService.formData.lastName, [
             Validators.required,
             Validators.pattern('[a-z A-Z]*'),
           ]),
-          firstName: new FormControl(
-            this.formDataService.formData['firstName'],
-            [Validators.required, Validators.pattern('[a-z A-Z]*')]
-          ),
+          firstName: new FormControl(this.formDataService.formData.firstName, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
           middleInitial: new FormControl(
-            this.formDataService.formData['middleInitial'],
+            this.formDataService.formData.middleInitial,
             Validators.pattern('[a-z A-Z]*')
           ),
           emailAddress: new FormControl(
-            this.formDataService.formData['employeeEmailAddress'],
+            this.formDataService.formData.employeeEmailAddress,
             [Validators.required, Validators.email]
           ),
           phoneNumber: new FormControl(
-            this.formDataService.formData['businessPhoneNumber'],
+            this.formDataService.formData.businessPhoneNumber,
             [Validators.required, Validators.pattern('[0-9]{10}')]
           ),
         }),
         addressInformation: new FormGroup({
           address: new FormControl(
-            this.formDataService.formData['businessStreetAddress'],
+            this.formDataService.formData.businessStreetAddress,
             Validators.required
           ),
-          city: new FormControl(this.formDataService.formData['businessCity'], [
+          city: new FormControl(this.formDataService.formData.businessCity, [
             Validators.required,
             Validators.pattern('[a-z A-Z]*'),
           ]),
-          state: new FormControl(
-            this.formDataService.formData['businessState'],
-            [Validators.required, Validators.pattern('[a-z A-Z]*')]
-          ),
-          zipCode: new FormControl(
-            this.formDataService.formData['businessZip'],
-            [
-              Validators.required,
-              Validators.minLength(5),
-              Validators.maxLength(7),
-              Validators.pattern('[0-9]*'),
-            ]
-          ),
+          state: new FormControl(this.formDataService.formData.businessState, [
+            Validators.required,
+            Validators.pattern('[a-z A-Z]*'),
+          ]),
+          zipCode: new FormControl(this.formDataService.formData.businessZip, [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(7),
+            Validators.pattern('[0-9]*'),
+          ]),
         }),
         employeeInformation: new FormGroup({
           employeeNumber: new FormControl(
-            this.formDataService.formData['employeeNumber'],
+            this.formDataService.formData.employeeNumber,
             [Validators.required]
           ),
           hostedId: new FormControl(
-            this.formDataService.formData['hostedId'],
+            this.formDataService.formData.hostedId,
             Validators.required
           ),
         }),
         accessInformation: new FormGroup({
           // IBM Data Center Access
-          ibmLogonId: new FormControl(null),
-          majorGroupCode: new FormControl(null),
-          lsoGroupCode: new FormControl(null),
-          securityAuthorization: new FormControl(null),
+          ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
+          majorGroupCode: new FormControl(
+            this.formDataService.formData.majorGroupCode
+          ),
+          lsoGroupCode: new FormControl(
+            this.formDataService.formData.lsoGroupCode
+          ),
+          securityAuthorization: new FormControl(
+            this.formDataService.formData.securityAuthorization
+          ),
           // Unix Environment Access
-          unixLogonId: new FormControl(null),
-          application: new FormControl(null),
-          accessGroup: new FormControl(null),
-          accountNumber: new FormControl(null),
+          unixLogonId: new FormControl(
+            this.formDataService.formData.unixLogOnId
+          ),
+          application: new FormControl(
+            this.formDataService.formData.unixApplication
+          ),
+          accessGroup: new FormControl(
+            this.formDataService.formData.unixAccessGroup
+          ),
+          accountNumber: new FormControl(
+            this.formDataService.formData.unixAccountNumber
+          ),
           // SecurID Remote Access
-          billingAccountNumber: new FormControl(null),
-          accessType: new FormControl(null),
+          billingAccountNumber: new FormControl(
+            this.formDataService.formData.billingAccountNumber
+          ),
+          accessType: new FormControl(null), // Not yet implemented on backend
         }),
       });
     } else {
@@ -266,7 +279,7 @@ export class EmployeeFormComponent implements OnInit {
 
   /**
    * @description This function is used by the buttons in access information step
-   * 
+   *
    * @param formName The form boolean that is going to be toggled.
    * Possible opitons: Ibm Access Infromation('ibm'), Unix Environment Access('unix'), SecurID Remote Access('securid')
    */
@@ -285,8 +298,8 @@ export class EmployeeFormComponent implements OnInit {
   };
 }
 
-//changes the ErrorStateMatcher to include dirty
-//removes the error message and red boxes after clicking next
+// changes the ErrorStateMatcher to include dirty
+// removes the error message and red boxes after clicking next
 export class InstantErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,

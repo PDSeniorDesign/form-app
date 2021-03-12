@@ -1,9 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, ModuleWithComponentFactories, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-contractor-form',
@@ -37,8 +38,10 @@ export class ContractorFormComponent implements OnInit {
   errorStateMatcher = new InstantErrorStateMatcher();
   hasSubmitted: boolean;
 
-  constructor(private formDataService: FormDataService,
-    private apiHttpService: ApiHttpService) {}
+  constructor(
+    private formDataService: FormDataService,
+    private apiHttpService: ApiHttpService
+    ) {}
 
   ngOnInit(): void {
     this.formContractor = new FormGroup({
@@ -79,7 +82,7 @@ export class ContractorFormComponent implements OnInit {
         contractWorkOrderNumber: new FormControl(null,
           Validators.required
           ),
-        contactExpirationDate: new FormControl(null,
+        contractExpirationDate: new FormControl(null,
           [Validators.required] //Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]
           ),
         countyEmailAddress: new FormControl(null,
@@ -103,16 +106,16 @@ export class ContractorFormComponent implements OnInit {
           ),
       }),
       policyRulesInformation: new FormGroup ({
-        applyDefaultCountywidePolicyIsChecked: new FormControl(null),
-        departmentPolicyRule0IsChecked: new FormControl(null),
-        departmentPolicyRule1IsChecked: new FormControl(null),
-        departmentPolicyRule2IsChecked: new FormControl(null),
-        departmentPolicyRule3IsChecked: new FormControl(null),
-        departmentPolicyRule4IsChecked: new FormControl(null),
-        socialNetworkingFacebookIsChecked: new FormControl(null),
-        socialNetworkingTwitterIsChecked: new FormControl(null),
-        socialNetworkingLinkedInIsChecked: new FormControl(null),
-        typeOfRegistration: new FormControl(null, Validators.required),
+        applyDefaultCountywidePolicyIsChecked: new FormControl(false),
+        departmentPolicyRule0IsChecked: new FormControl(false),
+        departmentPolicyRule1IsChecked: new FormControl(false),
+        departmentPolicyRule2IsChecked: new FormControl(false),
+        departmentPolicyRule3IsChecked: new FormControl(false),
+        departmentPolicyRule4IsChecked: new FormControl(false),
+        socialNetworkingFacebookIsChecked: new FormControl(false),
+        socialNetworkingTwitterIsChecked: new FormControl(false),
+        socialNetworkingLinkedInIsChecked: new FormControl(false),
+        typeOfRegistration: new FormControl(null),
       }),
       accessInformation: new FormGroup ({
         //IBM Data Center Access
@@ -136,6 +139,12 @@ export class ContractorFormComponent implements OnInit {
     });
 
     this.hasSubmitted = false;
+  }
+
+  onClick(): void {
+    console.log(JSON.stringify(this.formContractor.value)); //debugging
+
+    this.apiHttpService.createContractForm(this.formContractor.value);
   }
 }
 
