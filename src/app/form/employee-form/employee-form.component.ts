@@ -47,7 +47,7 @@ export class EmployeeFormComponent implements OnInit {
   form: FormGroup;
   submitResponse: object; // Will hold the response if submission is successful
   hasSubmitted: boolean;
-  currentIndex: number = 0;
+  currentIndex: number;
   errorStateMatcher = new InstantErrorStateMatcher();
 
   // Render booleans for the Access Information Step
@@ -61,6 +61,8 @@ export class EmployeeFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Setting inital step, 0
+    this.currentIndex = 0;
     console.log('from comp', this.formDataService.formData);
     /**
      * If there is a form in the form data service, then it most likely
