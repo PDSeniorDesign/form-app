@@ -69,7 +69,7 @@ export class ApiHttpService {
    * @param requestNumber The requestNumber is the number by which the forms are identified by. eg. the form's id.
    * @returns An Observable the will contain the form object.
    */
-  public getFormByRequestNumber(requestNumber: string): Observable<any> {
+  public getFormByRequestNumber(requestNumber: number): Observable<any> {
     return this.http.get(
       `${environment.apiUrl}/service_requests/` + requestNumber,
       this.httpOptions
