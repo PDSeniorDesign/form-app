@@ -15,18 +15,18 @@
     <!-- For some reason need to also apply to parent in order for this style to work, access-option-button -->
     <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="internetAccess"
+        id="internetApplication"
         class="access-option-button"
-        [checked]="internetAccess"
+        [checked]="internetApplication"
         (change)="onButtonChange($event, 'Internet Access')"
         >Internet Access
       </mat-button-toggle>
     </div>
     <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="emailAccount"
+        id="exchangeEmail"
         class="access-option-button"
-        [checked]="emailAccount"
+        [checked]="exchangeEmail"
         (change)="onButtonChange($event, 'Email Account')"
         >Email Account</mat-button-toggle
       >
@@ -44,27 +44,27 @@
   <div class="flex-container">
     <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="laCountyAccess"
+        id="laCountyGovAccess"
         class="access-option-button"
-        [checked]="laCountyAccess"
+        [checked]="laCountyGovAccess"
         (change)="onButtonChange($event, 'LA County Access')"
         >LACounty.gov Access</mat-button-toggle
       >
     </div>
     <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="tokenlessAuth"
+        id="tokenlessAuthentication"
         class="access-option-button"
-        [checked]="tokenlessAuth"
+        [checked]="tokenlessAuthentication"
         (change)="onButtonChange($event, 'Tokenless Authentication')"
         >Tokenless Authentication</mat-button-toggle
       >
     </div>
     <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="lacMobile"
+        id="lacMobileWifiAccess"
         class="access-option-button"
-        [checked]="lacMobile"
+        [checked]="lacMobileWifiAccess"
         (change)="onButtonChange($event, 'LAC Mobile')"
         >LACMobile</mat-button-toggle
       >
@@ -82,9 +82,9 @@
     </div>
     <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="windowsManagement"
+        id="windowsRightsMgmt"
         class="access-option-button"
-        [checked]="windowsManagement"
+        [checked]="windowsRightsMgmt"
         (change)="onButtonChange($event, 'Windows Rights Management')"
         >Window Rights Management</mat-button-toggle
       >
@@ -100,7 +100,7 @@
       matStepperNext
       color="primary"
       class="ml-2"
-      (click)="printForm()"
+      (click)="sampleFunction()"
     >
       Next
     </button>
