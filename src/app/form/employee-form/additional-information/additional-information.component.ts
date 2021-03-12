@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
 @Component({
@@ -33,6 +34,7 @@ export class AdditionalInformationComponent implements OnInit {
   // Functions from parent component (employee-form)
   @Input() printForm: () => void;
   @Input() save: () => void;
+  @Input() form: FormGroup;
 
   // These variable represent if the user wants access to these items
   internetAccess: boolean;
