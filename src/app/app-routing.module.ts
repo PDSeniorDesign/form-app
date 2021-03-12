@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminRequestComponent } from './admin/admin-request/admin-request.component';
 import { AdminComponent } from './admin/admin.component';
-import { ProfileComponent } from './admin/profile/profile.component';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { RequestStatusComponent } from './request-status/request-status.component';
+import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
+import { ResetPasswordComponent } from './admin/reset-password/reset-password.component'
+import { AuthGuard } from './core/services/auth.guard';
+import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 
 const routes: Routes = [
   {
@@ -22,24 +23,25 @@ const routes: Routes = [
     component: ContractorFormComponent,
   },
   {
-    path: 'request-status',
-    component: RequestStatusComponent,
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-  },
-  {
     path: 'admin',
     component: AdminComponent,
     children: [
       {
-        path: 'request-status',
-        component: RequestStatusComponent,
+        path: 'service-requests',
+        component: ServiceRequestsComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: ':requestNumber',
+            component: ServiceRequestsDetailComponent,
+            canActivate: [AuthGuard],
+          }
+        ]
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
+        path: 'reset-password',
+        component: ResetPasswordComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },
