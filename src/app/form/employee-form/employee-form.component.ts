@@ -69,7 +69,6 @@ export class EmployeeFormComponent implements OnInit {
      * means that the user is coming from the homepage. Meaning that they
      * are continuing a form.
      */
-    // TODO: Work on filling Access Information if user is continuing form
     if (this.formDataService.formData !== undefined) {
       // Set request number
       this.requestNumber = this.formDataService.formData.requestNumber;
@@ -158,6 +157,32 @@ export class EmployeeFormComponent implements OnInit {
           ),
           accessType: new FormControl(null), // Not yet implemented on backend
         }),
+        additionalInformation: new FormGroup({
+          internetApplication: new FormControl(
+            this.formDataService.formData.internetApplication
+          ),
+          exchangeEmail: new FormControl(
+            this.formDataService.formData.exchangeEmail
+          ),
+          emailEncryption: new FormControl(
+            this.formDataService.formData.emailEncryption
+          ),
+          laCountyGovAccess: new FormControl(
+            this.formDataService.formData.laCountyGovAccess
+          ),
+          tokenlessAuthentication: new FormControl(
+            this.formDataService.formData.tokenlessAuth
+          ),
+          lacMobileWifiAccess: new FormControl(
+            this.formDataService.formData.lacMobileWifiAccess
+          ),
+          cherwellSMS: new FormControl(
+            this.formDataService.formData.cherwellSMS
+          ),
+          windowsRightsMgmt: new FormControl(
+            this.formDataService.formData.windowsRightsMgmt
+          ),
+        }),
       });
     } else {
       // Starting a new form
@@ -227,6 +252,16 @@ export class EmployeeFormComponent implements OnInit {
           // SecurID Remote Access
           billingAccountNumber: new FormControl(null),
           accessType: new FormControl(null),
+        }),
+        additionalInformation: new FormGroup({
+          internetApplication: new FormControl(false),
+          exchangeEmail: new FormControl(false),
+          emailEncryption: new FormControl(false),
+          laCountyGovAccess: new FormControl(false),
+          tokenlessAuthentication: new FormControl(false),
+          lacMobileWifiAccess: new FormControl(false),
+          cherwellSMS: new FormControl(false),
+          windowsRightsMgmt: new FormControl(false),
         }),
         // TODO: Fill out the rest
       });
