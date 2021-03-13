@@ -25,3 +25,7 @@ div.flex-container {
 .access-option-button {
   width: 235px;
 }
+
+.mat-button-toggle-checked {
+  background-color: lawngreen;
+}

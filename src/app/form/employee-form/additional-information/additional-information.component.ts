@@ -63,7 +63,7 @@ export class AdditionalInformationComponent implements OnInit {
   }
 
   /**
-   *
+   * @description Updates the models in the component as well as the formgroup.
    * @param event This is the event that comes from the button. Contains information such as: checked
    * @param nameOfOption This is the name of the option to be added to the chiplist
    */
@@ -71,10 +71,17 @@ export class AdditionalInformationComponent implements OnInit {
     // Change to variable to represent the status of the button, whether clicked or not
     this[event.source.id] = event.source.checked;
 
+    // Update form group
+    this.form
+      .get(['additionalInformation', event.source.id])
+      .setValue(this[event.source.id]);
+
     // Add the option to options, to be represented in the chiplist
     if (event.source.checked) {
+      // Add to chiplist
       this.options.add(nameOfOption);
     } else {
+      // Remove from chiplist
       this.options.delete(nameOfOption);
     }
   }
