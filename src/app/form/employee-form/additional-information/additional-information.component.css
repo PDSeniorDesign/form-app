@@ -21,3 +21,11 @@ div.flex-container {
 .spacer {
   flex: 1 1 auto;
 }
+
+.access-option-button {
+  width: 235px;
+}
+
+.mat-button-toggle-checked {
+  background-color: lawngreen;
+}

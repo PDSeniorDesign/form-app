@@ -1,36 +1,40 @@
 <div style="width: 85%">
   <h2 class="mat-display-1">Applications Requested</h2>
-
-  <div *ngIf="options.size" @myAnimation>
-    <p>Options selected</p>
+  <!-- Chiplist -->
+  <!-- <div *ngIf="options.size" @myAnimation>
+    <p id="hello">Options selected</p>
     <mat-chip-list class="example-chip">
       <mat-chip @myAnimation class="example-box" *ngFor="let option of options">
         {{ option }} <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
-    <hr @myAnimation/>
-  </div>
+    <hr @myAnimation />
+  </div> -->
   <h3 class="mat-title">Select the following options</h3>
   <div class="flex-container">
-    <div class="flex-column">
+    <!-- For some reason need to also apply to parent in order for this style to work, access-option-button -->
+    <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="internetAccess"
-        [checked]="internetAccess"
+        id="internetApplication"
+        class="access-option-button"
+        [checked]="internetApplication"
         (change)="onButtonChange($event, 'Internet Access')"
         >Internet Access
       </mat-button-toggle>
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="emailAccount"
-        [checked]="emailAccount"
+        id="exchangeEmail"
+        class="access-option-button"
+        [checked]="exchangeEmail"
         (change)="onButtonChange($event, 'Email Account')"
         >Email Account</mat-button-toggle
       >
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
         id="emailEncryption"
+        class="access-option-button"
         [checked]="emailEncryption"
         (change)="onButtonChange($event, 'Email Encryption')"
         >Email Encryption</mat-button-toggle
@@ -38,44 +42,49 @@
     </div>
   </div>
   <div class="flex-container">
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="laCountyAccess"
-        [checked]="laCountyAccess"
+        id="laCountyGovAccess"
+        class="access-option-button"
+        [checked]="laCountyGovAccess"
         (change)="onButtonChange($event, 'LA County Access')"
         >LACounty.gov Access</mat-button-toggle
       >
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="tokenlessAuth"
-        [checked]="tokenlessAuth"
+        id="tokenlessAuthentication"
+        class="access-option-button"
+        [checked]="tokenlessAuthentication"
         (change)="onButtonChange($event, 'Tokenless Authentication')"
         >Tokenless Authentication</mat-button-toggle
       >
     </div>
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="lacMobile"
-        [checked]="lacMobile"
+        id="lacMobileWifiAccess"
+        class="access-option-button"
+        [checked]="lacMobileWifiAccess"
         (change)="onButtonChange($event, 'LAC Mobile')"
         >LACMobile</mat-button-toggle
       >
     </div>
   </div>
   <div class="flex-container">
-    <div class="flex-column">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="cherwellSMS"
-        [checked]="cherwellSMS"
+        id="cherwellSms"
+        class="access-option-button"
+        [checked]="cherwellSms"
         (change)="onButtonChange($event, 'Cherwell SMS')"
         >Cherwell SMS</mat-button-toggle
       >
     </div>
-    <div class="flex-column" style="justify-content: left">
+    <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="windowsManagement"
-        [checked]="windowsManagement"
+        id="windowsRightsMgmt"
+        class="access-option-button"
+        [checked]="windowsRightsMgmt"
         (change)="onButtonChange($event, 'Windows Rights Management')"
         >Window Rights Management</mat-button-toggle
       >
@@ -91,7 +100,7 @@
       matStepperNext
       color="primary"
       class="ml-2"
-      (click)="printForm()"
+      (click)="sampleFunction()"
     >
       Next
     </button>
