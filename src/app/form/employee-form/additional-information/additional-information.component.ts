@@ -100,14 +100,14 @@ export class AdditionalInformationComponent implements OnInit {
       .get(['additionalInformation', event.source.id])
       .setValue(this[event.source.id]);
 
-    // Add the option to options, to be represented in the chiplist
-    if (event.source.checked) {
-      // Add to chiplist
-      this.options.add(nameOfOption);
-    } else {
-      // Remove from chiplist
-      this.options.delete(nameOfOption);
-    }
+    // This is the code for the chiplist
+    // if (event.source.checked) {
+    //   // Add to chiplist
+    //   this.options.add(nameOfOption);
+    // } else {
+    //   // Remove from chiplist
+    //   this.options.delete(nameOfOption);
+    // }
   }
 
   // FOR TESTING PURPOSES
