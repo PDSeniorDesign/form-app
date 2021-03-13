@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AdminService {
+  //successful alert
+  loginAlert: boolean = false;
   //hold password for admin
   public adminPassword: any;
   //hold keyName for
