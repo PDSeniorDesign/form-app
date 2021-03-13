@@ -53,7 +53,7 @@ export class ApiHttpService {
       tokenlessAuthentication:
         data.additionalInformation.tokenlessAuthentication,
       lacMobileWifiAccess: data.additionalInformation.lacMobileWifiAccess,
-      cherwellSMS: data.additionalInformation.cherwellSMS,
+      cherwellSms: data.additionalInformation.cherwellSms,
       windowsRightsMgmt: data.additionalInformation.windowsRightsMgmt,
     };
     return JSON.stringify(reformated);

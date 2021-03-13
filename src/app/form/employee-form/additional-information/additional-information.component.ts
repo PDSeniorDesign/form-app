@@ -43,7 +43,7 @@ export class AdditionalInformationComponent implements OnInit {
   laCountyGovAccess: boolean;
   tokenlessAuthentication: boolean;
   lacMobileWifiAccess: boolean;
-  cherwellSMS: boolean;
+  cherwellSms: boolean;
   windowsRightsMgmt: boolean;
 
   // Options will be used for the chips
@@ -52,15 +52,39 @@ export class AdditionalInformationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.internetApplication = false;
-    this.exchangeEmail = false;
-    this.emailEncryption = false;
-    this.laCountyGovAccess = false;
-    this.tokenlessAuthentication = false;
-    this.lacMobileWifiAccess = false;
-    this.cherwellSMS = false;
-    this.windowsRightsMgmt = false;
-  }
+    this.internetApplication = this.form.get([
+      'additionalInformation',
+      'internetApplication',
+    ]).value;
+    this.exchangeEmail = this.form.get([
+      'additionalInformation',
+      'exchangeEmail',
+    ]).value;
+    this.emailEncryption = this.form.get([
+      'additionalInformation',
+      'emailEncryption',
+    ]).value;
+    this.laCountyGovAccess = this.form.get([
+      'additionalInformation',
+      'laCountyGovAccess',
+    ]).value;
+    this.tokenlessAuthentication = this.form.get([
+      'additionalInformation',
+      'tokenlessAuthentication',
+    ]).value;
+    this.lacMobileWifiAccess = this.form.get([
+      'additionalInformation',
+      'lacMobileWifiAccess',
+    ]).value;
+    this.cherwellSms = this.form.get([
+      'additionalInformation',
+      'cherwellSms',
+    ]).value;
+    this.windowsRightsMgmt = this.form.get([
+      'additionalInformation',
+      'windowsRightsMgmt',
+    ]).value;
+  } // 854572
 
   /**
    * @description Updates the models in the component as well as the formgroup.
@@ -94,7 +118,7 @@ export class AdditionalInformationComponent implements OnInit {
     console.log('La County Access: ', this.laCountyGovAccess);
     console.log('Tokenless Auth: ', this.tokenlessAuthentication);
     console.log('lacMobile: ', this.lacMobileWifiAccess);
-    console.log('Cherwell', this.cherwellSMS);
+    console.log('Cherwell', this.cherwellSms);
     console.log('Windows: ', this.windowsRightsMgmt);
   }
 }

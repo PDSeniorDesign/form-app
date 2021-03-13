@@ -176,8 +176,8 @@ export class EmployeeFormComponent implements OnInit {
           lacMobileWifiAccess: new FormControl(
             this.formDataService.formData.lacMobileWifiAccess
           ),
-          cherwellSMS: new FormControl(
-            this.formDataService.formData.cherwellSMS
+          cherwellSms: new FormControl(
+            this.formDataService.formData.cherwellSms
           ),
           windowsRightsMgmt: new FormControl(
             this.formDataService.formData.windowsRightsMgmt
@@ -260,7 +260,7 @@ export class EmployeeFormComponent implements OnInit {
           laCountyGovAccess: new FormControl(false),
           tokenlessAuthentication: new FormControl(false),
           lacMobileWifiAccess: new FormControl(false),
-          cherwellSMS: new FormControl(false),
+          cherwellSms: new FormControl(false),
           windowsRightsMgmt: new FormControl(false),
         }),
         // TODO: Fill out the rest

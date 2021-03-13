@@ -17,9 +17,7 @@
       <mat-button-toggle
         id="internetApplication"
         class="access-option-button"
-        [checked]="
-          form.get(['additionalInformation', 'internetApplication']).value
-        "
+        [checked]="internetApplication"
         (change)="onButtonChange($event, 'Internet Access')"
         >Internet Access
       </mat-button-toggle>
@@ -28,7 +26,7 @@
       <mat-button-toggle
         id="exchangeEmail"
         class="access-option-button"
-        [checked]="form.get(['additionalInformation', 'exchangeEmail']).value"
+        [checked]="exchangeEmail"
         (change)="onButtonChange($event, 'Email Account')"
         >Email Account</mat-button-toggle
       >
@@ -37,7 +35,7 @@
       <mat-button-toggle
         id="emailEncryption"
         class="access-option-button"
-        [checked]="form.get(['additionalInformation', 'emailEncryption']).value"
+        [checked]="emailEncryption"
         (change)="onButtonChange($event, 'Email Encryption')"
         >Email Encryption</mat-button-toggle
       >
@@ -48,9 +46,7 @@
       <mat-button-toggle
         id="laCountyGovAccess"
         class="access-option-button"
-        [checked]="
-          form.get(['additionalInformation', 'laCountyGovAccess']).value
-        "
+        [checked]="laCountyGovAccess"
         (change)="onButtonChange($event, 'LA County Access')"
         >LACounty.gov Access</mat-button-toggle
       >
@@ -59,9 +55,7 @@
       <mat-button-toggle
         id="tokenlessAuthentication"
         class="access-option-button"
-        [checked]="
-          form.get(['additionalInformation', 'tokenlessAuthentication']).value
-        "
+        [checked]="tokenlessAuthentication"
         (change)="onButtonChange($event, 'Tokenless Authentication')"
         >Tokenless Authentication</mat-button-toggle
       >
@@ -70,9 +64,7 @@
       <mat-button-toggle
         id="lacMobileWifiAccess"
         class="access-option-button"
-        [checked]="
-          form.get(['additionalInformation', 'lacMobileWifiAccess']).value
-        "
+        [checked]="lacMobileWifiAccess"
         (change)="onButtonChange($event, 'LAC Mobile')"
         >LACMobile</mat-button-toggle
       >
@@ -81,9 +73,9 @@
   <div class="flex-container">
     <div class="flex-column access-option-button">
       <mat-button-toggle
-        id="cherwellSMS"
+        id="cherwellSms"
         class="access-option-button"
-        [checked]="form.get(['additionalInformation', 'cherwellSMS']).value"
+        [checked]="cherwellSms"
         (change)="onButtonChange($event, 'Cherwell SMS')"
         >Cherwell SMS</mat-button-toggle
       >
@@ -92,9 +84,7 @@
       <mat-button-toggle
         id="windowsRightsMgmt"
         class="access-option-button"
-        [checked]="
-          form.get(['additionalInformation', 'windowsRightsMgmt']).value
-        "
+        [checked]="windowsRightsMgmt"
         (change)="onButtonChange($event, 'Windows Rights Management')"
         >Window Rights Management</mat-button-toggle
       >
@@ -110,7 +100,7 @@
       matStepperNext
       color="primary"
       class="ml-2"
-      (click)="printForm()"
+      (click)="sampleFunction()"
     >
       Next
     </button>
