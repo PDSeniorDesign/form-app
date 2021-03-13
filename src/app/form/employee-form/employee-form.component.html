@@ -271,23 +271,25 @@
       <ng-template matStepLabel>Access Information</ng-template>
       <!-- TODO: Work on naming and values -->
       <div>
-        <h1 class="mat-headline">Select Access Options</h1>
+        <h2 class="mat-display-1" style="margin-bottom: 16px">
+          Access Options
+        </h2>
         <p *ngIf="requestNumber">
           Your request number:
           <span style="color: red">{{ requestNumber }}</span>
         </p>
 
-        <div>
+        <div class="row">
           <!-- Access choices -->
 
           <!-- IBM Access info button -->
-          <div class="access-option-button">
+          <div class="access-option-button col-sm-12 col-md-4">
             <mat-button-toggle
               id="ibm-access-btn"
               (click)="toggleFormRender('ibm')"
               >IBM Access Information
             </mat-button-toggle>
-            <div *ngIf="renderIBMForm === true" class="ibmForm">
+            <div class="ibmForm">
               <div>
                 <!-- TODO: Add a heading here -->
                 <mat-form-field formGroupName="accessInformation">
@@ -333,13 +335,13 @@
           </div>
 
           <!-- Unix Environment button -->
-          <div class="access-option-button">
+          <div class="access-option-button col-sm-12 col-md-4">
             <mat-button-toggle
               id="unix-access-btn"
               (click)="toggleFormRender('unix')"
               >Unix Environment Access</mat-button-toggle
             >
-            <div *ngIf="renderUnixEnvAccess === true" class="unix-access-form">
+            <div class="unix-access-form">
               <!-- TODO: Needs the Type of Request section -->
               <div>
                 <mat-form-field formGroupName="accessInformation">
@@ -385,16 +387,13 @@
           </div>
 
           <!-- SecurId button -->
-          <div class="access-option-button">
+          <div class="access-option-button col-sm-12 col-md-4">
             <mat-button-toggle
               id="securid-access-btn"
               (click)="toggleFormRender('securid')"
               >SecurID Remote Access</mat-button-toggle
             >
-            <div
-              *ngIf="renderSecurIdAccess === true"
-              class="secur-id-access-form"
-            >
+            <div class="secur-id-access-form">
               <div>
                 <mat-form-field formGroupName="accessInformation">
                   <mat-label>Billing Account Number</mat-label>
@@ -457,7 +456,10 @@
     <!-- Department -->
     <mat-step>
       <ng-template matStepLabel>Additional Information</ng-template>
-      <app-additional-information></app-additional-information>
+      <app-additional-information
+        [printForm]="printForm"
+        [save]="save"
+      ></app-additional-information>
     </mat-step>
     <!-- Submit -->
     <mat-step>
@@ -485,9 +487,9 @@
     <hr />
     <p>
       Here is your reference number:
-      <span id="request-number" class="font-weight-bold"
-        >{{ submitResponse.requestNumber }}</span
-      >
+      <span id="request-number" class="font-weight-bold">{{
+        submitResponse.requestNumber
+      }}</span>
     </p>
     <p>Please save this for future reference.</p>
   </div>
