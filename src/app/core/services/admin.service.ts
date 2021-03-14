@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AdminService {
-  //successful alert
-  loginAlert: boolean = false;
+  //tranferring form data in admin side between components
+  public adminFormData: any;
   //hold password for admin
   public adminPassword: any;
   //hold keyName for
