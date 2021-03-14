@@ -8,3 +8,29 @@ div {
 button {
   text-align: center;
 }
+
+.main-div{
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  position: fixed;
+  max-height: 0px;
+  margin-top: 0px;
+  
+}
+
+.login-form {
+  padding-top: 40px;
+
+}
+
+mat-card-title {
+  text-align:center; 
+  padding-top: 40px;
+
+}
+

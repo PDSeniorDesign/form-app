@@ -35,6 +35,9 @@ import { SubmitPageComponent } from './form/employee-form/submit-page/submit-pag
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SharedModule } from './shared/shared.module';
+import { ReviewRequestComponent } from './admin/review-request/review-request.component';
+import { ReviewSubmitComponent } from './admin/review-request/review-submit/review-submit.component';
+import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { SharedModule } from './shared/shared.module';
     ServiceRequestsComponent,
     ResetPasswordComponent,
     ServiceRequestsDetailComponent,
+    ReviewRequestComponent,
+    ReviewSubmitComponent,
+    ReviewEmployeeComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { ServiceRequestsComponent } from './admin/service-requests/service-reque
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component'
 import { AuthGuard } from './core/services/auth.guard';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
+import { ReviewRequestComponent } from './admin/review-request/review-request.component';
 
 const routes: Routes = [
   {
@@ -30,13 +31,16 @@ const routes: Routes = [
         path: 'service-requests',
         component: ServiceRequestsComponent,
         canActivate: [AuthGuard],
-        children: [
-          {
-            path: ':requestNumber',
-            component: ServiceRequestsDetailComponent,
-            canActivate: [AuthGuard],
-          }
-        ]
+      },
+      {
+        path: 'service-request-detail',
+        component: ServiceRequestsDetailComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'review-request',
+        component: ReviewRequestComponent,
+        
       },
       {
         path: 'reset-password',
