@@ -45,6 +45,16 @@ export class ApiHttpService {
       unixAccountNumber: data.accessInformation.accountNumber,
       billingAccountNumber: data.accessInformation.billingAccountNumber,
       // FIXME: On server side accessType(securid) might be misssing
+      // Additional Information
+      internetApplication: data.additionalInformation.internetApplication,
+      exchangeEmail: data.additionalInformation.exchangeEmail,
+      emailEncryption: data.additionalInformation.emailEncryption,
+      laCountyGovAccess: data.additionalInformation.laCountyGovAccess,
+      tokenlessAuthentication:
+        data.additionalInformation.tokenlessAuthentication,
+      lacMobileWifiAccess: data.additionalInformation.lacMobileWifiAccess,
+      cherwellSms: data.additionalInformation.cherwellSms,
+      windowsRightsMgmt: data.additionalInformation.windowsRightsMgmt,
     };
     return JSON.stringify(reformated);
   }
