@@ -23,7 +23,7 @@ export class ApiHttpService {
    */
   public reformatDataPostEmployee(data: any, isComplete: boolean): string {
     const reformated = {
-      // Form data
+      // Form specific data
       complete: isComplete,
       employee: true, // Since it is the employee form
       // Personal Information
@@ -67,6 +67,8 @@ export class ApiHttpService {
 
   public reformatContractData(data: any): string {
     const reformated = {
+      // Form specific data
+      employee: false,
       // contractor info
       lastName: data.contractorInformation.lastName,
       firstName: data.contractorInformation.firstName,
@@ -93,17 +95,26 @@ export class ApiHttpService {
   }
 
   /**
-   * @description This method will create the form serverside.
+   * @description This method will create the form serverside. Handles both employee and contractor forms.
    * @param data This is the value field of the FormGroup object. eg. FormGroup.value
+   * @param isEmployee If the form is from an employee, set this to true. Else, it will be considered a contractor form serverside.
    * @returns An observable that will return the created form back from the server.
    */
-  public createForm(data: any): Observable<any> {
-    // TODO: This should set the completed field to complete
-    return this.http.post(
-      `${environment.apiUrl}/service_requests`,
-      this.reformatDataPostEmployee(data, false), // Initially creating the form
-      this.httpOptions
-    );
+  public createForm(data: any, isEmployee: boolean): Observable<any> {
+    if (isEmployee) {
+      return this.http.post(
+        `${environment.apiUrl}/service_requests`,
+        this.reformatDataPostEmployee(data, false), // Initially creating the form
+        this.httpOptions
+      );
+      // Contractor form
+    } else {
+      return this.http.post(
+        `${environment.apiUrl}/service_requests`,
+        this.reformatContractData(data),
+        this.httpOptions
+      );
+    }
   }
 
   /**
@@ -115,14 +126,6 @@ export class ApiHttpService {
     return this.http.post(
       `${environment.apiUrl}/service_requests`,
       this.reformatDataPostEmployee(data, true), // Form is complete
-      this.httpOptions
-    );
-  }
-
-  public createContractForm(data: any): Observable<any> {
-    return this.http.post(
-      `${environment.apiUrl}/service_requests`,
-      this.reformatContractData(data),
       this.httpOptions
     );
   }

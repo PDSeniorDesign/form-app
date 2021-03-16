@@ -118,7 +118,7 @@ export class ContractorFormComponent implements OnInit {
         typeOfRegistration: new FormControl(null),
       }),
       accessInformation: new FormGroup ({
-        //IBM Data Center Access
+        // IBM Data Center Access
         ibmChecked: new FormControl (null,
           ),
         ibmLogonId: new FormControl(null),
@@ -142,14 +142,18 @@ export class ContractorFormComponent implements OnInit {
   }
 
   onClick(): void {
-    console.log(JSON.stringify(this.formContractor.value)); //debugging
+    console.log(JSON.stringify(this.formContractor.value)); // debugging
 
-    this.apiHttpService.createContractForm(this.formContractor.value);
+    this.apiHttpService
+      .createForm(this.formContractor.value, false)
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 }
 
-//changes the ErrorStateMatcher to include dirty
-//removes the error message and red boxes after clicking next
+// changes the ErrorStateMatcher to include dirty
+// removes the error message and red boxes after clicking next
 export class InstantErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
