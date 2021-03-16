@@ -51,7 +51,7 @@ export class SubmitPageComponent implements OnInit {
       // If the else statement executes, then the user probably didn't save their progress
       // as they were completing the form
     } else {
-      this.apiHttpService.createForm(this.regForm.value).subscribe((res) => {
+      this.apiHttpService.createForm(this.regForm.value, true).subscribe((res) => {
         console.log(res);
         this.setSubmitResponse(res);
       });
