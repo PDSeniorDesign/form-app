@@ -8,17 +8,19 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./service-requests.component.css'],
 })
 export class ServiceRequestsComponent implements OnInit {
-  @Input() regForm;
   //access three variable in form: id, request status, first name, last name
   requestNumber: any;
   requestStatus: any;
   firstName: any;
   lastName: any;
 
+  //request_ number to sent to employee...and contractor...
+  request_number: any;
+
   //save each request into array for display
   @Input() personData: Array<any> = [];
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
     this.adminService.display().subscribe((res) => {
@@ -27,19 +29,60 @@ export class ServiceRequestsComponent implements OnInit {
     });
   }
 
-  //call service to display based on ID
+  //Delete function later on
+  //call service to display based on ID on button click
   onClick(id: any): void {
     this.adminService.searchById(id).subscribe((res) => {
       this.parseObject(res);
     });
   }
 
-  //debugging: view details on button click
+  //view details on button click
   viewDetails(id: any): void {
     this.adminService.searchById(id).subscribe((res) => {
+      //debugging
       console.log(res);
+      this.retrieveRequestNumber(res);
+      //save res to adminFormdata to transfer between components
+      this.adminService.adminFormData = res;
+      console.log(this.adminService.adminFormData.requestNumber);
+
+      //go to service request details page
+      this.router.navigate(['/admin/service-request-detail']);
+      
+
     });
   }
+
+  edit(id: any): void {
+    this.adminService.searchById(id).subscribe((res) => {
+      console.log(res);
+      this.retrieveRequestNumber(res);
+      //save res to adminFormdata to transfer between components
+      this.adminService.adminFormData = res;
+      console.log(this.adminService.adminFormData.requestNumber);
+      //if not employee -- go to contractor side
+      //this.router.navigate(['/admin/service-request-detail']);
+      
+      if (this.adminService.adminFormData.employee == false) {
+         this.router.navigate(['/admin/review-request']);
+       }
+       //go to employee form , if true
+       else if (this.adminService.adminFormData.employee == true) {
+        
+       }
+ 
+    });
+
+  }
+
+  //set requestNumber. 
+  retrieveRequestNumber(data: any): void {
+    this.requestNumber = data.requestNumber;
+  }
+
+
+  //if click
 
   //set properties and access them
   parseObject(data: any): void {
