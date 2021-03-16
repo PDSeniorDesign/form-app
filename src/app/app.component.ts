@@ -14,13 +14,14 @@ export class AppComponent implements OnInit {
 
   showheader: boolean;
 
-  //if navigation to login page is successful, then don't show header
+  //if navigation to login page is successful, then don't show header for admin functions
   constructor (private router: Router) {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         //if register or login page navigated, dont show
         if (event.url === '/admin' || event.url == '/admin/service-requests' ||
-         event.url == '/admin/reset-password') {
+         event.url == '/admin/reset-password' 
+         || event.url == '/admin/review-request' || event.url == '/admin/service-request-detail') {
           this.showheader= false;
         } else {
           this.showheader= true;
