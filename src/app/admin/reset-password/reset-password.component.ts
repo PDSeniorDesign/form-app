@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validator, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/core/services/admin.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -9,6 +10,7 @@ import { AdminService } from 'src/app/core/services/admin.service';
 })
 export class ResetPasswordComponent implements OnInit {
   //update passwords
+  @Input() currentPage;;
   hide1 = true;
   hide2 = true;
   resetForm: FormGroup;
@@ -18,9 +20,11 @@ export class ResetPasswordComponent implements OnInit {
   isAlert: boolean=false;
   message: string;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
+    this.router.navigate(['/admin/reset-password']);
+    this.currentPage = true;
     this.resetForm = new FormGroup ({
       oldPassword: new FormControl('', [Validators.required,]),
       newPassword: new FormControl('',[Validators.required,]),
