@@ -38,6 +38,7 @@ import { SharedModule } from './shared/shared.module';
 import { ReviewRequestComponent } from './admin/review-request/review-request.component';
 import { ReviewSubmitComponent } from './admin/review-request/review-submit/review-submit.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
+import { AdminLoginHeaderComponent } from './admin-login-header/admin-login-header.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ReviewEmployeeComponent } from './admin/review-employee/review-employee
     ReviewRequestComponent,
     ReviewSubmitComponent,
     ReviewEmployeeComponent,
+    AdminLoginHeaderComponent,
   ],
   imports: [
     BrowserModule,
