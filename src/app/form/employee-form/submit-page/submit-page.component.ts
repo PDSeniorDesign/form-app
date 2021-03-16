@@ -48,7 +48,7 @@ export class SubmitPageComponent implements OnInit {
       // as they were completing the form
     } else {
       this.apiHttpService
-        .createForm(this.regForm.value, true)
+        .submitForm(this.regForm.value, true)
         .subscribe((response) => {
           this.setSubmitResponse(response);
         });
