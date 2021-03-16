@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AdminService } from '../core/services/admin.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,7 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
+  // Used to determine if it is in mobile form
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -16,5 +18,11 @@ export class NavbarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  // If an admin is logged in
+  isAdminLoggedIn: boolean;
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private adminService: AdminService
+  ) {}
 }
