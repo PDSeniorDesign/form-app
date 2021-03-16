@@ -299,7 +299,7 @@ export class EmployeeFormComponent implements OnInit {
         });
     } else {
       // Create a form and set to service
-      this.apiHttpService.createForm(this.form.value).subscribe((res) => {
+      this.apiHttpService.createForm(this.form.value, true).subscribe((res) => {
         console.log(res);
         this.formDataService.formData = res;
 
