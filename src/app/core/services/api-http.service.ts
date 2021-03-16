@@ -16,10 +16,14 @@ export class ApiHttpService {
   /**
    * @description This method transforms the form group into the format that the server will accept.
    * @param data This is the value field of the FormGroup. eg. FormGroup.value
+   * @param isComplete If the form is complete we have to let the server know that it is complete.
    * @returns A string representation of the json object that is accepted by the backend server.
    */
-  public reformatDataPostEmployee(data: any): string {
+  public reformatDataPostEmployee(data: any, isComplete: boolean): string {
     const reformated = {
+      // Form data
+      complete: isComplete ? true : false,
+      employee: true, // Since it is the employee form
       // Personal Information
       lastName: data.personalInformation.lastName,
       firstName: data.personalInformation.firstName,
@@ -87,8 +91,7 @@ export class ApiHttpService {
   }
 
   /**
-   * @description Use this function to create the form in the server. In other words, this function is called
-   * when the form is completed.
+   * @description This method will create the form serverside.
    * @param data This is the value field of the FormGroup object. eg. FormGroup.value
    * @returns An observable that will return the created form back from the server.
    */
@@ -96,7 +99,20 @@ export class ApiHttpService {
     // TODO: This should set the completed field to complete
     return this.http.post(
       `${environment.apiUrl}/service_requests`,
-      this.reformatDataPostEmployee(data),
+      this.reformatDataPostEmployee(data, false), // Initially creating the form
+      this.httpOptions
+    );
+  }
+
+  /**
+   * @description ONLY use this method when the form is completed (in the submit page)
+   * @param data This is the value field of the FormGroup object. eg. FormGroup.value
+   * @returns An observable that will return the created form back from the server.
+   */
+  public submitForm(data: any): Observable<any> {
+    return this.http.post(
+      `${environment.apiUrl}/service_requests`,
+      this.reformatDataPostEmployee(data, true), // Form is complete
       this.httpOptions
     );
   }
