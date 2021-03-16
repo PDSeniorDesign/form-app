@@ -116,5 +116,67 @@ export class EmployeeFormDTO {
    * send the employee form to the server.
    * @param formGroup The FormGroup object
    */
-  constructor(formGroup: FormGroup) {}
+  // TODO: Add requestNumber as a param
+  constructor(formGroup: FormGroup) {
+    const personalInformation = formGroup.value.personalInformation;
+    const addressInformation = formGroup.value.addressInformation;
+    const employeeInformation = formGroup.value.employeeInformation;
+    const accessInformation = formGroup.value.accessInformation;
+    const additionalInformation = formGroup.value.additionalInformation;
+
+    // Form stuff
+    if (formGroup.value.requestNumber !== null) {
+      this.requestNumber = formGroup.value.requestNumber;
+    }
+
+    // Personal Information
+    this.lastName = personalInformation.lastName;
+    this.firstName = personalInformation.firstName;
+    this.middleInitial = personalInformation.middleInitial;
+    this.employeeEmailAddress = personalInformation.emailAddress;
+    this.businessPhoneNumber = personalInformation.phoneNumber;
+
+    // Address Information
+    this.businessStreetAddress = addressInformation.address;
+    this.businessCity = addressInformation.city;
+    this.businessState = addressInformation.state;
+    this.businessZip = addressInformation.zipCode;
+
+    // Employee Information
+    this.employeeNumber = employeeInformation.employeeNumber;
+
+    // Access Information
+    this.ibmLogOnId = accessInformation.ibmLogonId;
+    this.majorGroupCode = accessInformation.majorGroupCode;
+    this.lsoGroupCode = accessInformation.lsoGroupCode;
+    this.securityAuthorization = accessInformation.securityAuthorization;
+    // this.tsoAccess: boolean;
+    // this.tsoGroupCode: string;
+    // this.binNumber: string;
+    // this.subGroup1: string;
+    // this.subGroup2: string;
+    // this.subGroup3: string;
+    // this.onlineAccess: boolean;
+    // this.systemApplication: string;
+    // this.groupName: string;
+    // this.oldGroup: string;
+    // this.unixAddLogonId:
+    // this.unixChangeLogonId:
+    // this.unixDeleteLogonId
+    this.unixLogOnId = accessInformation.unixLogonId;
+    this.unixApplication = accessInformation.application;
+    this.unixAccessGroup = accessInformation.accessGroup;
+    this.unixAccountNumber = accessInformation.accountNumber;
+
+    // Additional Information
+    this.internetApplication = additionalInformation.internetApplication;
+    this.exchangeEmail = additionalInformation.exchangeEmail;
+    this.emailEncryption = additionalInformation.emailEncryption;
+    this.laCountyGovAccess = additionalInformation.laCountyGovAccess;
+    this.tokenlessAuthentication =
+      additionalInformation.tokenlessAuthentication;
+    this.lacMobileWifiAccess = additionalInformation.lacMobileWifiAccess;
+    this.cherwellSms = additionalInformation.cherwellSms;
+    this.windowsRightsMgmt = additionalInformation.windowsRightsMgmt;
+  }
 }
