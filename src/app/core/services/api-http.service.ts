@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+// TODO: Refactor createForm into one method and ask whether it is employee or contractor then
+// simple if statement
 @Injectable()
 export class ApiHttpService {
   constructor(private http: HttpClient) {}
@@ -22,7 +24,7 @@ export class ApiHttpService {
   public reformatDataPostEmployee(data: any, isComplete: boolean): string {
     const reformated = {
       // Form data
-      complete: isComplete ? true : false,
+      complete: isComplete,
       employee: true, // Since it is the employee form
       // Personal Information
       lastName: data.personalInformation.lastName,
@@ -146,7 +148,7 @@ export class ApiHttpService {
   public saveForm(requestNumber: string, data: object): Observable<any> {
     return this.http.put(
       `${environment.apiUrl}/service_requests/${requestNumber}`,
-      this.reformatDataPostEmployee(data),
+      this.reformatDataPostEmployee(data, false),
       this.httpOptions
     );
   }
