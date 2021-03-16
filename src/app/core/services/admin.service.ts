@@ -92,6 +92,8 @@ export class AdminService {
   // logout user
   public logOut(): void {
     sessionStorage.removeItem(this.adminKeyName);
+    // Notify the rest of the app that the admin logged out
+    this.emitAdminLoggedInChange(false);
     this.router.navigate(['/admin']);
   }
 }

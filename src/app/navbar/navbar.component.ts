@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AdminService } from '../core/services/admin.service';
 
@@ -19,10 +19,12 @@ export class NavbarComponent {
     );
 
   // If an admin is logged in
-  isAdminLoggedIn: boolean;
+  isAdminLoggedIn: BehaviorSubject<boolean>;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private adminService: AdminService
-  ) {}
+  ) {
+    this.isAdminLoggedIn = this.adminService.adminLoggedIn;
+  }
 }

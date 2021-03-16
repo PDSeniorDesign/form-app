@@ -7,10 +7,15 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
   >
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list *ngIf="!(isAdminLoggedIn | async)">
       <a mat-list-item routerLink="">Start Form</a>
       <a mat-list-item routerLink="admin">Admin Login</a>
       <!-- <a mat-list-item href="#">Link 3</a> -->
+    </mat-nav-list>
+    <mat-nav-list *ngIf="(isAdminLoggedIn | async)">
+      <a mat-list-item routerLink="">Reset Password</a>
+      <a mat-list-item routerLink="">Service Request</a>
+      <a mat-list-item routerLink="">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -27,9 +32,14 @@
       <span>Los Angeles Public Defender</span>
       <span class="spacer"></span>
       <!-- This part will show when it is not in mobile mode. -->
-      <ng-template [ngIf]="!(isHandset$ | async)"> 
-        <a mat-raised-button routerLink="" style="margin-right: 10px;">Start form</a>
-        <a mat-raised-button color="accent" routerLink="admin">Admin</a>
+      <ng-template [ngIf]="!(isHandset$ | async)">
+        <!-- When admin is not logged in -->
+        <ng-template [ngIf]="!(isAdminLoggedIn | async)">
+          <a mat-raised-button routerLink="" style="margin-right: 10px"
+            >Start form</a
+          >
+          <a mat-raised-button color="accent" routerLink="admin">Admin</a>
+        </ng-template>
       </ng-template>
     </mat-toolbar>
     <!-- Add Content Here -->

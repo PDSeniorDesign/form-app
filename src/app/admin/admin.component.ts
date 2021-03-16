@@ -78,6 +78,8 @@ export class AdminComponent implements OnInit {
         this.alert = false;
         // clear password input after logging in sucessful
         this.formLogin.reset();
+        // Let the rest of the app know that the admin has logged in
+        this.adminService.emitAdminLoggedInChange(true);
       },
       (error) => {
         if (error.status === 403) {
