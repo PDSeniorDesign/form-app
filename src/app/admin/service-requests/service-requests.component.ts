@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
   selector: 'app-service-requests',
@@ -20,7 +21,8 @@ export class ServiceRequestsComponent implements OnInit {
   //save each request into array for display
   @Input() personData: Array<any> = [];
 
-  constructor(private adminService: AdminService, private router: Router, public route: ActivatedRoute) {}
+  constructor(private adminService: AdminService, private router: Router, 
+    public route: ActivatedRoute, private formDataService: FormDataService) {}
 
   ngOnInit(): void {
     this.adminService.display().subscribe((res) => {
@@ -45,6 +47,7 @@ export class ServiceRequestsComponent implements OnInit {
       this.retrieveRequestNumber(res);
       //save res to adminFormdata to transfer between components
       this.adminService.adminFormData = res;
+      this.formDataService.formData = res;
       console.log(this.adminService.adminFormData.requestNumber);
 
       //go to service request details page
@@ -60,16 +63,17 @@ export class ServiceRequestsComponent implements OnInit {
       this.retrieveRequestNumber(res);
       //save res to adminFormdata to transfer between components
       this.adminService.adminFormData = res;
+      this.formDataService.formData = res;
       console.log(this.adminService.adminFormData.requestNumber);
       //if not employee -- go to contractor side
       //this.router.navigate(['/admin/service-request-detail']);
       
       if (this.adminService.adminFormData.employee == false) {
-         this.router.navigate(['/admin/service-requests/review-request', this.adminService.adminFormData.requestNumber]);
+         this.router.navigate(['/admin/service-requests/review-request', this.formDataService.formData.requestNumber]);
        }
        //go to employee form , if true
        else if (this.adminService.adminFormData.employee == true) {
-         this.router.navigate(['/admin/review-employee']);
+         this.router.navigate(['/admin/service-requests/review-employee', this.formDataService.formData.requestNumber ]);
         
        }
  

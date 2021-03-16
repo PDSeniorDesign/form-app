@@ -18,8 +18,8 @@ export class AdminService {
   constructor(private http: HttpClient, private router: Router) {}
 
   //access service_requests for admins by id
-  public searchById(id: any) {
-    //set the password in headers
+  public searchById(id: any): Observable<any> {
+    //set the password in headers //const
     var httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

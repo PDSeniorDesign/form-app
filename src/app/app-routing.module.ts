@@ -38,12 +38,12 @@ const routes: Routes = [
             component: ReviewRequestComponent,
             canActivate: [AuthGuard]
           },
+          {
+            path: 'review-employee/:requestNumber',
+            component: ReviewEmployeeComponent,
+            canActivate: [AuthGuard]
+          },
         ]
-      },
-      {
-        path: 'review-employee',
-        component: ReviewEmployeeComponent,
-        canActivate: [AuthGuard]
       },
       {
         path: 'service-request-detail',

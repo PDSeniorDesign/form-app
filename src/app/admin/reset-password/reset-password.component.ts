@@ -14,16 +14,20 @@ export class ResetPasswordComponent implements OnInit {
   hide1 = true;
   hide2 = true;
   resetForm: FormGroup;
-  oldPassword: string;
-  newPassword: string;
+
   isSucess: boolean =false;
   isAlert: boolean=false;
   message: string;
 
   constructor(private adminService: AdminService, private router: Router) {}
 
+  //check session storage
   ngOnInit(): void {
-    this.router.navigate(['/admin/reset-password']);
+    //this.router.navigate(['/admin/reset-password']);
+    if (this.adminService.adminKeyName != null) {
+      this.router.navigate(['/admin/reset-password']);
+
+    }
     this.currentPage = true;
     this.resetForm = new FormGroup ({
       oldPassword: new FormControl('', [Validators.required,]),
