@@ -11,34 +11,27 @@ export class AppComponent implements OnInit {
   title = 'form-app';
   registrationForm: FormGroup;
 
-
   showheader: boolean;
 
-  //if navigation to login page is successful, then don't show header for admin functions
-  constructor (private router: Router) {
+  // if navigation to login page is successful, then don't show header for admin functions
+  constructor(private router: Router) {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        //if register or login page navigated, dont show
-        if (event.url === '/admin' || event.url == '/admin/service-requests' ||
-         event.url == '/admin/reset-password' 
-         || event.url == '/admin/review-request' || event.url == '/admin/service-request-detail') {
-          this.showheader= false;
+        // if register or login page navigated, dont show
+        if (
+          event.url === '/admin' ||
+          event.url === '/admin/service-requests' ||
+          event.url === '/admin/reset-password' ||
+          event.url === '/admin/review-request' ||
+          event.url === '/admin/service-request-detail'
+        ) {
+          this.showheader = false;
         } else {
-          this.showheader= true;
+          this.showheader = true;
         }
       }
     });
   }
 
-  ngOnInit(): void {
-    this.registrationForm = new FormGroup({
-      applicationName: new FormGroup({
-        name: new FormControl(null),
-      }),
-      contactDetails: new FormGroup({
-        email: new FormControl(null, [Validators.required, Validators.email]),
-        phone: new FormControl(null),
-      }),
-    });
-  }
+  ngOnInit(): void {}
 }
