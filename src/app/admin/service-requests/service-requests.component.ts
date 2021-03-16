@@ -20,7 +20,7 @@ export class ServiceRequestsComponent implements OnInit {
   //save each request into array for display
   @Input() personData: Array<any> = [];
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(private adminService: AdminService, private router: Router, public route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.adminService.display().subscribe((res) => {
@@ -65,10 +65,11 @@ export class ServiceRequestsComponent implements OnInit {
       //this.router.navigate(['/admin/service-request-detail']);
       
       if (this.adminService.adminFormData.employee == false) {
-         this.router.navigate(['/admin/review-request']);
+         this.router.navigate(['/admin/service-requests/review-request', this.adminService.adminFormData.requestNumber]);
        }
        //go to employee form , if true
        else if (this.adminService.adminFormData.employee == true) {
+         this.router.navigate(['/admin/review-employee']);
         
        }
  
