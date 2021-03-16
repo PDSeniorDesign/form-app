@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+// TODO: Refactor createForm into one method and ask whether it is employee or contractor then
+// simple if statement
 @Injectable()
 export class ApiHttpService {
   constructor(private http: HttpClient) {}
@@ -16,10 +18,14 @@ export class ApiHttpService {
   /**
    * @description This method transforms the form group into the format that the server will accept.
    * @param data This is the value field of the FormGroup. eg. FormGroup.value
+   * @param isComplete If the form is complete we have to let the server know that it is complete.
    * @returns A string representation of the json object that is accepted by the backend server.
    */
-  public reformatDataPostEmployee(data: any): string {
+  public reformatDataPostEmployee(data: any, isComplete: boolean): string {
     const reformated = {
+      // Form specific data
+      complete: isComplete,
+      employee: true, // Since it is the employee form
       // Personal Information
       lastName: data.personalInformation.lastName,
       firstName: data.personalInformation.firstName,
@@ -61,6 +67,8 @@ export class ApiHttpService {
 
   public reformatContractData(data: any): string {
     const reformated = {
+      // Form specific data
+      employee: false,
       // contractor info
       lastName: data.contractorInformation.lastName,
       firstName: data.contractorInformation.firstName,
@@ -87,24 +95,37 @@ export class ApiHttpService {
   }
 
   /**
-   * @description Use this function to create the form in the server. In other words, this function is called
-   * when the form is completed.
+   * @description This method will create the form serverside. Handles both employee and contractor forms.
+   * @param data This is the value field of the FormGroup object. eg. FormGroup.value
+   * @param isEmployee If the form is from an employee, set this to true. Else, it will be considered a contractor form serverside.
+   * @returns An observable that will return the created form back from the server.
+   */
+  public createForm(data: any, isEmployee: boolean): Observable<any> {
+    if (isEmployee) {
+      return this.http.post(
+        `${environment.apiUrl}/service_requests`,
+        this.reformatDataPostEmployee(data, false), // Initially creating the form
+        this.httpOptions
+      );
+      // Contractor form
+    } else {
+      return this.http.post(
+        `${environment.apiUrl}/service_requests`,
+        this.reformatContractData(data),
+        this.httpOptions
+      );
+    }
+  }
+
+  /**
+   * @description ONLY use this method when the form is completed (in the submit page)
    * @param data This is the value field of the FormGroup object. eg. FormGroup.value
    * @returns An observable that will return the created form back from the server.
    */
-  public createForm(data: any): Observable<any> {
-    // TODO: This should set the completed field to complete
+  public submitForm(data: any): Observable<any> {
     return this.http.post(
       `${environment.apiUrl}/service_requests`,
-      this.reformatDataPostEmployee(data),
-      this.httpOptions
-    );
-  }
-
-  public createContractForm(data: any): Observable<any> {
-    return this.http.post(
-      `${environment.apiUrl}/service_requests`,
-      this.reformatContractData(data),
+      this.reformatDataPostEmployee(data, true), // Form is complete
       this.httpOptions
     );
   }
@@ -130,7 +151,7 @@ export class ApiHttpService {
   public saveForm(requestNumber: string, data: object): Observable<any> {
     return this.http.put(
       `${environment.apiUrl}/service_requests/${requestNumber}`,
-      this.reformatDataPostEmployee(data),
+      this.reformatDataPostEmployee(data, false),
       this.httpOptions
     );
   }
