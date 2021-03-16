@@ -120,14 +120,23 @@ export class ApiHttpService {
   /**
    * @description ONLY use this method when the form is completed (in the submit page)
    * @param data This is the value field of the FormGroup object. eg. FormGroup.value
+   * @param isEmployee Whether the form is from an employee or not.
    * @returns An observable that will return the created form back from the server.
    */
-  public submitForm(data: any): Observable<any> {
-    return this.http.post(
-      `${environment.apiUrl}/service_requests`,
-      this.reformatDataPostEmployee(data, true), // Form is complete
-      this.httpOptions
-    );
+  public submitForm(data: any, isEmployee: boolean): Observable<any> {
+    if (isEmployee) {
+      return this.http.post(
+        `${environment.apiUrl}/service_requests`,
+        this.reformatDataPostEmployee(data, true), // Form is complete
+        this.httpOptions
+      );
+    } else {
+      return this.http.post(
+        `${environment.apiUrl}/service_requests`,
+        this.reformatContractData(data), // Call the contractor formatter
+        this.httpOptions
+      );
+    }
   }
 
   /**
@@ -142,6 +151,7 @@ export class ApiHttpService {
       this.httpOptions
     );
   }
+
   /**
    * @description This function save's the form on the server.
    * @param requestNumber The form's request number. This is used by the server to retrieve the form.
