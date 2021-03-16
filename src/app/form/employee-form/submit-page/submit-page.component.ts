@@ -27,12 +27,7 @@ export class SubmitPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  move(index: number): void {
-    this.moveIndex(index);
-  }
-
   onClick(): void {
-    console.log(this.regForm.value); // Debugging
     // If there is a form in formData then there is a form in progress
     if (this.formDataService.formData !== undefined) {
       // Save the form
@@ -42,7 +37,6 @@ export class SubmitPageComponent implements OnInit {
           this.regForm.value
         )
         .subscribe((res) => {
-          console.log(res);
           // Set the formData to the response, might be needed somewhere else
           this.formDataService.formData = res;
 
@@ -56,7 +50,6 @@ export class SubmitPageComponent implements OnInit {
       this.apiHttpService
         .createForm(this.regForm.value, true)
         .subscribe((response) => {
-          console.log(response);
           this.setSubmitResponse(response);
         });
     }
