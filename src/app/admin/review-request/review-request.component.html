@@ -1,4 +1,3 @@
-<app-admin-header></app-admin-header>
 
 <form
   id="regForm"
@@ -547,7 +546,207 @@
     </mat-step>
 
     <!-- Authorized Signature section -->
+    <mat-step
+    formGroupName="approval"
+    [stepControl]="adminForm.get('approval')" >
+      <ng-template matStepLabel>Approvals</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">Approvals</h2>
+      <div class="row">
+        <div class="approval-name col-sm-12 col-md-4">
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>County Manager Name</mat-label>
+              <input matInput formControlName="countyDepartmentManager"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>County Manager name is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Application Coordinator name</mat-label>
+              <input matInput formControlName="applicationCoordinatorName"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Application coordinator name is required </mat-error>
+            </mat-form-field>
 
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Manager</mat-label>
+              <input matInput formControlName="managerName"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Manager name is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Department Head Name</mat-label>
+              <input matInput formControlName="departmentHeadName"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Department head name is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Division Chief Name</mat-label>
+              <input matInput formControlName="divisionChiefName"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Department head name is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Department Info Security Officer</mat-label>
+              <input matInput formControlName="departmentInfoSecurity"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Department Info Security Officer name is required </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="approval-phone col-sm-12 col-md-4" >
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>County Department Manager phone</mat-label>
+              <input matInput formControlName="countyDepartmentManagerPhone"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Phone number is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Application Coordinator phone</mat-label>
+              <input matInput formControlName="appicationPhone"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Phone number is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Manager Phone</mat-label>
+              <input matInput formControlName="managerPhone"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Phone number is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Division Chief phone</mat-label>
+              <input matInput formControlName="divisionChiefPhone"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Phone number is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Department Head Phone</mat-label>
+              <input matInput formControlName="departmentHeadPhone"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Phone number is required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Deparment Info Secuirty Officer Phone</mat-label>
+              <input matInput formControlName="deptInfoSecurityPhone"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Phone number is required </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="approval-phone col-sm-12 col-md-4">
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>County Department Manager Email</mat-label>
+              <input matInput formControlName="countyDeptEmail"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Email required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Application Coordinator Email</mat-label>
+              <input matInput formControlName="applicationEmail"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Email required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Application Coordinator Email</mat-label>
+              <input matInput formControlName="applicationEmail"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Email required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Manager Email</mat-label>
+              <input matInput formControlName="managerEmail"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Email required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Division Chief Email</mat-label>
+              <input matInput formControlName="divisionChiefEmail"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Email required </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="mat-input-width">
+              <mat-label>Department Info Secuirty Officer Email</mat-label>
+              <input matInput formControlName="departInfoEmail"
+              required
+              [errorStateMatcher]="errorStateMatcher" />
+              <mat-hint>Required</mat-hint>
+              <mat-error>Email required </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
+      </div>
+    </mat-step>
 
     <!-- SUBMIT SECTION -->
     <mat-step>
@@ -833,7 +1032,7 @@
         <!-- Additional Information -->
 
         <div class="text-center">
-          <button class="btnContact" >Submit</button>
+          <button class="btnContact"  (click) = "viewSubmission()">Submit</button>
         </div>
       </div>
 

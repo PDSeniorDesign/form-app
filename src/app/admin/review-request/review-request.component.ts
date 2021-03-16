@@ -45,6 +45,8 @@ export class ReviewRequestComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+
+    this.requestNumber = this.adminService.adminFormData.requestNumber;
     this.adminForm = new FormGroup({
       contractorInformation: new FormGroup({
         
@@ -137,14 +139,50 @@ export class ReviewRequestComponent implements OnInit {
         billingAccountNumber: new FormControl(null),
         accessType: new FormControl(null),
       }),
-      authorizedInformation: new FormGroup ({
-        countyDeptName: new FormControl(null,
-           [Validators.required, Validators.pattern("[a-z A-Z]*")]),
-      })
+      approval: new FormGroup ({
+        //phones and emails of approvals
+        countyDepartmentManager: new FormControl(null,
+          [Validators.required, Validators.pattern("[a-z A-Z]*")]),
+        applicationCoordinatorName: new FormControl(null,
+          [Validators.required, Validators.pattern("[a-z A-Z]*")],),
+        managerName: new FormControl(null,
+          [Validators.required, Validators.pattern("[a-z A-Z]*")]),
+        divisionChiefName: new FormControl(null,
+          [Validators.required, Validators.pattern("[a-z A-Z]*")]),
+        departmentHeadName: new FormControl(null,
+          [Validators.required, Validators.pattern("[a-z A-Z]*")]),
+        departmentInfoSecurity: new FormControl(null,
+          [Validators.required, Validators.pattern("[a-z A-Z]*")]),
+        countyDepartmentManagerPhone: new FormControl(null,
+          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+        appicationPhone: new FormControl(null,
+          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+        managerPhone: new FormControl(null,
+          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+        divisionChiefPhone: new FormControl(null,
+          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+        departmentHeadPhone: new FormControl(null,
+          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+        deptInfoSecurityPhone: new FormControl(null,
+          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+        countyDeptEmail:  new FormControl(null,
+          [Validators.required, Validators.email]),
+        applicationEmail: new FormControl(null,
+          [Validators.required, Validators.email]),
+        managerEmail: new FormControl(null,
+          [Validators.required, Validators.email]),
+        divisionChiefEmail: new FormControl(null,
+          [Validators.required, Validators.email]),
+        departHeadEmail: new FormControl(null,
+          [Validators.required, Validators.email]),
+        departInfoEmail: new FormControl(null,
+          [Validators.required, Validators.email]),
+         
+        
+      }),
     });
 
     this.hasSubmitted = false;
-
 
 
     // if (this.adminService.adminFormData !== undefined) {
@@ -168,6 +206,10 @@ export class ReviewRequestComponent implements OnInit {
 
 
     // }
+  }
+  viewSubmission(): void {
+    console.log(this.adminForm.value);
+
   }
   
 }
