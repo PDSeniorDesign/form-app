@@ -1,3 +1,4 @@
+import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AdminComponent } from './admin/admin.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
+import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
+import { ReviewRequestComponent } from './admin/review-request/review-request.component';
+import { ReviewSubmitComponent } from './admin/review-request/review-submit/review-submit.component';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,10 +38,8 @@ import { EmployeeFormComponent } from './form/employee-form/employee-form.compon
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
-import { ReviewRequestComponent } from './admin/review-request/review-request.component';
-import { ReviewSubmitComponent } from './admin/review-request/review-submit/review-submit.component';
-import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { ReviewEmployeeComponent } from './admin/review-employee/review-employee
     ReviewRequestComponent,
     ReviewSubmitComponent,
     ReviewEmployeeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,7 @@ import { ReviewEmployeeComponent } from './admin/review-employee/review-employee
     MatButtonToggleModule,
     MatFormFieldModule,
     MatChipsModule,
+    LayoutModule,
   ],
   exports: [],
   providers: [AuthGuard],
