@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
@@ -14,9 +15,10 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
  * need to have if else statement in onClick()
  */
 export class SubmitPageComponent implements OnInit {
-  @Input() regForm;
-  @Input() setSubmitResponse; // Function to update parent (employee-form.component)
-  @Input() moveIndex;
+  @Input() regForm: FormGroup;
+  @Input() setSubmitResponse: (response: object) => void; // Function to update parent (employee-form.component)
+  // Function to move to desired step(index)
+  @Input() moveIndex: (newIndex: number) => void;
 
   constructor(
     private apiHttpService: ApiHttpService,
@@ -25,14 +27,14 @@ export class SubmitPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  move(index: number) {
+  move(index: number): void {
     this.moveIndex(index);
   }
 
   onClick(): void {
-    console.log(this.regForm.value); //debugging
+    console.log(this.regForm.value); // Debugging
     // If there is a form in formData then there is a form in progress
-    if (this.formDataService.formData != undefined) {
+    if (this.formDataService.formData !== undefined) {
       // Save the form
       this.apiHttpService
         .saveForm(
@@ -51,10 +53,12 @@ export class SubmitPageComponent implements OnInit {
       // If the else statement executes, then the user probably didn't save their progress
       // as they were completing the form
     } else {
-      this.apiHttpService.createForm(this.regForm.value, true).subscribe((res) => {
-        console.log(res);
-        this.setSubmitResponse(res);
-      });
+      this.apiHttpService
+        .createForm(this.regForm.value, true)
+        .subscribe((response) => {
+          console.log(response);
+          this.setSubmitResponse(response);
+        });
     }
   }
 }

@@ -272,8 +272,8 @@ export class EmployeeFormComponent implements OnInit {
 
   /*This functions is passed down to submit step
    *and it will change the index of the stepper*/
-  setIndex = (currentIndex: number): void => {
-    this.myStepper.selectedIndex = currentIndex;
+  setIndex = (newIndex: number): void => {
+    this.myStepper.selectedIndex = newIndex;
   };
 
   // This function is passed down to submit step
