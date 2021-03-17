@@ -6,6 +6,7 @@ is on the parent component (service-request) itself,
 but not if the user is on a child component(ex: review-requests). -->
 
 <app-admin-header></app-admin-header>
+
 <div *ngIf="route.children.length === 0">
   <div class="input-group mb-3">
     <input
@@ -60,5 +61,6 @@ but not if the user is on a child component(ex: review-requests). -->
     </table>
   </div>
 </div>
+
 
 <router-outlet></router-outlet>

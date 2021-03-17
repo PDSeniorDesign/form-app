@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormDataService } from 'src/app/core/services/form-data.service';
@@ -20,6 +20,9 @@ export class ServiceRequestsComponent implements OnInit {
 
   //save each request into array for display
   @Input() personData: Array<any> = [];
+ // @Output() finishedLoading: EventEmitter<boolean> = new EventEmitter<boolean>();
+  //hasLoaded: boolean = false;
+
 
   constructor(private adminService: AdminService, private router: Router, 
     public route: ActivatedRoute, private formDataService: FormDataService) {}
@@ -30,6 +33,13 @@ export class ServiceRequestsComponent implements OnInit {
       this.personData = res;
     });
   }
+
+//   ngAfterViewChecked() {
+//     // you could also do this after a service call of some sort
+//     this.finishedLoading.emit(true);
+//  }
+
+
 
   //Delete function later on
   //call service to display based on ID on button click

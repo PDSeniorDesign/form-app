@@ -1,17 +1,12 @@
 
 <app-admin-header></app-admin-header>
-<app-employee-form >
+
+<app-employee-form [formGroup]="employeeForm" >
     <h2>Hello</h2>
-    <form>
-        <mat-horizontal-stepper #stepper>
-            <mat-step>
-                <ng-template matStepLabel>Approval</ng-template>
-                <h2>Approval</h2>
-            </mat-step>
-        </mat-horizontal-stepper>
-    </form>
 </app-employee-form>
+
 <form>
+<!-- 
     <mat-horizontal-stepper #stepper>
         <mat-step>
             <ng-template matStepLabel>Approval</ng-template>
@@ -19,3 +14,4 @@
         </mat-step>
     </mat-horizontal-stepper>
 </form>
+-->
