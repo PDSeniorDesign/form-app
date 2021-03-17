@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AdminService } from '../core/services/admin.service';
@@ -28,7 +28,7 @@ export class NavbarComponent {
     this.isAdminLoggedIn = this.adminService.adminLoggedIn;
   }
 
-  onLogoutClick() {
-    this.adminService.logOut();
+  onLogoutClick(): void {
+    this.adminService.logAdminOut();
   }
 }

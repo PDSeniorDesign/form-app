@@ -44,6 +44,14 @@ export class AdminService {
     this.adminLoggedIn.next(newLoggedStatus);
   }
 
+  // Logout admin
+  logAdminOut(): void {
+    sessionStorage.removeItem('password');
+    // Notify the rest of the app that the admin logged out
+    this.emitAdminLoggedInChange(false);
+    this.router.navigate(['/admin']);
+  }
+
   // access service_requests for admins by id
   public searchById(id: any): Observable<any> {
     // set the password in headers
@@ -89,13 +97,5 @@ export class AdminService {
       httpOptions,
       httpOptions
     );
-  }
-
-  // logout user
-  public logOut(): void {
-    sessionStorage.removeItem(this.adminKeyName);
-    // Notify the rest of the app that the admin logged out
-    this.emitAdminLoggedInChange(false);
-    this.router.navigate(['/admin']);
   }
 }
