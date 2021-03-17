@@ -27,4 +27,8 @@ export class NavbarComponent {
   ) {
     this.isAdminLoggedIn = this.adminService.adminLoggedIn;
   }
+
+  onLogoutClick() {
+    this.adminService.logOut();
+  }
 }
