@@ -24,7 +24,9 @@ export class AdminService {
   // This method does some initialization work for the service.
   init(): void {
     // Checking if the admin is already logged in, will also initialize adminLoggedIn
-    this.isAdminLoggedIn();
+    if (this.isAdminLoggedIn()) {
+      this.adminPassword = sessionStorage.getItem('password');
+    }
   }
 
   // Checks if admin is logged in by searching for password in session storage

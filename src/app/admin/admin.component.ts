@@ -67,7 +67,7 @@ export class AdminComponent implements OnInit {
     // save user password to session storage
     this.adminService.adminPassword = this.formLogin.get('password').value;
     sessionStorage.setItem(
-      (this.adminService.adminKeyName = 'password'),
+      'password',
       this.formLogin.get('password').value.toString()
     );
 
