@@ -20,7 +20,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AdminComponent } from './admin/admin.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
@@ -51,7 +50,6 @@ import { SharedModule } from './shared/shared.module';
     ContractorFormComponent,
     FormActionSelectionComponent,
     AdminComponent,
-    AdminHeaderComponent,
     ServiceRequestsComponent,
     ResetPasswordComponent,
     ServiceRequestsDetailComponent,
