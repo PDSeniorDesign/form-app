@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, Validator, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/core/services/admin.service';
 
 @Component({
@@ -8,43 +8,52 @@ import { AdminService } from 'src/app/core/services/admin.service';
   styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent implements OnInit {
-  //update passwords
+  // update passwords
   hide1 = true;
   hide2 = true;
   resetForm: FormGroup;
   oldPassword: string;
   newPassword: string;
-  isSucess: boolean =false;
-  isAlert: boolean=false;
+  isSucess: boolean = false;
+  isAlert: boolean = false;
   message: string;
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.resetForm = new FormGroup ({
-      oldPassword: new FormControl('', [Validators.required,]),
-      newPassword: new FormControl('',[Validators.required,]),
+    this.resetForm = new FormGroup({
+      oldPassword: new FormControl('', [Validators.required]),
+      newPassword: new FormControl('', [Validators.required]),
     });
   }
 
-  //reset password
-  updatePassword() {
-
+  // reset password
+  updatePassword(): void {
     this.adminService
-      .resetPassword(this.resetForm.get('oldPassword').value, this.resetForm.get('newPassword').value)
-      .subscribe((res) => {
-        this.adminService.adminPassword = this.resetForm.get('newPassword').value;
-        sessionStorage.setItem(this.adminService.adminKeyName, this.adminService.adminPassword.toString())
-        this.isSucess = true;
-        this.message = 'Password reset successful!';
-      },
-      (error) => {
-        if(error.status == 403) {
-          this.isAlert = true;
-          this.message = 'Invalid current password';
+      .resetPassword(
+        this.resetForm.get('oldPassword').value,
+        this.resetForm.get('newPassword').value
+      )
+      .subscribe(
+        (res) => {
+          this.adminService.adminPassword = this.resetForm.get(
+            'newPassword'
+          ).value;
+          sessionStorage.setItem(
+            'password',
+            this.adminService.adminPassword.toString()
+          );
+          this.isSucess = true;
+          this.message = 'Password reset successful!';
+        },
+        (error) => {
+          if (error.status === 403) {
+            this.isAlert = true;
+            this.message = 'Invalid current password';
+          }
         }
-      });
-      this.isSucess = false;
-      this.isAlert = false;
+      );
+    this.isSucess = false;
+    this.isAlert = false;
   }
 }
