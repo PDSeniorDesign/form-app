@@ -39,6 +39,7 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { SharedModule } from './shared/shared.module';
     MatFormFieldModule,
     MatChipsModule,
     LayoutModule,
+    MatExpansionModule,
   ],
   exports: [],
   providers: [AuthGuard],
