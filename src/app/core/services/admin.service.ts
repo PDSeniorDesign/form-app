@@ -14,8 +14,7 @@ export class AdminService {
   public adminFormData: any;
   // hold password for admin
   public adminPassword: any;
-  // hold keyName for
-  public adminKeyName: any;
+
 
   constructor(private http: HttpClient, private router: Router) {
     this.init();
@@ -37,6 +36,12 @@ export class AdminService {
     } else {
       return true;
     }
+  }
+
+  //This function sets password
+  setAdminCredentials(passwordFromAdmin: string): void {
+    this.adminPassword = passwordFromAdmin;
+    sessionStorage.setItem('password', passwordFromAdmin);
   }
 
   // This function lets the rest of the app know of a logged in change
@@ -91,7 +96,7 @@ export class AdminService {
         'new-password': newPass,
       }),
     };
-
+    //sessionStorage.setItem('password', newPass);
     return this.http.patch(
       `${environment.apiUrl}/admin/reset_password`,
       httpOptions,
