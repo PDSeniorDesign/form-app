@@ -8,6 +8,7 @@ import { MatAccordion } from '@angular/material/expansion';
   styleUrls: ['./review-employee.component.css'],
 })
 export class ReviewEmployeeComponent implements OnInit {
+  //mat-expander -- to allow to expand/open
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   //approval FormGroup-manager, divisionChief, etc
@@ -18,40 +19,44 @@ export class ReviewEmployeeComponent implements OnInit {
     //create the form group
     this.approval = new FormGroup({
       manager: new FormGroup({
-        name: new FormControl(''),
-        phone: new FormControl(''),
-        email: new FormControl(''),
+        managerName: new FormControl(''),
+        managerPhone: new FormControl(''),
+        managerEmail: new FormControl(''),
       }),
       departmentHead: new FormGroup ({
-        name: new FormControl(''),
-        phone: new FormControl(''),
-        email: new FormControl(''),
+        departmentHeadName: new FormControl(''),
+        departmentHeadPhone: new FormControl(''),
+        departmentHeadEmail: new FormControl(''),
       }),
       applicationCoord: new FormGroup({
-        name: new FormControl(''),
-        phone: new FormControl(''),
-        email: new FormControl(''),
+        applicationCoordName: new FormControl(''),
+        applicationCoordPhone: new FormControl(''),
+        applicationCoordEmail: new FormControl(''),
       }),
       divisionChief: new FormGroup({
-        name: new FormControl(''),
-        phone: new FormControl(''),
-        email: new FormControl(''),
+        divisionChiefName: new FormControl(''),
+        divisionChiefPhone: new FormControl(''),
+        divisionChiefEmail: new FormControl(''),
       }),
       deptInfoSecurity: new FormGroup({
-        name: new FormControl(''),
-        phone: new FormControl(''),
-        email: new FormControl(''),
+        deptInfoSecurityName: new FormControl(''),
+        deptInfoSecurityPhone: new FormControl(''),
+        deptInfoSecurityEmail: new FormControl(''),
       }),
     });
   }
 
+  //print- debugging, prints out the formGroups
   print():void {
     console.log(this.approval.value);
   }
 
+  //closes all mat-expansion-panels
   closeAllPanels() {
     this.accordion.closeAll();
   }
+
+  //opens all mat-expansion-panels
   openAllPanels() {
     this.accordion.openAll();
   }
