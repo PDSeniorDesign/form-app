@@ -2,7 +2,7 @@
 
 </app-employee-form>
 
-<!-- Includes the approval FormGroup for employeers for admin  -->
+<!-- Includes the approval FormGroup for employeers for admin using mat-expansion  -->
 <div style="width: 85%">  
   <h2 class="mat-display-1">Approvals</h2>
   <h3 class="mat-title">Select the following approvals</h3>
@@ -24,16 +24,16 @@
             
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>name </mat-label>
-                <input matInput formControlName="name" />
+                <input matInput formControlName="managerName" />
               </mat-form-field>
           
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Phone</mat-label>
-                <input matInput  formControlName="phone">
+                <input matInput  formControlName="managerPhone">
               </mat-form-field>
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Email</mat-label>
-                <input matInput  formControlName="email">
+                <input matInput  formControlName="managerEmail">
               </mat-form-field>
             </div>
           </mat-expansion-panel>
@@ -49,16 +49,16 @@
             
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Name </mat-label>
-                <input matInput formControlName="name" />
+                <input matInput formControlName="departmentHeadName" />
               </mat-form-field>
           
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Phone</mat-label>
-                <input matInput  formControlName="phone">
+                <input matInput  formControlName="departmentHeadPhone">
               </mat-form-field>
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Email</mat-label>
-                <input matInput  formControlName="email">
+                <input matInput  formControlName="departmentHeadEmail">
               </mat-form-field>
             </div>
           </mat-expansion-panel>
@@ -73,16 +73,16 @@
             
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Name </mat-label>
-                <input matInput formControlName="name" />
+                <input matInput formControlName="applicationCoordName" />
               </mat-form-field>
           
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Phone</mat-label>
-                <input matInput  formControlName="phone">
+                <input matInput  formControlName="applicationCoordPhone">
               </mat-form-field>
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Email</mat-label>
-                <input matInput  formControlName="email">
+                <input matInput  formControlName="applicationCoordEmail">
               </mat-form-field>
             </div>
           </mat-expansion-panel>
@@ -98,16 +98,16 @@
           
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Manger Name</mat-label>
-                <input matInput formControlName="name" />
+                <input matInput formControlName="divisionChiefName" />
               </mat-form-field>
           
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Phone</mat-label>
-                <input matInput  formControlName="phone">
+                <input matInput  formControlName="divisionChiefPhone">
               </mat-form-field>
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Email</mat-label>
-                <input matInput  formControlName="email">
+                <input matInput  formControlName="divisionChiefEmail">
               </mat-form-field>
             </div>
           </mat-expansion-panel>
@@ -122,16 +122,16 @@
             
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Department Infor Secuirty </mat-label>
-                <input matInput formControlName="name" />
+                <input matInput formControlName="deptInfoSecurityName" />
               </mat-form-field>
           
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Phone</mat-label>
-                <input matInput  formControlName="phone">
+                <input matInput  formControlName="deptInfoSecurityPhone">
               </mat-form-field>
               <mat-form-field appearance="outline" class="mat-input-width">
                 <mat-label>Email</mat-label>
-                <input matInput  formControlName="email">
+                <input matInput  formControlName="deptInfoSecurityEmail">
               </mat-form-field>
             </div>
           </mat-expansion-panel>
