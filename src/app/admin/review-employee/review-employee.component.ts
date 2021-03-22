@@ -9,6 +9,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AdminService } from 'src/app/core/services/admin.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
@@ -31,6 +32,7 @@ export class ReviewEmployeeComponent implements OnInit {
   approval: FormGroup;
   constructor(
     private formDataService: FormDataService,
+    private adminService: AdminService,
     private apiHttpService: ApiHttpService
   ) {}
 
@@ -99,37 +101,64 @@ export class ReviewEmployeeComponent implements OnInit {
           Validators.required
         ),
       }),
-      // accessInformation: new FormGroup({
-      //   // IBM Data Center Access
-      //   ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
-      //   majorGroupCode: new FormControl(
-      //     this.formDataService.formData.majorGroupCode
-      //   ),
-      //   lsoGroupCode: new FormControl(
-      //     this.formDataService.formData.lsoGroupCode
-      //   ),
-      //   securityAuthorization: new FormControl(
-      //     this.formDataService.formData.securityAuthorization
-      //   ),
-      //   // Unix Environment Access
-      //   unixLogonId: new FormControl(
-      //     this.formDataService.formData.unixLogOnId
-      //   ),
-      //   application: new FormControl(
-      //     this.formDataService.formData.unixApplication
-      //   ),
-      //   accessGroup: new FormControl(
-      //     this.formDataService.formData.unixAccessGroup
-      //   ),
-      //   accountNumber: new FormControl(
-      //     this.formDataService.formData.unixAccountNumber
-      //   ),
-      //   // SecurID Remote Access
-      //   billingAccountNumber: new FormControl(
-      //     this.formDataService.formData.billingAccountNumber
-      //   ),
-      //   accessType: new FormControl(null), // Not yet implemented on backend
-      // }),
+
+      accessInformation: new FormGroup({
+        // IBM Data Center Access
+        ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
+        majorGroupCode: new FormControl(
+          this.formDataService.formData.majorGroupCode
+        ),
+        lsoGroupCode: new FormControl(
+          this.formDataService.formData.lsoGroupCode
+        ),
+        securityAuthorization: new FormControl(
+          this.formDataService.formData.securityAuthorization
+        ),
+        // Unix Environment Access
+        unixLogonId: new FormControl(
+          this.formDataService.formData.unixLogOnId
+        ),
+        application: new FormControl(
+          this.formDataService.formData.unixApplication
+        ),
+        accessGroup: new FormControl(
+          this.formDataService.formData.unixAccessGroup
+        ),
+        accountNumber: new FormControl(
+          this.formDataService.formData.unixAccountNumber
+        ),
+        // SecurID Remote Access
+        billingAccountNumber: new FormControl(
+          this.formDataService.formData.billingAccountNumber
+        ),
+        accessType: new FormControl(null), // Not yet implemented on backend
+      }),
+      additionalInformation: new FormGroup({
+        internetApplication: new FormControl(
+          this.formDataService.formData.internetApplication
+        ),
+        exchangeEmail: new FormControl(
+          this.formDataService.formData.exchangeEmail
+        ),
+        emailEncryption: new FormControl(
+          this.formDataService.formData.emailEncryption
+        ),
+        laCountyGovAccess: new FormControl(
+          this.formDataService.formData.laCountyGovAccess
+        ),
+        tokenlessAuthentication: new FormControl(
+          this.formDataService.formData.tokenlessAuthentication
+        ),
+        lacMobileWifiAccess: new FormControl(
+          this.formDataService.formData.lacMobileWifiAccess
+        ),
+        cherwellSms: new FormControl(
+          this.formDataService.formData.cherwellSms
+        ),
+        windowsRightsMgmt: new FormControl(
+          this.formDataService.formData.windowsRightsMgmt
+        ),
+      }),
       signatures: new FormGroup({
         applicationCoordinatorName: new FormControl('', [
           Validators.required,
@@ -174,8 +203,8 @@ export class ReviewEmployeeComponent implements OnInit {
   }
 
   //save button-save form
-  saveForm(): void {
-    this.apiHttpService
+  saveForm = (): void => {
+    this.adminService
       .saveForm(
         this.formDataService.formData.requestNumber,
         this.approval.value
