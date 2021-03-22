@@ -39,9 +39,11 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { LoadingPageComponent } from './form/shared/loading-page/loading-page.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ReviewSubmitComponent,
     ReviewEmployeeComponent,
     NavbarComponent,
+    LoadingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatExpansionModule,
     MatTabsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   exports: [],
   providers: [AuthGuard],
