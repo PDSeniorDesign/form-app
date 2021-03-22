@@ -159,9 +159,14 @@ export class AdminService {
       deptInfoSecurityOfficerPhone: data.signatures.deptInfoSecurityOfficerPhone,
       deptInfoSecurityOfficerEmail: data.signatures.deptInfoSecurityOfficerEmail,
 
+      iscomplete: data.complete,
+
     };
     return JSON.stringify(reformated);
   }
+
+  //starts adobe process
+
 
   //save form -only works for employee requests
   public saveForm(requestNumber: any,  data: object): Observable<any> {
