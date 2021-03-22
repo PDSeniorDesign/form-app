@@ -1,8 +1,257 @@
-<app-employee-form [formGroup] = "approval">
+<div class="container"> 
+  <div fxLayoutAlign="center center" class="content">
+    <mat-card class="card">
+      <mat-card-content>
+        <form [formGroup]="approval"> 
+          <mat-tab-group dynamicHeight [selectedIndex]="selectedIndex">
+            <mat-tab label="Personal Information" >
+              <div formGroupName="personalInformation" class="tab">
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>First Name</mat-label>
+                  <input
+                   matInput formControlName="firstName"
+                   required
+                   pattern="[a-zA-Z ]*" 
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Last Name</mat-label>
+                  <input
+                   matInput formControlName="lastName" 
+                   required
+                   pattern="[a-zA-Z ]*" 
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Middle Initial</mat-label>
+                  <input
+                   matInput formControlName="middleInitial" 
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Email Address</mat-label>
+                  <input
+                   matInput formControlName="emailAddress" 
+                   required
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Phone Number</mat-label>
+                  <input
+                   matInput formControlName="phoneNumber" 
+                   required
+                   pattern="[0-9]{10}"
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <div class="button-container">
+                  <button mat-raised-button (click)="selectTab(1)">Next</button>
+                  <span class="spacer"></span>
+                  <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
+                  <button mat-raised-button color="warn">Cancel</button>
 
-</app-employee-form>
+                </div>
 
-<!-- Includes the approval FormGroup for employeers for admin using mat-expansion  -->
+              </div>
+            </mat-tab>
+            <mat-tab label="Address">
+              <div formGroupName="addressInformation" class="tab">
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Street Address</mat-label>
+                  <input
+                   matInput formControlName="address" 
+                   required
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>City</mat-label>
+                  <input
+                   matInput formControlName="city" 
+                   required
+                   pattern="[a-zA-Z ]*"
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>State</mat-label>
+                  <input
+                   matInput formControlName="state" 
+                   required
+                   pattern="[a-zA-Z ]*"
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Zipcode</mat-label>
+                  <input
+                   matInput formControlName="zipCode" 
+                   required
+                   pattern="[0-9]*"
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <div class="button-container">
+                  <button mat-raised-button (click)="selectTab(0)">Previous</button>
+                  <button mat-raised-button (click)="selectTab(2)">Next</button>
+                  <span class="spacer"></span>
+                  <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
+                  <button mat-raised-button color="warn">Cancel</button>
+                </div>
+
+              </div>
+            </mat-tab>
+            <mat-tab label="Employment Information">
+
+              <div formGroupName="employeeInformation" class="tab">
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Employee Number</mat-label>
+                  <input
+                   matInput formControlName="employeeNumber" 
+                   required
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Hosted Id</mat-label>
+                  <input
+                   matInput formControlName="hostedId" 
+                   required
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <div class="button-container">
+                  <button mat-raised-button (click)="selectTab(1)">Previous</button>
+                  <button mat-raised-button (click)="selectTab(3)">Next</button>
+                  <span class="spacer"></span>
+                  <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
+                  <button mat-raised-button color="warn">Cancel</button>
+                </div>
+              </div>
+
+            </mat-tab>
+            <mat-tab label="Access Options">
+              <!-- <div formGroupName="accessInformation">
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Employee Number</mat-label>
+                  <input
+                   matInput formControlName="employeeNumber" 
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Hosted Id</mat-label>
+                  <input
+                   matInput formControlName="hostedId" 
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <div class="button-container">
+                  <button mat-raised-button (click)="selectTab(2)">Previous</button>
+                  <button mat-raised-button (click)="selectTab(4)">Next</button>
+                  <span class="spacer"></span>
+                  <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
+                  <button mat-raised-button color="warn">Cancel</button>
+                </div>
+              </div> -->
+
+            </mat-tab>
+            <mat-tab label="Additional Information"> Content 3 </mat-tab>
+            <mat-tab label="Approvers">
+              <div formGroupName="signatures" class="tab">
+                <mat-form-field appearance="outline" class="mat-input-approver">
+                  <mat-label>Div. Chief/Mgr Name</mat-label>
+                  <input
+                   matInput formControlName="divChiefManagerName" 
+                   required
+                   pattern="[a-zA-Z ]*" 
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-approver">
+                  <mat-label>Div. Chief/Mgr Phone</mat-label>
+                  <input
+                   matInput formControlName="divChiefManagerPhone" 
+                   required
+                   pattern="[0-9]{10}"
+                   [errorStateMatcher]="errorStateMatcher"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="mat-input-approver">
+                  <mat-label>Div. Chief/Mgr Email</mat-label>
+                  <input
+                   matInput formControlName="divChiefManagerEmail" 
+                   required 
+                   [errorStateMatcher]="errorStateMatcher"/>
+
+
+                </mat-form-field>
+              <mat-form-field appearance="outline" class="mat-input-approver">
+                <mat-label>Dept. Info. Security Officer Name</mat-label>
+                <input
+                 matInput formControlName="deptInfoSecurityOfficerName" 
+                 required
+                 pattern="[a-zA-Z ]*" 
+                 [errorStateMatcher]="errorStateMatcher"/>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="mat-input-approver">
+                <mat-label>Dept. Info. Security Officer Name Phone</mat-label>
+                <input
+                 matInput formControlName="deptInfoSecurityOfficerPhone" 
+                 required
+                 pattern="[0-9]{10}"
+                 [errorStateMatcher]="errorStateMatcher"/>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="mat-input-approver">
+                <mat-label>Dept. Info. Security Officer Name Email</mat-label>
+                <input
+                 matInput formControlName="deptInfoSecurityOfficerEmail" 
+                 required 
+                 [errorStateMatcher]="errorStateMatcher"/>
+              </mat-form-field>
+
+                <div *ngIf = "showApplicationCoord">
+                  <mat-form-field appearance="outline" class="mat-input-approver">
+                    <mat-label>Application Coordinator Name</mat-label>
+                    <input
+                     matInput formControlName="applicationCoordinatorName" 
+                     required
+                     pattern="[a-zA-Z ]*" 
+                     [errorStateMatcher]="errorStateMatcher"/>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="mat-input-approver">
+                    <mat-label>Application Coordinator Phone</mat-label>
+                    <input
+                     matInput formControlName="applicationCoordinatorPhone" 
+                     required
+                     pattern="[0-9]{10}"
+                     [errorStateMatcher]="errorStateMatcher"/>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="mat-input-approver">
+                    <mat-label>Application Coordinator Email</mat-label>
+                    <input
+                     matInput formControlName="applicationCoordinatorEmail" 
+                     required 
+                     [errorStateMatcher]="errorStateMatcher"/>
+                  </mat-form-field>
+
+                </div>
+
+                <div class="button-container">
+                  <button mat-raised-button (click)="selectTab(1)">Previous</button>
+                  <button mat-raised-button (click)="selectTab(3)">Next</button>
+                  <span class="spacer"></span>
+                  <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
+                  <button mat-raised-button color="warn">Cancel</button>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Review"> Content 3 </mat-tab>
+          </mat-tab-group>
+
+
+        </form>
+
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>
+
+
+<!-- Includes the approval FormGroup for employeers for admin using mat-expansion  
 <div style="width: 85%">  
   <h2 class="mat-display-1">Approvals</h2>
   <h3 class="mat-title">Select the following approvals</h3>
@@ -140,3 +389,4 @@
       <button mat-button (click)="print()">Print</button>
   </div>
 </div>
+-->
