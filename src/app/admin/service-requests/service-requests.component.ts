@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
   selector: 'app-service-requests',
@@ -20,7 +21,7 @@ export class ServiceRequestsComponent implements OnInit {
   //save each request into array for display
   @Input() personData: Array<any> = [];
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(private adminService: AdminService, private router: Router, private formDataService: FormDataService) {}
 
   ngOnInit(): void {
     this.adminService.display().subscribe((res) => {
@@ -58,17 +59,18 @@ export class ServiceRequestsComponent implements OnInit {
     this.adminService.searchById(id).subscribe((res) => {
       console.log(res);
       this.retrieveRequestNumber(res);
-      //save res to adminFormdata to transfer between components
-      this.adminService.adminFormData = res;
-      console.log(this.adminService.adminFormData.requestNumber);
-      //if not employee -- go to contractor side
-      //this.router.navigate(['/admin/service-request-detail']);
       
-      if (this.adminService.adminFormData.employee == false) {
-         this.router.navigate(['/admin/review-request']);
+      this.formDataService.formData = res;
+
+
+      //if not employee(false) -- go to contractor side
+      
+      if (this.formDataService.formData.employee == false) {
+         this.router.navigate(['/admin/review-request', this.formDataService.formData.requestNumber]);
        }
        //go to employee form , if true
-       else if (this.adminService.adminFormData.employee == true) {
+       else if (this.formDataService.formData.employee == true) {
+         this.router.navigate(['/admin/review-employee', this.formDataService.formData.requestNumber])
         
        }
  

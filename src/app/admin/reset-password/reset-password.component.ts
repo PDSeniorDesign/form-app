@@ -36,13 +36,7 @@ export class ResetPasswordComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          this.adminService.adminPassword = this.resetForm.get(
-            'newPassword'
-          ).value;
-          sessionStorage.setItem(
-            'password',
-            this.adminService.adminPassword.toString()
-          );
+          this.adminService.setAdminCredentials(this.resetForm.get('newPassword').value);
           this.isSucess = true;
           this.message = 'Password reset successful!';
         },

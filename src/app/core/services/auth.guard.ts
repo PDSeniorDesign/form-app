@@ -18,12 +18,12 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     //if session Storge (password) isnt empty, then loggin, else redirect to home
-    if (sessionStorage.getItem('password') != null) {
+    if (this.adminService.isAdminLoggedIn() == true) {
       //once logged in, logout if url changed outside
       return true;
     }
 
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin'], { queryParams: { returnUrl: state.url }});
     return false;
   }
 }

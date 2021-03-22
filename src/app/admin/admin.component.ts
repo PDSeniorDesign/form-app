@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { AdminService } from '../core/services/admin.service';
 
 @Component({
@@ -13,9 +14,6 @@ export class AdminComponent implements OnInit {
   // to hide password
   hide = true;
   // sessionStorage
-  adminSession: any;
-  // boolena to show header
-  showheader: boolean;
   // handle Error message to block out user: 404
   errorMessage: string;
   // alert boolean to show message
@@ -24,24 +22,11 @@ export class AdminComponent implements OnInit {
   formLogin: FormGroup;
 
   // if navigation to login page is successful, then don't show login header
-  constructor(private router: Router, private adminService: AdminService) {
-    this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        // if register or login page navigated, dont show
-        if (
-          event.url === '/admin/service-requests' ||
-          // event.url == '//admin/service-requests/'
-          event.url === '/admin/reset-password' ||
-          event.url === '/admin/review-request' ||
-          event.url === '/admin/service-request-details'
-        ) {
-          this.showheader = false;
-        } else {
-          this.showheader = true;
-        }
-      }
-    });
-  }
+  constructor(
+    private router: Router,
+    private adminService: AdminService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.formLogin = new FormGroup({
@@ -65,29 +50,31 @@ export class AdminComponent implements OnInit {
 
   adminLogin(): void {
     // save user password to session storage
-    this.adminService.adminPassword = this.formLogin.get('password').value;
-    sessionStorage.setItem(
-      'password',
+    this.adminService.setAdminCredentials(
       this.formLogin.get('password').value.toString()
     );
 
     // call display request service: if 404 error from API, then redirected to login page
-    this.adminService.display().subscribe(
-      (res) => {
-        this.seeServiceRequest();
+    this.adminService.display().subscribe({
+      next:() => {
+
+        // get return url from query parameters or default to home page
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin/service-requests';
+        this.router.navigateByUrl(returnUrl)
+        //this.seeServiceRequest();
         this.alert = false;
         // clear password input after logging in sucessful
         this.formLogin.reset();
+
         // Let the rest of the app know that the admin has logged in
         this.adminService.emitAdminLoggedInChange(true);
       },
-      (error) => {
+      error: error => {
         if (error.status === 403) {
           this.errorMessage = 'Invalid password entered';
           this.alert = true;
           this.isHomeRoute();
         }
-      }
-    );
+      }});
   }
 }
