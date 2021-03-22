@@ -6,6 +6,7 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -26,7 +27,20 @@ export class ReviewEmployeeComponent implements OnInit {
   selectedIndex = 0;
   //show application coordinator group if selected in original form 
   showApplicationCoord: boolean = false;
+
   errorStateMatcher = new InstantErrorStateMatcher();
+  requestNumber: string;
+
+  internetApplication: boolean;
+  exchangeEmail: boolean;
+  emailEncryption: boolean;
+  tokenlessAuthentication: boolean;
+  laCountyGovAccess: boolean;
+  lacMobileWifiAccess: boolean;
+  cherwellSms: boolean;
+  windowsRightsMgmt: boolean;
+
+
 
   //approval FormGroup-manager, divisionChief, etc
   approval: FormGroup;
@@ -38,17 +52,30 @@ export class ReviewEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.formDataService.formData);
+    this.requestNumber = this.formDataService.formData.requestNumber;
+    //console.log(this.formDataService.formData.internetApplication);
+
+    this.internetApplication = this.formDataService.formData.internetApplication;
+    this.exchangeEmail= this.formDataService.formData.exchangeEmail;
+    this.emailEncryption= this.formDataService.formData.emailEncryption;
+    this.tokenlessAuthentication= this.formDataService.formData.tokenlessAuthentication;
+    this.laCountyGovAccess= this.formDataService.formData.laCountyGovAccess;
+    this.lacMobileWifiAccess= this.formDataService.formData.lacMobileWifiAccess;;
+    this.cherwellSms= this.formDataService.formData.cherwellSms;
+    this.windowsRightsMgmt= this.formDataService.formData.windowsRightsMgmt;
 
     //if these fields are empty, then show
     if (this.formDataService.formData.ibmLogOnId !=null ||
        this.formDataService.formData.unixLogOnId != null ||
        this.formDataService.formData.billingAccountNumber != null) {
        this.showApplicationCoord = true;
-
     }
+
 
     //create the form group
     this.approval = new FormGroup({
+      iscomplete: new FormControl(this.formDataService.formData.complete),
+
       personalInformation: new FormGroup({
         lastName: new FormControl(this.formDataService.formData.lastName, [
           Validators.required,
@@ -160,47 +187,91 @@ export class ReviewEmployeeComponent implements OnInit {
         ),
       }),
       signatures: new FormGroup({
-        applicationCoordinatorName: new FormControl('', [
+        applicationCoordinatorName: new FormControl(
+          this.formDataService.formData.applicationCoordinatorName, [
           Validators.required,
           Validators.pattern('[a-z A-Z]*'),
         ]),
-        applicationCoordinatorPhone: new FormControl('', [
+        applicationCoordinatorPhone: new FormControl(
+          this.formDataService.formData.applicationCoordinatorPhone, [
           Validators.required,
           Validators.pattern('[0-9]{10}'),
         ]),
-        applicationCoordinatorEmail: new FormControl('', [
+        applicationCoordinatorEmail: new FormControl(
+          this.formDataService.formData.applicationCoordinatorEmail, [
           Validators.required,
           Validators.email,
         ]),
 
-        divChiefManagerName: new FormControl('', [
+        divChiefManagerName: new FormControl(
+          this.formDataService.formData.divChiefManagerName, [
           Validators.required,
           Validators.pattern('[a-z A-Z]*'),
         ]),
-        divChiefManagerPhone: new FormControl('', [
+        divChiefManagerPhone: new FormControl(
+          this.formDataService.formData.divChiefManagerPhone, [
           Validators.required,
           Validators.pattern('[0-9]{10}'),
         ]),
-        divChiefManagerEmail: new FormControl('', [
+        divChiefManagerEmail: new FormControl(
+          this.formDataService.formData.divChiefManagerEmail, [
           Validators.required,
           Validators.email,
         ]),
 
-        deptInfoSecurityOfficerName: new FormControl('', [
+        deptInfoSecurityOfficerName: new FormControl(
+          this.formDataService.formData.deptInfoSecurityOfficerName, [
           Validators.required,
           Validators.pattern('[a-z A-Z]*'),
         ]),
-        deptInfoSecurityOfficerPhone: new FormControl('', [
+        deptInfoSecurityOfficerPhone: new FormControl(
+          this.formDataService.formData.deptInfoSecurityOfficerPhone, [
           Validators.required,
           Validators.pattern('[0-9]{10}'),
         ]),
-        deptInfoSecurityOfficerEmail: new FormControl('', [
+        deptInfoSecurityOfficerEmail: new FormControl(
+          this.formDataService.formData.deptInfoSecurityOfficerEmail, [
           Validators.required,
           Validators.email,
         ]),
       }),
     });
   }
+
+  //not working yet-set complete to true
+  startAdobeProcess= (): void => {
+    //let comeplete = this.formDataService.formData.complete ;
+    //console.log(this.approval.get("complete").setValue(comeplete));
+    //this.approval.controls['complete'].setValue(true);
+    this.adminService
+    .saveForm(
+      this.formDataService.formData.requestNumber,
+      this.approval.value
+    )
+    .subscribe((res) => {
+      console.log(res);
+      this.formDataService.formData = res;
+    });
+
+  }
+
+  showCheckBoolean(option: FormControl): Boolean {
+    option = this.formDataService.formData.option
+    return option.value;
+  }
+
+
+  onButtonChange(event: MatButtonToggleChange, nameOfOption: string): void {
+    // Change to variable to represent the status of the button, whether clicked or not
+    this[event.source.id] = event.source.checked;
+
+    // Update form group
+    this.approval
+      .get(['additionalInformation', event.source.id])
+      .setValue(this[event.source.id]);
+  }
+
+  
 
   //save button-save form
   saveForm = (): void => {
