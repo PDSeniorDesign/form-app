@@ -364,30 +364,30 @@
       <!-- Information -->
       <div>
         <br />
-        <h6>Policy Rules Descriptions:</h6>
+        <h5><u>Policy Rules Descriptions:</u></h5>
         <p>
           <small
-            >Apply default Countywide Policy: block Pornography, Adult/Mature,
+            ><b>Default Countywide Policy:</b> Block Pornography, Adult/Mature,
             Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
             Personals/Dating, Social Networking, Phishing,
             Spyware/Effect/Malware, Hacking, Proxy Avoidance and Remote Access
             Tools.<br />
-            Department Policy Rule 0: Allow full access, no restrictions.<br />
-            Department Policy Rule 1: Allow access to Pornography, Adult/Mature,
+            <b>Department Policy Rule 0</b>: Allow full access, no restrictions.<br />
+            <b>Department Policy Rule 1</b>: Allow access to Pornography, Adult/Mature,
             Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
             Personals/Dating, Social Networking.<br />
-            Department Policy Rule 2: Allow access to Phishing,
+            <b>Department Policy Rule 2</b>: Allow access to Phishing,
             Spyware/Effect/Malware, Hacking, Proxy Avoidance, Remote Access
             Tools.<br />
-            Department Policy Rule 3: Countywide Global Policy + add’l
+            <b>Department Policy Rule 3</b>: Countywide Global Policy + add’l
             categories (chosen by your department).<br />
-            Department Policy Rule 4: Remove categories from the Global Policy
+            <b>Department Policy Rule 4</b>: Remove categories from the Global Policy
             (chosen by your department).<br />
-            Social Networking Facebook / Twitter / LinkedIn: Allow access to
+            <b>Social Networking Facebook / Twitter / LinkedIn:</b> Allow access to
             Facebook, Twitter, and LinkedIn, respectively.<br />
             <br />
             <span style="color: red"
-              >Please Note: Policy Rules “0” through “4” and Social Networking
+              >Please Note: </span> <span>Policy Rules “0” through “4” and Social Networking
               Facebook, Twitter and LinkedIn are not setup by default. Your
               department must have already submitted an approved “Category
               Selection Worksheet” before you can request to have rules “0”
@@ -398,138 +398,97 @@
       </div>
 
       <!-- First Row -->
-      <div>
-        <div class="form-check form-check-inline">
-          <mat-checkbox
-            class="form-check-input"
-            id="applyDefaultCountyWidePolicyIsCheckedInput"
-            fromControlName="applyDefaultCountyWidePolicyIsChecked"
-            >Appply Default Countywide Policy</mat-checkbox
+      <div class="flex-container">
+        <!-- For some reason need to also apply to parent in order for this style to work, access-option-button -->
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="applyDefaultCountyWidePolicy"
+            class="access-option-button"
+            [checked]="applyDefaultCountyWidePolicy"
+            (change)="onButtonChange($event, 'Default Countywide Policy')"
+            >Default Countywide Policy
+          </mat-button-toggle>
+        </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="departmentPolicyRule0"
+            class="access-option-button"
+            [checked]="departmentPolicyRule0"
+            (change)="onButtonChange($event, 'Department Policy Rule 0')"
+            >Department Policy Rule 0</mat-button-toggle
           >
         </div>
-        <div class="form-check form-check-inline">
-          <mat-checkbox
-            class="form-check-input"
-            id="departmentPolicyRule0IsCheckedInput"
-            fromControlName="departmentPolicyRule0IsChecked"
-            >Department Policy Rule 0</mat-checkbox
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="departmentPolicyRule1"
+            class="access-option-button"
+            [checked]="departmentPolicyRule1"
+            (change)="onButtonChange($event, 'Department Policy Rule 1')"
+            >Department Policy Rule 1</mat-button-toggle
           >
-        </div>
-        <div class="form-check form-check-inline">
-          <mat-checkbox
-            class="form-check-input"
-            id="departmentPolicyRule1IsCheckedInput"
-            fromControlName="departmentPolicyRule1IsChecked"
-          >
-            Department Policy Rule 1
-          </mat-checkbox>
         </div>
       </div>
 
       <!-- Second row -->
-      <div class="mt-2">
-        <div>
-          <div class="form-check form-check-inline">
-            <mat-checkbox
-              class="form-check-input"
-              id="departmentPolicyRule2IsCheckedInput"
-              fromControlName="departmentPolicyRule2IsChecked"
-              >Department Policy Rule 2</mat-checkbox
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <mat-checkbox
-              class="form-check-input"
-              id="departmentPolicyRule3IsCheckedInput"
-              fromControlName="departmentPolicyRule3IsChecked"
-              >Department Policy Rule 3</mat-checkbox
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <mat-checkbox
-              class="form-check-input"
-              id="departmentPolicyRule4IsCheckedInput"
-              fromControlName="departmentPolicyRule4IsChecked"
-              >Department Policy Rule 4</mat-checkbox
-            >
-          </div>
+      <div class="flex-container">
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="departmentPolicyRule2"
+            class="access-option-button"
+            [checked]="departmentPolicyRule2"
+            (change)="onButtonChange($event, 'Department Policy Rule 2')"
+            >Department Policy Rule 2</mat-button-toggle
+          >
+        </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="departmentPolicyRule3"
+            class="access-option-button"
+            [checked]="departmentPolicyRule3"
+            (change)="onButtonChange($event, 'Department Policy Rule 3')"
+            >Department Policy Rule 3</mat-button-toggle
+          >
+        </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="departmentPolicyRule4"
+            class="access-option-button"
+            [checked]="departmentPolicyRule4"
+            (change)="onButtonChange($event, 'Department Policy Rule 4')"
+            >Department Policy Rule 4</mat-button-toggle
+          >
         </div>
       </div>
 
       <!-- Third Row -->
-      <div class="mt-2">
-        <div>
-          <div class="form-check form-check-inline">
-            <mat-checkbox
-              class="form-check-input"
-              id="socialNetworkingFacebookIsCheckedInput"
-              fromControlName="socialNetworkingFacebookIsChecked"
-              >Social Networking Facebook</mat-checkbox
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <mat-checkbox
-              class="form-check-input"
-              id="socialNetworkingTwitterIsCheckedInput"
-              fromControlName="socialNetworkingTwitterIsChecked"
-              >Social Networking Twitter</mat-checkbox
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <mat-checkbox
-              class="form-check-input"
-              id="socialNetworkingLinkedInIsCheckedInput"
-              fromControlName="socialNetworkingLinkedInIsChecked"
-              >Social Networking LinkedIn</mat-checkbox
-            >
-          </div>
+      <div class="flex-container">
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="socialNetworkingFacebook"
+            class="access-option-button"
+            [checked]="socialNetworkingFacebook"
+            (change)="onButtonChange($event, 'Social Networking Facebook')"
+            >Social Networking Facebook</mat-button-toggle
+          >
         </div>
-      </div>
-
-      <!-- NEW, UPDATE, DELETE PRIOR -->
-
-      <div class="mt-2">
-        <h4>Type of Registration</h4>
-        <div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="typeRegister"
-              id="typeOfRegistrationInput"
-              value="new"
-              fromControlName="typeOfRegistration"
-            />
-            <label class="form-check-label" for="inlineRadio1">New</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="typeRegister"
-              id="typeOfRegistrationInput"
-              value="delete"
-              fromControlName="typeOfRegistration"
-            />
-            <label class="form-check-label" for="inlineRadio2"
-              >Delete Prior</label
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="typeRegister"
-              id="typeOfRegistrationInput"
-              value="update"
-              fromControlName="typeOfRegistration"
-            />
-            <label class="form-check-label" for="inlineRadio3"
-              >Update Prior</label
-            >
-          </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="socialNetworkingTwitter"
+            class="access-option-button"
+            [checked]="socialNetworkingTwitter"
+            (change)="onButtonChange($event, 'Social Networking Twitter')"
+            >Social Networking Twitter</mat-button-toggle
+          >
         </div>
-        <br />
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="socialNetworkingLinkedIn"
+            class="access-option-button"
+            [checked]="socialNetworkingLinkedIn"
+            (change)="onButtonChange($event, 'Social Networking LinkedIn')"
+            >Social Networking LinkedIn</mat-button-toggle
+          >
+        </div>
       </div>
 
       <div class="button-container">
@@ -555,10 +514,8 @@
         <!-- Contractor Information -->
         <div class="row">
           <div class="col">
-            <h4>
-              <button class="btnSub" mat-raised-button color="accent">
-                Contractor
-              </button>
+            <h4 (click)="move(0)">
+                Contractor Information
             </h4>
 
             <div>
@@ -678,10 +635,8 @@
 
           <!-- County Information -->
           <div class="col">
-            <h4>
-              <button class="btnSub" mat-raised-button color="accent">
-                County
-              </button>
+            <h4 (click)="move(1)">
+              County Information
             </h4>
 
             <div>
@@ -793,37 +748,81 @@
 
           <!-- Policy Rules Information -->
           <div class="col">
-            <h4>
-              <button class="btnSub" mat-raised-button color="accent">
-                Policy Rules
-              </button>
+            <h4 (click)="move(2)">
+              Policy Rules
             </h4>
 
             <div>
               <h6>Selected Policies</h6>
               <div class="subgroup">
-                <div>Default County Wide Policy</div>
+                <div *ngIf="formContractor.value.policyRulesInformation.applyDefaultCountyWidePolicy">
+                  <input type="checkbox" disabled checked>
+                  <label>Default County Wide Policy</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule0">
+                  <input type="checkbox" disabled checked>
+                  <label>Department Policy 0</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule1">
+                  <input type="checkbox" disabled checked>
+                  <label>Department Policy 1</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule2">
+                  <input type="checkbox" disabled checked>
+                  <label>Department Policy 2</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule3">
+                  <input type="checkbox" disabled checked>
+                  <label>Department Policy 3</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule4">
+                  <input type="checkbox" disabled checked>
+                  <label>Department Policy 4</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.applyDefaultCountyWidePolicy == false && formContractor.value.policyRulesInformation.departmentPolicyRule0 == false&& 
+                formContractor.value.policyRulesInformation.departmentPolicyRule1 == false && formContractor.value.policyRulesInformation.departmentPolicyRule2 == false && 
+                formContractor.value.policyRulesInformation.departmentPolicyRule3 == false && formContractor.value.policyRulesInformation.departmentPolicyRule4 == false">
+                  <p>No policies selected</p>
+                </div>
               </div>
             </div>
+
+            <br>
 
             <div>
               <h6>Selected Social Networking</h6>
               <div class="subgroup">
-                <p class="font-weight-light"></p>
+                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingFacebook">
+                  <input type="checkbox" disabled checked>
+                  <label>Social Networking Facebook</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingTwitter">
+                  <input type="checkbox" disabled checked>
+                  <label>Social Networking Twitter</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingLinkedIn">
+                  <input type="checkbox" disabled checked>
+                  <label>Social Networking LinkedIn</label>
+                </div>
+
+                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingFacebook == false &&
+                formContractor.value.policyRulesInformation.socialNetworkingTwitter == false && 
+                formContractor.value.policyRulesInformation.socialNetworkingLinkedIn == false">
+                  <p>No social networking selected</p>
+                </div>
               </div>
             </div>
 
-            <div>
-              <h6>Type Of Registration</h6>
-              <div class="subgroup">
-                <p class="font-weight-light"></p>
-              </div>
-            </div>
           </div>
         </div>
-        <!-- Access Information -->
-
-        <!-- Additional Information -->
 
         <div class="text-center">
           <button class="btnContact" (click)="onClick()">Submit</button>
