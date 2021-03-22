@@ -6,6 +6,13 @@
           <mat-tab-group dynamicHeight [selectedIndex]="selectedIndex">
             <mat-tab label="Personal Information" >
               <div formGroupName="personalInformation" class="tab">
+                <h2 class="mat-display-1" style="margin-bottom: 16px">
+                  Personal Information
+                </h2>
+                <p *ngIf="requestNumber">
+                  Request Number:
+                  <span style="color: red">{{ requestNumber }}</span>
+                </p>
                 <mat-form-field appearance="outline" class="mat-input-width">
                   <mat-label>First Name</mat-label>
                   <input
@@ -44,7 +51,7 @@
                    [errorStateMatcher]="errorStateMatcher"/>
                 </mat-form-field>
                 <div class="button-container">
-                  <button mat-raised-button (click)="selectTab(1)">Next</button>
+                  <button mat-raised-button (click)="selectTab(1)" color="accent">Next</button>
                   <span class="spacer"></span>
                   <button mat-raised-button color="primary" (click)="saveForm()" class="save">Save</button>
                   <button mat-raised-button color="warn">Cancel</button>
@@ -55,6 +62,13 @@
             </mat-tab>
             <mat-tab label="Address">
               <div formGroupName="addressInformation" class="tab">
+                <h2 class="mat-display-1" style="margin-bottom: 16px">
+                  Address Information
+                </h2>
+                <p *ngIf="requestNumber">
+                  Request Number:
+                  <span style="color: red">{{ requestNumber }}</span>
+                </p>
                 <mat-form-field appearance="outline" class="mat-input-width">
                   <mat-label>Street Address</mat-label>
                   <input
@@ -88,7 +102,7 @@
                 </mat-form-field>
                 <div class="button-container">
                   <button mat-raised-button (click)="selectTab(0)">Previous</button>
-                  <button mat-raised-button (click)="selectTab(2)">Next</button>
+                  <button mat-raised-button (click)="selectTab(2)"  color="accent" class="ml-2">Next</button>
                   <span class="spacer"></span>
                   <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
                   <button mat-raised-button color="warn">Cancel</button>
@@ -99,6 +113,13 @@
             <mat-tab label="Employment Information">
 
               <div formGroupName="employeeInformation" class="tab">
+                <h2 class="mat-display-1" style="margin-bottom: 16px">
+                  Employee Information
+                </h2>
+                <p *ngIf="requestNumber">
+                  Request Number:
+                  <span style="color: red">{{ requestNumber }}</span>
+                </p>
                 <mat-form-field appearance="outline" class="mat-input-width">
                   <mat-label>Employee Number</mat-label>
                   <input
@@ -115,7 +136,154 @@
                 </mat-form-field>
                 <div class="button-container">
                   <button mat-raised-button (click)="selectTab(1)">Previous</button>
-                  <button mat-raised-button (click)="selectTab(3)">Next</button>
+                  <button mat-raised-button (click)="selectTab(3)"  color="accent" class="ml-2">Next</button>
+                  <span class="spacer"></span>
+                  <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
+                  <button mat-raised-button color="warn">Cancel</button>
+                </div>
+              </div>
+            </mat-tab>
+            <!-- Access options: need to fix it-->
+            <mat-tab label="Access Options">
+              <div formGroupName="accessInformation" class="tab">
+                <h2 class="mat-display-1" style="margin-bottom: 16px">
+                  Access Information
+                </h2>
+                <p *ngIf="requestNumber">
+                  Request Number:
+                  <span style="color: red">{{ requestNumber }}</span>
+                </p>
+                <div class="row">
+                  <div class="access-option-button col-sm-12 col-md-4">
+                    <mat-button-toggle>IBM Access Information</mat-button-toggle>
+                    <div class="ibmForm">
+                      <div>
+                        <!-- TODO: Add a heading here -->
+                        <mat-form-field >
+                          <mat-label>Logon ID</mat-label>
+                          <input
+                            id="ibmLogonIdInput"
+                            matInput
+                            formControlName="ibmLogonId"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field >
+                          <mat-label>2-Digit Major Group Code</mat-label>
+                          <input
+                            id="ibmMajorGroupCodeInput"
+                            matInput
+                            formControlName="majorGroupCode"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <mat-label>2-Digit LSO Group Code</mat-label>
+                          <input
+                            id="ibmLsoGroupCodeInput"
+                            matInput
+                            formControlName="lsoGroupCode"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field >
+                          <mat-label>Security Authorization</mat-label>
+                          <input
+                            id="ibmSecurityAuthInput"
+                            matInput
+                            formControlName="securityAuthorization"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- UNix -->
+                  <div class="access-option-button col-sm-12 col-md-4">
+                    <mat-button-toggle>Unix Environment Access</mat-button-toggle>
+                    <div class="unix-access-form">
+                      <div>
+                        <!-- TODO: Add a heading here -->
+                        <mat-form-field >
+                          <mat-label>Logon ID</mat-label>
+                          <input
+                            id="unixLogonIdInput"
+                            matInput
+                            formControlName="unixLogonId"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field >
+                          <mat-label>Application</mat-label>
+                          <input
+                            id="applicationInput"
+                            matInput
+                            formControlName="application"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <mat-label>Access Group</mat-label>
+                          <input
+                            id="accessGroupInput"
+                            matInput
+                            formControlName="accessGroup"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field >
+                          <mat-label>Account Number</mat-label>
+                          <input
+                            id="accountNumberInput"
+                            matInput
+                            formControlName="accountNumber"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="access-option-button col-sm-12 col-md-4">
+                    <mat-button-toggle>SecurID Remote Access</mat-button-toggle>
+                    <div class="secur-id-access-form">
+                      <div>
+                        <!-- TODO: Add a heading here -->
+                        <mat-form-field >
+                          <mat-label>Billing Account Number</mat-label>
+                          <input
+                            id="billingAccountInput"
+                            matInput
+                            formControlName="billingAccountNumber"
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field >
+                          <mat-label>Access Type</mat-label>
+                          <select
+                            formControlName="accessType"
+                            id="accessTypeSelect"
+                            matNativeControl
+                          >
+                            <option selected="SecurIDVPN">SecurID VPN</option>
+                            <option value="Adapative Authentication VPN">
+                              Adapative Authentication VPN
+                            </option>
+                          </select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="button-container">
+                  <button mat-raised-button (click)="selectTab(2)">Previous</button>
+                  <button mat-raised-button (click)="selectTab(4)"  color="accent" class="ml-2">Next</button>
                   <span class="spacer"></span>
                   <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
                   <button mat-raised-button color="warn">Cancel</button>
@@ -123,33 +291,122 @@
               </div>
 
             </mat-tab>
-            <mat-tab label="Access Options">
-              <!-- <div formGroupName="accessInformation">
-                <mat-form-field appearance="outline" class="mat-input-width">
-                  <mat-label>Employee Number</mat-label>
-                  <input
-                   matInput formControlName="employeeNumber" 
-                   [errorStateMatcher]="errorStateMatcher"/>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="mat-input-width">
-                  <mat-label>Hosted Id</mat-label>
-                  <input
-                   matInput formControlName="hostedId" 
-                   [errorStateMatcher]="errorStateMatcher"/>
-                </mat-form-field>
+            <mat-tab label="Additional Information">
+              <div formGroupName="additionalInformation" class="tab">
+                <h2 class="mat-display-1" style="margin-bottom: 16px">
+                  Additional Information
+                </h2>
+                <p *ngIf="requestNumber">
+                  Request Number:
+                  <span style="color: red">{{ requestNumber }}</span>
+                </p>
+
+
+                <h3 class="mat-title">Select the following options</h3>
+                <div class="flex-container">
+                  <!-- For some reason need to also apply to parent in order for this style to work, access-option-button -->
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="internetApplication"
+                      class="access-option-button"
+                      [checked]="internetApplication"
+                      (change)="onButtonChange($event, 'Internet Access')"
+                      >Internet Access
+                    </mat-button-toggle>
+                  </div>
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="exchangeEmail"
+                      class="access-option-button"
+                      [checked]= "exchangeEmail"
+                      (change)="onButtonChange($event, 'Email Account')"
+                      >Email Account</mat-button-toggle
+                    >
+                  </div>
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="emailEncryption"
+                      class="access-option-button"
+                      [checked] = "emailEncryption"
+                      (change)="onButtonChange($event, 'Email Encryption')"
+                      >Email Encryption</mat-button-toggle
+                    >
+                  </div>
+                </div>
+                <div class="flex-container">
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="laCountyGovAccess"
+                      class="access-option-button"
+                      [checked] = "laCountyGovAccess"
+                      (change)="onButtonChange($event, 'LA County Access')"
+                      >LACounty.gov Access</mat-button-toggle
+                    >
+                  </div>
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="tokenlessAuthentication"
+                      class="access-option-button"
+                      [checked] = "tokenlessAuthentication"
+                      (change)="onButtonChange($event, 'Tokenless Authentication')"
+                      >Tokenless Authentication</mat-button-toggle
+                    >
+                  </div>
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="lacMobileWifiAccess"
+                      class="access-option-button"
+                      [checked]=lacMobileWifiAccess
+                      (change)="onButtonChange($event, 'LAC Mobile')"
+                      >LACMobile</mat-button-toggle
+                    >
+                  </div>
+                </div>
+                <div class="flex-container">
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="cherwellSms"
+                      class="access-option-button"
+                      [checked] = "cherwellSms"
+                      (change)="onButtonChange($event, 'Cherwell SMS')"
+                      >Cherwell SMS</mat-button-toggle
+                    >
+                  </div>
+                  <div class="flex-column access-option-button">
+                    <mat-button-toggle
+                      id="windowsRightsMgmt"
+                      class="access-option-button"
+                      [checked] = "windowsRightsMgmt"
+                      (change)="onButtonChange($event, 'Windows Rights Management')"
+                      >Window Rights Management</mat-button-toggle
+                    >
+                  </div>
+                  <!-- This is a spacer to help align items properly -->
+                  <div class="flex-column"></div>
+                </div>
+
+
+
                 <div class="button-container">
-                  <button mat-raised-button (click)="selectTab(2)">Previous</button>
-                  <button mat-raised-button (click)="selectTab(4)">Next</button>
+                  <button mat-raised-button (click)="selectTab(3)">Previous</button>
+                  <button mat-raised-button (click)="selectTab(5)"  color="accent" class="ml-2">Next</button>
                   <span class="spacer"></span>
                   <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
                   <button mat-raised-button color="warn">Cancel</button>
                 </div>
-              </div> -->
-
+                
+              </div>
             </mat-tab>
-            <mat-tab label="Additional Information"> Content 3 </mat-tab>
+            
             <mat-tab label="Approvers">
               <div formGroupName="signatures" class="tab">
+                <h2 class="mat-display-1" style="margin-bottom: 16px">
+                  Approver signatures
+                </h2>
+                <p *ngIf="requestNumber">
+                  Request Number:
+                  <span style="color: red">{{ requestNumber }}</span>
+                </p>
                 <mat-form-field appearance="outline" class="mat-input-approver">
                   <mat-label>Div. Chief/Mgr Name</mat-label>
                   <input
@@ -179,23 +436,18 @@
                 <mat-label>Dept. Info. Security Officer Name</mat-label>
                 <input
                  matInput formControlName="deptInfoSecurityOfficerName" 
-                 required
-                 pattern="[a-zA-Z ]*" 
                  [errorStateMatcher]="errorStateMatcher"/>
               </mat-form-field>
               <mat-form-field appearance="outline" class="mat-input-approver">
                 <mat-label>Dept. Info. Security Officer Name Phone</mat-label>
                 <input
                  matInput formControlName="deptInfoSecurityOfficerPhone" 
-                 required
-                 pattern="[0-9]{10}"
                  [errorStateMatcher]="errorStateMatcher"/>
               </mat-form-field>
               <mat-form-field appearance="outline" class="mat-input-approver">
                 <mat-label>Dept. Info. Security Officer Name Email</mat-label>
                 <input
                  matInput formControlName="deptInfoSecurityOfficerEmail" 
-                 required 
                  [errorStateMatcher]="errorStateMatcher"/>
               </mat-form-field>
 
@@ -227,15 +479,21 @@
                 </div>
 
                 <div class="button-container">
-                  <button mat-raised-button (click)="selectTab(1)">Previous</button>
-                  <button mat-raised-button (click)="selectTab(3)">Next</button>
+                  <button mat-raised-button (click)="selectTab(4)">Previous</button>
+                  <button mat-raised-button (click)="selectTab(6)"  class="ml-2"  color="accent">Next</button>
                   <span class="spacer"></span>
                   <button mat-raised-button color="primary" (click)="saveForm()"class="save">Save</button>
                   <button mat-raised-button color="warn">Cancel</button>
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Review"> Content 3 </mat-tab>
+            <mat-tab label="Review">
+              <div class="button-container">
+                <button mat-raised-button (click)="selectTab(5)">Previous</button>
+                <span class="startAdobe"></span>
+                <button mat-raised-button color="warn" (click)="startAdobeProcess()"class="save">Start Adobe Process</button>
+              </div>
+            </mat-tab>
           </mat-tab-group>
 
 
