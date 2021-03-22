@@ -41,6 +41,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     LayoutModule,
     MatExpansionModule,
     MatTabsModule,
+    MatDialogModule,
   ],
   exports: [],
   providers: [AuthGuard],
