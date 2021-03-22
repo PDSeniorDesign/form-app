@@ -40,6 +40,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatChipsModule,
     LayoutModule,
     MatExpansionModule,
+    MatTabsModule,
   ],
   exports: [],
   providers: [AuthGuard],
