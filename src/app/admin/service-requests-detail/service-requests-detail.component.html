@@ -1,1 +1,290 @@
-<p>service-requests-detail works!</p>
+<form
+  id="regForm"
+  [formGroup]="adminForm"
+  class="container"
+
+>
+
+      <ng-template matStepLabel>Contractor</ng-template>
+      <div class="mat-display-1" style="margin: 42px 5px">
+      <h1>
+        Request Details
+      </h1>
+      <h5> request number: {{requestNumber}}</h5>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h4>
+            <button style="margin-bottom: 5px" class="btnSub" mat-raised-button color="primary">
+              Contractor
+            </button>
+          </h4>
+
+          <div>
+            <h6>First Name</h6>
+            <div class="sub-group">
+              <p>
+                {{
+                  adminForm.value.contractorInformation.firstName ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Middle Initial</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.contractorInformation.middleInitial ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Last Name</h6>
+            <div class="sub-group">
+              <p>
+                {{
+                  adminForm.value.contractorInformation.lastName || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Company Name</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.contractorInformation.companyName ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Company Email</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.contractorInformation
+                    .companyEmailAddress || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Company Street Address</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.contractorInformation
+                    .companyStreetAddress || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>City</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.contractorInformation.city || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>State</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.contractorInformation.state || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Zipcode</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.contractorInformation.zipCode || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Phone Number</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.contractorInformation.phoneNumber ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- County Information -->
+        <div class="col">
+          <h4>
+            <button style="margin-bottom: 5px" class="btnSub" mat-raised-button color="primary">
+              County
+            </button>
+          </h4>
+
+          <div>
+            <h6>Contract Work Order No</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation
+                    .contractWorkOrderNumber || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Contract Expiration Date</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation
+                    .contractExpirationDate || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>County Email Address</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation.countyEmailAddress ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Phone Number</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation.phoneNumber || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Department Name</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation.departmentName ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Department Number</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation.departmentNumber ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Business Street Address</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation
+                    .businessStreetAddress || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Business City</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation.businessCity || "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Business Zipcode</h6>
+            <div class="subgroup">
+              <p>
+                {{
+                  adminForm.value.countyInformation.businessZipCode ||
+                    "N/A"
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Policy Rules Information -->
+        <div class="col">
+          <h4>
+            <button style="margin-bottom: 5px" class="btnSub" mat-raised-button color="primary">
+              Policy Rules
+            </button>
+          </h4>
+
+          <div>
+            <h6>Selected Policies</h6>
+            <div class="subgroup">
+              <div>Default County Wide Policy</div>
+            </div>
+          </div>
+
+          <div>
+            <h6>Selected Social Networking</h6>
+            <div class="subgroup">
+              <p class="font-weight-light"></p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Type Of Registration</h6>
+            <div class="subgroup">
+              <p class="font-weight-light"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Access Information -->
+
+      <!-- Additional Information -->
+
+
+
+
+      </form>
