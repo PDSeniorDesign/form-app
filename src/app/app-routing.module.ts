@@ -5,11 +5,12 @@ import { ContractorFormComponent } from './form/contractor-form/contractor-form.
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
-import { ResetPasswordComponent } from './admin/reset-password/reset-password.component'
+import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
 import { AuthGuard } from './core/services/auth.guard';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 import { ReviewRequestComponent } from './admin/review-request/review-request.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'contractor-form',
     component: ContractorFormComponent,
+  },
+  {
+    path: 'confirmation-page',
+    component: ConfirmationPageComponent,
   },
   {
     path: 'admin',
@@ -46,7 +51,7 @@ const routes: Routes = [
       {
         path: 'review-employee/:requestNumber',
         component: ReviewEmployeeComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'reset-password',
