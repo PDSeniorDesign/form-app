@@ -161,18 +161,39 @@
         </button>
       </h4>
 
-      <!-- IBM info -->
-      <!-- <div *ngIf="regForm.value.accessInformation.renderIBMForm === true> " -->
       <div>
-        <h6>Logon ID</h6>
+        <h6>Access Options:</h6>
+        <div class="smallerText" *ngIf="regForm.value.accessInformation.renderIBMForm">
+          <input type="checkbox" disabled checked>
+          <label>IBM</label>
+        </div>
+
+        <div class="smallerText" *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
+          <input type="checkbox" disabled checked>
+          <label>Unix Environment</label>
+        </div>
+
+        <div class="smallerText" *ngIf="regForm.value.accessInformation.renderSecurIdAccess">
+          <input type="checkbox" disabled checked>
+          <label>SecurID Remote</label>
+        </div>
+      </div>
+
+      <!-- IBM info -->
+      <!-- <div *ngIf="regForm.value.accessInformation.renderIBMForm"> -->
+      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
+        <h6>IBM Info</h6>
         <div class="subgroup">
+          <p>
+            Logon ID: 
+          </p>
           <p>
             {{ regForm.value.accessInformation.ibmLogonId || "N/A" }}
           </p>
         </div>
       </div>
 
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
         <h6>2-Digit Major Group Code</h6>
         <div class="subgroup">
           <p>
@@ -181,7 +202,7 @@
         </div>
       </div>
 
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
         <h6>2-Digit LSO Group Code</h6>
         <div class="subgroup">
           <p>
@@ -190,7 +211,7 @@
         </div>
       </div>
 
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
         <h6>Security Authorization</h6>
         <div class="subgroup">
           <p>
@@ -202,7 +223,7 @@
 
       <!-- Unix info -->
       <!-- <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess === true> " -->
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
         <h6>Login ID</h6>
         <div class="subgroup">
           <p>
@@ -211,7 +232,7 @@
         </div>
       </div>
 
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
         <h6>Application</h6>
         <div class="subgroup">
           <p>
@@ -220,7 +241,7 @@
         </div>
       </div>
 
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
         <h6>Access Group</h6>
         <div class="subgroup">
           <p>
@@ -229,7 +250,7 @@
         </div>
       </div>
 
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
         <h6>Account Number</h6>
         <div class="subgroup">
           <p>
@@ -241,7 +262,7 @@
 
       <!-- SecurID Access info -->
       <!-- <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess === true> " -->
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess"> 
         <h6>Billing Account Number</h6>
         <div class="subgroup">
           <p>
@@ -250,7 +271,7 @@
         </div>
       </div>
 
-      <div>
+      <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess">
         <h6>Access Type</h6>
         <div class="subgroup">
           <p>
@@ -279,17 +300,49 @@
       <div>
         <h6>Applications Requested</h6>
         <div class="subgroup">
-          <p>Not functional yet</p>
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.internetApplication">
+            <input type="checkbox" disabled checked>
+            <label>Internet Access</label>
+          </div>
+
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.exchangeEmail">
+            <input type="checkbox" disabled checked>
+            <label>Email Account</label>
+          </div>
+
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.emailEncryption">
+            <input type="checkbox" disabled checked>
+            <label>Email Encryption</label>
+          </div>
+
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.laCountyGovAccess">
+            <input type="checkbox" disabled checked>
+            <label>LA County Gov Access</label>
+          </div>
+
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.tokenlessAuthentication">
+            <input type="checkbox" disabled checked>
+            <label>Tokenless Authentication</label>
+          </div>
+
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.lacMobileWifiAccess">
+            <input type="checkbox" disabled checked>
+            <label>LACMobile</label>
+          </div>
+
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.cherwellSms">
+            <input type="checkbox" disabled checked>
+            <label>Cherwell Sms</label>
+          </div>
+
+          <div class="smallerText" *ngIf="regForm.value.additionalInformation.windowsRightsMgmt">
+            <input type="checkbox" disabled checked>
+            <label>Window Rights Management</label>
+          </div>
+
         </div>
       </div>
 
-      <!-- Type of Registration -->
-      <div>
-        <h6>Type of Registration</h6>
-        <div class="subgroup">
-          <p>Not functional yet</p>
-        </div>
-      </div>
     </div>
   </div>
 

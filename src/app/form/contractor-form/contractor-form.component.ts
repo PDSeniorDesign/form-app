@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatStepper } from '@angular/material/stepper';
 
 @Component({
@@ -34,9 +35,21 @@ import { MatStepper } from '@angular/material/stepper';
   ],
 })
 export class ContractorFormComponent implements OnInit {
+  @ViewChild('stepper') stepper: MatStepper;
   formContractor: FormGroup;
   errorStateMatcher = new InstantErrorStateMatcher();
   hasSubmitted: boolean;
+
+  //Registration Boolean Variables
+  applyDefaultCountyWidePolicy: boolean;
+  departmentPolicyRule0: boolean;
+  departmentPolicyRule1: boolean;
+  departmentPolicyRule2: boolean;
+  departmentPolicyRule3: boolean;
+  departmentPolicyRule4: boolean;
+  socialNetworkingFacebook: boolean;
+  socialNetworkingTwitter: boolean;
+  socialNetworkingLinkedIn: boolean;
 
   constructor(
     private formDataService: FormDataService,
@@ -106,16 +119,15 @@ export class ContractorFormComponent implements OnInit {
           ),
       }),
       policyRulesInformation: new FormGroup ({
-        applyDefaultCountywidePolicyIsChecked: new FormControl(false),
-        departmentPolicyRule0IsChecked: new FormControl(false),
-        departmentPolicyRule1IsChecked: new FormControl(false),
-        departmentPolicyRule2IsChecked: new FormControl(false),
-        departmentPolicyRule3IsChecked: new FormControl(false),
-        departmentPolicyRule4IsChecked: new FormControl(false),
-        socialNetworkingFacebookIsChecked: new FormControl(false),
-        socialNetworkingTwitterIsChecked: new FormControl(false),
-        socialNetworkingLinkedInIsChecked: new FormControl(false),
-        typeOfRegistration: new FormControl(null),
+        applyDefaultCountyWidePolicy: new FormControl(false),
+        departmentPolicyRule0: new FormControl(false),
+        departmentPolicyRule1: new FormControl(false),
+        departmentPolicyRule2: new FormControl(false),
+        departmentPolicyRule3: new FormControl(false),
+        departmentPolicyRule4: new FormControl(false),
+        socialNetworkingFacebook: new FormControl(false),
+        socialNetworkingTwitter: new FormControl(false),
+        socialNetworkingLinkedIn: new FormControl(false),
       }),
       accessInformation: new FormGroup ({
         // IBM Data Center Access
@@ -139,6 +151,29 @@ export class ContractorFormComponent implements OnInit {
     });
 
     this.hasSubmitted = false;
+  }
+
+  onButtonChange(event: MatButtonToggleChange, nameOfOption: string): void {
+    // Change to variable to represent the status of the button, whether clicked or not
+    this[event.source.id] = event.source.checked;
+
+    // Update form group
+    this.formContractor
+      .get(['policyRulesInformation', event.source.id])
+      .setValue(this[event.source.id]);
+
+    // This is the code for the chiplist
+    // if (event.source.checked) {
+    //   // Add to chiplist
+    //   this.options.add(nameOfOption);
+    // } else {
+    //   // Remove from chiplist
+    //   this.options.delete(nameOfOption);
+    // }
+  }
+
+  move(index:number) {
+    this.stepper.selectedIndex = index;
   }
 
   onClick(): void {
