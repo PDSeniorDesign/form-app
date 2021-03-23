@@ -42,6 +42,7 @@ import { SharedModule } from './shared/shared.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import { SubmissionConfirmationPageComponent } from './form/shared/submission-confirmation-page/submission-confirmation-page.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ReviewSubmitComponent,
     ReviewEmployeeComponent,
     NavbarComponent,
+    SubmissionConfirmationPageComponent,
   ],
   imports: [
     BrowserModule,
