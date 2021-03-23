@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationPageService } from '../core/services/confirmation-page.service';
 
 @Component({
@@ -7,9 +8,18 @@ import { ConfirmationPageService } from '../core/services/confirmation-page.serv
   styleUrls: ['./confirmation-page.component.css'],
 })
 export class ConfirmationPageComponent implements OnInit {
-  constructor(private confirmationPageService: ConfirmationPageService) {}
+  requestNumber: number;
+
+  constructor(
+    private confirmationPageService: ConfirmationPageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.confirmationPageService.requestNumber);
+    this.requestNumber = this.confirmationPageService.requestNumber;
+    // TODO: Make a guard for this. This is a temporary fix.
+    if (this.requestNumber === undefined) {
+      this.router.navigate(['']);
+    }
   }
 }
