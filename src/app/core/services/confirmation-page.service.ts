@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfirmationPageService {
-
-  constructor() { }
+  // Where the response data will be set
+  requestNumber: any;
+  constructor() {}
 }
