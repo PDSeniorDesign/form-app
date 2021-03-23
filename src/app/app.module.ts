@@ -45,6 +45,7 @@ import { FormActionSelectionComponent } from './homepage/form-action-selection/f
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SharedModule } from './shared/shared.module';
     ReviewEmployeeComponent,
     NavbarComponent,
     LoadingPageComponent,
-    SubmissionConfirmationPageComponent
+    SubmissionConfirmationPageComponent,
+    ConfirmationPageComponent
   ],
   imports: [
     BrowserModule,
