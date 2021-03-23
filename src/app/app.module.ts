@@ -9,14 +9,18 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,15 +39,12 @@ import { ContractorFormComponent } from './form/contractor-form/contractor-form.
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
+import { LoadingPageComponent } from './form/shared/loading-page/loading-page.component';
+import { SubmissionConfirmationPageComponent } from './form/shared/submission-confirmation-page/submission-confirmation-page.component';
 import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatDialogModule } from '@angular/material/dialog';
-import { LoadingPageComponent } from './form/shared/loading-page/loading-page.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ReviewEmployeeComponent,
     NavbarComponent,
     LoadingPageComponent,
+    SubmissionConfirmationPageComponent
   ],
   imports: [
     BrowserModule,
