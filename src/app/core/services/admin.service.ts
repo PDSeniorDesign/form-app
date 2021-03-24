@@ -15,7 +15,6 @@ export class AdminService {
   // hold password for admin
   public adminPassword: any;
 
-
   constructor(private http: HttpClient, private router: Router) {
     this.init();
   }
@@ -156,20 +155,20 @@ export class AdminService {
       divChiefManagerEmail: data.signatures.divChiefManagerEmail,
 
       deptInfoSecurityOfficerName: data.signatures.deptInfoSecurityOfficerName,
-      deptInfoSecurityOfficerPhone: data.signatures.deptInfoSecurityOfficerPhone,
-      deptInfoSecurityOfficerEmail: data.signatures.deptInfoSecurityOfficerEmail,
+      deptInfoSecurityOfficerPhone:
+        data.signatures.deptInfoSecurityOfficerPhone,
+      deptInfoSecurityOfficerEmail:
+        data.signatures.deptInfoSecurityOfficerEmail,
 
       iscomplete: data.complete,
-
     };
     return JSON.stringify(reformated);
   }
 
   //starts adobe process
 
-
   //save form -only works for employee requests
-  public saveForm(requestNumber: any,  data: object): Observable<any> {
+  public saveForm(requestNumber: any, data: object): Observable<any> {
     // set the password in headers
     const httpOptions = {
       headers: new HttpHeaders({
@@ -177,9 +176,10 @@ export class AdminService {
         password: this.adminPassword,
       }),
     };
-    return this.http.patch(`${environment.apiUrl}/admin/service_requests/${requestNumber}`,
-    this.reformatDataPostEmployee(data, false),
-    httpOptions);
-
+    return this.http.patch(
+      `${environment.apiUrl}/admin/service_requests/${requestNumber}`,
+      this.reformatDataPostEmployee(data, false),
+      httpOptions
+    );
   }
 }
