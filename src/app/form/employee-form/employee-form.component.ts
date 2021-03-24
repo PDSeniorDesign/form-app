@@ -66,7 +66,6 @@ export class EmployeeFormComponent implements OnInit {
   ngOnInit(): void {
     // Setting inital step, 0
     this.currentIndex = 0;
-    console.log('from comp', this.formDataService.formData);
     /**
      * If there is a form in the form data service, then it most likely
      * means that the user is coming from the homepage. Meaning that they
@@ -75,205 +74,215 @@ export class EmployeeFormComponent implements OnInit {
     if (this.formDataService.formData !== undefined) {
       // Set request number
       this.requestNumber = this.formDataService.formData.requestNumber;
-
-      this.form = new FormGroup({
-        personalInformation: new FormGroup({
-          lastName: new FormControl(this.formDataService.formData.lastName, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          firstName: new FormControl(this.formDataService.formData.firstName, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          middleInitial: new FormControl(
-            this.formDataService.formData.middleInitial,
-            Validators.pattern('[a-z A-Z]*')
-          ),
-          emailAddress: new FormControl(
-            this.formDataService.formData.employeeEmailAddress,
-            [Validators.required, Validators.email]
-          ),
-          phoneNumber: new FormControl(
-            this.formDataService.formData.businessPhoneNumber,
-            [Validators.required, Validators.pattern('[0-9]{10}')]
-          ),
-        }),
-        addressInformation: new FormGroup({
-          address: new FormControl(
-            this.formDataService.formData.businessStreetAddress,
-            Validators.required
-          ),
-          city: new FormControl(this.formDataService.formData.businessCity, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          state: new FormControl(this.formDataService.formData.businessState, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          zipCode: new FormControl(this.formDataService.formData.businessZip, [
-            Validators.required,
-            Validators.minLength(5),
-            Validators.maxLength(7),
-            Validators.pattern('[0-9]*'),
-          ]),
-        }),
-        employeeInformation: new FormGroup({
-          employeeNumber: new FormControl(
-            this.formDataService.formData.employeeNumber,
-            [Validators.required]
-          ),
-          hostedId: new FormControl(
-            this.formDataService.formData.hostedId,
-            Validators.required
-          ),
-        }),
-        accessInformation: new FormGroup({
-          // IBM Data Center Access
-          renderIBMForm: new FormControl(),
-          ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
-          majorGroupCode: new FormControl(
-            this.formDataService.formData.majorGroupCode
-          ),
-          lsoGroupCode: new FormControl(
-            this.formDataService.formData.lsoGroupCode
-          ),
-          securityAuthorization: new FormControl(
-            this.formDataService.formData.securityAuthorization
-          ),
-          // Unix Environment Access
-          renderUnixEnvAccess: new FormControl(),
-          unixLogonId: new FormControl(
-            this.formDataService.formData.unixLogOnId
-          ),
-          application: new FormControl(
-            this.formDataService.formData.unixApplication
-          ),
-          accessGroup: new FormControl(
-            this.formDataService.formData.unixAccessGroup
-          ),
-          accountNumber: new FormControl(
-            this.formDataService.formData.unixAccountNumber
-          ),
-          // SecurID Remote Access
-          renderSecurIdAccess: new FormControl(),
-          billingAccountNumber: new FormControl(
-            this.formDataService.formData.billingAccountNumber
-          ),
-          accessType: new FormControl(null), // Not yet implemented on backend
-        }),
-        additionalInformation: new FormGroup({
-          internetApplication: new FormControl(
-            this.formDataService.formData.internetApplication
-          ),
-          exchangeEmail: new FormControl(
-            this.formDataService.formData.exchangeEmail
-          ),
-          emailEncryption: new FormControl(
-            this.formDataService.formData.emailEncryption
-          ),
-          laCountyGovAccess: new FormControl(
-            this.formDataService.formData.laCountyGovAccess
-          ),
-          tokenlessAuthentication: new FormControl(
-            this.formDataService.formData.tokenlessAuthentication
-          ),
-          lacMobileWifiAccess: new FormControl(
-            this.formDataService.formData.lacMobileWifiAccess
-          ),
-          cherwellSms: new FormControl(
-            this.formDataService.formData.cherwellSms
-          ),
-          windowsRightsMgmt: new FormControl(
-            this.formDataService.formData.windowsRightsMgmt
-          ),
-        }),
-      });
+      // And grab the prefilled formgroup
+      this.form = this.createContinuedFormGroup();
     } else {
       // Starting a new form
-      this.form = new FormGroup({
-        personalInformation: new FormGroup({
-          lastName: new FormControl(null, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          firstName: new FormControl(null, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          middleInitial: new FormControl(
-            null,
-            Validators.pattern('[a-z A-Z]*')
-          ),
-          emailAddress: new FormControl(null, [
-            Validators.required,
-            Validators.email,
-          ]),
-          phoneNumber: new FormControl(null, [
-            Validators.required,
-            Validators.pattern('[0-9]{10}'),
-          ]),
-        }),
-        addressInformation: new FormGroup({
-          address: new FormControl(null, Validators.required),
-          city: new FormControl(null, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          state: new FormControl(null, [
-            Validators.required,
-            Validators.pattern('[a-z A-Z]*'),
-          ]),
-          zipCode: new FormControl(null, [
-            Validators.required,
-            Validators.minLength(5),
-            Validators.maxLength(7),
-            Validators.pattern('[0-9]*'),
-          ]),
-        }),
-        employeeInformation: new FormGroup({
-          employeeNumber: new FormControl(null, [Validators.required]),
-          hostedId: new FormControl(null, Validators.required),
-        }),
-        accessInformation: new FormGroup({
-          // IBM Data Center Access
-          ibmLogonId: new FormControl(null, []),
-          majorGroupCode: new FormControl(null, [
-            Validators.pattern('[0-9]{2}'),
-            Validators.minLength(2),
-            Validators.maxLength(2),
-          ]),
-          lsoGroupCode: new FormControl(null, [
-            Validators.pattern('[0-9]{2}'),
-            Validators.minLength(2),
-            Validators.maxLength(2),
-          ]),
-          securityAuthorization: new FormControl(null),
-          // Unix Environment Access
-          unixLogonId: new FormControl(null),
-          application: new FormControl(null),
-          accessGroup: new FormControl(null),
-          accountNumber: new FormControl(null),
-          // SecurID Remote Access
-          billingAccountNumber: new FormControl(null),
-          accessType: new FormControl(null),
-        }),
-        additionalInformation: new FormGroup({
-          internetApplication: new FormControl(false),
-          exchangeEmail: new FormControl(false),
-          emailEncryption: new FormControl(false),
-          laCountyGovAccess: new FormControl(false),
-          tokenlessAuthentication: new FormControl(false),
-          lacMobileWifiAccess: new FormControl(false),
-          cherwellSms: new FormControl(false),
-          windowsRightsMgmt: new FormControl(false),
-        }),
-        // TODO: Fill out the rest
-      });
+      this.form = this.createDefaultFormGroup();
       // To show the form instead of the submit page
       this.hasSubmitted = false;
     }
+  }
+  /**
+   * Takes care of creating a form group.
+   * @return The form group that is used in the employee form.
+   */
+  createDefaultFormGroup(): FormGroup {
+    const formGroup = new FormGroup({
+      personalInformation: new FormGroup({
+        lastName: new FormControl(null, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        firstName: new FormControl(null, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        middleInitial: new FormControl(null, Validators.pattern('[a-z A-Z]*')),
+        emailAddress: new FormControl(null, [
+          Validators.required,
+          Validators.email,
+        ]),
+        phoneNumber: new FormControl(null, [
+          Validators.required,
+          Validators.pattern('[0-9]{10}'),
+        ]),
+      }),
+      addressInformation: new FormGroup({
+        address: new FormControl(null, Validators.required),
+        city: new FormControl(null, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        state: new FormControl(null, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        zipCode: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(7),
+          Validators.pattern('[0-9]*'),
+        ]),
+      }),
+      employeeInformation: new FormGroup({
+        employeeNumber: new FormControl(null, [Validators.required]),
+        hostedId: new FormControl(null, Validators.required),
+      }),
+      accessInformation: new FormGroup({
+        // IBM Data Center Access
+        ibmLogonId: new FormControl(null, []),
+        majorGroupCode: new FormControl(null, [
+          Validators.pattern('[0-9]{2}'),
+          Validators.minLength(2),
+          Validators.maxLength(2),
+        ]),
+        lsoGroupCode: new FormControl(null, [
+          Validators.pattern('[0-9]{2}'),
+          Validators.minLength(2),
+          Validators.maxLength(2),
+        ]),
+        securityAuthorization: new FormControl(null),
+        // Unix Environment Access
+        unixLogonId: new FormControl(null),
+        application: new FormControl(null),
+        accessGroup: new FormControl(null),
+        accountNumber: new FormControl(null),
+        // SecurID Remote Access
+        billingAccountNumber: new FormControl(null),
+        accessType: new FormControl(null),
+      }),
+      additionalInformation: new FormGroup({
+        internetApplication: new FormControl(false),
+        exchangeEmail: new FormControl(false),
+        emailEncryption: new FormControl(false),
+        laCountyGovAccess: new FormControl(false),
+        tokenlessAuthentication: new FormControl(false),
+        lacMobileWifiAccess: new FormControl(false),
+        cherwellSms: new FormControl(false),
+        windowsRightsMgmt: new FormControl(false),
+      }),
+    });
+    return formGroup;
+  }
+
+  /**
+   * Creates a form group that is prefilled with data from the formDataService. When the user
+   * continues a form, the formDataService will hold the existing form.
+   * @returns A form group that is prefilled with data from an existing form on the server.
+   */
+  createContinuedFormGroup(): FormGroup {
+    const formGroup = new FormGroup({
+      personalInformation: new FormGroup({
+        lastName: new FormControl(this.formDataService.formData.lastName, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        firstName: new FormControl(this.formDataService.formData.firstName, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        middleInitial: new FormControl(
+          this.formDataService.formData.middleInitial,
+          Validators.pattern('[a-z A-Z]*')
+        ),
+        emailAddress: new FormControl(
+          this.formDataService.formData.employeeEmailAddress,
+          [Validators.required, Validators.email]
+        ),
+        phoneNumber: new FormControl(
+          this.formDataService.formData.businessPhoneNumber,
+          [Validators.required, Validators.pattern('[0-9]{10}')]
+        ),
+      }),
+      addressInformation: new FormGroup({
+        address: new FormControl(
+          this.formDataService.formData.businessStreetAddress,
+          Validators.required
+        ),
+        city: new FormControl(this.formDataService.formData.businessCity, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        state: new FormControl(this.formDataService.formData.businessState, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        zipCode: new FormControl(this.formDataService.formData.businessZip, [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(7),
+          Validators.pattern('[0-9]*'),
+        ]),
+      }),
+      employeeInformation: new FormGroup({
+        employeeNumber: new FormControl(
+          this.formDataService.formData.employeeNumber,
+          [Validators.required]
+        ),
+        hostedId: new FormControl(
+          this.formDataService.formData.hostedId,
+          Validators.required
+        ),
+      }),
+      accessInformation: new FormGroup({
+        // IBM Data Center Access
+        renderIBMForm: new FormControl(),
+        ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
+        majorGroupCode: new FormControl(
+          this.formDataService.formData.majorGroupCode
+        ),
+        lsoGroupCode: new FormControl(
+          this.formDataService.formData.lsoGroupCode
+        ),
+        securityAuthorization: new FormControl(
+          this.formDataService.formData.securityAuthorization
+        ),
+        // Unix Environment Access
+        renderUnixEnvAccess: new FormControl(),
+        unixLogonId: new FormControl(this.formDataService.formData.unixLogOnId),
+        application: new FormControl(
+          this.formDataService.formData.unixApplication
+        ),
+        accessGroup: new FormControl(
+          this.formDataService.formData.unixAccessGroup
+        ),
+        accountNumber: new FormControl(
+          this.formDataService.formData.unixAccountNumber
+        ),
+        // SecurID Remote Access
+        renderSecurIdAccess: new FormControl(),
+        billingAccountNumber: new FormControl(
+          this.formDataService.formData.billingAccountNumber
+        ),
+        accessType: new FormControl(null), // Not yet implemented on backend
+      }),
+      additionalInformation: new FormGroup({
+        internetApplication: new FormControl(
+          this.formDataService.formData.internetApplication
+        ),
+        exchangeEmail: new FormControl(
+          this.formDataService.formData.exchangeEmail
+        ),
+        emailEncryption: new FormControl(
+          this.formDataService.formData.emailEncryption
+        ),
+        laCountyGovAccess: new FormControl(
+          this.formDataService.formData.laCountyGovAccess
+        ),
+        tokenlessAuthentication: new FormControl(
+          this.formDataService.formData.tokenlessAuthentication
+        ),
+        lacMobileWifiAccess: new FormControl(
+          this.formDataService.formData.lacMobileWifiAccess
+        ),
+        cherwellSms: new FormControl(this.formDataService.formData.cherwellSms),
+        windowsRightsMgmt: new FormControl(
+          this.formDataService.formData.windowsRightsMgmt
+        ),
+      }),
+    });
+    return formGroup;
   }
 
   /*This functions is passed down to submit step
