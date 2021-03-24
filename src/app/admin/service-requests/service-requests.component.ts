@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormDataService } from 'src/app/core/services/form-data.service';
+import {MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-service-requests',
