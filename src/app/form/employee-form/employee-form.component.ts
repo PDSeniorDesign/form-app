@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatStepper } from '@angular/material/stepper';
+import { BehaviorSubject } from 'rxjs';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
@@ -42,6 +43,7 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
 export class EmployeeFormComponent implements OnInit {
   @ViewChild('stepper') private myStepper: MatStepper;
 
+  isLoading = false;
   // If form is saved or continued this will be populated in order to show
   requestNumber: number;
   form: FormGroup;
@@ -285,6 +287,10 @@ export class EmployeeFormComponent implements OnInit {
     // Arrow function binds this
     this.hasSubmitted = true;
     this.submitResponse = response;
+  };
+
+  setIsLoading = (value: boolean): void => {
+    this.isLoading = value;
   };
 
   // This function is responsible for saving the form

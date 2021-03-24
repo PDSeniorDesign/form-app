@@ -21,6 +21,7 @@ export class SubmitPageComponent implements OnInit {
   @Input() setSubmitResponse: (response: object) => void; // Function to update parent (employee-form.component)
   // Function to move to desired step(index)
   @Input() moveIndex: (newIndex: number) => void;
+  @Input() setIsLoading: (value: boolean) => void;
 
   constructor(
     private apiHttpService: ApiHttpService,
@@ -44,25 +45,24 @@ export class SubmitPageComponent implements OnInit {
           // Set the formData to the response, might be needed somewhere else
           this.formDataService.formData = response;
           this.confirmationPageService.requestNumber = response.requestNumber;
-
-          // Set the submitResponse so that the submit page renders
-          this.setSubmitResponse(response);
+          this.router.navigate(['confirmation-page']);
         });
 
       // If the else statement executes, then the user probably didn't save their progress
       // as they were completing the form
     } else {
+      this.setIsLoading(true);
       this.apiHttpService.submitForm(this.regForm.value, true).subscribe({
         next: (response) => {
-          this.setSubmitResponse(response);
           this.confirmationPageService.requestNumber = response.requestNumber;
+          this.router.navigate(['confirmation-page']);
         },
-        complete: () => this.router.navigate(['confirmation-page']),
       });
     }
   }
   // This function is for testing purposes. It will not mark isCompleted as true(it should be if submitting form this step)
   onSubmitMarkNotCompleted(): void {
+    // this.isLoading$.next(true);
     // If there is a form in formData then there is a form in progress
     if (this.formDataService.formData !== undefined) {
       // Save the form
@@ -78,22 +78,21 @@ export class SubmitPageComponent implements OnInit {
             this.confirmationPageService.requestNumber = response.requestNumber;
 
             // Set the submitResponse so that the submit page renders
-            this.setSubmitResponse(response);
+            this.router.navigate(['confirmation-page']);
           },
-          complete: () => this.router.navigate(['confirmation-page']),
         });
 
       // If the else statement executes, then the user probably didn't save their progress
       // as they were completing the form
     } else {
+      // this.isLoading$.next(true);
       this.apiHttpService
         .createForm(this.regForm.value, true) // This will not mark the form as completed
         .subscribe({
           next: (response) => {
-            this.setSubmitResponse(response);
             this.confirmationPageService.requestNumber = response.requestNumber;
+            this.router.navigate(['confirmation-page']);
           },
-          complete: () => this.router.navigate(['confirmation-page']),
         });
     }
   }
