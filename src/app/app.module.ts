@@ -42,6 +42,7 @@ import { SharedModule } from './shared/shared.module';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatExpansionModule,
     MatTabsModule,
     MatDialogModule,
+    MatTableModule,
   ],
   exports: [],
   providers: [AuthGuard],
