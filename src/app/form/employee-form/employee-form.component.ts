@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatStepper } from '@angular/material/stepper';
-import { BehaviorSubject } from 'rxjs';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
@@ -43,6 +42,8 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
 export class EmployeeFormComponent implements OnInit {
   @ViewChild('stepper') private myStepper: MatStepper;
 
+  // This is used to hide the employee form after submission, will
+  // show the loading page instead
   isLoading = false;
   // If form is saved or continued this will be populated in order to show
   requestNumber: number;
@@ -346,7 +347,7 @@ export class EmployeeFormComponent implements OnInit {
 
 // changes the ErrorStateMatcher to include dirty
 // removes the error message and red boxes after clicking next
-export class InstantErrorStateMatcher implements ErrorStateMatcher {
+class InstantErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
