@@ -9,7 +9,7 @@
 
 ## Prerequisites
 
-- `prettier` used for formatting
+- `prettier` used for formatting. You can use the Vscode extension.
 - `node`
 - `npm`
 - `angular cli` for more [information](https://cli.angular.io/)
