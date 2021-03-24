@@ -13,6 +13,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
+import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-review-employee',
@@ -23,9 +25,10 @@ export class ReviewEmployeeComponent implements OnInit {
   //mat-expander -- to allow to expand/open
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
+  //temporary formGroup
   //change tab
   selectedIndex = 0;
-  //show application coordinator group if selected in original form 
+  //show application coordinator group if selected in original form
   showApplicationCoord: boolean = false;
 
   errorStateMatcher = new InstantErrorStateMatcher();
@@ -40,37 +43,43 @@ export class ReviewEmployeeComponent implements OnInit {
   cherwellSms: boolean;
   windowsRightsMgmt: boolean;
 
-
-
   //approval FormGroup-manager, divisionChief, etc
   approval: FormGroup;
   constructor(
     private formDataService: FormDataService,
     private adminService: AdminService,
-    private apiHttpService: ApiHttpService
+    private apiHttpService: ApiHttpService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    console.log(this.formDataService.formData);
+
+    const heroId = this.route.snapshot.paramMap.get('requestNumber');
+    console.log(heroId)
+    this.loadForm(heroId);
+
+
+    //console.log(this.formDataService.formData);
     this.requestNumber = this.formDataService.formData.requestNumber;
     //console.log(this.formDataService.formData.internetApplication);
 
     this.internetApplication = this.formDataService.formData.internetApplication;
-    this.exchangeEmail= this.formDataService.formData.exchangeEmail;
-    this.emailEncryption= this.formDataService.formData.emailEncryption;
-    this.tokenlessAuthentication= this.formDataService.formData.tokenlessAuthentication;
-    this.laCountyGovAccess= this.formDataService.formData.laCountyGovAccess;
-    this.lacMobileWifiAccess= this.formDataService.formData.lacMobileWifiAccess;;
-    this.cherwellSms= this.formDataService.formData.cherwellSms;
-    this.windowsRightsMgmt= this.formDataService.formData.windowsRightsMgmt;
+    this.exchangeEmail = this.formDataService.formData.exchangeEmail;
+    this.emailEncryption = this.formDataService.formData.emailEncryption;
+    this.tokenlessAuthentication = this.formDataService.formData.tokenlessAuthentication;
+    this.laCountyGovAccess = this.formDataService.formData.laCountyGovAccess;
+    this.lacMobileWifiAccess = this.formDataService.formData.lacMobileWifiAccess;
+    this.cherwellSms = this.formDataService.formData.cherwellSms;
+    this.windowsRightsMgmt = this.formDataService.formData.windowsRightsMgmt;
 
     //if these fields are empty, then show
-    if (this.formDataService.formData.ibmLogOnId !=null ||
-       this.formDataService.formData.unixLogOnId != null ||
-       this.formDataService.formData.billingAccountNumber != null) {
-       this.showApplicationCoord = true;
+    if (
+      this.formDataService.formData.ibmLogOnId != null ||
+      this.formDataService.formData.unixLogOnId != null ||
+      this.formDataService.formData.billingAccountNumber != null
+    ) {
+      this.showApplicationCoord = true;
     }
-
 
     //create the form group
     this.approval = new FormGroup({
@@ -142,9 +151,7 @@ export class ReviewEmployeeComponent implements OnInit {
           this.formDataService.formData.securityAuthorization
         ),
         // Unix Environment Access
-        unixLogonId: new FormControl(
-          this.formDataService.formData.unixLogOnId
-        ),
+        unixLogonId: new FormControl(this.formDataService.formData.unixLogOnId),
         application: new FormControl(
           this.formDataService.formData.unixApplication
         ),
@@ -179,87 +186,92 @@ export class ReviewEmployeeComponent implements OnInit {
         lacMobileWifiAccess: new FormControl(
           this.formDataService.formData.lacMobileWifiAccess
         ),
-        cherwellSms: new FormControl(
-          this.formDataService.formData.cherwellSms
-        ),
+        cherwellSms: new FormControl(this.formDataService.formData.cherwellSms),
         windowsRightsMgmt: new FormControl(
           this.formDataService.formData.windowsRightsMgmt
         ),
       }),
       signatures: new FormGroup({
         applicationCoordinatorName: new FormControl(
-          this.formDataService.formData.applicationCoordinatorName, [
-          Validators.required,
-          Validators.pattern('[a-z A-Z]*'),
-        ]),
+          this.formDataService.formData.applicationCoordinatorName,
+          [Validators.required, Validators.pattern('[a-z A-Z]*')]
+        ),
         applicationCoordinatorPhone: new FormControl(
-          this.formDataService.formData.applicationCoordinatorPhone, [
-          Validators.required,
-          Validators.pattern('[0-9]{10}'),
-        ]),
+          this.formDataService.formData.applicationCoordinatorPhone,
+          [Validators.required, Validators.pattern('[0-9]{10}')]
+        ),
         applicationCoordinatorEmail: new FormControl(
-          this.formDataService.formData.applicationCoordinatorEmail, [
-          Validators.required,
-          Validators.email,
-        ]),
+          this.formDataService.formData.applicationCoordinatorEmail,
+          [Validators.required, Validators.email]
+        ),
 
         divChiefManagerName: new FormControl(
-          this.formDataService.formData.divChiefManagerName, [
-          Validators.required,
-          Validators.pattern('[a-z A-Z]*'),
-        ]),
+          this.formDataService.formData.divChiefManagerName,
+          [Validators.required, Validators.pattern('[a-z A-Z]*')]
+        ),
         divChiefManagerPhone: new FormControl(
-          this.formDataService.formData.divChiefManagerPhone, [
-          Validators.required,
-          Validators.pattern('[0-9]{10}'),
-        ]),
+          this.formDataService.formData.divChiefManagerPhone,
+          [Validators.required, Validators.pattern('[0-9]{10}')]
+        ),
         divChiefManagerEmail: new FormControl(
-          this.formDataService.formData.divChiefManagerEmail, [
-          Validators.required,
-          Validators.email,
-        ]),
+          this.formDataService.formData.divChiefManagerEmail,
+          [Validators.required, Validators.email]
+        ),
 
         deptInfoSecurityOfficerName: new FormControl(
-          this.formDataService.formData.deptInfoSecurityOfficerName, [
-          Validators.required,
-          Validators.pattern('[a-z A-Z]*'),
-        ]),
+          this.formDataService.formData.deptInfoSecurityOfficerName,
+          [Validators.required, Validators.pattern('[a-z A-Z]*')]
+        ),
         deptInfoSecurityOfficerPhone: new FormControl(
-          this.formDataService.formData.deptInfoSecurityOfficerPhone, [
-          Validators.required,
-          Validators.pattern('[0-9]{10}'),
-        ]),
+          this.formDataService.formData.deptInfoSecurityOfficerPhone,
+          [Validators.required, Validators.pattern('[0-9]{10}')]
+        ),
         deptInfoSecurityOfficerEmail: new FormControl(
-          this.formDataService.formData.deptInfoSecurityOfficerEmail, [
-          Validators.required,
-          Validators.email,
-        ]),
+          this.formDataService.formData.deptInfoSecurityOfficerEmail,
+          [Validators.required, Validators.email]
+        ),
       }),
     });
   }
 
+  createApprovalForm(): void {
+
+    this.requestNumber = this.formDataService.formData.requestNumber;
+    console.log("Create AP");
+    console.log(this.formDataService.formData.requestNumber);
+
+  }
+
+  //load form from param
+  loadForm(requestNumber: any): void {
+    this.adminService.searchById(requestNumber).subscribe((res) => {
+      this.formDataService.formData = res;
+      console.log(res);
+      console.log(this.formDataService.formData.requestNumber);
+
+    });
+  }
+
   //not working yet-set complete to true
-  startAdobeProcess= (): void => {
+  startAdobeProcess = (): void => {
     //let comeplete = this.formDataService.formData.complete ;
     //console.log(this.approval.get("complete").setValue(comeplete));
     //this.approval.controls['complete'].setValue(true);
     this.adminService
-    .saveForm(
-      this.formDataService.formData.requestNumber,
-      this.approval.value
-    )
-    .subscribe((res) => {
-      console.log(res);
-      this.formDataService.formData = res;
-    });
-
-  }
+      .saveForm(
+        this.formDataService.formData.requestNumber,
+        this.approval.value
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.formDataService.formData = res;
+      });
+  };
 
   showCheckBoolean(option: FormControl): Boolean {
-    option = this.formDataService.formData.option
+    option = this.formDataService.formData.option;
     return option.value;
   }
-
 
   onButtonChange(event: MatButtonToggleChange, nameOfOption: string): void {
     // Change to variable to represent the status of the button, whether clicked or not
@@ -270,8 +282,6 @@ export class ReviewEmployeeComponent implements OnInit {
       .get(['additionalInformation', event.source.id])
       .setValue(this[event.source.id]);
   }
-
-  
 
   //save button-save form
   saveForm = (): void => {
@@ -284,8 +294,9 @@ export class ReviewEmployeeComponent implements OnInit {
         //debug
         console.log(res);
         this.formDataService.formData = res;
+
       });
-  }
+  };
 
   //print- debugging, prints out the formGroups
   print(): void {
