@@ -11,3 +11,12 @@ export enum FormUserType {
   EMPLOYEE = 'EMPLOYEE',
   CONTRACTOR = 'CONTRACTOR',
 }
+
+//TODO: Add an interface for Service Request
+
+/**
+ * A representation of the response from the server.
+ */
+export interface ServiceRequest {
+  requestNumber: number;
+}
