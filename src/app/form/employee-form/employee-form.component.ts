@@ -42,6 +42,9 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
 export class EmployeeFormComponent implements OnInit {
   @ViewChild('stepper') private myStepper: MatStepper;
 
+  // This is used to hide the employee form after submission, will
+  // show the loading page instead
+  isLoading = false;
   // If form is saved or continued this will be populated in order to show
   requestNumber: number;
   form: FormGroup;
@@ -287,6 +290,10 @@ export class EmployeeFormComponent implements OnInit {
     this.submitResponse = response;
   };
 
+  setIsLoading = (value: boolean): void => {
+    this.isLoading = value;
+  };
+
   // This function is responsible for saving the form
   save = (): void => {
     console.log('current form data', this.formDataService.formData);
@@ -340,7 +347,7 @@ export class EmployeeFormComponent implements OnInit {
 
 // changes the ErrorStateMatcher to include dirty
 // removes the error message and red boxes after clicking next
-export class InstantErrorStateMatcher implements ErrorStateMatcher {
+class InstantErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null

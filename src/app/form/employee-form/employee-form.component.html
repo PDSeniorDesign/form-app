@@ -1,10 +1,10 @@
 <!-- Employee Form -->
 <form
-  *ngIf="!hasSubmitted; else elseBlock"
   id="regForm"
   [formGroup]="form"
   [@myAnimation]
   class="container"
+  [style.display]="isLoading ? 'none' : 'block'"
 >
   <!-- Personal Information Step -->
   <mat-horizontal-stepper #stepper>
@@ -469,14 +469,13 @@
         [regForm]="form"
         [setSubmitResponse]="setSubmitResponse"
         [moveIndex]="setIndex"
+        [setIsLoading]="setIsLoading"
       ></app-submit-page>
     </mat-step>
   </mat-horizontal-stepper>
 </form>
 
-<!-- Submission confirmation page -->
-<ng-template #elseBlock>
-  <app-submission-confirmation-page
-    requestNumber="{{ submitResponse.requestNumber }}"
-  ></app-submission-confirmation-page>
-</ng-template>
+<!-- Loading page -->
+<ng-container *ngIf="isLoading">
+  <app-loading-page></app-loading-page>
+</ng-container>
