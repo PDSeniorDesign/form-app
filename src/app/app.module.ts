@@ -46,6 +46,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
     NavbarComponent,
     LoadingPageComponent,
     SubmissionConfirmationPageComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    ServiceEmployeeRequestsDetailComponent
   ],
   imports: [
     BrowserModule,
