@@ -46,11 +46,19 @@ export class ServiceRequestsComponent implements OnInit {
       this.retrieveRequestNumber(res);
       //save res to adminFormdata to transfer between components
       this.adminService.adminFormData = res;
+      this.formDataService.formData = res;
       console.log(this.adminService.adminFormData.requestNumber);
 
       //go to service request details page
-      this.router.navigate(['/admin/service-request-detail']);
-      
+      if (this.formDataService.formData.employee == false) {
+         this.router.navigate(['/admin/service-contractor-request-detail', this.formDataService.formData.requestNumber]);
+       }
+       //go to employee form , if true
+       else if (this.formDataService.formData.employee == true) {
+         this.router.navigate(['/admin/service-employee-request-detail', this.formDataService.formData.requestNumber])
+
+       }
+
 
     });
   }
@@ -59,26 +67,26 @@ export class ServiceRequestsComponent implements OnInit {
     this.adminService.searchById(id).subscribe((res) => {
       console.log(res);
       this.retrieveRequestNumber(res);
-      
+
       this.formDataService.formData = res;
 
 
       //if not employee(false) -- go to contractor side
-      
+
       if (this.formDataService.formData.employee == false) {
          this.router.navigate(['/admin/review-request', this.formDataService.formData.requestNumber]);
        }
        //go to employee form , if true
        else if (this.formDataService.formData.employee == true) {
          this.router.navigate(['/admin/review-employee', this.formDataService.formData.requestNumber])
-        
+
        }
- 
+
     });
 
   }
 
-  //set requestNumber. 
+  //set requestNumber.
   retrieveRequestNumber(data: any): void {
     this.requestNumber = data.requestNumber;
   }
