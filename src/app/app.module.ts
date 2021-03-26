@@ -47,6 +47,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import {MatTableModule} from '@angular/material/table';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { ApproversComponent } from './admin/approvers/approvers.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
     NavbarComponent,
     LoadingPageComponent,
     SubmissionConfirmationPageComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    ApproversComponent
   ],
   imports: [
     BrowserModule,
