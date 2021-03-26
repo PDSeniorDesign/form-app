@@ -15,6 +15,7 @@
     <mat-nav-list *ngIf="isAdminLoggedIn | async">
       <a mat-list-item routerLink="/admin/reset-password">Reset Password</a>
       <a mat-list-item routerLink="/admin/service-requests">Service Request</a>
+      <a mat-list-item routerLink="/admin/approvers">Approvers</a>
       <a mat-list-item (click)="onLogoutClick()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -57,6 +58,14 @@
             routerLink="/admin/service-requests"
             >Service Request</a
           >
+          <a
+            mat-raised-button
+            color="success"
+            routerLink=""
+            style="margin-right: 10px"
+            routerLink="/admin/approvers"
+            >Approvers</a
+        >
           <a mat-raised-button color="warn" (click)="onLogoutClick()">Logout</a>
         </ng-template>
       </ng-template>
