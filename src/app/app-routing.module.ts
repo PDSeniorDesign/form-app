@@ -11,6 +11,7 @@ import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/
 import { ReviewRequestComponent } from './admin/review-request/review-request.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { ApproversComponent } from './admin/approvers/approvers.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
       {
         path: 'reset-password',
         component: ResetPasswordComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'approvers',
+        component: ApproversComponent,
         canActivate: [AuthGuard],
       },
     ],
