@@ -182,4 +182,302 @@ export class AdminService {
       httpOptions
     );
   }
+
+  //reformat div chief 
+  public reformatPostApprovers(data: any): string {
+    const reformated = {
+      name: data.name,
+      phone: data.phone,
+      email: data.phone,
+
+    };
+    return JSON.stringify(reformated);
+  }  
+
+  //div_chief: get 
+  public getAllDivChief(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/div_chief_managers`,
+      httpOptions
+    );
+  }
+
+  public getDivChief(id: number): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/div_chief_managers/${id}`,
+      httpOptions
+    );
+  }
+
+  public postDivChief(data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.post(
+      `${environment.apiUrl}/admin/div_chief_managers`,
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public patchDivChief(id: any, data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.patch(
+      `${environment.apiUrl}/admin/div_chief_managers/${id}`,
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public deleteDivChief(id: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.delete(
+      `${environment.apiUrl}/admin/div_chief_managers/${id}`,
+      httpOptions
+    );
+  }
+
+  //department head
+
+  public getAllDeptHead(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/department_heads`,
+      httpOptions
+    );
+  }
+
+  public getDeptHead(id: number): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/department_heads/${id}`,
+      httpOptions
+    );
+  }
+
+  public postDeptHead(data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.post(
+      `${environment.apiUrl}/admin/department_heads`, 
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public patchDeptHead(id: any, data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.patch(
+      `${environment.apiUrl}/admin/department_heads/${id}`,
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public deleteDeptHead(id: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.delete(
+      `${environment.apiUrl}/admin/department_heads/${id}`,
+      httpOptions
+    );
+  }
+  
+  //application_coordinators
+  
+  public getAllAppCoord(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/application_coordinators`,
+      httpOptions
+    );
+  }
+
+  public getAppCoord(id: number): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/application_coordinators/${id}`,
+      httpOptions
+    );
+  }
+
+  public postAppCoord(data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.post(
+      `${environment.apiUrl}/admin/application_coordinators`, 
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public patchAppCoord(id: any, data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.patch(
+      `${environment.apiUrl}/admin/application_coordinators/${id}`,
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public deleteAppCoord(id: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.delete(
+      `${environment.apiUrl}/admin/application_coordinators/${id}`,
+      httpOptions
+    );
+  }  
+
+
+//dept_info_security_officers
+
+
+  public getAllDeptInfoSec(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/dept_info_security_officers`,
+      httpOptions
+    );
+  }
+
+  public getDeptInfoSec(id: number): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.get(
+      `${environment.apiUrl}/admin/dept_info_security_officers/${id}`,
+      httpOptions
+    );
+  }
+
+  public postDeptInfoSec(data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.post(
+      `${environment.apiUrl}/admin/dept_info_security_officers`,
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public patchDeptInfoSec(id: any, data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.patch(
+      `${environment.apiUrl}/admin/dept_info_security_officers/${id}`,
+      this.reformatPostApprovers(data),
+      httpOptions
+    );
+  }
+
+  public deleteDeptInfoSec(id: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };
+    return this.http.delete(
+      `${environment.apiUrl}/admin/dept_info_security_officers/${id}`,
+      httpOptions
+    );
+  } 
+
+
+
+
+
+
+  
+  
+
+
 }
