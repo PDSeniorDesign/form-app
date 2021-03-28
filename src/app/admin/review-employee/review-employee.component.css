@@ -1,31 +1,31 @@
 .mat-input-width {
-    width: 30%;
-    
-  }
-.mat-input-approver {
-  width: 30%;
-  margin-right: 30px;
-}
-.tab {
-  margin-top: 40px;
-}
-.card {
-  min-width: 100%;
+  width: 60%;
 }
 
-.save {
-  margin-right: 2%;
+@media only screen and (max-width: 600px) {
+  .mat-input-width {
+    width: 100%;
+  }
 }
 
 .button-container {
   display: flex;
   flex-direction: row;
-  padding-top: 5%;
 }
 
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
+
+.access-option-button {
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+
+
+
+
 
 .flex-container {
   display: flex;
@@ -41,31 +41,29 @@ div.flex-container {
   margin-top: 10px;
 }
 
+.button-toggle-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+}
+
+
+.access-toggle-button {
+  width: 235px;
+}
 
 .mat-button-toggle-checked {
   background-color: lawngreen;
 }
 
-.access-option-button {
-  width: 235px;
+@media only screen and (max-width: 600px) {
+  .flex-container {
+    display: block;
+  }
+
+  .access-toggle-button {
+    margin-bottom: 5px;
+  }
 }
 
-.mat-input-width {
-  width: 60%;
-}
 
-mat-tab-label {
-  padding-bottom: 10%;
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-  margin-left: 5%;
-}
-
-.startAdobe {
-  justify-content: center;
-  display: flex;
-  margin-left: 35%;
-}
