@@ -75,6 +75,9 @@ export class AdminComponent implements OnInit {
 
         // Let the rest of the app know that the admin has logged in
         this.adminService.emitAdminLoggedInChange(true);
+        //rehide password after logging in
+        this.hide = true;
+        
       },
       (error) => {
         if (error.status === 403) {
