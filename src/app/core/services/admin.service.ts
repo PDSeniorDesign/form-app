@@ -155,10 +155,12 @@ export class AdminService {
       divChiefManagerEmail: data.signatures.divChiefManagerEmail,
 
       deptInfoSecurityOfficerName: data.signatures.deptInfoSecurityOfficerName,
-      deptInfoSecurityOfficerPhone:
-        data.signatures.deptInfoSecurityOfficerPhone,
-      deptInfoSecurityOfficerEmail:
-        data.signatures.deptInfoSecurityOfficerEmail,
+      deptInfoSecurityOfficerPhone: data.signatures.deptInfoSecurityOfficerPhone,
+      deptInfoSecurityOfficerEmail: data.signatures.deptInfoSecurityOfficerEmail,
+
+      departmentHeadName: data.signatures.departmentHeadName,
+      departmentHeadPhone: data.signatures.departmentHeadPhone,
+      departmentHeadEmail: data.signatures.departmentHeadEmail,
 
       iscomplete: data.complete,
     };
@@ -183,18 +185,17 @@ export class AdminService {
     );
   }
 
-  //reformat div chief 
+  //reformat div chief
   public reformatPostApprovers(data: any): string {
     const reformated = {
       name: data.name,
       phone: data.phone,
-      email: data.phone,
-
+      email: data.email,
     };
     return JSON.stringify(reformated);
-  }  
+  }
 
-  //div_chief: get 
+  //div_chief: get
   public getAllDivChief(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -298,7 +299,7 @@ export class AdminService {
       }),
     };
     return this.http.post(
-      `${environment.apiUrl}/admin/department_heads`, 
+      `${environment.apiUrl}/admin/department_heads`,
       this.reformatPostApprovers(data),
       httpOptions
     );
@@ -330,9 +331,9 @@ export class AdminService {
       httpOptions
     );
   }
-  
+
   //application_coordinators
-  
+
   public getAllAppCoord(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -367,7 +368,7 @@ export class AdminService {
       }),
     };
     return this.http.post(
-      `${environment.apiUrl}/admin/application_coordinators`, 
+      `${environment.apiUrl}/admin/application_coordinators`,
       this.reformatPostApprovers(data),
       httpOptions
     );
@@ -398,11 +399,9 @@ export class AdminService {
       `${environment.apiUrl}/admin/application_coordinators/${id}`,
       httpOptions
     );
-  }  
+  }
 
-
-//dept_info_security_officers
-
+  //dept_info_security_officers
 
   public getAllDeptInfoSec(): Observable<any> {
     const httpOptions = {
@@ -469,15 +468,5 @@ export class AdminService {
       `${environment.apiUrl}/admin/dept_info_security_officers/${id}`,
       httpOptions
     );
-  } 
-
-
-
-
-
-
-  
-  
-
-
+  }
 }
