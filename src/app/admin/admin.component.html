@@ -32,16 +32,15 @@
               [type]="hide ? 'password' : 'text'"
               placeholder="password"
               formControlName="password"
+              
             />
-            <button
-              mat-icon-button
-              matSuffix
+            <i class ="material-icons" matSuffix 
               (click)="hide = !hide"
               [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide"
             >
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button>
+              {{ hide ? 'visibility_off' : 'visibility' }}
+            </i>
           </mat-form-field>
           <mat-card-actions>
             <button mat-raised-button color="primary" (click)="adminLogin()">
