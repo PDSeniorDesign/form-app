@@ -15,22 +15,36 @@ import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-review-employee',
   templateUrl: './review-employee.component.html',
   styleUrls: ['./review-employee.component.css'],
+  animations: [
+    trigger('myAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 1,
+          })
+        ),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate(
+          '400ms',
+          style({
+            opacity: 0,
+          })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class ReviewEmployeeComponent implements OnInit {
-  //mat-expander -- to allow to expand/open
-  @ViewChild(MatAccordion) accordion: MatAccordion;
-
-  //temporary formGroup
-  //change tab
-  selectedIndex = 0;
-  //show application coordinator group if selected in original form
-  showApplicationCoord: boolean = false;
-
   errorStateMatcher = new InstantErrorStateMatcher();
   requestNumber: string;
 
@@ -43,6 +57,15 @@ export class ReviewEmployeeComponent implements OnInit {
   cherwellSms: boolean;
   windowsRightsMgmt: boolean;
 
+  //selections arrays
+  divCheifList: Array<any>;
+  deptHeadList: Array<any>;
+  appCoordList: Array<any>;
+  deptInfoList: Array<any>;
+
+  //selected value
+  selectedValue: any;
+
   //approval FormGroup-manager, divisionChief, etc
   approval: FormGroup;
   constructor(
@@ -53,11 +76,9 @@ export class ReviewEmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     const heroId = this.route.snapshot.paramMap.get('requestNumber');
-    console.log(heroId)
+    console.log(heroId);
     this.loadForm(heroId);
-
 
     //console.log(this.formDataService.formData);
     this.requestNumber = this.formDataService.formData.requestNumber;
@@ -72,14 +93,11 @@ export class ReviewEmployeeComponent implements OnInit {
     this.cherwellSms = this.formDataService.formData.cherwellSms;
     this.windowsRightsMgmt = this.formDataService.formData.windowsRightsMgmt;
 
-    //if these fields are empty, then show
-    if (
-      this.formDataService.formData.ibmLogOnId != null ||
-      this.formDataService.formData.unixLogOnId != null ||
-      this.formDataService.formData.billingAccountNumber != null
-    ) {
-      this.showApplicationCoord = true;
-    }
+    //get all selections to display
+    this.getDivChiefList();
+    this.getDeptHead();
+    this.getAppCoord();
+    this.getDeptInfo();
 
     //create the form group
     this.approval = new FormGroup({
@@ -193,53 +211,149 @@ export class ReviewEmployeeComponent implements OnInit {
       }),
       signatures: new FormGroup({
         applicationCoordinatorName: new FormControl(
-          this.formDataService.formData.applicationCoordinatorName,
-          [Validators.required, Validators.pattern('[a-z A-Z]*')]
+          this.formDataService.formData.applicationCoordinatorName
         ),
         applicationCoordinatorPhone: new FormControl(
-          this.formDataService.formData.applicationCoordinatorPhone,
-          [Validators.required, Validators.pattern('[0-9]{10}')]
+          this.formDataService.formData.applicationCoordinatorPhone
         ),
         applicationCoordinatorEmail: new FormControl(
-          this.formDataService.formData.applicationCoordinatorEmail,
-          [Validators.required, Validators.email]
+          this.formDataService.formData.applicationCoordinatorEmail
         ),
 
         divChiefManagerName: new FormControl(
-          this.formDataService.formData.divChiefManagerName,
-          [Validators.required, Validators.pattern('[a-z A-Z]*')]
+          this.formDataService.formData.divChiefManagerName
         ),
         divChiefManagerPhone: new FormControl(
-          this.formDataService.formData.divChiefManagerPhone,
-          [Validators.required, Validators.pattern('[0-9]{10}')]
+          this.formDataService.formData.divChiefManagerPhone
         ),
         divChiefManagerEmail: new FormControl(
-          this.formDataService.formData.divChiefManagerEmail,
-          [Validators.required, Validators.email]
+          this.formDataService.formData.divChiefManagerEmail
         ),
 
         deptInfoSecurityOfficerName: new FormControl(
-          this.formDataService.formData.deptInfoSecurityOfficerName,
-          [Validators.required, Validators.pattern('[a-z A-Z]*')]
+          this.formDataService.formData.deptInfoSecurityOfficerName
         ),
         deptInfoSecurityOfficerPhone: new FormControl(
-          this.formDataService.formData.deptInfoSecurityOfficerPhone,
-          [Validators.required, Validators.pattern('[0-9]{10}')]
+          this.formDataService.formData.deptInfoSecurityOfficerPhone
         ),
         deptInfoSecurityOfficerEmail: new FormControl(
-          this.formDataService.formData.deptInfoSecurityOfficerEmail,
-          [Validators.required, Validators.email]
+          this.formDataService.formData.deptInfoSecurityOfficerEmail
+        ),
+        departmentHeadName: new FormControl(
+          this.formDataService.formData.departmentHeadName
+        ),
+        departmentHeadPhone: new FormControl(
+          this.formDataService.formData.departmentHeadPhone
+        ),
+        departmentHeadEmail: new FormControl(
+          this.formDataService.formData.departmentHeadEmail
         ),
       }),
     });
   }
 
+  debug(): void {
+    console.log(this.approval);
+    //console.log(this.formDataService.formData);
+  }
+
+  //set to approval form here for mat-select signatures
+  setSelectedValue(type: string, id: number): void {
+    if (type == 'divisionChief') {
+      if (id == null) {
+        this.approval.get('signatures.divChiefManagerPhone').patchValue(null);
+        this.approval.get('signatures.divChiefManagerEmail').patchValue(null);
+      } else {
+        this.adminService.getDivChief(id).subscribe((res) => {
+          this.approval
+            .get('signatures.divChiefManagerPhone')
+            .patchValue(res.phone);
+          this.approval
+            .get('signatures.divChiefManagerEmail')
+            .patchValue(res.email);
+        });
+      }
+    } else if (type == 'departmentHead') {
+      if (id == null) {
+        this.approval.get('signatures.departmentHeadPhone').patchValue(null);
+        this.approval.get('signatures.departmentHeadEmail').patchValue(null);
+      } else {
+        this.adminService.getDeptHead(id).subscribe((res) => {
+          this.approval
+            .get('signatures.departmentHeadPhone')
+            .patchValue(res.phone);
+          this.approval
+            .get('signatures.departmentHeadEmail')
+            .patchValue(res.email);
+        });
+      }
+    } else if (type == 'appCoord') {
+      if (id == null) {
+        this.approval
+          .get('signatures.applicationCoordinatorPhone')
+          .patchValue(null);
+        this.approval
+          .get('signatures.applicationCoordinatorEmail')
+          .patchValue(null);
+      } else {
+        this.adminService.getAppCoord(id).subscribe((res) => {
+          this.approval
+            .get('signatures.applicationCoordinatorPhone')
+            .patchValue(res.phone);
+          this.approval
+            .get('signatures.applicationCoordinatorEmail')
+            .patchValue(res.email);
+        });
+      }
+    } else {
+      if (id == null) {
+        this.approval
+          .get('signatures.deptInfoSecurityOfficerPhone')
+          .patchValue(null);
+        this.approval
+          .get('signatures.deptInfoSecurityOfficerEmail')
+          .patchValue(null);
+      } else {
+        this.adminService.getDeptInfoSec(id).subscribe((res) => {
+          this.approval
+            .get('signatures.deptInfoSecurityOfficerPhone')
+            .patchValue(res.phone);
+          this.approval
+            .get('signatures.deptInfoSecurityOfficerEmail')
+            .patchValue(res.email);
+        });
+      }
+    }
+  }
+
+  getDivChiefList() {
+    this.adminService.getAllDivChief().subscribe((res) => {
+      this.divCheifList = res;
+    });
+  }
+
+  getDeptHead() {
+    this.adminService.getAllDeptHead().subscribe((res) => {
+      this.deptHeadList = res;
+    });
+  }
+
+  getAppCoord() {
+    this.adminService.getAllAppCoord().subscribe((res) => {
+      this.appCoordList = res;
+    });
+  }
+
+  getDeptInfo() {
+    this.adminService.getAllDeptInfoSec().subscribe((res) => {
+      this.deptInfoList = res;
+    });
+  }
+
   createApprovalForm(): void {
-
     this.requestNumber = this.formDataService.formData.requestNumber;
-    console.log("Create AP");
+    console.log('Create AP');
     console.log(this.formDataService.formData.requestNumber);
-
   }
 
   //load form from param
@@ -248,7 +362,6 @@ export class ReviewEmployeeComponent implements OnInit {
       this.formDataService.formData = res;
       console.log(res);
       console.log(this.formDataService.formData.requestNumber);
-
     });
   }
 
@@ -284,7 +397,7 @@ export class ReviewEmployeeComponent implements OnInit {
   }
 
   //save button-save form
-  saveForm = (): void => {
+  save = (): void => {
     this.adminService
       .saveForm(
         this.formDataService.formData.requestNumber,
@@ -294,29 +407,8 @@ export class ReviewEmployeeComponent implements OnInit {
         //debug
         console.log(res);
         this.formDataService.formData = res;
-
       });
   };
-
-  //print- debugging, prints out the formGroups
-  print(): void {
-    console.log(this.approval.value);
-  }
-
-  //closes all mat-expansion-panels
-  closeAllPanels() {
-    this.accordion.closeAll();
-  }
-
-  //opens all mat-expansion-panels
-  openAllPanels() {
-    this.accordion.openAll();
-  }
-
-  //to change tab based on button click
-  selectTab(index: number): void {
-    this.selectedIndex = index;
-  }
 }
 
 // changes the ErrorStateMatcher to include dirty
