@@ -66,29 +66,33 @@ export class HomepageComponent implements OnInit {
   previousStep(): void {
     this.stepCounter -= 1;
   }
+
   selectEmployee(): void {
-    this.userType = 'employee';
+    if (this.continueForm) {
+      this.userType = 'employee';
+      this.nextStep();
+    } else {
+      this.router.navigate(['/employee-form']);
+    }
   }
   selectContractor(): void {
-    this.userType = 'contractor';
+    if (this.continueForm) {
+      this.userType = 'contractor';
+      this.nextStep();
+    } else {
+      this.router.navigate(['/contractor-form']);
+    }
   }
+
   selectContinueForm(): void {
     this.continueForm = true;
   }
-  // TODO: test this method
-  // TODO: possible edge case, the user type was never set
-  /** If the user calls this function it means they are ready to redirect. */
-  selectNewForm(): void {
+
+  handleStartButtonClick(): void {
     this.continueForm = false;
-    if (this.userType === 'employee') {
-      // navigate to the employee route
-      this.router.navigate(['/employee-form']);
-    } else if (this.userType === 'contractor') {
-      // navigate to the contractor route
-      this.router.navigate(['/contractor-form']);
-    }
-    this.continueForm = false;
+    this.nextStep();
   }
+
   /** This function is responsible for retrieving the form  */
   retrieveForm(): void {
     // use service to grab form

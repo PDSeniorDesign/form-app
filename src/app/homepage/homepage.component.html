@@ -21,7 +21,7 @@
             color="primary"
             id="startFormBtn"
             class="form-button"
-            (click)="nextStep()"
+            (click)="handleStartButtonClick()"
           >
             Start form
           </button>
@@ -55,7 +55,7 @@
         color="primary"
         id="employeeBtn"
         class="mx-auto"
-        (click)="selectEmployee(); nextStep()"
+        (click)="selectEmployee()"
       >
         Employee
       </button>
