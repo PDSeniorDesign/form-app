@@ -29,10 +29,12 @@ import { ResetPasswordComponent } from './admin/reset-password/reset-password.co
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ReviewRequestComponent } from './admin/review-request/review-request.component';
 import { ReviewSubmitComponent } from './admin/review-request/review-submit/review-submit.component';
+import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { CoreModule } from './core/core.module';
 import { AuthGuard } from './core/services/auth.guard';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
@@ -41,12 +43,9 @@ import { EmployeeFormComponent } from './form/employee-form/employee-form.compon
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { LoadingPageComponent } from './form/shared/loading-page/loading-page.component';
 import { SubmissionConfirmationPageComponent } from './form/shared/submission-confirmation-page/submission-confirmation-page.component';
-import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
-import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
-import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +55,6 @@ import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
-    FormActionSelectionComponent,
     AdminComponent,
     ServiceRequestsComponent,
     ResetPasswordComponent,
@@ -68,7 +66,7 @@ import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee
     LoadingPageComponent,
     SubmissionConfirmationPageComponent,
     ConfirmationPageComponent,
-    ServiceEmployeeRequestsDetailComponent
+    ServiceEmployeeRequestsDetailComponent,
   ],
   imports: [
     BrowserModule,
