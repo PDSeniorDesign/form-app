@@ -29,6 +29,8 @@ export class ApproversComponent implements OnInit {
 
   //selection: new user
   selected = '';
+  selectedRole = '';
+  selectedDiv = '';
   roles: string[] = [
     'Division Chief Manager',
     'Department Head',
@@ -39,25 +41,26 @@ export class ApproversComponent implements OnInit {
   constructor(private adminService: AdminService, private router: Router) {}
 
   async ngOnInit() {
+    this.getAllDivCheif();
     this.newApprover = new FormGroup({
       name: new FormControl(null, [Validators.pattern('[a-z A-Z]*')]),
       phone: new FormControl(null, [Validators.pattern('[0-9]{10}')]),
       email: new FormControl(null, [Validators.email]),
     });
-    this.allApprover = []
-    await this.addToArray();
-    await console.log(this.allApprover);
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  getAllDivCheif(): void {
+    this.adminService.getAllDivChief().subscribe((res) => {
+      this.divChief = res;
+      //console.log(this.divChief);
+    });
   }
 
-  ///get all div. cheif, app_coord
-  //add div cheif to div array
-  //add div chief to all array
-  //show allarray to table
+  getSearch(): void {
+    
+  }
+
+
 
   //add to each individual array, then concat for main table
   addToArray(): void {
@@ -87,8 +90,8 @@ export class ApproversComponent implements OnInit {
 
   clear(): void {
     this.newApprover.reset();
-    this.addToArray();
   }
+
   //based on selection: do http.post
   add(): void {
     //post to division cheif

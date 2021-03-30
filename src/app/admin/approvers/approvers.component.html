@@ -47,10 +47,39 @@
                 </div>
             </mat-tab>
             <mat-tab label="Existing Approvers">
-                <p>Edit details or delete current approvers</p>
-                <div class = "table container">
+                <div class = "table-container">
+                    <p>Edit details or delete current approvers</p>
+                    <div class = "input-group search">
+                        <mat-form-field appearance="outline" class="mat2-input-width">
+                            <mat-label>Approver role</mat-label>
+                            <mat-select [(value)]="selectedRole">
+                              <mat-option *ngFor="let role of roles" [value]="role">
+                                {{role}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <div class="div-chief" *ngIf="selectedRole==='Division Chief Manager'">
+                        <mat-form-field appearance="outline" class="mat3-input-width">
+                            <mat-label>Approver Name</mat-label>
+                            <mat-select [(value)]="selectedDiv">
+                              <mat-option *ngFor="let role of divChief" [value]="role.id">
+                                {{role.name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="input-group-append button2-container">
+                            <button mat-raised-button color="primary">Edit</button>
+                            <button mat-raised-button color="primary">Delete</button> 
+                        </div>
+                        <div *ngIf="selectedDiv==='role.id'">
+                            <p>{{role.id}}</p>
+                            <p>{{role.name}}</p>
+                            <p>{{role.phone}}</p>
 
-                    
+                        </div>
+
+                    </div>
 
                 </div>
             </mat-tab>

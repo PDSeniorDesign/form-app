@@ -18,3 +18,31 @@
  p {
     text-align: center;
  }
+
+.table-container {
+    text-align:center;
+    width: 100%;
+
+}
+
+.table-container .search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat2-input-width {
+    width: 47%;
+
+}
+
+.button2-container {
+    display: inline-block;
+
+}
+
+.mat3-input-width {
+    width: 32%;
+
+}
