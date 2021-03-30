@@ -35,6 +35,7 @@
             color="primary"
             id="continueFormBtn"
             class="form-button"
+            (click)="handleContinueButtonClick()"
           >
             Continue form
           </button>
@@ -66,7 +67,7 @@
         color="primary"
         id="contractorBtn"
         class="mx-auto"
-        (click)="selectContractor(); nextStep()"
+        (click)="selectContractor()"
       >
         Contractor
       </button>
@@ -82,50 +83,9 @@
 <ng-template [ngIf]="stepCounter === 2">
   <div class="center" [@myAnimation]>
     <div class="row">
-      <h3>Would you like to continue a form or start a new one?</h3>
-    </div>
-    <div class="row">
-      <button
-        mat-button
-        color="primary"
-        id="continueFormBtn"
-        class="mx-auto"
-        (click)="selectContinueForm(); nextStep()"
-      >
-        Continue form
-      </button>
-    </div>
-    <div class="row">
-      <button
-        mat-button
-        color="primary"
-        id="newFormBtn"
-        class="mx-auto"
-        (click)="selectNewForm(); nextStep()"
-      >
-        New form
-      </button>
-    </div>
-    <div class="row">
-      <button mat-button class="mx-auto" (click)="previousStep()">
-        Go back
-      </button>
-    </div>
-  </div>
-</ng-template>
-
-<ng-template [ngIf]="stepCounter === 3">
-  <div class="center" [@myAnimation]>
-    <div class="row">
       <!-- <h3>Enter Request Number</h3> -->
     </div>
     <div class="row">
-      <!--<input
-        id="requestNumber"
-        type="number"
-        placeholder="eg. 1234567"
-        class="form-control mx-auto"
-      /> -->
       <mat-form-field
         class="full-width"
         floatLabel="never"

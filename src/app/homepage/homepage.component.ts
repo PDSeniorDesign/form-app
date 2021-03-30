@@ -93,6 +93,10 @@ export class HomepageComponent implements OnInit {
     this.nextStep();
   }
 
+  handleContinueButtonClick(): void {
+    this.continueForm = true;
+    this.nextStep();
+  }
   /** This function is responsible for retrieving the form  */
   retrieveForm(): void {
     // use service to grab form
