@@ -662,12 +662,12 @@
             Next
           </button>
           <span class="spacer"></span>
-          <button
+          <button class="submit"
             id="employee-info-save-btn"
             mat-raised-button
             class="save-button"
             color="warn"
-            (click)="save()"
+            (click)="startAdobeProcess()"
           >
             Submit
           </button>
@@ -677,145 +677,3 @@
     </mat-step>
   </mat-horizontal-stepper>
 </form>
-
-
-
-<!-- Includes the approval FormGroup for employeers for admin using mat-expansion  
-<div style="width: 85%">  
-  <h2 class="mat-display-1">Approvals</h2>
-  <h3 class="mat-title">Select the following approvals</h3>
-  <div class="flex-container">
-    <div class="example-action-buttons">
-        <button mat-button (click)="accordion.openAll()">Expand All</button>
-        <button mat-button (click)="accordion.closeAll()">Collapse All</button>
-      </div>
-      <form [formGroup]="approval">
-        <mat-accordion class="example-headers-align" [multi] = "true">
-
-          <mat-expansion-panel >
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Manager
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div formGroupName="manager">
-            
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>name </mat-label>
-                <input matInput formControlName="managerName" />
-              </mat-form-field>
-          
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Phone</mat-label>
-                <input matInput  formControlName="managerPhone">
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Email</mat-label>
-                <input matInput  formControlName="managerEmail">
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
-
-
-          <mat-expansion-panel >
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Department Head
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div formGroupName="departmentHead">
-            
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Name </mat-label>
-                <input matInput formControlName="departmentHeadName" />
-              </mat-form-field>
-          
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Phone</mat-label>
-                <input matInput  formControlName="departmentHeadPhone">
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Email</mat-label>
-                <input matInput  formControlName="departmentHeadEmail">
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel >
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Application Coordinator
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div formGroupName="applicationCoord">
-            
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Name </mat-label>
-                <input matInput formControlName="applicationCoordName" />
-              </mat-form-field>
-          
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Phone</mat-label>
-                <input matInput  formControlName="applicationCoordPhone">
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Email</mat-label>
-                <input matInput  formControlName="applicationCoordEmail">
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
-
-
-          <mat-expansion-panel >
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Division Chief
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div formGroupName="divisionChief">
-          
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Manger Name</mat-label>
-                <input matInput formControlName="divisionChiefName" />
-              </mat-form-field>
-          
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Phone</mat-label>
-                <input matInput  formControlName="divisionChiefPhone">
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Email</mat-label>
-                <input matInput  formControlName="divisionChiefEmail">
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel >
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Department Info Security
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div formGroupName="deptInfoSecurity">
-            
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Department Infor Secuirty </mat-label>
-                <input matInput formControlName="deptInfoSecurityName" />
-              </mat-form-field>
-          
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Phone</mat-label>
-                <input matInput  formControlName="deptInfoSecurityPhone">
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="mat-input-width">
-                <mat-label>Email</mat-label>
-                <input matInput  formControlName="deptInfoSecurityEmail">
-              </mat-form-field>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </form>
-      <button mat-button (click)="print()">Print</button>
-  </div>
-</div>
--->

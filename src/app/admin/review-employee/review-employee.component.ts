@@ -367,13 +367,11 @@ export class ReviewEmployeeComponent implements OnInit {
 
   //not working yet-set complete to true
   startAdobeProcess = (): void => {
-    //let comeplete = this.formDataService.formData.complete ;
-    //console.log(this.approval.get("complete").setValue(comeplete));
-    //this.approval.controls['complete'].setValue(true);
     this.adminService
-      .saveForm(
+      .submitForm(
         this.formDataService.formData.requestNumber,
-        this.approval.value
+        this.approval.value,
+        true
       )
       .subscribe((res) => {
         console.log(res);
