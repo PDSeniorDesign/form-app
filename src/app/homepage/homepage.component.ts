@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiHttpService } from '../core/services/api-http.service';
 import { FormDataService } from '../core/services/form-data.service';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -33,8 +34,7 @@ import { FormDataService } from '../core/services/form-data.service';
 export class HomepageComponent implements OnInit {
   /**
    * @description this variable is responsible for keeping track
-   * of the steps. (0 = homepage, 1 = Asking the user's type, 2 = Asking if
-   * continuing a form or creating a new one, 3 = Getting the request number, if continuing
+   * of the steps. (0 = homepage, 1 = Asking the user's type, 2 = Getting the request number, if continuing
    * form)
    *
    */
@@ -75,6 +75,7 @@ export class HomepageComponent implements OnInit {
       this.router.navigate(['/employee-form']);
     }
   }
+
   selectContractor(): void {
     if (this.continueForm) {
       this.userType = 'contractor';
