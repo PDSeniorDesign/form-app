@@ -2,8 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormDataService } from 'src/app/core/services/form-data.service';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-service-requests',
@@ -11,31 +10,50 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
   styleUrls: ['./service-requests.component.css'],
 })
 export class ServiceRequestsComponent implements OnInit {
-
   //save each request into array for display
   @Input() personData: Array<any> = [];
 
-
   //display columns
-  displayedColumns: string[] = ['requestNumber', 'requestStatus', 'firstName', 'lastName','view', 'request-review'];
+  displayedColumns: string[] = [
+    'requestNumber',
+    'requestStatus',
+    'firstName',
+    'lastName',
+    'view',
+    'request-review',
+  ];
   dataSource: any;
+  isComplete: boolean;
+  @ViewChild('ref') btn;
 
-  constructor(private adminService: AdminService, private router: Router, private formDataService: FormDataService) {}
+  constructor(
+    private adminService: AdminService,
+    private router: Router,
+    private formDataService: FormDataService
+  ) {}
 
   ngOnInit(): void {
     this.adminService.display().subscribe((res) => {
       console.log(res);
       this.personData = res;
       this.dataSource = new MatTableDataSource(this.personData);
-      
     });
+  }
+
+  //disable button if isComplete - true. This means form is submitted to adobe
+  checkisComplete(requestNumber: any): boolean {
+    
+    var isComplete: boolean;
+    this.adminService.searchById(requestNumber).subscribe((res) => {
+      this.isComplete = res.complete;
+    });
+    return this.isComplete;
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 
   //view details on button click
   viewDetails(id: any): void {
@@ -49,30 +67,29 @@ export class ServiceRequestsComponent implements OnInit {
 
       //go to service request details page
       this.router.navigate(['/admin/service-request-detail']);
-      
-
     });
   }
 
-  edit(id: any): void {
-    this.adminService.searchById(id).subscribe((res) => {
+  review(requestNumber: any): void {
+    this.adminService.searchById(requestNumber).subscribe((res) => {
       console.log(res);
       this.formDataService.formData = res;
 
-
       //if not employee(false) -- go to contractor side
-      
+
       if (this.formDataService.formData.employee == false) {
-         this.router.navigate(['/admin/review-request', this.formDataService.formData.requestNumber]);
-       }
-       //go to employee form , if true
-       else if (this.formDataService.formData.employee == true) {
-         this.router.navigate(['/admin/review-employee', this.formDataService.formData.requestNumber])
-        
-       }
- 
+        this.router.navigate([
+          '/admin/review-request',
+          this.formDataService.formData.requestNumber,
+        ]);
+      }
+      //go to employee form , if true
+      else if (this.formDataService.formData.employee == true) {
+        this.router.navigate([
+          '/admin/review-employee',
+          this.formDataService.formData.requestNumber,
+        ]);
+      }
     });
-
   }
-
 }
