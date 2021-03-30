@@ -185,6 +185,22 @@ export class AdminService {
     );
   }
 
+  public submitForm(requestNumber: any, data: any, isEmployee: boolean): Observable<any> {
+    // set the password in headers
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        password: this.adminPassword,
+      }),
+    };    
+    
+    if (isEmployee) {
+      return this.http.patch(`${environment.apiUrl}/admin/service_requests/${requestNumber}`,
+      this.reformatDataPostEmployee(data, true),
+      httpOptions);
+    };
+  }
+
   //reformat div chief
   public reformatPostApprovers(data: any): string {
     const reformated = {
