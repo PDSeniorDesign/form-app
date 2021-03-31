@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/core/services/admin.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormDataService } from 'src/app/core/services/form-data.service';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-service-requests',
@@ -63,16 +63,27 @@ export class ServiceRequestsComponent implements OnInit {
 
       //save res to adminFormdata to transfer between components
       this.adminService.adminFormData = res;
+      this.formDataService.formData = res;
       console.log(this.adminService.adminFormData.requestNumber);
 
       //go to service request details page
-      this.router.navigate(['/admin/service-request-detail']);
+      if (this.formDataService.formData.employee == false) {
+         this.router.navigate(['/admin/service-contractor-request-detail', this.formDataService.formData.requestNumber]);
+       }
+       //go to employee form , if true
+       else if (this.formDataService.formData.employee == true) {
+         this.router.navigate(['/admin/service-employee-request-detail', this.formDataService.formData.requestNumber])
+
+       }
+
+
     });
   }
 
   review(requestNumber: any): void {
     this.adminService.searchById(requestNumber).subscribe((res) => {
       console.log(res);
+
       this.formDataService.formData = res;
 
       //if not employee(false) -- go to contractor side

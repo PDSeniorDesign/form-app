@@ -20,11 +20,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
+import { ApproversComponent } from './admin/approvers/approvers.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ReviewRequestComponent } from './admin/review-request/review-request.component';
@@ -33,6 +34,7 @@ import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { CoreModule } from './core/core.module';
 import { AuthGuard } from './core/services/auth.guard';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
@@ -41,13 +43,9 @@ import { EmployeeFormComponent } from './form/employee-form/employee-form.compon
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { LoadingPageComponent } from './form/shared/loading-page/loading-page.component';
 import { SubmissionConfirmationPageComponent } from './form/shared/submission-confirmation-page/submission-confirmation-page.component';
-import { FormActionSelectionComponent } from './homepage/form-action-selection/form-action-selection.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
-import {MatTableModule} from '@angular/material/table';
-import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
-import { ApproversComponent } from './admin/approvers/approvers.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +55,6 @@ import { ApproversComponent } from './admin/approvers/approvers.component';
     SubmitPageComponent,
     EmployeeFormComponent,
     ContractorFormComponent,
-    FormActionSelectionComponent,
     AdminComponent,
     ServiceRequestsComponent,
     ResetPasswordComponent,
@@ -69,10 +66,9 @@ import { ApproversComponent } from './admin/approvers/approvers.component';
     LoadingPageComponent,
     SubmissionConfirmationPageComponent,
     ConfirmationPageComponent,
-    ApproversComponent
+    ApproversComponent,
   ],
   imports: [
-    BrowserModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
