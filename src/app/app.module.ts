@@ -30,6 +30,7 @@ import { ResetPasswordComponent } from './admin/reset-password/reset-password.co
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ReviewRequestComponent } from './admin/review-request/review-request.component';
 import { ReviewSubmitComponent } from './admin/review-request/review-submit/review-submit.component';
+import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -59,6 +60,7 @@ import { SharedModule } from './shared/shared.module';
     ServiceRequestsComponent,
     ResetPasswordComponent,
     ServiceRequestsDetailComponent,
+    ServiceEmployeeRequestsDetailComponent,
     ReviewRequestComponent,
     ReviewSubmitComponent,
     ReviewEmployeeComponent,
