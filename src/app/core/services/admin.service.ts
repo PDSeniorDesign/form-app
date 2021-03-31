@@ -19,6 +19,7 @@ export class AdminService {
     this.init();
   }
 
+
   // This method does some initialization work for the service.
   init(): void {
     // Checking if the admin is already logged in, will also initialize adminLoggedIn
