@@ -28,19 +28,16 @@
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Name</mat-label>
                                 <input matInput formControlName="name" 
-                                [errorStateMatcher]="errorStateMatcher"
                                 required>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Phone</mat-label>
                                 <input matInput formControlName="phone" 
-                                [errorStateMatcher]="errorStateMatcher"
                                 required>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Email</mat-label>
                                 <input matInput formControlName="email"  
-                                [errorStateMatcher]="errorStateMatcher"
                                 required>
                             </mat-form-field>
                             <div class="button-container">
@@ -106,7 +103,7 @@
                                     <input matInput formControlName="email">
                                   </mat-form-field>
                                   <div class="button-container">
-                                    <button mat-raised-button color="primary" (click)="edit()" >Edit</button>
+                                    <button mat-raised-button color="primary" (click)="edit()" >Update</button>
                                     <button mat-raised-button color="warn"  class="ml-2" (click)="deleteSelection()" >Delete</button>
                                 </div>
                             </form>
@@ -144,7 +141,7 @@
                                     <input matInput formControlName="email">
                                   </mat-form-field>
                                   <div class="button-container">
-                                    <button mat-raised-button color="primary" (click)="edit()">Edit</button>
+                                    <button mat-raised-button color="primary" (click)="edit()">Update</button>
                                     <button mat-raised-button color="warn"  class="ml-2" (click)="deleteSelection()" >Delete</button>
                                 </div>
                             </form>
@@ -183,7 +180,7 @@
                                     <input matInput formControlName="email">
                                   </mat-form-field>
                                   <div class="button-container">
-                                    <button mat-raised-button color="primary" (click)="edit()" >Edit</button>
+                                    <button mat-raised-button color="primary" (click)="edit()" >Update</button>
                                     <button mat-raised-button color="warn"  class="ml-2" (click)="deleteSelection()" >Delete</button>
                                 </div>
                             </form>
@@ -221,7 +218,7 @@
                                     <input matInput formControlName="email">
                                   </mat-form-field>
                                   <div class="button-container">
-                                    <button mat-raised-button color="primary" (click)="edit()" >Edit</button>
+                                    <button mat-raised-button color="primary" (click)="edit()" >Update</button>
                                     <button mat-raised-button color="warn"  class="ml-2"  (click)="deleteSelection()">Delete</button>
                                 </div>
                             </form>
