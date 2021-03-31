@@ -9,7 +9,7 @@ import { ResetPasswordComponent } from './admin/reset-password/reset-password.co
 import { AuthGuard } from './core/services/auth.guard';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
-import { ReviewRequestComponent } from './admin/review-request/review-request.component';
+import { ReviewRequestComponent } from './admin/review-contractor/review-contractor.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { ApproversComponent } from './admin/approvers/approvers.component';
@@ -51,7 +51,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'review-request/:requestNumber',
+        path: 'review-contractor/:requestNumber',
         component: ReviewRequestComponent,
         canActivate: [AuthGuard],
       },

@@ -7,9 +7,9 @@ import { MatStepper } from '@angular/material/stepper';
 
 
 @Component({
-  selector: 'app-review-request',
-  templateUrl: './review-request.component.html',
-  styleUrls: ['./review-request.component.css'],
+  selector: 'app-review-contractor',
+  templateUrl: './review-contractor.component.html',
+  styleUrls: ['./review-contractor.component.css'],
 })
 export class ReviewRequestComponent implements OnInit {
   //@ViewChild('stepper') private myStepper: MatStepper;

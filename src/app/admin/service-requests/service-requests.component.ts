@@ -43,7 +43,7 @@ export class ServiceRequestsComponent implements OnInit {
   //disable button if isComplete - true. This means form is submitted to adobe
   checkisComplete(requestNumber: any): boolean {
     
-    var isComplete: boolean;
+    let isComplete: boolean;
     this.adminService.searchById(requestNumber).subscribe((res) => {
       this.isComplete = res.complete;
     });
@@ -90,7 +90,7 @@ export class ServiceRequestsComponent implements OnInit {
 
       if (this.formDataService.formData.employee == false) {
         this.router.navigate([
-          '/admin/review-request',
+          '/admin/review-contractor',
           this.formDataService.formData.requestNumber,
         ]);
       }

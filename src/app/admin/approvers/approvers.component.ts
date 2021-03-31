@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/core/services/admin.service';
 
@@ -16,7 +10,6 @@ import { AdminService } from 'src/app/core/services/admin.service';
   styleUrls: ['./approvers.component.css'],
 })
 export class ApproversComponent implements OnInit {
-  errorStateMatcher = new InstantErrorStateMatcher();
   //four arrays
   divChief: Array<any> = [];
   deptInfo: Array<any> = [];
@@ -86,7 +79,6 @@ export class ApproversComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
     });
   }
-
 
   //get all list of each individual approver types
   getAllDivCheif(): void {
@@ -271,16 +263,5 @@ export class ApproversComponent implements OnInit {
           this.sucess = true;
         });
     }
-  }
-}
-
-// changes the ErrorStateMatcher to include dirty
-// removes the error message and red boxes after clicking next
-export class InstantErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    return control && control.invalid && (control.dirty || control.touched);
   }
 }

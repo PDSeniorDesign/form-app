@@ -162,8 +162,6 @@ export class AdminService {
       departmentHeadName: data.signatures.departmentHeadName,
       departmentHeadPhone: data.signatures.departmentHeadPhone,
       departmentHeadEmail: data.signatures.departmentHeadEmail,
-
-      iscomplete: data.complete,
     };
     return JSON.stringify(reformated);
   }
