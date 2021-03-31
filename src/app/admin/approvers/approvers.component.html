@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="container">
     <mat-card class="card">
         <mat-card-header >
-            <mat-card-title>Approvers</mat-card-title>
+            <mat-card-title><h3>Approvers</h3></mat-card-title>
         </mat-card-header>  
-        <mat-tab-group mat-align-tabs="center" dynamicHeight>
+        <mat-tab-group mat-align-tabs="center" dynamicHeight (selectedTabChange)="clear()">
             <mat-tab label="New Approvers">
                 <div class="caption">
                     <p>Create a new approver</p>
@@ -19,6 +19,7 @@
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Select an option</mat-label>
                                 <mat-select [(value)]="selected">
+                                
                                   <mat-option *ngFor="let selectedRole of roles" [value]="selectedRole">
                                     {{selectedRole}}
                                   </mat-option>
@@ -26,15 +27,21 @@
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Name</mat-label>
-                                <input matInput formControlName="name">
+                                <input matInput formControlName="name" 
+                                [errorStateMatcher]="errorStateMatcher"
+                                required>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Phone</mat-label>
-                                <input matInput formControlName="phone">
+                                <input matInput formControlName="phone" 
+                                [errorStateMatcher]="errorStateMatcher"
+                                required>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Email</mat-label>
-                                <input matInput formControlName="email">
+                                <input matInput formControlName="email"  
+                                [errorStateMatcher]="errorStateMatcher"
+                                required>
                             </mat-form-field>
                             <div class="button-container">
                                 <button mat-raised-button color="primary" (click)="add()" [disabled]="!newApprover.valid">Add</button>
@@ -49,10 +56,23 @@
             <mat-tab label="Existing Approvers">
                 <div class = "table-container">
                     <p>Edit details or delete current approvers</p>
+                    <div class="error-message position-fixed"
+                    class="alert alert-success"
+                    role="alert"
+                    *ngIf="deleted"
+                    >Approver deleted!
+                   </div>
+                   <div class="error-message position-fixed"
+                   class="alert alert-success"
+                   role="alert"
+                   *ngIf="updated"
+                   >Approver info updated!
+                  </div>
                     <div class = "input-group search">
-                        <mat-form-field appearance="outline" class="mat2-input-width">
+                        <mat-form-field appearance="outline" class="mat-input-width">
                             <mat-label>Approver role</mat-label>
-                            <mat-select [(value)]="selectedRole">
+                            <mat-select [(value)]="selectedRole" (selectionChange)="setInput()">
+                              <mat-option>None</mat-option>
                               <mat-option *ngFor="let role of roles" [value]="role">
                                 {{role}}
                               </mat-option>
@@ -60,22 +80,152 @@
                           </mat-form-field>
                     </div>
                     <div class="div-chief" *ngIf="selectedRole==='Division Chief Manager'">
-                        <mat-form-field appearance="outline" class="mat3-input-width">
-                            <mat-label>Approver Name</mat-label>
-                            <mat-select [(value)]="selectedDiv">
+                        <mat-form-field appearance="outline" class="mat-input-width">
+                            <mat-label>Division Chief Manager Name</mat-label>
+                            <mat-select [(value)]="selectedDiv" (selectionChange)="setInput()">
+                              <mat-option>None</mat-option>
                               <mat-option *ngFor="let role of divChief" [value]="role.id">
                                 {{role.name}}
                               </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div class="input-group-append button2-container">
-                            <button mat-raised-button color="primary">Edit</button>
-                            <button mat-raised-button color="primary">Delete</button> 
+                        <div *ngIf="selectedDiv">
+                            <form [formGroup] = "existingApprover">
+                                <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput  appearance="outline" 
+                                    formControlName="name"
+                                    >
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline" class="mat-input-width">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput  formControlName="phone">
+                                  </mat-form-field>
+                                  <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email">
+                                  </mat-form-field>
+                                  <div class="button-container">
+                                    <button mat-raised-button color="primary" (click)="edit()" >Edit</button>
+                                    <button mat-raised-button color="warn"  class="ml-2" (click)="deleteSelection()" >Delete</button>
+                                </div>
+                            </form>
+  
+
                         </div>
-                        <div *ngIf="selectedDiv==='role.id'">
-                            <p>{{role.id}}</p>
-                            <p>{{role.name}}</p>
-                            <p>{{role.phone}}</p>
+
+                    </div>
+
+                    <div class="div-chief" *ngIf="selectedRole==='Department Head'">
+                        <mat-form-field appearance="outline" class="mat-input-width">
+                            <mat-label>Department Head Name</mat-label>
+                            <mat-select [(value)]="selectedDeptHead" (selectionChange)="setInput()">
+                              <mat-option>None</mat-option>  
+                              <mat-option *ngFor="let role of deptHead" [value]="role.id">
+                                {{role.name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="selectedDeptHead">
+
+                            <form [formGroup] = "existingApprover">
+                                <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput  appearance="outline" 
+                                    formControlName="name"
+                                    >
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline" class="mat-input-width">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput  formControlName="phone">
+                                  </mat-form-field>
+                                  <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email">
+                                  </mat-form-field>
+                                  <div class="button-container">
+                                    <button mat-raised-button color="primary" >Edit</button>
+                                    <button mat-raised-button color="warn"  class="ml-2" (click)="deleteSelection()" >Delete</button>
+                                </div>
+                            </form>
+  
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="div-chief" *ngIf="selectedRole==='Application Coordinator'">
+                        <mat-form-field appearance="outline" class="mat-input-width">
+                            <mat-label>Application Coordinator Name</mat-label>
+                            <mat-select [(value)]="selectedAppCoord" (selectionChange)="setInput()">
+                              <mat-option>None</mat-option>  
+                              <mat-option *ngFor="let role of appCoord" [value]="role.id">
+                                {{role.name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="selectedAppCoord">
+
+                            <form [formGroup] = "existingApprover">
+                                <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput  appearance="outline" 
+                                    formControlName="name"
+                                    >
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline" class="mat-input-width">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput  formControlName="phone">
+                                  </mat-form-field>
+                                  <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email">
+                                  </mat-form-field>
+                                  <div class="button-container">
+                                    <button mat-raised-button color="primary" >Edit</button>
+                                    <button mat-raised-button color="warn"  class="ml-2" (click)="deleteSelection()" >Delete</button>
+                                </div>
+                            </form>
+  
+
+                        </div>
+
+                    </div>
+
+                    <div class="div-chief" *ngIf="selectedRole==='Department Info Security Officer'">
+                        <mat-form-field appearance="outline" class="mat-input-width">
+                            <mat-label>Department Info Security Officer Name</mat-label>
+                            <mat-select [(value)]="selectedDeptInfo" (selectionChange)="setInput()">
+                              <mat-option>None</mat-option>  
+                              <mat-option *ngFor="let role of deptInfo" [value]="role.id">
+                                {{role.name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="selectedDeptInfo">
+
+                            <form [formGroup] = "existingApprover">
+                                <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput  appearance="outline" 
+                                    formControlName="name"
+                                    >
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline" class="mat-input-width">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput  formControlName="phone">
+                                  </mat-form-field>
+                                  <mat-form-field  appearance="outline" class="mat-input-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email">
+                                  </mat-form-field>
+                                  <div class="button-container">
+                                    <button mat-raised-button color="primary" >Edit</button>
+                                    <button mat-raised-button color="warn"  class="ml-2"  (click)="deleteSelection()">Delete</button>
+                                </div>
+                            </form>
+  
 
                         </div>
 

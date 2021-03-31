@@ -1,11 +1,21 @@
+.container {
+    padding-top: 40px;
+}
+
 .mat-tab-group {
     margin-bottom: 48px;
   }
 
  .card {
      align-items: center;
-
  } 
+
+mat-card-header {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+} 
 
  .caption {
      text-align: center;
@@ -16,6 +26,7 @@
  }
 
  p {
+    padding-top: 20px;
     text-align: center;
  }
 
@@ -33,16 +44,12 @@
 }
 
 .mat2-input-width {
-    width: 47%;
-
+    width: 40%;
+    margin-right: 20%;
+    flex-direction: row;
 }
 
-.button2-container {
-    display: inline-block;
-
-}
-
-.mat3-input-width {
-    width: 32%;
-
+.button-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
