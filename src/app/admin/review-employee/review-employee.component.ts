@@ -8,13 +8,10 @@ import {
 } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatAccordion } from '@angular/material/expansion';
-import { MatTabsModule } from '@angular/material/tabs';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
-import { switchMap } from 'rxjs/operators';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -76,13 +73,7 @@ export class ReviewEmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const heroId = this.route.snapshot.paramMap.get('requestNumber');
-    console.log(heroId);
-    this.loadForm(heroId);
-
-    //console.log(this.formDataService.formData);
     this.requestNumber = this.formDataService.formData.requestNumber;
-    //console.log(this.formDataService.formData.internetApplication);
 
     this.internetApplication = this.formDataService.formData.internetApplication;
     this.exchangeEmail = this.formDataService.formData.exchangeEmail;
@@ -252,11 +243,6 @@ export class ReviewEmployeeComponent implements OnInit {
     });
   }
 
-  debug(): void {
-    console.log(this.approval);
-    //console.log(this.formDataService.formData);
-  }
-
   //set to approval form here for mat-select signatures
   setSelectedValue(type: string, id: number): void {
     if (type == 'divisionChief') {
@@ -326,6 +312,7 @@ export class ReviewEmployeeComponent implements OnInit {
     }
   }
 
+  //get list for all approver types
   getDivChiefList() {
     this.adminService.getAllDivChief().subscribe((res) => {
       this.divCheifList = res;
@@ -354,15 +341,6 @@ export class ReviewEmployeeComponent implements OnInit {
     this.requestNumber = this.formDataService.formData.requestNumber;
     console.log('Create AP');
     console.log(this.formDataService.formData.requestNumber);
-  }
-
-  //load form from param
-  loadForm(requestNumber: any): void {
-    this.adminService.searchById(requestNumber).subscribe((res) => {
-      this.formDataService.formData = res;
-      console.log(res);
-      console.log(this.formDataService.formData.requestNumber);
-    });
   }
 
   //not working yet-set complete to true
