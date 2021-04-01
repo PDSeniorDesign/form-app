@@ -462,6 +462,10 @@
         [form]="form"
       ></app-additional-information>
     </mat-step>
+    <!-- Manager -->
+    <mat-step [stepControl]="form.get('managerInformation')">
+      <ng-template matStepLabel>Manager</ng-template>
+    </mat-step>
     <!-- Submit -->
     <mat-step>
       <ng-template matStepLabel>Submit</ng-template>
