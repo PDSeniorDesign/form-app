@@ -163,7 +163,8 @@ export class EmployeeFormComponent implements OnInit {
         windowsRightsMgmt: new FormControl(false),
       }),
       managerInformation: new FormGroup({
-        managerName: new FormControl(null),
+        managerFirstName: new FormControl(null),
+        managerLastName: new FormControl(null),
         managerEmail: new FormControl(null),
         managerPhoneNumber: new FormControl(null),
       }),
