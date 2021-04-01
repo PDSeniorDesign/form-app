@@ -1,5 +1,7 @@
 <!-- Request status -->
 <!-- Search and button box-->
+
+<!--  
 <div class="input-group mb-3">
   <input
     #data
@@ -20,7 +22,12 @@
   </div>
 </div>
 
+
+-->
+ 
 <!-- Show table -->
+
+<!--  
 <div class="tableArea">
   <table class="table">
     <thead>
@@ -58,4 +65,81 @@
       </tr>
     </tbody>
   </table>
+</div>
+-->
+
+<div fxLayout="row" fxLayoutAlign="center center" class="content">
+  <mat-card class="card">
+    <mat-card-title>
+      <h3>Service Request</h3>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-form-field fxFlex="40%">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 251627" #input>
+      </mat-form-field>
+      
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="requestNumber">
+          <th mat-header-cell *matHeaderCellDef>Request Number</th>
+          <td mat-cell *matCellDef="let element"> {{element.requestNumber}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="requestStatus">
+          <th mat-header-cell *matHeaderCellDef>Request Status</th>
+          <td mat-cell *matCellDef="let element"> {{element.requestStatus}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef>View</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+            class="btn btn-sm btn-info"
+            (click)="viewDetails(element.requestNumber)"
+          >
+            View
+          </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="request-review">
+          <th mat-header-cell *matHeaderCellDef>Request-Review</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            <button
+            #ref
+            class="btn btn-sm btn-info"
+            (click)="review(element.requestNumber)"
+          >
+            Review
+          </button>
+
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
 </div>

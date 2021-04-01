@@ -20,12 +20,14 @@ export class AdminComponent implements OnInit {
   alert = false;
   // admin login formGroup
   formLogin: FormGroup;
+  //returnUrl - used to capture requested page url 
+  returnUrl: string;
 
   // if navigation to login page is successful, then don't show login header
   constructor(
     private router: Router,
     private adminService: AdminService,
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -55,12 +57,17 @@ export class AdminComponent implements OnInit {
     );
 
     // call display request service: if 404 error from API, then redirected to login page
-    this.adminService.display().subscribe({
-      next:() => {
+    this.adminService.display().subscribe(
+      (data) => {
+        // get return url from query parameters or default to home page if logged in 
+        this.returnUrl =
+          this.route.snapshot.queryParams['returnUrl'] ||
+          '/admin/service-requests';
+        //debug
+        console.log(this.returnUrl);
 
-        // get return url from query parameters or default to home page
-        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin/service-requests';
-        this.router.navigateByUrl(returnUrl)
+        this.router.navigateByUrl(this.returnUrl);
+
         //this.seeServiceRequest();
         this.alert = false;
         // clear password input after logging in sucessful
@@ -68,13 +75,17 @@ export class AdminComponent implements OnInit {
 
         // Let the rest of the app know that the admin has logged in
         this.adminService.emitAdminLoggedInChange(true);
+        //rehide password after logging in
+        this.hide = true;
+        
       },
-      error: error => {
+      (error) => {
         if (error.status === 403) {
           this.errorMessage = 'Invalid password entered';
           this.alert = true;
           this.isHomeRoute();
         }
-      }});
+      }
+    );
   }
 }

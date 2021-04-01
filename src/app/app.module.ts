@@ -20,15 +20,16 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
+import { ApproversComponent } from './admin/approvers/approvers.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
-import { ReviewRequestComponent } from './admin/review-request/review-request.component';
-import { ReviewSubmitComponent } from './admin/review-request/review-submit/review-submit.component';
+import { ReviewRequestComponent } from './admin/review-contractor/review-contractor.component';
+import { ReviewSubmitComponent } from './admin/review-contractor/review-submit/review-submit.component';
 import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
@@ -59,6 +60,7 @@ import { SharedModule } from './shared/shared.module';
     ServiceRequestsComponent,
     ResetPasswordComponent,
     ServiceRequestsDetailComponent,
+    ServiceEmployeeRequestsDetailComponent,
     ReviewRequestComponent,
     ReviewSubmitComponent,
     ReviewEmployeeComponent,
@@ -66,10 +68,9 @@ import { SharedModule } from './shared/shared.module';
     LoadingPageComponent,
     SubmissionConfirmationPageComponent,
     ConfirmationPageComponent,
-    ServiceEmployeeRequestsDetailComponent,
+    ApproversComponent,
   ],
   imports: [
-    BrowserModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -98,6 +99,7 @@ import { SharedModule } from './shared/shared.module';
     MatExpansionModule,
     MatTabsModule,
     MatDialogModule,
+    MatTableModule,
     MatProgressSpinnerModule,
   ],
   exports: [],

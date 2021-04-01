@@ -1,4 +1,9 @@
-<div *ngIf="isHomeRoute()">
+
+<!-- the route.children.length == 0 means this div will only 
+  show in parent componpent /admin, and  parent view won't show in /admin/rese-password 
+  children and other children nested route components 
+  -->
+<div *ngIf="route.children.length === 0" >
   <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="50">
       <mat-toolbar color="primary">Login</mat-toolbar>
@@ -27,16 +32,15 @@
               [type]="hide ? 'password' : 'text'"
               placeholder="password"
               formControlName="password"
+              
             />
-            <button
-              mat-icon-button
-              matSuffix
+            <i class ="material-icons" matSuffix 
               (click)="hide = !hide"
               [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide"
             >
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-            </button>
+              {{ hide ? 'visibility_off' : 'visibility' }}
+            </i>
           </mat-form-field>
           <mat-card-actions>
             <button mat-raised-button color="primary" (click)="adminLogin()">
@@ -48,40 +52,6 @@
     </mat-card>
   </div>
 </div>
-<!--
-  <mat-error *ngIf = "alert">Hello</mat-error>
-  <div *ngIf = "alert" class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  </div>
-    <div class="container">
-        <div class="row">
-            <h2 class="mx-auto mt-2">Login</h2>
 
-        </div>
-        <div class="row">
-            <mat-form-field
-            class="full-width mx-auto mt-2"
-            floatLabel="never"
-            appearance="outline">
-            <mat-label>Admin password</mat-label>
-            <input id="adminPasswordInput" type="password" matInput placeholder="password" 
-            [(ngModel)] = "adminPassword"
-            class="mx-auto"
-            />
-            </mat-form-field>
-        </div>
-
-        <div class="row">
-            <button 
-            id="retrieveAdminPassword"
-            mat-button
-            color="primary"
-            class="mx-auto mt-2"
-            (click)= "adminLogin();">
-            Login
-            </button>
-        </div>
-    </div>
-</div>
--->
 <router-outlet></router-outlet>
+
