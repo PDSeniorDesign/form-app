@@ -4,6 +4,7 @@
   [formGroup]="approval"
   [@myAnimation]
   class="container"
+  [style.display]="isLoading ? 'none' : 'block'"
 >
   <!-- Personal Information Step -->
   <mat-horizontal-stepper #stepper>
@@ -677,3 +678,8 @@
     </mat-step>
   </mat-horizontal-stepper>
 </form>
+
+<!-- Loading page -->
+<ng-container *ngIf="isLoading">
+  <app-loading-page></app-loading-page>
+</ng-container>
