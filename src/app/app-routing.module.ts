@@ -13,6 +13,7 @@ import { ReviewRequestComponent } from './admin/review-contractor/review-contrac
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { ApproversComponent } from './admin/approvers/approvers.component';
+import { ReviewConfirmationPageComponent } from './admin/review-confirmation-page/review-confirmation-page.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,11 @@ const routes: Routes = [
       {
         path: 'service-requests',
         component: ServiceRequestsComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'review-confirmation-page',
+        component: ReviewConfirmationPageComponent,
         canActivate: [AuthGuard],
       },
       {
