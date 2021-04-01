@@ -17,9 +17,9 @@ export class ServiceRequestsComponent implements OnInit {
   displayedColumns: string[] = [
     'requestNumber',
     'requestStatus',
-    'firstName',
+    // 'firstName',
     'lastName',
-    'view',
+    // 'view',
     'request-review',
   ];
   dataSource: any;
