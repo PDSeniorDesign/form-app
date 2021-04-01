@@ -1,1 +1,25 @@
-<p>manager-information works!</p>
+<div [formGroup]="form">
+  <div formGroupName="managerInformation">
+    <mat-form-field>
+      <mat-label>Manager's First Name</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Manager's Last Name</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Manager's Phone #</mat-label>
+      <input matInput />
+    </mat-form-field>
+  </div>
+  <!-- Previous/Next Buttons -->
+  <div>
+    <button mat-raised-button matStepperPrevious>Previous</button>
+    <button mat-raised-button matStepperNext color="primary" class="ml-2">
+      Next
+    </button>
+  </div>
+</div>
