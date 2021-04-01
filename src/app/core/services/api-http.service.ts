@@ -21,10 +21,10 @@ export class ApiHttpService {
    * @param isComplete If the form is complete we have to let the server know that it is complete.
    * @returns A string representation of the json object that is accepted by the backend server.
    */
-  public reformatDataPostEmployee(data: any, isComplete: boolean): string {
+  public reformatDataPostEmployee(data: any, isSubmitted: boolean): string {
     const reformated = {
       // Form specific data
-      complete: isComplete,
+      submitted: isSubmitted,
       employee: true, // Since it is the employee form
       // Personal Information
       lastName: data.personalInformation.lastName,

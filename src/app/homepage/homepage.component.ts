@@ -72,6 +72,8 @@ export class HomepageComponent implements OnInit {
       this.userType = 'employee';
       this.nextStep();
     } else {
+      // Clear form data service
+      this.formDataService.formData = undefined;
       this.router.navigate(['/employee-form']);
     }
   }
@@ -81,6 +83,8 @@ export class HomepageComponent implements OnInit {
       this.userType = 'contractor';
       this.nextStep();
     } else {
+      // Clear form data service
+      this.formDataService.formData = undefined;
       this.router.navigate(['/contractor-form']);
     }
   }
