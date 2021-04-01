@@ -12,7 +12,7 @@
       formGroupName="personalInformation"
       [stepControl]="form.get('personalInformation')"
     >
-      <ng-template matStepLabel>Personal Information</ng-template>
+      <ng-template matStepLabel>Personal</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Personal Information
       </h2>
@@ -210,7 +210,7 @@
       formGroupName="employeeInformation"
       [stepControl]="form.get('employeeInformation')"
     >
-      <ng-template matStepLabel>Employee Information</ng-template>
+      <ng-template matStepLabel>Employee</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Employee Information
       </h2>
@@ -268,7 +268,7 @@
 
     <!-- Access Information Step-->
     <mat-step>
-      <ng-template matStepLabel>Access Information</ng-template>
+      <ng-template matStepLabel>Access</ng-template>
       <!-- TODO: Work on naming and values -->
       <div>
         <h2 class="mat-display-1" style="margin-bottom: 16px">
@@ -455,7 +455,7 @@
 
     <!-- Department -->
     <mat-step [stepControl]="form.get('additionalInformation')">
-      <ng-template matStepLabel>Additional Information</ng-template>
+      <ng-template matStepLabel>Additional</ng-template>
       <app-additional-information
         [printForm]="printForm"
         [save]="save"
