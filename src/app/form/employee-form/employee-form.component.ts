@@ -162,10 +162,17 @@ export class EmployeeFormComponent implements OnInit {
         cherwellSms: new FormControl(false),
         windowsRightsMgmt: new FormControl(false),
       }),
+      managerInformation: new FormGroup({
+        managerFirstName: new FormControl(null),
+        managerLastName: new FormControl(null),
+        managerEmail: new FormControl(null),
+        managerPhoneNumber: new FormControl(null),
+      }),
     });
     return formGroup;
   }
 
+  // TODO: Add manager information
   /**
    * Creates a form group that is prefilled with data from the formDataService. When the user
    * continues a form, the formDataService will hold the existing form.
