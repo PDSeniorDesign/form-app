@@ -11,8 +11,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { FormDataService } from 'src/app/core/services/form-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { ConfirmationPageService } from 'src/app/core/services/confirmation-page.service';
 
 @Component({
   selector: 'app-review-employee',
@@ -63,13 +64,18 @@ export class ReviewEmployeeComponent implements OnInit {
   //selected value
   selectedValue: any;
 
+  //for loading after form is submitted
+  isLoading = false;
+
   //approval FormGroup-manager, divisionChief, etc
   approval: FormGroup;
   constructor(
     private formDataService: FormDataService,
     private adminService: AdminService,
     private apiHttpService: ApiHttpService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private confirmationPageService: ConfirmationPageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -345,15 +351,20 @@ export class ReviewEmployeeComponent implements OnInit {
 
   //not working yet-set complete to true
   startAdobeProcess = (): void => {
+    this.isLoading = true;
     this.adminService
       .submitForm(
         this.formDataService.formData.requestNumber,
         this.approval.value,
         true
       )
-      .subscribe((res) => {
-        console.log(res);
-        this.formDataService.formData = res;
+      .subscribe({
+        next: (response) => {
+          this.formDataService.formData = response;
+          this.confirmationPageService.requestNumber = response.requestNumber;
+          this.router.navigate(['admin/review-confirmation-page']);
+          console.log(response);
+        }
       });
   };
 
@@ -389,7 +400,7 @@ export class ReviewEmployeeComponent implements OnInit {
 
 // changes the ErrorStateMatcher to include dirty
 // removes the error message and red boxes after clicking next
-export class InstantErrorStateMatcher implements ErrorStateMatcher {
+class InstantErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null

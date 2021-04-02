@@ -47,6 +47,7 @@ import { SubmissionConfirmationPageComponent } from './form/shared/submission-co
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
+import { ReviewConfirmationPageComponent } from './admin/review-confirmation-page/review-confirmation-page.component';
 import { ManagerInformationComponent } from './form/employee-form/manager-information/manager-information.component';
 
 @NgModule({
@@ -70,6 +71,7 @@ import { ManagerInformationComponent } from './form/employee-form/manager-inform
     SubmissionConfirmationPageComponent,
     ConfirmationPageComponent,
     ApproversComponent,
+    ReviewConfirmationPageComponent,
     ManagerInformationComponent,
   ],
   imports: [

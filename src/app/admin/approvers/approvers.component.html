@@ -28,17 +28,23 @@
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Name</mat-label>
                                 <input matInput formControlName="name" 
-                                required>
+                                [errorStateMatcher]="errorStateMatcher"
+                                required />
+                                <mat-error>Name must be letters only</mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Phone</mat-label>
                                 <input matInput formControlName="phone" 
-                                required>
+                                [errorStateMatcher]="errorStateMatcher"
+                                required />
+                                <mat-error>Phone number must be 10 digit</mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mat-input-width">
                                 <mat-label>Email</mat-label>
-                                <input matInput formControlName="email"  
-                                required>
+                                <input matInput formControlName="email"
+                                [errorStateMatcher]="errorStateMatcher"  
+                                required />
+                                <mat-error>Email is required with correct email format</mat-error>
                             </mat-form-field>
                             <div class="button-container">
                                 <button mat-raised-button color="primary" (click)="add()" [disabled]="!newApprover.valid">Add</button>
@@ -92,15 +98,24 @@
                                     <mat-label>Name</mat-label>
                                     <input matInput  appearance="outline" 
                                     formControlName="name"
-                                    >
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher"
+                                    />
+                                    <mat-error>Name must be letters only</mat-error>
                                   </mat-form-field>
                                   <mat-form-field appearance="outline" class="mat-input-width">
                                     <mat-label>Phone</mat-label>
-                                    <input matInput  formControlName="phone">
+                                    <input matInput  formControlName="phone" 
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher"/>
+                                    <mat-error>Phone number must be 10 digit</mat-error>
                                   </mat-form-field>
                                   <mat-form-field  appearance="outline" class="mat-input-width">
                                     <mat-label>Email</mat-label>
-                                    <input matInput formControlName="email">
+                                    <input matInput formControlName="email"
+                                    required 
+                                    [errorStateMatcher]="errorStateMatcher"/>
+                                    <mat-error>Email is required with correct email format</mat-error>
                                   </mat-form-field>
                                   <div class="button-container">
                                     <button mat-raised-button color="primary" (click)="edit()" >Update</button>
@@ -130,15 +145,24 @@
                                     <mat-label>Name</mat-label>
                                     <input matInput  appearance="outline" 
                                     formControlName="name"
-                                    >
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher"
+                                    />
+                                    <mat-error>Name must be letters only</mat-error>
                                   </mat-form-field>
                                   <mat-form-field appearance="outline" class="mat-input-width">
                                     <mat-label>Phone</mat-label>
-                                    <input matInput  formControlName="phone">
+                                    <input matInput  formControlName="phone"
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher" />
+                                    <mat-error>Phone number must be 10 digit</mat-error>
                                   </mat-form-field>
                                   <mat-form-field  appearance="outline" class="mat-input-width">
                                     <mat-label>Email</mat-label>
-                                    <input matInput formControlName="email">
+                                    <input matInput formControlName="email"
+                                    required 
+                                    [errorStateMatcher]="errorStateMatcher" />
+                                    <mat-error>Email is required with correct email format</mat-error>
                                   </mat-form-field>
                                   <div class="button-container">
                                     <button mat-raised-button color="primary" (click)="edit()">Update</button>
@@ -169,15 +193,24 @@
                                     <mat-label>Name</mat-label>
                                     <input matInput  appearance="outline" 
                                     formControlName="name"
-                                    >
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher"
+                                    />
+                                    <mat-error>Name must be letters only</mat-error>
                                   </mat-form-field>
                                   <mat-form-field appearance="outline" class="mat-input-width">
                                     <mat-label>Phone</mat-label>
-                                    <input matInput  formControlName="phone">
+                                    <input matInput  formControlName="phone"
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher" />
+                                    <mat-error>Phone number must be 10 digit</mat-error>
                                   </mat-form-field>
                                   <mat-form-field  appearance="outline" class="mat-input-width">
                                     <mat-label>Email</mat-label>
-                                    <input matInput formControlName="email">
+                                    <input matInput formControlName="email" 
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher" />
+                                    <mat-error>Email is required with correct email format</mat-error>
                                   </mat-form-field>
                                   <div class="button-container">
                                     <button mat-raised-button color="primary" (click)="edit()" >Update</button>
@@ -207,15 +240,24 @@
                                     <mat-label>Name</mat-label>
                                     <input matInput  appearance="outline" 
                                     formControlName="name"
-                                    >
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher"
+                                    />
+                                    <mat-error>Name must be letters only</mat-error>
                                   </mat-form-field>
                                   <mat-form-field appearance="outline" class="mat-input-width">
                                     <mat-label>Phone</mat-label>
-                                    <input matInput  formControlName="phone">
+                                    <input matInput  formControlName="phone"
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher" />
+                                    <mat-error>Phone number must be 10 digit</mat-error>
                                   </mat-form-field>
                                   <mat-form-field  appearance="outline" class="mat-input-width">
                                     <mat-label>Email</mat-label>
-                                    <input matInput formControlName="email">
+                                    <input matInput formControlName="email"
+                                    required
+                                    [errorStateMatcher]="errorStateMatcher" />
+                                    <mat-error>Email is required with correct email format</mat-error>
                                   </mat-form-field>
                                   <div class="button-container">
                                     <button mat-raised-button color="primary" (click)="edit()" >Update</button>
