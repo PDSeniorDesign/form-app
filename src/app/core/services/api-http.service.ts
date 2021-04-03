@@ -100,6 +100,17 @@ export class ApiHttpService {
       socialNetworkingFacebook: data.policyRulesInformation.socialNetworkingFacebook,
       socialNetworkingTwitter: data.policyRulesInformation.socialNetworkingTwitter,
       socialNetworkingLinkedIn: data.policyRulesInformation.socialNetworkingLinkedIn,
+      //Additional Access
+      ibmLogOnId: data.additionalAccessInformation.ibmLogonId,
+      majorGroupCode: data.additionalAccessInformation.majorGroupCode,
+      lsoGroupCode: data.additionalAccessInformation.lsoGroupCode,
+      securityAuthorization: data.additionalAccessInformation.securityAuthorization,
+      unixLogOnId: data.additionalAccessInformation.unixLogonId,
+      unixApplication: data.additionalAccessInformation.application,
+      unixAccessGroup: data.additionalAccessInformation.accessGroup,
+      unixAccountNumber: data.additionalAccessInformation.accountNumber,
+      billingAccountNumber: data.additionalAccessInformation.billingAccountNumber,
+
 
     };
     return JSON.stringify(reformated);
