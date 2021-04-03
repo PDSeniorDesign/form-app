@@ -5,7 +5,9 @@
   class="container"
 >
   <mat-horizontal-stepper #stepper linear>
-    <!-- Contractor Step -->
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- PERSONAL INFORMATION STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
     <mat-step
       formGroupName="contractorInformation"
       [stepControl]="formContractor.get('contractorInformation')"
@@ -187,7 +189,9 @@
       <!--<app-contractor-information [regForm]="formContractor"></app-contractor-information>-->
     </mat-step>
 
-    <!-- County Step -->
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- COUNTY INFORMATION STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
     <mat-step
       formGroupName="countyInformation"
       [stepControl]="formContractor.get('countyInformation')"
@@ -352,14 +356,16 @@
       <!-- <app-county-information [regForm]="formContractor"></app-county-information> -->
     </mat-step>
 
-    <!-- Polity Rules Step-->
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- INTERNET POLICY STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
     <mat-step
       formGroupName="policyRulesInformation"
       [stepControl]="formContractor.get('policyRulesInformation')"
     >
-      <ng-template matStepLabel>Registration</ng-template>
+      <ng-template matStepLabel>Internet Policy</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
-        Registration Information
+        Internet Policy Information
       </h2>
       <!-- Information -->
       <div>
@@ -372,26 +378,28 @@
             Personals/Dating, Social Networking, Phishing,
             Spyware/Effect/Malware, Hacking, Proxy Avoidance and Remote Access
             Tools.<br />
-            <b>Department Policy Rule 0</b>: Allow full access, no restrictions.<br />
-            <b>Department Policy Rule 1</b>: Allow access to Pornography, Adult/Mature,
-            Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
+            <b>Department Policy Rule 0</b>: Allow full access, no
+            restrictions.<br />
+            <b>Department Policy Rule 1</b>: Allow access to Pornography,
+            Adult/Mature, Nudity, Intimate Apparel/Swimsuit, Games, Gambling,
             Personals/Dating, Social Networking.<br />
             <b>Department Policy Rule 2</b>: Allow access to Phishing,
             Spyware/Effect/Malware, Hacking, Proxy Avoidance, Remote Access
             Tools.<br />
             <b>Department Policy Rule 3</b>: Countywide Global Policy + add’l
             categories (chosen by your department).<br />
-            <b>Department Policy Rule 4</b>: Remove categories from the Global Policy
-            (chosen by your department).<br />
-            <b>Social Networking Facebook / Twitter / LinkedIn:</b> Allow access to
-            Facebook, Twitter, and LinkedIn, respectively.<br />
+            <b>Department Policy Rule 4</b>: Remove categories from the Global
+            Policy (chosen by your department).<br />
+            <b>Social Networking Facebook / Twitter / LinkedIn:</b> Allow access
+            to Facebook, Twitter, and LinkedIn, respectively.<br />
             <br />
-            <span style="color: red"
-              >Please Note: </span> <span>Policy Rules “0” through “4” and Social Networking
-              Facebook, Twitter and LinkedIn are not setup by default. Your
-              department must have already submitted an approved “Category
-              Selection Worksheet” before you can request to have rules “0”
-              through “4” applied.</span
+            <span style="color: red">Please Note: </span>
+            <span
+              >Policy Rules “0” through “4” and Social Networking Facebook,
+              Twitter and LinkedIn are not setup by default. Your department
+              must have already submitted an approved “Category Selection
+              Worksheet” before you can request to have rules “0” through “4”
+              applied.</span
             ></small
           >
         </p>
@@ -501,7 +509,204 @@
       <!-- <app-policy-rules></app-policy-rules> -->
     </mat-step>
 
-    <!-- SUBMIT SECTION -->
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- ADDITIONAL ACCESS STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <mat-step
+      formGroupName="additionalAccessInformation"
+      [stepControl]="formContractor.get('additionalAccessInformation')"
+    >
+      <ng-template matStepLabel>Additional Access</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Additional Access Options:
+      </h2>
+      <div>
+
+        <div class="row">
+          <!-- Access choices -->
+
+          <!-- IBM Access info button -->
+          <div class="access-option-button col-sm-12 col-md-4">
+            <mat-button-toggle
+              id="ibmChecked"
+              class="access-option-button"
+              [checked]="ibmChecked"
+              (change)="onButtonChange2($event, 'IBM Access')"
+              >IBM Access Information
+            </mat-button-toggle>
+            <br>
+            <div class="ibmForm" *ngIf="formContractor.value.additionalAccessInformation.ibmChecked">
+              <div>
+                <!-- TODO: Add a heading here -->
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Logon ID</mat-label>
+                  <input
+                    id="ibmLogonIdInput"
+                    type="text"
+                    matInput
+                    formControlName="ibmLogonId"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>2-Digit Major Group Code</mat-label>
+                  <input
+                    id="majorGroupCodeInput"
+                    matInput
+                    type="text"
+                    formControlName="majorGroupCode"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>2-Digit LSO Group Code</mat-label>
+                  <input
+                    id="lsoGroupCodeInput"
+                    matInput
+                    type="text"
+                    formControlName="lsoGroupCode"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Security Authorization</mat-label>
+                  <input
+                    id="securityAuthInput"
+                    matInput
+                    type="text"
+                    formControlName="securityAuthorization"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <!-- Unix Environment button -->
+          <div class="access-option-button col-sm-12 col-md-4">
+            <mat-button-toggle
+              id="unixChecked"
+              class="access-option-button"
+              [checked]="unixChecked"
+              (change)="onButtonChange2($event, 'Unix Access')"
+              >Unix Environment Access</mat-button-toggle
+            >
+            <br>
+            <div class="unix-access-form" *ngIf="formContractor.value.additionalAccessInformation.unixChecked">
+              <!-- TODO: Needs the Type of Request section -->
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Login ID</mat-label>
+                  <input
+                    id="unixLogonIdInput"
+                    matInput
+                    type="text"
+                    formControlName="unixLogonId"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Application</mat-label>
+                  <input
+                    id="applicationInput"
+                    matInput
+                    type="text"
+                    formControlName="application"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Access Group</mat-label>
+                  <input
+                    id="accessGroupInput"
+                    matInput
+                    type="text"
+                    formControlName="accessGroup"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Account Number</mat-label>
+                  <input
+                    id="accountNumberInput"
+                    matInput
+                    type="text"
+                    formControlName="accountNumber"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <!-- SecurId button -->
+          <div class="access-option-button col-sm-12 col-md-4" >
+            <mat-button-toggle
+              id="securidChecked"
+              class="access-option-button"
+              [checked]="securidChecked"
+              (change)="onButtonChange2($event, 'SecurID Access')"
+              >SecurID Remote Access</mat-button-toggle
+            >
+            <br>
+            <div class="secur-id-access-form" *ngIf="formContractor.value.additionalAccessInformation.securidChecked">
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Billing Account Number</mat-label>
+                  <input
+                    id="billingAccountInput"
+                    matInput
+                    type="text"
+                    formControlName="billingAccountNumber"
+                    [errorStateMatcher]="errorStateMatcher"
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="mat-input-width">
+                  <mat-label>Access Type</mat-label>
+                  <select
+                    formControlName="accessType"
+                    id="accessTypeSelect"
+                    matNativeControl
+                    [errorStateMatcher]="errorStateMatcher"
+                  >
+                    <option selected="SecurIDVPN">SecurID VPN</option>
+                    <option value="Adapative Authentication VPN">
+                      Adapative Authentication VPN
+                    </option>
+                  </select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button mat-raised-button matStepperPrevious>Previous</button>
+          <button mat-raised-button matStepperNext color="primary" class="ml-2">
+            Next
+          </button>
+        </div>
+        
+      </div>
+    </mat-step>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- SUBMIT STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
     <mat-step>
       <ng-template matStepLabel>Submit</ng-template>
       <div class="container contact-form">
@@ -514,9 +719,7 @@
         <!-- Contractor Information -->
         <div class="row">
           <div class="col">
-            <h4 (click)="move(0)">
-                Contractor Information
-            </h4>
+            <h4 (click)="move(0)">Contractor Info</h4>
 
             <div>
               <h6>First Name</h6>
@@ -635,9 +838,7 @@
 
           <!-- County Information -->
           <div class="col">
-            <h4 (click)="move(1)">
-              County Information
-            </h4>
+            <h4 (click)="move(1)">County Info</h4>
 
             <div>
               <h6>Contract Work Order No</h6>
@@ -748,80 +949,225 @@
 
           <!-- Policy Rules Information -->
           <div class="col">
-            <h4 (click)="move(2)">
-              Policy Rules
-            </h4>
+            <h4 (click)="move(2)">Policy Rules</h4>
 
             <div>
               <h6>Selected Policies</h6>
               <div class="subgroup">
-                <div *ngIf="formContractor.value.policyRulesInformation.applyDefaultCountyWidePolicy">
-                  <input type="checkbox" disabled checked>
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .applyDefaultCountyWidePolicy
+                  "
+                >
+                  <input type="checkbox" disabled checked />
                   <label>Default County Wide Policy</label>
                 </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule0">
-                  <input type="checkbox" disabled checked>
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule0
+                  "
+                >
+                  <input type="checkbox" disabled checked />
                   <label>Department Policy 0</label>
                 </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule1">
-                  <input type="checkbox" disabled checked>
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule1
+                  "
+                >
+                  <input type="checkbox" disabled checked />
                   <label>Department Policy 1</label>
                 </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule2">
-                  <input type="checkbox" disabled checked>
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule2
+                  "
+                >
+                  <input type="checkbox" disabled checked />
                   <label>Department Policy 2</label>
                 </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule3">
-                  <input type="checkbox" disabled checked>
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule3
+                  "
+                >
+                  <input type="checkbox" disabled checked />
                   <label>Department Policy 3</label>
                 </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.departmentPolicyRule4">
-                  <input type="checkbox" disabled checked>
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule4
+                  "
+                >
+                  <input type="checkbox" disabled checked />
                   <label>Department Policy 4</label>
                 </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.applyDefaultCountyWidePolicy == false && formContractor.value.policyRulesInformation.departmentPolicyRule0 == false&& 
-                formContractor.value.policyRulesInformation.departmentPolicyRule1 == false && formContractor.value.policyRulesInformation.departmentPolicyRule2 == false && 
-                formContractor.value.policyRulesInformation.departmentPolicyRule3 == false && formContractor.value.policyRulesInformation.departmentPolicyRule4 == false">
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .applyDefaultCountyWidePolicy == false &&
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule0 == false &&
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule1 == false &&
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule2 == false &&
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule3 == false &&
+                    formContractor.value.policyRulesInformation
+                      .departmentPolicyRule4 == false
+                  "
+                >
                   <p>No policies selected</p>
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div>
+              <h6>Selected Social Networking</h6>
+              <div class="subgroup">
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .socialNetworkingFacebook
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Social Networking Facebook</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .socialNetworkingTwitter
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Social Networking Twitter</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .socialNetworkingLinkedIn
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Social Networking LinkedIn</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.policyRulesInformation
+                      .socialNetworkingFacebook == false &&
+                    formContractor.value.policyRulesInformation
+                      .socialNetworkingTwitter == false &&
+                    formContractor.value.policyRulesInformation
+                      .socialNetworkingLinkedIn == false
+                  "
+                >
+                  <p>No social networking selected</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Access Information-->
+          <div class="col">
+            <h4 (click)="move(3)">Additional Access</h4>
+
+            <div>
+              <h6>Selected Access</h6>
+              <div class="subgroup">
+                <div
+                  *ngIf="
+                    formContractor.value.additionalAccessInformation
+                    .ibmChecked
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>IBM Access</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.additionalAccessInformation
+                    .unixChecked
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Unix Access</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.additionalAccessInformation
+                    .securidChecked
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>SecurID Access</label>
                 </div>
               </div>
             </div>
 
             <br>
 
-            <div>
-              <h6>Selected Social Networking</h6>
+            <div *ngIf="formContractor.value.additionalAccessInformation.ibmChecked == true">
+              <h6>IBM Access</h6>
               <div class="subgroup">
-                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingFacebook">
-                  <input type="checkbox" disabled checked>
-                  <label>Social Networking Facebook</label>
-                </div>
+                <p>Logon ID:&nbsp;{{formContractor.value.additionalAccessInformation.ibmLogonId || "N/A"}}
+                </p>
+                <p>Major Group Code:&nbsp;{{formContractor.value.additionalAccessInformation.majorGroupCode || "N/A"}}
+                </p>
+                <p>LSO Group Code:&nbsp;{{formContractor.value.additionalAccessInformation.lsoGroupCode || "N/A"}}
+                </p>
+                <p>Security Authorization:&nbsp;{{formContractor.value.additionalAccessInformation.securityAuthorization || "N/A"}}
+                </p>
+              </div>
+            </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingTwitter">
-                  <input type="checkbox" disabled checked>
-                  <label>Social Networking Twitter</label>
-                </div>
+            <div *ngIf="formContractor.value.additionalAccessInformation.unixChecked">
+              <h6>Unix Access</h6>
+              <div class="subgroup">
+                <p>Login ID:&nbsp;{{formContractor.value.additionalAccessInformation.unixLogonId || "N/A"}}</p>
+                <p>Applicaiton:&nbsp;{{formContractor.value.additionalAccessInformation.application || "N/A"}}
+                </p>
+                <p>Access Group:&nbsp;{{formContractor.value.additionalAccessInformation.accessGroup || "N/A"}}
+                </p>
+                <p>Account Number:&nbsp;{{formContractor.value.additionalAccessInformation.accountNumber || "N/A"}}
+                </p>
+              </div>
+            </div>
 
-                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingLinkedIn">
-                  <input type="checkbox" disabled checked>
-                  <label>Social Networking LinkedIn</label>
-                </div>
-
-                <div *ngIf="formContractor.value.policyRulesInformation.socialNetworkingFacebook == false &&
-                formContractor.value.policyRulesInformation.socialNetworkingTwitter == false && 
-                formContractor.value.policyRulesInformation.socialNetworkingLinkedIn == false">
-                  <p>No social networking selected</p>
-                </div>
+            <div *ngIf="formContractor.value.additionalAccessInformation.securidChecked">
+              <h6>SecurID Access</h6>
+              <div class="subgroup">
+                <p>Billing Account Number:&nbsp;{{formContractor.value.additionalAccessInformation.billingAccountNumber || "N/A"}}
+                </p>
+                <p>Access Type:&nbsp;{{formContractor.value.additionalAccessInformation.accessType || "N/A"}}
+                </p>
               </div>
             </div>
 
           </div>
+
+
+
         </div>
 
         <div class="text-center">
