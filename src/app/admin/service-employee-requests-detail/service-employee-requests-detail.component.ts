@@ -64,10 +64,6 @@ export class ServiceEmployeeRequestsDetailComponent implements OnInit {
             this.adminService.adminFormData.employeeNumber,
             [Validators.required]
           ),
-          hostedId: new FormControl(
-            this.adminService.adminFormData.hostedId,
-            Validators.required
-          ),
         }),
         accessInformation: new FormGroup({
           // IBM Data Center Access

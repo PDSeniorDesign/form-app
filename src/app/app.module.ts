@@ -49,6 +49,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { ReviewConfirmationPageComponent } from './admin/review-confirmation-page/review-confirmation-page.component';
 import { ManagerInformationComponent } from './form/employee-form/manager-information/manager-information.component';
+import { InternetAccessComponent } from './form/employee-form/internet-access/internet-access.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ManagerInformationComponent } from './form/employee-form/manager-inform
     ApproversComponent,
     ReviewConfirmationPageComponent,
     ManagerInformationComponent,
+    InternetAccessComponent,
   ],
   imports: [
     ReactiveFormsModule,

@@ -23,8 +23,6 @@ export class ServiceRequestsComponent implements OnInit {
     'request-review',
   ];
   dataSource: any;
-  isComplete: boolean;
-  @ViewChild('ref') btn;
 
   constructor(
     private adminService: AdminService,
@@ -38,16 +36,6 @@ export class ServiceRequestsComponent implements OnInit {
       this.personData = res;
       this.dataSource = new MatTableDataSource(this.personData);
     });
-  }
-
-  //disable button if isComplete - true. This means form is submitted to adobe
-  checkisComplete(requestNumber: any): boolean {
-    
-    let isComplete: boolean;
-    this.adminService.searchById(requestNumber).subscribe((res) => {
-      this.isComplete = res.complete;
-    });
-    return this.isComplete;
   }
 
   applyFilter(event: Event) {
@@ -75,8 +63,6 @@ export class ServiceRequestsComponent implements OnInit {
          this.router.navigate(['/admin/service-employee-request-detail', this.formDataService.formData.requestNumber])
 
        }
-
-
     });
   }
 

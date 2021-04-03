@@ -147,10 +147,6 @@ export class ReviewEmployeeComponent implements OnInit {
           this.formDataService.formData.employeeNumber,
           [Validators.required]
         ),
-        hostedId: new FormControl(
-          this.formDataService.formData.hostedId,
-          Validators.required
-        ),
       }),
 
       accessInformation: new FormGroup({
@@ -210,7 +206,7 @@ export class ReviewEmployeeComponent implements OnInit {
         managerFirstName: new FormControl(this.formDataService.formData.managerFirstName),
         managerLastName: new FormControl(this.formDataService.formData.managerLastName),
         managerEmail: new FormControl(this.formDataService.formData.managerEmail),
-        managerPhoneNumber: new FormControl(this.formDataService.formData.managerPhoneNumber),
+        managerPhone: new FormControl(this.formDataService.formData.managerPhone),
         managerTitle: new FormControl(this.formDataService.formData.managerTitle),
       }),
       signatures: new FormGroup({

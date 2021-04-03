@@ -107,6 +107,7 @@ export class EmployeeFormComponent implements OnInit {
           Validators.required,
           Validators.pattern('[0-9]{10}'),
         ]),
+        employeeNumber: new FormControl(null),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(null, Validators.required),
@@ -124,10 +125,6 @@ export class EmployeeFormComponent implements OnInit {
           Validators.maxLength(7),
           Validators.pattern('[0-9]*'),
         ]),
-      }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(null, [Validators.required]),
-        hostedId: new FormControl(null, Validators.required),
       }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
@@ -201,6 +198,10 @@ export class EmployeeFormComponent implements OnInit {
           this.formDataService.formData.businessPhoneNumber,
           [Validators.required, Validators.pattern('[0-9]{10}')]
         ),
+        employeeNumber: new FormControl(
+          this.formDataService.formData.employeeNumber,
+          [Validators.required]
+        ),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(
@@ -221,16 +222,6 @@ export class EmployeeFormComponent implements OnInit {
           Validators.maxLength(7),
           Validators.pattern('[0-9]*'),
         ]),
-      }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(
-          this.formDataService.formData.employeeNumber,
-          [Validators.required]
-        ),
-        hostedId: new FormControl(
-          this.formDataService.formData.hostedId,
-          Validators.required
-        ),
       }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
@@ -287,6 +278,13 @@ export class EmployeeFormComponent implements OnInit {
         windowsRightsMgmt: new FormControl(
           this.formDataService.formData.windowsRightsMgmt
         ),
+      }),
+      // TODO: Retrieve these values from formData
+      managerInformation: new FormGroup({
+        managerFirstName: new FormControl(null),
+        managerLastName: new FormControl(null),
+        managerEmail: new FormControl(null),
+        managerPhoneNumber: new FormControl(null),
       }),
     });
     return formGroup;

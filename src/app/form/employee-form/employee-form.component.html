@@ -95,6 +95,21 @@
           <mat-error>Phone number is required and must be 10 digit</mat-error>
         </mat-form-field>
       </div>
+      <div>
+        <mat-form-field appearance="outline" style="width: 70%">
+          <mat-label>Employee Number</mat-label>
+          <input
+            id="employeeNumberInput"
+            type="text"
+            matInput
+            formControlName="employeeNumber"
+            required
+            [errorStateMatcher]="errorStateMatcher"
+          />
+          <mat-hint>Required</mat-hint>
+          <mat-error>Employee number is required</mat-error>
+        </mat-form-field>
+      </div>
       <div class="button-container">
         <button mat-raised-button matStepperNext color="primary">Next</button>
         <span class="spacer"></span>
@@ -205,70 +220,15 @@
       </div>
     </mat-step>
 
-    <!-- Employee Information Step -->
-    <mat-step
-      formGroupName="employeeInformation"
-      [stepControl]="form.get('employeeInformation')"
-    >
-      <ng-template matStepLabel>Employee</ng-template>
-      <h2 class="mat-display-1" style="margin-bottom: 32px">
-        Employee Information
-      </h2>
-      <p *ngIf="requestNumber">
-        Your request number: <span style="color: red">{{ requestNumber }}</span>
-      </p>
-
-      <div>
-        <mat-form-field appearance="outline" style="width: 70%">
-          <mat-label>Employee Number</mat-label>
-          <input
-            id="employeeNumberInput"
-            type="text"
-            matInput
-            formControlName="employeeNumber"
-            required
-            [errorStateMatcher]="errorStateMatcher"
-          />
-          <mat-hint>Required</mat-hint>
-          <mat-error>Employee number is required</mat-error>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline" style="width: 70%">
-          <mat-label>Hosted ID</mat-label>
-          <input
-            id="hostedIdInput"
-            type="text"
-            matInput
-            formControlName="hostedId"
-            required
-            [errorStateMatcher]="errorStateMatcher"
-          />
-          <mat-hint>Required</mat-hint>
-          <mat-error>Hosted id is required</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="button-container">
-        <button mat-raised-button matStepperPrevious>Previous</button>
-        <button mat-raised-button matStepperNext color="primary" class="ml-2">
-          Next
-        </button>
-        <span class="spacer"></span>
-        <button
-          id="employee-info-save-btn"
-          mat-raised-button
-          class="save-button"
-          color="accent"
-          (click)="save()"
-        >
-          Save
-        </button>
-      </div>
+    <!-- Internet Access -->
+    <mat-step>
+      <ng-template matStepLabel>Internet Access</ng-template>
+      <app-internet-access></app-internet-access>
     </mat-step>
 
     <!-- Access Information Step-->
     <mat-step>
-      <ng-template matStepLabel>Access</ng-template>
+      <ng-template matStepLabel>Data Center Access</ng-template>
       <!-- TODO: Work on naming and values -->
       <div>
         <h2 class="mat-display-1" style="margin-bottom: 16px">
@@ -455,7 +415,7 @@
 
     <!-- Department -->
     <mat-step [stepControl]="form.get('additionalInformation')">
-      <ng-template matStepLabel>Additional</ng-template>
+      <ng-template matStepLabel>Active Directory</ng-template>
       <app-additional-information
         [printForm]="printForm"
         [save]="save"

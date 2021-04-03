@@ -12,7 +12,7 @@
       formGroupName="personalInformation"
       [stepControl]="approval.get('personalInformation')"
     >
-      <ng-template matStepLabel>Personal Information</ng-template>
+      <ng-template matStepLabel>Personal</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Personal Information
       </h2>
@@ -210,7 +210,7 @@
       formGroupName="employeeInformation"
       [stepControl]="approval.get('employeeInformation')"
     >
-      <ng-template matStepLabel>Employee Information</ng-template>
+      <ng-template matStepLabel>Employee</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
         Employee Information
       </h2>
@@ -233,21 +233,6 @@
           <mat-error>Employee number is required</mat-error>
         </mat-form-field>
       </div>
-      <div>
-        <mat-form-field appearance="outline" style="width: 70%">
-          <mat-label>Hosted ID</mat-label>
-          <input
-            id="hostedIdInput"
-            type="text"
-            matInput
-            formControlName="hostedId"
-            required
-            [errorStateMatcher]="errorStateMatcher"
-          />
-          <mat-hint>Required</mat-hint>
-          <mat-error>Hosted id is required</mat-error>
-        </mat-form-field>
-      </div>
       <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
         <button mat-raised-button matStepperNext color="primary" class="ml-2">
@@ -268,7 +253,7 @@
 
     <!-- Access Information Step-->
     <mat-step>
-      <ng-template matStepLabel>Access Information</ng-template>
+      <ng-template matStepLabel>Data Center Access</ng-template>
       <!-- TODO: Work on naming and values -->
       <div>
         <h2 class="mat-display-1" style="margin-bottom: 16px">
@@ -455,7 +440,7 @@
 
     <!-- Department -->
     <mat-step [stepControl]="approval.get('additionalInformation')">
-      <ng-template matStepLabel>Additional Information</ng-template>
+      <ng-template matStepLabel>Active Directory</ng-template>
       <div >
         <h2 class="mat-display-1">Applications Requested</h2>
         <h3 class="mat-title">Select the following options</h3>
@@ -582,7 +567,7 @@
         <br />
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Manager's Phone #</mat-label>
-          <input matInput formControlName="managerPhoneNumber" />
+          <input matInput formControlName="managerPhone" />
         </mat-form-field>
         <br />
         <mat-form-field appearance="outline" class="mat-input-width">
@@ -698,8 +683,7 @@
     <mat-step>
       <ng-template matStepLabel>Start Adobe Process</ng-template>
       <div>
-        <h2 class="mat-display-1">Submit to Adobe Sign</h2>
-        <h3 class="mat-title">Start Adobe sign process</h3>
+        <h2 class="mat-display-1">Start Adobe Sign process</h2>
         <div class="button-container">
           <button mat-raised-button matStepperPrevious>Previous</button>
           <button mat-raised-button matStepperNext color="primary" class="ml-2">
