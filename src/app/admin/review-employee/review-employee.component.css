@@ -2,11 +2,6 @@
   width: 60%;
 }
 
-@media only screen and (max-width: 600px) {
-  .mat-input-width {
-    width: 100%;
-  }
-}
 
 .button-container {
   display: flex;
@@ -23,10 +18,6 @@
 }
 
 
-
-
-
-
 .flex-container {
   display: flex;
 }
@@ -41,14 +32,13 @@ div.flex-container {
   margin-top: 10px;
 }
 
-.button-toggle-container {
+.active-directory-button-container, .internet-access-button-container {
   display: flex;
   flex-direction: row;
   margin-top: 40px;
 }
 
-
-.access-toggle-button {
+.active-directory-button, .internet-access-button {
   width: 235px;
 }
 
@@ -60,8 +50,10 @@ div.flex-container {
   .flex-container {
     display: block;
   }
-
-  .access-toggle-button {
+  .mat-input-width {
+    width: 100%;
+  }
+  .active-directory-button, .internet-access-button {
     margin-bottom: 5px;
   }
 }

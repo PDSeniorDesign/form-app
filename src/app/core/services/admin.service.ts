@@ -124,6 +124,17 @@ export class AdminService {
       businessCity: data.addressInformation.city,
       businessState: data.addressInformation.state,
       businessZip: data.addressInformation.zipCode,
+
+      //internet policy
+      defaultCountyWidePolicy: data.policyRulesInformation.defaultCountyWidePolicy,
+      departmentPolicyRule0: data.policyRulesInformation.departmentPolicyRule0,
+      departmentPolicyRule1: data.policyRulesInformation.departmentPolicyRule1,
+      departmentPolicyRule2: data.policyRulesInformation.departmentPolicyRule2,
+      departmentPolicyRule3: data.policyRulesInformation.departmentPolicyRule3,
+      departmentPolicyRule4:data.policyRulesInformation.departmentPolicyRule4,
+      socialNetworkingFacebook: data.policyRulesInformation.socialNetworkingFacebook,
+      socialNetworkingTwitter: data.policyRulesInformation.socialNetworkingTwitter,
+      socialNetworkingLinkedIn: data.policyRulesInformation.socialNetworkingLinkedIn,
       
       // Access Information
       ibmLogOnId: data.accessInformation.ibmLogonId,
