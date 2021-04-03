@@ -206,6 +206,13 @@ export class ReviewEmployeeComponent implements OnInit {
           this.formDataService.formData.windowsRightsMgmt
         ),
       }),
+      managerInformation: new FormGroup({
+        managerFirstName: new FormControl(this.formDataService.formData.managerFirstName),
+        managerLastName: new FormControl(this.formDataService.formData.managerLastName),
+        managerEmail: new FormControl(this.formDataService.formData.managerEmail),
+        managerPhoneNumber: new FormControl(this.formDataService.formData.managerPhoneNumber),
+        managerTitle: new FormControl(this.formDataService.formData.managerTitle),
+      }),
       signatures: new FormGroup({
         applicationCoordinatorName: new FormControl(
           this.formDataService.formData.applicationCoordinatorName
@@ -343,11 +350,6 @@ export class ReviewEmployeeComponent implements OnInit {
     });
   }
 
-  createApprovalForm(): void {
-    this.requestNumber = this.formDataService.formData.requestNumber;
-    console.log('Create AP');
-    console.log(this.formDataService.formData.requestNumber);
-  }
 
   //not working yet-set complete to true
   startAdobeProcess = (): void => {

@@ -110,20 +110,24 @@ export class AdminService {
       // Form specific data
       complete: isComplete,
       employee: true, // Since it is the employee form
+      
       // Personal Information
       lastName: data.personalInformation.lastName,
       firstName: data.personalInformation.firstName,
       middleInitial: data.personalInformation.middleInitial,
       employeeEmailAddress: data.personalInformation.emailAddress,
       businessPhoneNumber: data.personalInformation.phoneNumber,
+
       // Address Information
       businessStreetAddress: data.addressInformation.address,
       businessCity: data.addressInformation.city,
       businessState: data.addressInformation.state,
       businessZip: data.addressInformation.zipCode,
+
       // Employee Information
       employeeNumber: data.employeeInformation.employeeNumber,
       hostedId: data.employeeInformation.hostedId,
+      
       // Access Information
       ibmLogOnId: data.accessInformation.ibmLogonId,
       majorGroupCode: data.accessInformation.majorGroupCode,
@@ -134,17 +138,24 @@ export class AdminService {
       unixAccessGroup: data.accessInformation.accessGroup,
       unixAccountNumber: data.accessInformation.accountNumber,
       billingAccountNumber: data.accessInformation.billingAccountNumber,
+
       // FIXME: On server side accessType(securid) might be misssing
       // Additional Information
       internetApplication: data.additionalInformation.internetApplication,
       exchangeEmail: data.additionalInformation.exchangeEmail,
       emailEncryption: data.additionalInformation.emailEncryption,
       laCountyGovAccess: data.additionalInformation.laCountyGovAccess,
-      tokenlessAuthentication:
-        data.additionalInformation.tokenlessAuthentication,
+      tokenlessAuthentication: data.additionalInformation.tokenlessAuthentication,
       lacMobileWifiAccess: data.additionalInformation.lacMobileWifiAccess,
       cherwellSms: data.additionalInformation.cherwellSms,
       windowsRightsMgmt: data.additionalInformation.windowsRightsMgmt,
+
+      //managers info
+      managerFirstName: data.managerInformation.managerFirstName,
+      managerLastName: data.managerInformation.managerLastName,
+      managerEmail: data.managerInformation.managerEmail,
+      managerPhoneNumber: data.managerInformation.managerPhoneNumber,
+      managerTitle: data.managerInformation.managerTitle,
 
       //signatures-department Head left, since theres no policy in employee-form
       applicationCoordinatorName: data.signatures.applicationCoordinatorName,
