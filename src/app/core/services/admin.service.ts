@@ -126,7 +126,6 @@ export class AdminService {
 
       // Employee Information
       employeeNumber: data.employeeInformation.employeeNumber,
-      hostedId: data.employeeInformation.hostedId,
       
       // Access Information
       ibmLogOnId: data.accessInformation.ibmLogonId,
@@ -154,7 +153,7 @@ export class AdminService {
       managerFirstName: data.managerInformation.managerFirstName,
       managerLastName: data.managerInformation.managerLastName,
       managerEmail: data.managerInformation.managerEmail,
-      managerPhoneNumber: data.managerInformation.managerPhoneNumber,
+      managerPhone: data.managerInformation.managerPhone,
       managerTitle: data.managerInformation.managerTitle,
 
       //signatures-department Head left, since theres no policy in employee-form
