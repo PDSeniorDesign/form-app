@@ -40,7 +40,7 @@ export class ContractorFormComponent implements OnInit {
   errorStateMatcher = new InstantErrorStateMatcher();
   hasSubmitted: boolean;
 
-  //Registration Boolean Variables
+  //Internet Policy Boolean Variables
   applyDefaultCountyWidePolicy: boolean;
   departmentPolicyRule0: boolean;
   departmentPolicyRule1: boolean;
@@ -50,6 +50,11 @@ export class ContractorFormComponent implements OnInit {
   socialNetworkingFacebook: boolean;
   socialNetworkingTwitter: boolean;
   socialNetworkingLinkedIn: boolean;
+
+  //Additional Access Boolean Variables
+  ibmChecked: boolean;
+  unixChecked: boolean;
+  securidChecked: boolean;
 
   constructor(
     private formDataService: FormDataService,
@@ -129,22 +134,22 @@ export class ContractorFormComponent implements OnInit {
         socialNetworkingTwitter: new FormControl(false),
         socialNetworkingLinkedIn: new FormControl(false),
       }),
-      accessInformation: new FormGroup ({
+      additionalAccessInformation: new FormGroup ({
         // IBM Data Center Access
-        ibmChecked: new FormControl (null,
-          ),
+        ibmChecked: new FormControl (false),
         ibmLogonId: new FormControl(null),
         majorGroupCode: new FormControl(null),
         lsoGroupCode: new FormControl(null),
+        securityAuthorization: new FormControl(null),
         // Unix Environment Access
-        unixChecked: new FormControl (null),
+        unixChecked: new FormControl (false),
         unixTypeRequest: new FormControl (null),
         unixLogonId: new FormControl(null),
         application: new FormControl(null),
         accessGroup: new FormControl(null),
         accountNumber: new FormControl(null),
         // SecurID Remote Access
-        secureidChecked: new FormControl (null),
+        securidChecked: new FormControl (false),
         billingAccountNumber: new FormControl(null),
         accessType: new FormControl(null),
       })
@@ -171,6 +176,18 @@ export class ContractorFormComponent implements OnInit {
     //   this.options.delete(nameOfOption);
     // }
   }
+
+  onButtonChange2(event: MatButtonToggleChange, nameOfOption: string): void {
+    // Change to variable to represent the status of the button, whether clicked or not
+    this[event.source.id] = event.source.checked;
+
+    // Update form group
+    this.formContractor
+      .get(['additionalAccessInformation', event.source.id])
+      .setValue(this[event.source.id]);
+  }
+
+
 
   move(index:number) {
     this.stepper.selectedIndex = index;
