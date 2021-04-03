@@ -268,7 +268,7 @@
 
     <!-- Access Information Step-->
     <mat-step>
-      <ng-template matStepLabel>Access</ng-template>
+      <ng-template matStepLabel>Data Center Access</ng-template>
       <!-- TODO: Work on naming and values -->
       <div>
         <h2 class="mat-display-1" style="margin-bottom: 16px">
@@ -455,7 +455,7 @@
 
     <!-- Department -->
     <mat-step [stepControl]="form.get('additionalInformation')">
-      <ng-template matStepLabel>Additional</ng-template>
+      <ng-template matStepLabel>Active Directory</ng-template>
       <app-additional-information
         [printForm]="printForm"
         [save]="save"
