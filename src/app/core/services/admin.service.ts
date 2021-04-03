@@ -117,15 +117,13 @@ export class AdminService {
       middleInitial: data.personalInformation.middleInitial,
       employeeEmailAddress: data.personalInformation.emailAddress,
       businessPhoneNumber: data.personalInformation.phoneNumber,
+      employeeNumber: data.personalInformation.employeeNumber,
 
       // Address Information
       businessStreetAddress: data.addressInformation.address,
       businessCity: data.addressInformation.city,
       businessState: data.addressInformation.state,
       businessZip: data.addressInformation.zipCode,
-
-      // Employee Information
-      employeeNumber: data.employeeInformation.employeeNumber,
       
       // Access Information
       ibmLogOnId: data.accessInformation.ibmLogonId,

@@ -121,6 +121,10 @@ export class ReviewEmployeeComponent implements OnInit {
           this.formDataService.formData.businessPhoneNumber,
           [Validators.required, Validators.pattern('[0-9]{10}')]
         ),
+        employeeNumber: new FormControl(
+          this.formDataService.formData.employeeNumber,
+          [Validators.required]
+        ),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(
@@ -142,13 +146,6 @@ export class ReviewEmployeeComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(
-          this.formDataService.formData.employeeNumber,
-          [Validators.required]
-        ),
-      }),
-
       accessInformation: new FormGroup({
         // IBM Data Center Access
         ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
@@ -203,11 +200,21 @@ export class ReviewEmployeeComponent implements OnInit {
         ),
       }),
       managerInformation: new FormGroup({
-        managerFirstName: new FormControl(this.formDataService.formData.managerFirstName),
-        managerLastName: new FormControl(this.formDataService.formData.managerLastName),
-        managerEmail: new FormControl(this.formDataService.formData.managerEmail),
-        managerPhone: new FormControl(this.formDataService.formData.managerPhone),
-        managerTitle: new FormControl(this.formDataService.formData.managerTitle),
+        managerFirstName: new FormControl(
+          this.formDataService.formData.managerFirstName
+        ),
+        managerLastName: new FormControl(
+          this.formDataService.formData.managerLastName
+        ),
+        managerEmail: new FormControl(
+          this.formDataService.formData.managerEmail
+        ),
+        managerPhone: new FormControl(
+          this.formDataService.formData.managerPhone
+        ),
+        managerTitle: new FormControl(
+          this.formDataService.formData.managerTitle
+        ),
       }),
       signatures: new FormGroup({
         applicationCoordinatorName: new FormControl(
@@ -346,7 +353,6 @@ export class ReviewEmployeeComponent implements OnInit {
     });
   }
 
-
   //not working yet-set complete to true
   startAdobeProcess = (): void => {
     this.isLoading = true;
@@ -362,7 +368,7 @@ export class ReviewEmployeeComponent implements OnInit {
           this.confirmationPageService.requestNumber = response.requestNumber;
           this.router.navigate(['admin/review-confirmation-page']);
           console.log(response);
-        }
+        },
       });
   };
 
