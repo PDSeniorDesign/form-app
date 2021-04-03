@@ -254,7 +254,7 @@ export class EmployeeFormComponent implements OnInit {
         accessGroup: new FormControl(
           this.formDataService.formData.unixAccessGroup
         ),
-        accountNumber: new FormControl(
+        accountNumber: new FormControl( 
           this.formDataService.formData.unixAccountNumber
         ),
         // SecurID Remote Access

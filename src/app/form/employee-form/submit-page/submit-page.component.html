@@ -161,125 +161,95 @@
         </button>
       </h4>
 
-      <div>
-        <h6>Access Options:</h6>
-        <div class="smallerText" *ngIf="regForm.value.accessInformation.renderIBMForm">
-          <input type="checkbox" disabled checked>
-          <label>IBM</label>
-        </div>
-
-        <div class="smallerText" *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
-          <input type="checkbox" disabled checked>
-          <label>Unix Environment</label>
-        </div>
-
-        <div class="smallerText" *ngIf="regForm.value.accessInformation.renderSecurIdAccess">
-          <input type="checkbox" disabled checked>
-          <label>SecurID Remote</label>
-        </div>
-      </div>
-
       <!-- IBM info -->
       <!-- <div *ngIf="regForm.value.accessInformation.renderIBMForm"> -->
-      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
+      <div>
         <h6>IBM Info</h6>
-        <div class="subgroup">
+        <div class="subgroup" *ngIf="regForm.value.accessInformation.ibmLogonId != null || regForm.value.accessInformation.majorGroupCode != null ||
+        regForm.value.accessInformation.lsoGroupCode != null || regForm.value.accessInformation.securityAuthorization != null; else elseBlock">
           <p>
-            Logon ID: 
+            Logon ID:
           </p>
           <p>
             {{ regForm.value.accessInformation.ibmLogonId || "N/A" }}
           </p>
-        </div>
-      </div>
-
-      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
-        <h6>2-Digit Major Group Code</h6>
-        <div class="subgroup">
+          <p>
+            Major Group Code
+          </p>
           <p>
             {{ regForm.value.accessInformation.majorGroupCode || "N/A" }}
           </p>
-        </div>
-      </div>
-
-      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
-        <h6>2-Digit LSO Group Code</h6>
-        <div class="subgroup">
+          <p>
+            LSO Group Code:
+          </p>
           <p>
             {{ regForm.value.accessInformation.lsoGroupCode || "N/A" }}
           </p>
-        </div>
-      </div>
-
-      <div *ngIf="regForm.value.accessInformation.renderIBMForm">
-        <h6>Security Authorization</h6>
-        <div class="subgroup">
+          <p>
+            Security Authorization:
+          </p>
           <p>
             {{ regForm.value.accessInformation.securityAuthorization || "N/A" }}
           </p>
         </div>
+        <ng-template #elseBlock>None Entered</ng-template>
       </div>
-      <!-- </div> -->
 
-      <!-- Unix info -->
-      <!-- <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess === true> " -->
-      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
-        <h6>Login ID</h6>
-        <div class="subgroup">
+      <br>
+
+      <div>
+        <h6>Unix Info</h6>
+        <div class="subgroup" *ngIf="regForm.value.accessInformation.unixLogonId != null || regForm.value.accessInformation.application != null ||
+        regForm.value.accessInformation.accessGroup != null || regForm.value.accessInformation.accountNumber != null; else elseBlock">
+          <p>
+            Logon ID:
+          </p>
           <p>
             {{ regForm.value.accessInformation.unixLogonId || "N/A" }}
           </p>
-        </div>
-      </div>
-
-      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
-        <h6>Application</h6>
-        <div class="subgroup">
+          <p>
+            Application
+          </p>
           <p>
             {{ regForm.value.accessInformation.application || "N/A" }}
           </p>
-        </div>
-      </div>
-
-      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
-        <h6>Access Group</h6>
-        <div class="subgroup">
+          <p>
+            Access Group:
+          </p>
           <p>
             {{ regForm.value.accessInformation.accessGroup || "N/A" }}
           </p>
-        </div>
-      </div>
-
-      <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess">
-        <h6>Account Number</h6>
-        <div class="subgroup">
+          <p>
+            Account Number:
+          </p>
           <p>
             {{ regForm.value.accessInformation.accountNumber || "N/A" }}
           </p>
         </div>
+        <ng-template #elseBlock></ng-template>
       </div>
-      <!-- </div> -->
 
-      <!-- SecurID Access info -->
-      <!-- <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess === true> " -->
-      <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess"> 
-        <h6>Billing Account Number</h6>
-        <div class="subgroup">
+      <br>
+      
+      <div>
+        <h6>SecurID Remote Access</h6>
+        <div class="subgroup" *ngIf="regForm.value.accessInformation.billingAccountNumber != null || regForm.value.accessInformation.accessType != null; else elseBlock">
+          <p>
+            Billing Account Number:
+          </p>
           <p>
             {{ regForm.value.accessInformation.billingAccountNumber || "N/A" }}
           </p>
-        </div>
-      </div>
-
-      <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess">
-        <h6>Access Type</h6>
-        <div class="subgroup">
+          <p>
+            Access Type
+          </p>
           <p>
             {{ regForm.value.accessInformation.accessType || "N/A" }}
           </p>
         </div>
+        <ng-template #elseBlock>None Entered</ng-template>
       </div>
-      <!-- </div> -->
+
     </div>
 
     <!-- Additional Information -->
@@ -342,6 +312,8 @@
 
         </div>
       </div>
+
+
 
     </div>
   </div>
