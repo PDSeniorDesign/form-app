@@ -126,9 +126,6 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(null, [Validators.required]),
-      }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
         ibmLogonId: new FormControl(null, []),
@@ -201,6 +198,10 @@ export class EmployeeFormComponent implements OnInit {
           this.formDataService.formData.businessPhoneNumber,
           [Validators.required, Validators.pattern('[0-9]{10}')]
         ),
+        employeeNumber: new FormControl(
+          this.formDataService.formData.employeeNumber,
+          [Validators.required]
+        ),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(
@@ -221,12 +222,6 @@ export class EmployeeFormComponent implements OnInit {
           Validators.maxLength(7),
           Validators.pattern('[0-9]*'),
         ]),
-      }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(
-          this.formDataService.formData.employeeNumber,
-          [Validators.required]
-        ),
       }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
