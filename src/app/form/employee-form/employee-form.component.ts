@@ -107,6 +107,7 @@ export class EmployeeFormComponent implements OnInit {
           Validators.required,
           Validators.pattern('[0-9]{10}'),
         ]),
+        employeeNumber: new FormControl(null),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(null, Validators.required),
@@ -127,7 +128,6 @@ export class EmployeeFormComponent implements OnInit {
       }),
       employeeInformation: new FormGroup({
         employeeNumber: new FormControl(null, [Validators.required]),
-        hostedId: new FormControl(null, Validators.required),
       }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
@@ -226,10 +226,6 @@ export class EmployeeFormComponent implements OnInit {
         employeeNumber: new FormControl(
           this.formDataService.formData.employeeNumber,
           [Validators.required]
-        ),
-        hostedId: new FormControl(
-          this.formDataService.formData.hostedId,
-          Validators.required
         ),
       }),
       accessInformation: new FormGroup({

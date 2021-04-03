@@ -39,7 +39,6 @@ export class ApiHttpService {
       businessZip: data.addressInformation.zipCode,
       // Employee Information
       employeeNumber: data.employeeInformation.employeeNumber,
-      hostedId: data.employeeInformation.hostedId,
       // Access Information
       ibmLogOnId: data.accessInformation.ibmLogonId,
       majorGroupCode: data.accessInformation.majorGroupCode,
