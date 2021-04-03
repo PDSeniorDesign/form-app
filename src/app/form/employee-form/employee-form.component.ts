@@ -279,6 +279,13 @@ export class EmployeeFormComponent implements OnInit {
           this.formDataService.formData.windowsRightsMgmt
         ),
       }),
+      // TODO: Retrieve these values from formData
+      managerInformation: new FormGroup({
+        managerFirstName: new FormControl(null),
+        managerLastName: new FormControl(null),
+        managerEmail: new FormControl(null),
+        managerPhoneNumber: new FormControl(null),
+      }),
     });
     return formGroup;
   }
