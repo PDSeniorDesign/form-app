@@ -456,7 +456,6 @@
     <!-- Department -->
     <mat-step [stepControl]="approval.get('additionalInformation')">
       <ng-template matStepLabel>Additional Information</ng-template>
-
       <div >
         <h2 class="mat-display-1">Applications Requested</h2>
         <h3 class="mat-title">Select the following options</h3>
@@ -564,10 +563,55 @@
           </button>
         </div>
       </div>      
-
-
     </mat-step>
-    <!-- Submit -->
+
+    <!-- Manager -->
+    <mat-step formGroupName="managerInformation" [stepControl]="approval.get('managerInformation')">
+      <ng-template  matStepLabel>Manager</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">Manager's Contact Information</h2>
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Manager's First Name</mat-label>
+          <input matInput formControlName="managerFirstName" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Manager's Last Name</mat-label>
+          <input matInput formControlName="managerLastName" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Manager's Phone #</mat-label>
+          <input matInput formControlName="managerPhoneNumber" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Manager's Email</mat-label>
+          <input matInput formControlName="managerEmail" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Manager's Title</mat-label>
+          <input matInput formControlName="managerTitle" />
+        </mat-form-field>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button
+          mat-raised-button
+          matStepperNext
+          color="primary"
+          class="ml-2"
+        >
+          Next
+        </button>
+        <span class="spacer"></span>
+        <button id="employee-info-save-btn" mat-raised-button class= "save-button " color="accent" (click) = "save()">
+          Save
+        </button>
+      </div>
+    </mat-step>
+
+    <!-- Signatures-->
     <mat-step formGroupName="signatures" [stepControl]="approval.get('signatures')">
       <ng-template matStepLabel>Approvers</ng-template>
       <div>
@@ -630,9 +674,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-
         </div>
-
       </div>
       <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
@@ -650,8 +692,9 @@
           Save
         </button>
       </div>
-
     </mat-step>
+
+    <!-- Submit -->
     <mat-step>
       <ng-template matStepLabel>Start Adobe Process</ng-template>
       <div>
