@@ -234,17 +234,34 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
-      // TODO: Grab from formDataService
       internetAccess: new FormGroup({
-        applyDefaultCountyWidePolicy: new FormControl(false),
-        departmentPolicyRule0: new FormControl(false),
-        departmentPolicyRule1: new FormControl(false),
-        departmentPolicyRule2: new FormControl(false),
-        departmentPolicyRule3: new FormControl(false),
-        departmentPolicyRule4: new FormControl(false),
-        socialNetworkingFacebook: new FormControl(false),
-        socialNetworkingTwitter: new FormControl(false),
-        socialNetworkingLinkedIn: new FormControl(false),
+        applyDefaultCountyWidePolicy: new FormControl(
+          this.formDataService.formData.defaultCountyWidePolicy
+        ),
+        departmentPolicyRule0: new FormControl(
+          this.formDataService.formData.departmentPolicyRule0
+        ),
+        departmentPolicyRule1: new FormControl(
+          this.formDataService.formData.departmentPolicyRule1
+        ),
+        departmentPolicyRule2: new FormControl(
+          this.formDataService.formData.departmentPolicyRule2
+        ),
+        departmentPolicyRule3: new FormControl(
+          this.formDataService.formData.departmentPolicyRule3
+        ),
+        departmentPolicyRule4: new FormControl(
+          this.formDataService.formData.departmentPolicyRule4
+        ),
+        socialNetworkingFacebook: new FormControl(
+          this.formDataService.formData.socialNetworkingFacebook
+        ),
+        socialNetworkingTwitter: new FormControl(
+          this.formDataService.formData.socialNetworkingTwitter
+        ),
+        socialNetworkingLinkedIn: new FormControl(
+          this.formDataService.formData.socialNetworkingLinkedIn
+        ),
       }),
       accessInformation: new FormGroup({
         // IBM Data Center Access

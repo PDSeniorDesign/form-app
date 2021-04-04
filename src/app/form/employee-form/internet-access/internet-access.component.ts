@@ -6,7 +6,7 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
 @Component({
   selector: 'app-internet-access',
   templateUrl: './internet-access.component.html',
-  styleUrls: ['./internet-access.component.css']
+  styleUrls: ['./internet-access.component.css'],
 })
 export class InternetAccessComponent implements OnInit {
   // Functions from parent component (employee-form)
@@ -25,9 +25,54 @@ export class InternetAccessComponent implements OnInit {
   socialNetworkingTwitter: boolean;
   socialNetworkingLinkedIn: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    // If continuing a form, we have to add value manually
+    this.applyDefaultCountyWidePolicy = this.form.get([
+      'internetAccess',
+      'applyDefaultCountyWidePolicy',
+    ]).value;
+
+    this.departmentPolicyRule0 = this.form.get([
+      'internetAccess',
+      'departmentPolicyRule0',
+    ]).value;
+
+    this.departmentPolicyRule1 = this.form.get([
+      'internetAccess',
+      'departmentPolicyRule1',
+    ]).value;
+
+    this.departmentPolicyRule2 = this.form.get([
+      'internetAccess',
+      'departmentPolicyRule2',
+    ]).value;
+
+    this.departmentPolicyRule3 = this.form.get([
+      'internetAccess',
+      'departmentPolicyRule3',
+    ]).value;
+
+    this.departmentPolicyRule4 = this.form.get([
+      'internetAccess',
+      'departmentPolicyRule4',
+    ]).value;
+
+    this.socialNetworkingFacebook = this.form.get([
+      'internetAccess',
+      'socialNetworkingFacebook',
+    ]).value;
+
+    this.socialNetworkingTwitter = this.form.get([
+      'internetAccess',
+      'socialNetworkingTwitter',
+    ]).value;
+
+    this.socialNetworkingLinkedIn = this.form.get([
+      'internetAccess',
+      'socialNetworkingLinkedIn',
+    ]).value;
   }
 
   onButtonChange(event: MatButtonToggleChange, nameOfOption: string): void {
@@ -39,5 +84,4 @@ export class InternetAccessComponent implements OnInit {
       .get(['internetAccess', event.source.id])
       .setValue(this[event.source.id]);
   }
-
 }
