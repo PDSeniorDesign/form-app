@@ -231,11 +231,16 @@ export class ApproversComponent implements OnInit {
   clear(): void {
     this.newApprover.reset();
     this.existingApprover.reset();
+    this.selected = '';
     this.selectedRole = '';
     this.selectedDiv = '';
     this.selectedDeptHead = '';
     this.selectedAppCoord = '';
     this.selectedDeptInfo = '';
+    this.sucess = false;
+    this.deleted = false;
+    this.updated = false;
+
   }
 
   //based on selection: do http.post to individual approver type
@@ -244,24 +249,28 @@ export class ApproversComponent implements OnInit {
       this.adminService
         .postDivChief(this.newApprover.value)
         .subscribe((res) => {
+          this.divChief.push(res);
           this.sucess = true;
         });
     } else if (this.selected == this.roles[1]) {
       this.adminService
         .postDeptHead(this.newApprover.value)
         .subscribe((res) => {
+          this.deptHead.push(res);
           this.sucess = true;
         });
     } else if (this.selected == this.roles[2]) {
       this.adminService
         .postAppCoord(this.newApprover.value)
         .subscribe((res) => {
+          this.appCoord.push(res);
           this.sucess = true;
         });
     } else if (this.selected == this.roles[3]) {
       this.adminService
         .postDeptInfoSec(this.newApprover.value)
         .subscribe((res) => {
+          this.deptInfo.push(res);
           this.sucess = true;
         });
     }
