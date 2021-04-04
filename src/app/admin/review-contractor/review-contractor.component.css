@@ -1,4 +1,24 @@
+.mat-input-width {
+    width: 60%;
+  }
+  
+  
+.button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+
+
+
 @media only screen and (max-width: 600px) {
+    .flex-container {
+      display: block;
+    }
     .mat-input-width {
       width: 100%;
     }
