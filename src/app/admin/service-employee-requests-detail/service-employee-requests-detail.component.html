@@ -2,9 +2,7 @@
   id="regForm"
   [formGroup]="adminForm"
   class="container"
-
 >
-
       <ng-template matStepLabel>Contractor</ng-template>
       <div style="margin: 30px 0px">
       <h1 style="margin-bottom: 15px">
@@ -71,6 +69,16 @@
               </p>
             </div>
           </div>
+
+          <div>
+            <h6>Employee Number</h6>
+            <div class="subgroup">
+              <p class="font-weight-light">
+                {{ adminForm.value.personalInformation.employeeNumber || "N/A" }}
+              </p>
+            </div>
+          </div>
+
         </div>
 
         <!-- Address Information -->
@@ -117,28 +125,6 @@
             <div class="subgroup">
               <p>
                 {{ adminForm.value.addressInformation.zipCode || "N/A" }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Employee Information -->
-        <div class="col">
-          <h4>
-            <button
-              class="btnSub"
-              mat-raised-button
-              color="primary"
-            >
-              Employee
-            </button>
-          </h4>
-
-          <div>
-            <h6>Employee Number</h6>
-            <div class="subgroup">
-              <p class="font-weight-light">
-                {{ adminForm.value.employeeInformation.employeeNumber || "N/A" }}
               </p>
             </div>
           </div>

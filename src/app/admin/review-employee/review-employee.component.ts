@@ -46,6 +46,18 @@ export class ReviewEmployeeComponent implements OnInit {
   errorStateMatcher = new InstantErrorStateMatcher();
   requestNumber: string;
 
+  //application requested
+  defaultCountyWidePolicy: boolean;
+  departmentPolicyRule0: boolean;
+  departmentPolicyRule1: boolean;
+  departmentPolicyRule2: boolean;
+  departmentPolicyRule3: boolean;
+  departmentPolicyRule4: boolean;
+  socialNetworkingFacebook: boolean;
+  socialNetworkingTwitter: boolean;
+  socialNetworkingLinkedIn: boolean;
+
+  //active-directory
   internetApplication: boolean;
   exchangeEmail: boolean;
   emailEncryption: boolean;
@@ -79,8 +91,21 @@ export class ReviewEmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //request Number to display in form
     this.requestNumber = this.formDataService.formData.requestNumber;
 
+    //internet-access
+    this.defaultCountyWidePolicy = this.formDataService.formData.defaultCountyWidePolicy;
+    this.departmentPolicyRule0 = this.formDataService.formData.departmentPolicyRule0;
+    this.departmentPolicyRule1 = this.formDataService.formData.departmentPolicyRule1;
+    this.departmentPolicyRule2 = this.formDataService.formData.departmentPolicyRule2;
+    this.departmentPolicyRule3 = this.formDataService.formData.departmentPolicyRule3;
+    this.departmentPolicyRule4 = this.formDataService.formData.departmentPolicyRule4;
+    this.socialNetworkingFacebook = this.formDataService.formData.socialNetworkingFacebook;
+    this.socialNetworkingTwitter = this.formDataService.formData.socialNetworkingTwitter;
+    this.socialNetworkingLinkedIn = this.formDataService.formData.socialNetworkingLinkedIn;
+
+    //active-directory
     this.internetApplication = this.formDataService.formData.internetApplication;
     this.exchangeEmail = this.formDataService.formData.exchangeEmail;
     this.emailEncryption = this.formDataService.formData.emailEncryption;
@@ -90,7 +115,7 @@ export class ReviewEmployeeComponent implements OnInit {
     this.cherwellSms = this.formDataService.formData.cherwellSms;
     this.windowsRightsMgmt = this.formDataService.formData.windowsRightsMgmt;
 
-    //get all selections to display
+    //get all approver selections to display
     this.getDivChiefList();
     this.getDeptHead();
     this.getAppCoord();
@@ -121,6 +146,10 @@ export class ReviewEmployeeComponent implements OnInit {
           this.formDataService.formData.businessPhoneNumber,
           [Validators.required, Validators.pattern('[0-9]{10}')]
         ),
+        employeeNumber: new FormControl(
+          this.formDataService.formData.employeeNumber,
+          [Validators.required]
+        ),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(
@@ -142,13 +171,18 @@ export class ReviewEmployeeComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(
-          this.formDataService.formData.employeeNumber,
-          [Validators.required]
-        ),
-      }),
+      policyRulesInformation: new FormGroup({
+        defaultCountyWidePolicy: new FormControl(this.formDataService.formData.defaultCountyWidePolicy),
+        departmentPolicyRule0: new FormControl(this.formDataService.formData.departmentPolicyRule0),
+        departmentPolicyRule1: new FormControl(this.formDataService.formData.departmentPolicyRule1),
+        departmentPolicyRule2: new FormControl(this.formDataService.formData.departmentPolicyRule2),
+        departmentPolicyRule3: new FormControl(this.formDataService.formData.departmentPolicyRule3),
+        departmentPolicyRule4: new FormControl(this.formDataService.formData.departmentPolicyRule4),
+        socialNetworkingFacebook: new FormControl(this.formDataService.formData.socialNetworkingFacebook),
+        socialNetworkingTwitter: new FormControl(this.formDataService.formData.socialNetworkingTwitter),
+        socialNetworkingLinkedIn: new FormControl(this.formDataService.formData.socialNetworkingLinkedIn),
 
+      }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
         ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
@@ -203,11 +237,21 @@ export class ReviewEmployeeComponent implements OnInit {
         ),
       }),
       managerInformation: new FormGroup({
-        managerFirstName: new FormControl(this.formDataService.formData.managerFirstName),
-        managerLastName: new FormControl(this.formDataService.formData.managerLastName),
-        managerEmail: new FormControl(this.formDataService.formData.managerEmail),
-        managerPhone: new FormControl(this.formDataService.formData.managerPhone),
-        managerTitle: new FormControl(this.formDataService.formData.managerTitle),
+        managerFirstName: new FormControl(
+          this.formDataService.formData.managerFirstName
+        ),
+        managerLastName: new FormControl(
+          this.formDataService.formData.managerLastName
+        ),
+        managerEmail: new FormControl(
+          this.formDataService.formData.managerEmail
+        ),
+        managerPhone: new FormControl(
+          this.formDataService.formData.managerPhone
+        ),
+        managerTitle: new FormControl(
+          this.formDataService.formData.managerTitle
+        ),
       }),
       signatures: new FormGroup({
         applicationCoordinatorName: new FormControl(
@@ -346,7 +390,6 @@ export class ReviewEmployeeComponent implements OnInit {
     });
   }
 
-
   //not working yet-set complete to true
   startAdobeProcess = (): void => {
     this.isLoading = true;
@@ -362,14 +405,22 @@ export class ReviewEmployeeComponent implements OnInit {
           this.confirmationPageService.requestNumber = response.requestNumber;
           this.router.navigate(['admin/review-confirmation-page']);
           console.log(response);
-        }
+        },
       });
   };
 
-  showCheckBoolean(option: FormControl): Boolean {
-    option = this.formDataService.formData.option;
-    return option.value;
+
+  onButtonChange2(event: MatButtonToggleChange, nameOfOption: string): void {
+    // Change to variable to represent the status of the button, whether clicked or not
+    this[event.source.id] = event.source.checked;
+
+    // Update form group
+    this.approval
+      .get(['policyRulesInformation', event.source.id])
+      .setValue(this[event.source.id]);
+
   }
+
 
   onButtonChange(event: MatButtonToggleChange, nameOfOption: string): void {
     // Change to variable to represent the status of the button, whether clicked or not
@@ -386,7 +437,8 @@ export class ReviewEmployeeComponent implements OnInit {
     this.adminService
       .saveForm(
         this.formDataService.formData.requestNumber,
-        this.approval.value
+        this.approval.value,
+        true
       )
       .subscribe((res) => {
         //debug
