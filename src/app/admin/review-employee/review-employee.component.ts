@@ -437,7 +437,8 @@ export class ReviewEmployeeComponent implements OnInit {
     this.adminService
       .saveForm(
         this.formDataService.formData.requestNumber,
-        this.approval.value
+        this.approval.value,
+        true
       )
       .subscribe((res) => {
         //debug
