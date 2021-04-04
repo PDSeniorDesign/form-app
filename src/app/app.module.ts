@@ -28,8 +28,6 @@ import { AdminComponent } from './admin/admin.component';
 import { ApproversComponent } from './admin/approvers/approvers.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
-import { ReviewRequestComponent } from './admin/review-contractor/review-contractor.component';
-import { ReviewSubmitComponent } from './admin/review-contractor/review-submit/review-submit.component';
 import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
 import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
@@ -50,6 +48,7 @@ import { SharedModule } from './shared/shared.module';
 import { ReviewConfirmationPageComponent } from './admin/review-confirmation-page/review-confirmation-page.component';
 import { ManagerInformationComponent } from './form/employee-form/manager-information/manager-information.component';
 import { InternetAccessComponent } from './form/employee-form/internet-access/internet-access.component';
+import { ReviewContractorComponent } from './admin/review-contractor/review-contractor.component';
 
 @NgModule({
   declarations: [
@@ -64,8 +63,7 @@ import { InternetAccessComponent } from './form/employee-form/internet-access/in
     ResetPasswordComponent,
     ServiceRequestsDetailComponent,
     ServiceEmployeeRequestsDetailComponent,
-    ReviewRequestComponent,
-    ReviewSubmitComponent,
+
     ReviewEmployeeComponent,
     NavbarComponent,
     LoadingPageComponent,
@@ -75,6 +73,7 @@ import { InternetAccessComponent } from './form/employee-form/internet-access/in
     ReviewConfirmationPageComponent,
     ManagerInformationComponent,
     InternetAccessComponent,
+    ReviewContractorComponent,
   ],
   imports: [
     ReactiveFormsModule,
