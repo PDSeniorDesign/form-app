@@ -126,6 +126,17 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
+      internetAccess: new FormGroup({
+        applyDefaultCountyWidePolicy: new FormControl(false),
+        departmentPolicyRule0: new FormControl(false),
+        departmentPolicyRule1: new FormControl(false),
+        departmentPolicyRule2: new FormControl(false),
+        departmentPolicyRule3: new FormControl(false),
+        departmentPolicyRule4: new FormControl(false),
+        socialNetworkingFacebook: new FormControl(false),
+        socialNetworkingTwitter: new FormControl(false),
+        socialNetworkingLinkedIn: new FormControl(false),
+      }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
         ibmLogonId: new FormControl(null, []),
@@ -223,6 +234,18 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
+      // TODO: Grab from formDataService
+      internetAccess: new FormGroup({
+        applyDefaultCountyWidePolicy: new FormControl(false),
+        departmentPolicyRule0: new FormControl(false),
+        departmentPolicyRule1: new FormControl(false),
+        departmentPolicyRule2: new FormControl(false),
+        departmentPolicyRule3: new FormControl(false),
+        departmentPolicyRule4: new FormControl(false),
+        socialNetworkingFacebook: new FormControl(false),
+        socialNetworkingTwitter: new FormControl(false),
+        socialNetworkingLinkedIn: new FormControl(false),
+      }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
         renderIBMForm: new FormControl(),
@@ -245,7 +268,7 @@ export class EmployeeFormComponent implements OnInit {
         accessGroup: new FormControl(
           this.formDataService.formData.unixAccessGroup
         ),
-        accountNumber: new FormControl( 
+        accountNumber: new FormControl(
           this.formDataService.formData.unixAccountNumber
         ),
         // SecurID Remote Access
