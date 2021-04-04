@@ -223,7 +223,11 @@
     <!-- Internet Access -->
     <mat-step>
       <ng-template matStepLabel>Internet Access</ng-template>
-      <app-internet-access></app-internet-access>
+      <app-internet-access
+        [form]="form"
+        [save]="save"
+        [printForm]="printForm"
+      ></app-internet-access>
     </mat-step>
 
     <!-- Access Information Step-->

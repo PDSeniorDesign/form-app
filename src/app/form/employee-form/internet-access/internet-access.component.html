@@ -1,7 +1,5 @@
 <div>
-  <h2 class="mat-display-1" style="margin-bottom: 32px">
-    Internet Access
-  </h2>
+  <h2 class="mat-display-1" style="margin-bottom: 32px">Internet Access</h2>
   <!-- Information -->
   <div>
     <br />
@@ -133,7 +131,13 @@
 
   <div class="button-container">
     <button mat-raised-button matStepperPrevious>Previous</button>
-    <button mat-raised-button matStepperNext color="primary" class="ml-2">
+    <button
+      mat-raised-button
+      matStepperNext
+      color="primary"
+      class="ml-2"
+      (click)="printForm()"
+    >
       Next
     </button>
   </div>

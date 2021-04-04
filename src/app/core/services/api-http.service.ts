@@ -26,6 +26,7 @@ export class ApiHttpService {
       // Form specific data
       submitted: isSubmitted,
       employee: true, // Since it is the employee form
+
       // Personal Information
       lastName: data.personalInformation.lastName,
       firstName: data.personalInformation.firstName,
@@ -33,11 +34,23 @@ export class ApiHttpService {
       employeeEmailAddress: data.personalInformation.emailAddress,
       businessPhoneNumber: data.personalInformation.phoneNumber,
       employeeNumber: data.personalInformation.employeeNumber,
+
       // Address Information
       businessStreetAddress: data.addressInformation.address,
       businessCity: data.addressInformation.city,
       businessState: data.addressInformation.state,
       businessZip: data.addressInformation.zipCode,
+
+      // Internet Access
+      defaultCountyWidePolicy: data.internetAccess.applyDefaultCountyWidePolicy,
+      departmentPolicyRule0: data.internetAccess.departmentPolicyRule0,
+      departmentPolicyRule1: data.internetAccess.departmentPolicyRule1,
+      departmentPolicyRule2: data.internetAccess.departmentPolicyRule2,
+      departmentPolicyRule3: data.internetAccess.departmentPolicyRule3,
+      departmentPolicyRule4: data.internetAccess.departmentPolicyRule4,
+      socialNetworkingFacebook: data.internetAccess.socialNetworkingFacebook,
+      socialNetworkingTwitter: data.internetAccess.socialNetworkingTwitter,
+      socialNetworkingLinkedIn: data.internetAccess.socialNetworkingLinkedIn,
 
       // Access Information
       ibmLogOnId: data.accessInformation.ibmLogonId,
@@ -55,11 +68,17 @@ export class ApiHttpService {
       exchangeEmail: data.additionalInformation.exchangeEmail,
       emailEncryption: data.additionalInformation.emailEncryption,
       laCountyGovAccess: data.additionalInformation.laCountyGovAccess,
-      tokenlessAuthentication: data.additionalInformation.tokenlessAuthentication,
+      tokenlessAuthentication:
+        data.additionalInformation.tokenlessAuthentication,
       lacMobileWifiAccess: data.additionalInformation.lacMobileWifiAccess,
       cherwellSms: data.additionalInformation.cherwellSms,
       windowsRightsMgmt: data.additionalInformation.windowsRightsMgmt,
-      //Mananger Information
+      // TODO: Add managerTitle
+      // Mananger Information
+      managerFirstName: data.managerInformation.managerFirstName,
+      managerLastName: data.managerInformation.managerLastName,
+      managerEmail: data.managerInformation.managerEmail,
+      managerPhone: data.managerInformation.managerPhoneNumber,
     };
     return JSON.stringify(reformated);
   }
@@ -90,27 +109,31 @@ export class ApiHttpService {
       businessCity: data.countyInformation.businessCity,
       businessZip: data.countyInformation.businessZipCode,
       //policy rules info
-      defaultCountyWidePolicy: data.policyRulesInformation.applyDefaultCountyWidePolicy,
+      defaultCountyWidePolicy:
+        data.policyRulesInformation.applyDefaultCountyWidePolicy,
       departmentPolicyRule0: data.policyRulesInformation.departmentPolicyRule0,
       departmentPolicyRule1: data.policyRulesInformation.departmentPolicyRule1,
       departmentPolicyRule2: data.policyRulesInformation.departmentPolicyRule2,
       departmentPolicyRule3: data.policyRulesInformation.departmentPolicyRule3,
       departmentPolicyRule4: data.policyRulesInformation.departmentPolicyRule4,
-      socialNetworkingFacebook: data.policyRulesInformation.socialNetworkingFacebook,
-      socialNetworkingTwitter: data.policyRulesInformation.socialNetworkingTwitter,
-      socialNetworkingLinkedIn: data.policyRulesInformation.socialNetworkingLinkedIn,
+      socialNetworkingFacebook:
+        data.policyRulesInformation.socialNetworkingFacebook,
+      socialNetworkingTwitter:
+        data.policyRulesInformation.socialNetworkingTwitter,
+      socialNetworkingLinkedIn:
+        data.policyRulesInformation.socialNetworkingLinkedIn,
       //Additional Access
       ibmLogOnId: data.additionalAccessInformation.ibmLogonId,
       majorGroupCode: data.additionalAccessInformation.majorGroupCode,
       lsoGroupCode: data.additionalAccessInformation.lsoGroupCode,
-      securityAuthorization: data.additionalAccessInformation.securityAuthorization,
+      securityAuthorization:
+        data.additionalAccessInformation.securityAuthorization,
       unixLogOnId: data.additionalAccessInformation.unixLogonId,
       unixApplication: data.additionalAccessInformation.application,
       unixAccessGroup: data.additionalAccessInformation.accessGroup,
       unixAccountNumber: data.additionalAccessInformation.accountNumber,
-      billingAccountNumber: data.additionalAccessInformation.billingAccountNumber,
-
-
+      billingAccountNumber:
+        data.additionalAccessInformation.billingAccountNumber,
     };
     return JSON.stringify(reformated);
   }

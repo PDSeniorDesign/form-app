@@ -126,6 +126,17 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
+      internetAccess: new FormGroup({
+        applyDefaultCountyWidePolicy: new FormControl(false),
+        departmentPolicyRule0: new FormControl(false),
+        departmentPolicyRule1: new FormControl(false),
+        departmentPolicyRule2: new FormControl(false),
+        departmentPolicyRule3: new FormControl(false),
+        departmentPolicyRule4: new FormControl(false),
+        socialNetworkingFacebook: new FormControl(false),
+        socialNetworkingTwitter: new FormControl(false),
+        socialNetworkingLinkedIn: new FormControl(false),
+      }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
         ibmLogonId: new FormControl(null, []),
@@ -223,6 +234,35 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
+      internetAccess: new FormGroup({
+        applyDefaultCountyWidePolicy: new FormControl(
+          this.formDataService.formData.defaultCountyWidePolicy
+        ),
+        departmentPolicyRule0: new FormControl(
+          this.formDataService.formData.departmentPolicyRule0
+        ),
+        departmentPolicyRule1: new FormControl(
+          this.formDataService.formData.departmentPolicyRule1
+        ),
+        departmentPolicyRule2: new FormControl(
+          this.formDataService.formData.departmentPolicyRule2
+        ),
+        departmentPolicyRule3: new FormControl(
+          this.formDataService.formData.departmentPolicyRule3
+        ),
+        departmentPolicyRule4: new FormControl(
+          this.formDataService.formData.departmentPolicyRule4
+        ),
+        socialNetworkingFacebook: new FormControl(
+          this.formDataService.formData.socialNetworkingFacebook
+        ),
+        socialNetworkingTwitter: new FormControl(
+          this.formDataService.formData.socialNetworkingTwitter
+        ),
+        socialNetworkingLinkedIn: new FormControl(
+          this.formDataService.formData.socialNetworkingLinkedIn
+        ),
+      }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
         renderIBMForm: new FormControl(),
@@ -245,7 +285,7 @@ export class EmployeeFormComponent implements OnInit {
         accessGroup: new FormControl(
           this.formDataService.formData.unixAccessGroup
         ),
-        accountNumber: new FormControl( 
+        accountNumber: new FormControl(
           this.formDataService.formData.unixAccountNumber
         ),
         // SecurID Remote Access
@@ -281,10 +321,18 @@ export class EmployeeFormComponent implements OnInit {
       }),
       // TODO: Retrieve these values from formData
       managerInformation: new FormGroup({
-        managerFirstName: new FormControl(null),
-        managerLastName: new FormControl(null),
-        managerEmail: new FormControl(null),
-        managerPhoneNumber: new FormControl(null),
+        managerFirstName: new FormControl(
+          this.formDataService.formData.managerFirstName
+        ),
+        managerLastName: new FormControl(
+          this.formDataService.formData.managerLastName
+        ),
+        managerEmail: new FormControl(
+          this.formDataService.formData.managerEmail
+        ),
+        managerPhoneNumber: new FormControl(
+          this.formDataService.formData.managerPhone
+        ),
       }),
     });
     return formGroup;
