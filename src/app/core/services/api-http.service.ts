@@ -73,7 +73,12 @@ export class ApiHttpService {
       lacMobileWifiAccess: data.additionalInformation.lacMobileWifiAccess,
       cherwellSms: data.additionalInformation.cherwellSms,
       windowsRightsMgmt: data.additionalInformation.windowsRightsMgmt,
-      //Mananger Information
+      // TODO: Add managerTitle
+      // Mananger Information
+      managerFirstName: data.managerInformation.managerFirstName,
+      managerLastName: data.managerInformation.managerLastName,
+      managerEmail: data.managerInformation.managerEmail,
+      managerPhone: data.managerInformation.managerPhoneNumber,
     };
     return JSON.stringify(reformated);
   }

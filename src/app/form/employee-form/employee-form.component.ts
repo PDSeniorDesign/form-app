@@ -321,10 +321,18 @@ export class EmployeeFormComponent implements OnInit {
       }),
       // TODO: Retrieve these values from formData
       managerInformation: new FormGroup({
-        managerFirstName: new FormControl(null),
-        managerLastName: new FormControl(null),
-        managerEmail: new FormControl(null),
-        managerPhoneNumber: new FormControl(null),
+        managerFirstName: new FormControl(
+          this.formDataService.formData.managerFirstName
+        ),
+        managerLastName: new FormControl(
+          this.formDataService.formData.managerLastName
+        ),
+        managerEmail: new FormControl(
+          this.formDataService.formData.managerEmail
+        ),
+        managerPhoneNumber: new FormControl(
+          this.formDataService.formData.managerPhone
+        ),
       }),
     });
     return formGroup;
