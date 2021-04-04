@@ -81,6 +81,11 @@ export class ReviewContractorComponent implements OnInit {
   //approval FormGroup-manager, divisionChief, etc
   adminContractor: FormGroup;
 
+  //Additional Access Boolean Variables
+  ibmChecked: boolean;
+  unixChecked: boolean;
+  securidChecked: boolean;
+
   constructor(
     private formDataService: FormDataService,
     private adminService: AdminService,
@@ -120,80 +125,122 @@ export class ReviewContractorComponent implements OnInit {
     this.getAppCoord();
     this.getDeptInfo();
 
-
     this.adminContractor = new FormGroup({
       contractorInformation: new FormGroup({
-        
-        lastName: new FormControl(this.formDataService.formData.lastName,
-          [Validators.required, Validators.pattern('[a-z A-Z]*')]
-          ),
-        firstName: new FormControl(this.formDataService.formData.firstName,
-          [Validators.required, Validators.pattern('[a-z A-Z]*')]
-          ),
-        middleInitial: new FormControl(this.formDataService.formData.middleInitial,
+        lastName: new FormControl(this.formDataService.formData.lastName, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        firstName: new FormControl(this.formDataService.formData.firstName, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        middleInitial: new FormControl(
+          this.formDataService.formData.middleInitial,
           Validators.pattern('[a-z A-Z]*')
-          ),
-        companyName: new FormControl(this.formDataService.formData.companyName,
+        ),
+        companyName: new FormControl(
+          this.formDataService.formData.companyName,
           Validators.required
-          ),
-        companyEmailAddress: new FormControl(this.formDataService.formData.companyEmailAddress,
+        ),
+        companyEmailAddress: new FormControl(
+          this.formDataService.formData.companyEmailAddress,
           [Validators.required, Validators.email]
-          ),
-        companyStreetAddress: new FormControl(this.formDataService.formData.companyStreetAddress,
+        ),
+        companyStreetAddress: new FormControl(
+          this.formDataService.formData.companyStreetAddress,
           Validators.required
-          ),
-        city: new FormControl(this.formDataService.formData.companyCity,
-          [Validators.required, Validators.pattern('[a-z A-Z]*')]
-          ),
-        state: new FormControl(this.formDataService.formData.companyState,
-          [Validators.required, Validators.pattern('[a-z A-Z]*')]
-          ),
-        zipCode: new FormControl(this.formDataService.formData.companyZip,
-          [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern('[0-9]*')]
-          ),
-        phoneNumber: new FormControl(this.formDataService.formData.companyPhoneNumber,
+        ),
+        city: new FormControl(this.formDataService.formData.companyCity, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        state: new FormControl(this.formDataService.formData.companyState, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        zipCode: new FormControl(this.formDataService.formData.companyZip, [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(7),
+          Validators.pattern('[0-9]*'),
+        ]),
+        phoneNumber: new FormControl(
+          this.formDataService.formData.companyPhoneNumber,
           [Validators.required, Validators.pattern('[0-9]{10}')]
-          ),
+        ),
       }),
       countyInformation: new FormGroup({
-        contractWorkOrderNumber: new FormControl(this.formDataService.formData.contractWorkOrderNumber,
+        contractWorkOrderNumber: new FormControl(
+          this.formDataService.formData.contractWorkOrderNumber,
           Validators.required
-          ),
-        contractExpirationDate: new FormControl(this.formDataService.formData.contractExpirationDate,
+        ),
+        contractExpirationDate: new FormControl(
+          this.formDataService.formData.contractExpirationDate,
           [Validators.required] //Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]
-          ),
-        countyEmailAddress: new FormControl(this.formDataService.formData.countyEmailAddress,
+        ),
+        countyEmailAddress: new FormControl(
+          this.formDataService.formData.countyEmailAddress,
           [Validators.required, Validators.email]
-          ),
-        phoneNumber: new FormControl(this.formDataService.formData.businessPhoneNumber,
+        ),
+        phoneNumber: new FormControl(
+          this.formDataService.formData.businessPhoneNumber,
           [Validators.required, Validators.pattern('[0-9]{10}')]
-          ),
-        departmentName: new FormControl(this.formDataService.formData.departmentName,
-          Validators.pattern("[a-z A-Z]*")
-          ),
-        departmentNumber: new FormControl(this.formDataService.formData.departmentNumber,
-          Validators.pattern("[0-9]*")
-          ),
-        businessStreetAddress: new FormControl(this.formDataService.formData.businessStreetAddress),
-        businessCity: new FormControl(this.formDataService.formData.businessCity,
-          Validators.pattern("[a-z A-Z]*")
-          ),
-        businessZipCode: new FormControl(this.formDataService.formData.businessZip,
-          [Validators.minLength(5), Validators.maxLength(7), Validators.pattern("[0-9]*")]
-          ),
+        ),
+        departmentName: new FormControl(
+          this.formDataService.formData.departmentName,
+          Validators.pattern('[a-z A-Z]*')
+        ),
+        departmentNumber: new FormControl(
+          this.formDataService.formData.departmentNumber,
+          Validators.pattern('[0-9]*')
+        ),
+        businessStreetAddress: new FormControl(
+          this.formDataService.formData.businessStreetAddress
+        ),
+        businessCity: new FormControl(
+          this.formDataService.formData.businessCity,
+          Validators.pattern('[a-z A-Z]*')
+        ),
+        businessZipCode: new FormControl(
+          this.formDataService.formData.businessZip,
+          [
+            Validators.minLength(5),
+            Validators.maxLength(7),
+            Validators.pattern('[0-9]*'),
+          ]
+        ),
       }),
-      policyRulesInformation: new FormGroup ({
-        defaultCountyWidePolicy: new FormControl(this.formDataService.formData.defaultCountyWidePolicy),
-        departmentPolicyRule0: new FormControl(this.formDataService.formData.departmentPolicyRule0),
-        departmentPolicyRule1: new FormControl(this.formDataService.formData.departmentPolicyRule1),
-        departmentPolicyRule2: new FormControl(this.formDataService.formData.departmentPolicyRule2),
-        departmentPolicyRule3: new FormControl(this.formDataService.formData.departmentPolicyRule3),
-        departmentPolicyRule4: new FormControl(this.formDataService.formData.departmentPolicyRule4),
-        socialNetworkingFacebook: new FormControl(this.formDataService.formData.socialNetworkingFacebook),
-        socialNetworkingTwitter: new FormControl(this.formDataService.formData.socialNetworkingTwitter),
-        socialNetworkingLinkedIn: new FormControl(this.formDataService.formData.socialNetworkingLinkedIn),
+      policyRulesInformation: new FormGroup({
+        defaultCountyWidePolicy: new FormControl(
+          this.formDataService.formData.defaultCountyWidePolicy
+        ),
+        departmentPolicyRule0: new FormControl(
+          this.formDataService.formData.departmentPolicyRule0
+        ),
+        departmentPolicyRule1: new FormControl(
+          this.formDataService.formData.departmentPolicyRule1
+        ),
+        departmentPolicyRule2: new FormControl(
+          this.formDataService.formData.departmentPolicyRule2
+        ),
+        departmentPolicyRule3: new FormControl(
+          this.formDataService.formData.departmentPolicyRule3
+        ),
+        departmentPolicyRule4: new FormControl(
+          this.formDataService.formData.departmentPolicyRule4
+        ),
+        socialNetworkingFacebook: new FormControl(
+          this.formDataService.formData.socialNetworkingFacebook
+        ),
+        socialNetworkingTwitter: new FormControl(
+          this.formDataService.formData.socialNetworkingTwitter
+        ),
+        socialNetworkingLinkedIn: new FormControl(
+          this.formDataService.formData.socialNetworkingLinkedIn
+        ),
       }),
-      accessInformation: new FormGroup ({
+      accessInformation: new FormGroup({
         // IBM Data Center Access
         ibmLogonId: new FormControl(this.formDataService.formData.ibmLogOnId),
         majorGroupCode: new FormControl(
@@ -307,8 +354,12 @@ export class ReviewContractorComponent implements OnInit {
   setSelectedValue(type: string, id: number): void {
     if (type == 'divisionChief') {
       if (id == null) {
-        this.adminContractor.get('signatures.divChiefManagerPhone').patchValue(null);
-        this.adminContractor.get('signatures.divChiefManagerEmail').patchValue(null);
+        this.adminContractor
+          .get('signatures.divChiefManagerPhone')
+          .patchValue(null);
+        this.adminContractor
+          .get('signatures.divChiefManagerEmail')
+          .patchValue(null);
       } else {
         this.adminService.getDivChief(id).subscribe((res) => {
           this.adminContractor
@@ -321,8 +372,12 @@ export class ReviewContractorComponent implements OnInit {
       }
     } else if (type == 'departmentHead') {
       if (id == null) {
-        this.adminContractor.get('signatures.departmentHeadPhone').patchValue(null);
-        this.adminContractor.get('signatures.departmentHeadEmail').patchValue(null);
+        this.adminContractor
+          .get('signatures.departmentHeadPhone')
+          .patchValue(null);
+        this.adminContractor
+          .get('signatures.departmentHeadEmail')
+          .patchValue(null);
       } else {
         this.adminService.getDeptHead(id).subscribe((res) => {
           this.adminContractor
@@ -372,7 +427,6 @@ export class ReviewContractorComponent implements OnInit {
     }
   }
 
-
   //get list for all approver types
   getDivChiefList() {
     this.adminService.getAllDivChief().subscribe((res) => {
@@ -405,7 +459,7 @@ export class ReviewContractorComponent implements OnInit {
       .submitForm(
         this.formDataService.formData.requestNumber,
         this.adminContractor.value,
-        true
+        false
       )
       .subscribe({
         next: (response) => {
@@ -417,7 +471,15 @@ export class ReviewContractorComponent implements OnInit {
       });
   };
 
+  onButtonChange3(event: MatButtonToggleChange, nameOfOption: string): void {
+    // Change to variable to represent the status of the button, whether clicked or not
+    this[event.source.id] = event.source.checked;
 
+    // Update form group
+    this.adminContractor
+      .get(['accessInformation', event.source.id])
+      .setValue(this[event.source.id]);
+  }
   onButtonChange2(event: MatButtonToggleChange, nameOfOption: string): void {
     // Change to variable to represent the status of the button, whether clicked or not
     this[event.source.id] = event.source.checked;
@@ -426,9 +488,7 @@ export class ReviewContractorComponent implements OnInit {
     this.adminContractor
       .get(['policyRulesInformation', event.source.id])
       .setValue(this[event.source.id]);
-
   }
-
 
   onButtonChange(event: MatButtonToggleChange, nameOfOption: string): void {
     // Change to variable to represent the status of the button, whether clicked or not
@@ -454,8 +514,7 @@ export class ReviewContractorComponent implements OnInit {
         this.formDataService.formData = res;
       });
   };
-}  
-
+}
 
 // changes the ErrorStateMatcher to include dirty
 // removes the error message and red boxes after clicking next
