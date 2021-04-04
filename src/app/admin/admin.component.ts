@@ -80,11 +80,13 @@ export class AdminComponent implements OnInit {
         this.adminService.emitAdminLoggedInChange(true);
         //rehide password after logging in
         this.hide = true;
+        this.isLoading = false;
       },
       error: (error) => {
         if (error.status === 403) {
           this.errorMessage = 'Invalid password entered';
           this.alert = true;
+          this.isLoading = false;
           this.isHomeRoute();
         }
       },
