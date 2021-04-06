@@ -49,6 +49,7 @@ export class SubmitPageComponent implements OnInit {
             // Set the formData to the response, might be needed somewhere else
             this.formDataService.formData = response;
             this.confirmationPageService.requestNumber = response.requestNumber;
+            this.confirmationPageService.isAdmin = false; // Render the default confirmation page
             this.router.navigate(['confirmation-page']);
           },
           error: (error) => {
@@ -66,6 +67,7 @@ export class SubmitPageComponent implements OnInit {
       this.apiHttpService.submitForm(this.regForm.value, true).subscribe({
         next: (response) => {
           this.confirmationPageService.requestNumber = response.requestNumber;
+          this.confirmationPageService.isAdmin = false; // Render the default confirmation page
           this.router.navigate(['confirmation-page']);
         },
         error: (error) => {
@@ -95,6 +97,7 @@ export class SubmitPageComponent implements OnInit {
             // Set the formData to the response, might be needed somewhere else
             this.formDataService.formData = response;
             this.confirmationPageService.requestNumber = response.requestNumber;
+            this.confirmationPageService.isAdmin = false;
 
             // Set the submitResponse so that the submit page renders
             this.router.navigate(['confirmation-page']);
@@ -110,6 +113,7 @@ export class SubmitPageComponent implements OnInit {
         .subscribe({
           next: (response) => {
             this.confirmationPageService.requestNumber = response.requestNumber;
+            this.confirmationPageService.isAdmin = false;
             this.router.navigate(['confirmation-page']);
           },
         });
