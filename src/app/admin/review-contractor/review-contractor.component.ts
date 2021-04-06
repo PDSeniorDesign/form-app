@@ -465,7 +465,8 @@ export class ReviewContractorComponent implements OnInit {
         next: (response) => {
           this.formDataService.formData = response;
           this.confirmationPageService.requestNumber = response.requestNumber;
-          this.router.navigate(['admin/review-confirmation-page']);
+          this.confirmationPageService.isAdmin = true;
+          this.router.navigate(['/confirmation-page']);
           console.log(response);
         },
       });
