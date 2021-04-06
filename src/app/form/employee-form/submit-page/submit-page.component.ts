@@ -41,11 +41,19 @@ export class SubmitPageComponent implements OnInit {
           this.formDataService.formData.requestNumber,
           this.regForm.value
         )
-        .subscribe((response) => {
-          // Set the formData to the response, might be needed somewhere else
-          this.formDataService.formData = response;
-          this.confirmationPageService.requestNumber = response.requestNumber;
-          this.router.navigate(['confirmation-page']);
+        .subscribe({
+          next: (response) => {
+            // Set the formData to the response, might be needed somewhere else
+            this.formDataService.formData = response;
+            this.confirmationPageService.requestNumber = response.requestNumber;
+            this.router.navigate(['confirmation-page']);
+          },
+          error: (error) => {
+            // Remove loading screen
+            this.setIsLoading(false);
+            // Notify user that something went wrong
+            alert('Something went wrong!');
+          },
         });
 
       // If the else statement executes, then the user probably didn't save their progress
@@ -56,6 +64,13 @@ export class SubmitPageComponent implements OnInit {
         next: (response) => {
           this.confirmationPageService.requestNumber = response.requestNumber;
           this.router.navigate(['confirmation-page']);
+        },
+        error: (error) => {
+          // Remove the loading screen
+          this.setIsLoading(false);
+          // Notify the user that an error occured
+          alert('Something went wrong!');
+          throw new Error(error.message);
         },
       });
     }
