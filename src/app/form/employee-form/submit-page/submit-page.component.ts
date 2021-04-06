@@ -35,10 +35,13 @@ export class SubmitPageComponent implements OnInit {
   onClick(): void {
     // If there is a form in formData then there is a form in progress
     if (this.formDataService.formData !== undefined) {
+      // Render the loading screen
+      this.setIsLoading(true);
       // Save the form
       this.apiHttpService
         .saveForm(
           this.formDataService.formData.requestNumber,
+          true,
           this.regForm.value
         )
         .subscribe({
@@ -84,6 +87,7 @@ export class SubmitPageComponent implements OnInit {
       this.apiHttpService
         .saveForm(
           this.formDataService.formData.requestNumber,
+          false,
           this.regForm.value
         )
         .subscribe({
