@@ -35,6 +35,8 @@ export class SubmitPageComponent implements OnInit {
   onClick(): void {
     // If there is a form in formData then there is a form in progress
     if (this.formDataService.formData !== undefined) {
+      // Render the loading screen
+      this.setIsLoading(true);
       // Save the form
       this.apiHttpService
         .saveForm(
