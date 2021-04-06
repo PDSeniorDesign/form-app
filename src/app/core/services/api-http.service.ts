@@ -211,13 +211,13 @@ export class ApiHttpService {
   ): Observable<any> {
     if (markAsSubmitted) {
       return this.http.put(
-        `${environment.apiUrl}/service_requests/${requestNumber}`,
+        `${environment.apiUrl}/service_requests/${requestNumber}/`,
         this.reformatDataPostEmployee(data, true),
         this.httpOptions
       );
     } else {
       return this.http.put(
-        `${environment.apiUrl}/service_requests/${requestNumber}`,
+        `${environment.apiUrl}/service_requests/${requestNumber}/`,
         this.reformatDataPostEmployee(data, false),
         this.httpOptions
       );

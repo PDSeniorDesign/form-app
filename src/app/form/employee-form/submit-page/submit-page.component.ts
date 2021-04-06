@@ -39,6 +39,7 @@ export class SubmitPageComponent implements OnInit {
       this.apiHttpService
         .saveForm(
           this.formDataService.formData.requestNumber,
+          true,
           this.regForm.value
         )
         .subscribe({
@@ -84,6 +85,7 @@ export class SubmitPageComponent implements OnInit {
       this.apiHttpService
         .saveForm(
           this.formDataService.formData.requestNumber,
+          false,
           this.regForm.value
         )
         .subscribe({
