@@ -30,7 +30,9 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Los Angeles Public Defender</span>
+      <span>
+        <a class="nav-title" routerLink="/">Los Angeles Public Defender</a>
+      </span>
       <span class="spacer"></span>
       <!-- This part will show when it is not in mobile mode. -->
       <ng-template [ngIf]="!(isHandset$ | async)">
