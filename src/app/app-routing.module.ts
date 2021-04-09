@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
+import { ApproversComponent } from './admin/approvers/approvers.component';
+import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
+import { ReviewContractorComponent } from './admin/review-contractor/review-contractor.component';
+import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
+import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
+import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
+import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { AuthGuard } from './core/services/auth.guard';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ServiceRequestsComponent } from './admin/service-requests/service-requests.component';
-import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
-import { AuthGuard } from './core/services/auth.guard';
-import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
-import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
-
-import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
-import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
-import { ApproversComponent } from './admin/approvers/approvers.component';
-import { ReviewConfirmationPageComponent } from './admin/review-confirmation-page/review-confirmation-page.component';
-import { ReviewContractorComponent } from './admin/review-contractor/review-contractor.component';
 
 const routes: Routes = [
   {
@@ -40,11 +38,6 @@ const routes: Routes = [
       {
         path: 'service-requests',
         component: ServiceRequestsComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'review-confirmation-page',
-        component: ReviewConfirmationPageComponent,
         canActivate: [AuthGuard],
       },
       {

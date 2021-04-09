@@ -199,14 +199,28 @@ export class ApiHttpService {
   /**
    * @description This function save's the form on the server.
    * @param requestNumber The form's request number. This is used by the server to retrieve the form.
+   * @param markAsSubmitted If this is true, the submitted field will be true. This is need for the backend to begin processing
+   * the request.
    * @param data This is the data that we want to save.
    * @returns An Observable with the update data. This is returned by the server.
    */
-  public saveForm(requestNumber: string, data: object): Observable<any> {
-    return this.http.put(
-      `${environment.apiUrl}/service_requests/${requestNumber}`,
-      this.reformatDataPostEmployee(data, false),
-      this.httpOptions
-    );
+  public saveForm(
+    requestNumber: string,
+    markAsSubmitted: boolean,
+    data: object
+  ): Observable<any> {
+    if (markAsSubmitted) {
+      return this.http.put(
+        `${environment.apiUrl}/service_requests/${requestNumber}/`,
+        this.reformatDataPostEmployee(data, true),
+        this.httpOptions
+      );
+    } else {
+      return this.http.put(
+        `${environment.apiUrl}/service_requests/${requestNumber}/`,
+        this.reformatDataPostEmployee(data, false),
+        this.httpOptions
+      );
+    }
   }
 }

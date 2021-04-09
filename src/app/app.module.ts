@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminComponent } from './admin/admin.component';
 import { ApproversComponent } from './admin/approvers/approvers.component';
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
+import { ReviewContractorComponent } from './admin/review-contractor/review-contractor.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
@@ -39,16 +40,14 @@ import { AuthGuard } from './core/services/auth.guard';
 import { ContractorFormComponent } from './form/contractor-form/contractor-form.component';
 import { AdditionalInformationComponent } from './form/employee-form/additional-information/additional-information.component';
 import { EmployeeFormComponent } from './form/employee-form/employee-form.component';
+import { InternetAccessComponent } from './form/employee-form/internet-access/internet-access.component';
+import { ManagerInformationComponent } from './form/employee-form/manager-information/manager-information.component';
 import { SubmitPageComponent } from './form/employee-form/submit-page/submit-page.component';
 import { LoadingPageComponent } from './form/shared/loading-page/loading-page.component';
 import { SubmissionConfirmationPageComponent } from './form/shared/submission-confirmation-page/submission-confirmation-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
-import { ReviewConfirmationPageComponent } from './admin/review-confirmation-page/review-confirmation-page.component';
-import { ManagerInformationComponent } from './form/employee-form/manager-information/manager-information.component';
-import { InternetAccessComponent } from './form/employee-form/internet-access/internet-access.component';
-import { ReviewContractorComponent } from './admin/review-contractor/review-contractor.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +69,6 @@ import { ReviewContractorComponent } from './admin/review-contractor/review-cont
     SubmissionConfirmationPageComponent,
     ConfirmationPageComponent,
     ApproversComponent,
-    ReviewConfirmationPageComponent,
     ManagerInformationComponent,
     InternetAccessComponent,
     ReviewContractorComponent,
