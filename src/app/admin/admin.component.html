@@ -43,7 +43,8 @@
             </i>
           </mat-form-field>
           <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="adminLogin()">
+            <button mat-raised-button color="primary" [disabled]="isLoading" (click)="adminLogin()">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-1"></span>
               Login
             </button>
           </mat-card-actions>

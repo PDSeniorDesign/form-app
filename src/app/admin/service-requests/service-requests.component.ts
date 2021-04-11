@@ -21,6 +21,7 @@ export class ServiceRequestsComponent implements OnInit {
     'lastName',
     // 'view',
     'request-review',
+    'above-event-history'
   ];
   dataSource: any;
 
@@ -87,6 +88,13 @@ export class ServiceRequestsComponent implements OnInit {
           this.formDataService.formData.requestNumber,
         ]);
       }
+    });
+  }
+
+  adobeEventHistory(requestNumber: any): void {
+    this.adminService.searchById(requestNumber).subscribe((res) => {
+      this.formDataService.formData = res;
+      this.router.navigate(['/admin/adobe-event-history', this.formDataService.formData.requestNumber]);
     });
   }
 }
