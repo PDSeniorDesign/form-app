@@ -48,6 +48,7 @@ import { SubmissionConfirmationPageComponent } from './form/shared/submission-co
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
+import { AdobeEventHistoryComponent } from './admin/adobe-event-history/adobe-event-history.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { SharedModule } from './shared/shared.module';
     ManagerInformationComponent,
     InternetAccessComponent,
     ReviewContractorComponent,
+    AdobeEventHistoryComponent,
   ],
   imports: [
     ReactiveFormsModule,
