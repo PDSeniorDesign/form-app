@@ -8,6 +8,7 @@ import { ServiceRequestsComponent } from './admin/service-requests/service-reque
 import { ResetPasswordComponent } from './admin/reset-password/reset-password.component';
 import { AuthGuard } from './core/services/auth.guard';
 import { ServiceRequestsDetailComponent } from './admin/service-requests-detail/service-requests-detail.component';
+import { ServiceEmployeeRequestsDetailComponent } from './admin/service-employee-requests-detail/service-employee-requests-detail.component';
 import { ReviewRequestComponent } from './admin/review-request/review-request.component';
 import { ReviewEmployeeComponent } from './admin/review-employee/review-employee.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
@@ -39,8 +40,13 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'service-request-detail',
+        path: 'service-contractor-request-detail/:requestNumber',
         component: ServiceRequestsDetailComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'service-employee-request-detail/:requestNumber',
+        component: ServiceEmployeeRequestsDetailComponent,
         canActivate: [AuthGuard],
       },
       {
