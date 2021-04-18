@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiHttpService } from '../core/services/api-http.service';
 import { FormDataService } from '../core/services/form-data.service';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -33,8 +34,7 @@ import { FormDataService } from '../core/services/form-data.service';
 export class HomepageComponent implements OnInit {
   /**
    * @description this variable is responsible for keeping track
-   * of the steps. (0 = homepage, 1 = Asking the user's type, 2 = Asking if
-   * continuing a form or creating a new one, 3 = Getting the request number, if continuing
+   * of the steps. (0 = homepage, 1 = Asking the user's type, 2 = Getting the request number, if continuing
    * form)
    *
    */
@@ -66,28 +66,41 @@ export class HomepageComponent implements OnInit {
   previousStep(): void {
     this.stepCounter -= 1;
   }
+
   selectEmployee(): void {
-    this.userType = 'employee';
+    if (this.continueForm) {
+      this.userType = 'employee';
+      this.nextStep();
+    } else {
+      // Clear form data service
+      this.formDataService.formData = undefined;
+      this.router.navigate(['/employee-form']);
+    }
   }
+
   selectContractor(): void {
-    this.userType = 'contractor';
+    if (this.continueForm) {
+      this.userType = 'contractor';
+      this.nextStep();
+    } else {
+      // Clear form data service
+      this.formDataService.formData = undefined;
+      this.router.navigate(['/contractor-form']);
+    }
   }
+
   selectContinueForm(): void {
     this.continueForm = true;
   }
-  // TODO: test this method
-  // TODO: possible edge case, the user type was never set
-  /** If the user calls this function it means they are ready to redirect. */
-  selectNewForm(): void {
+
+  handleStartButtonClick(): void {
     this.continueForm = false;
-    if (this.userType === 'employee') {
-      // navigate to the employee route
-      this.router.navigate(['/employee-form']);
-    } else if (this.userType === 'contractor') {
-      // navigate to the contractor route
-      this.router.navigate(['/contractor-form']);
-    }
-    this.continueForm = false;
+    this.nextStep();
+  }
+
+  handleContinueButtonClick(): void {
+    this.continueForm = true;
+    this.nextStep();
   }
   /** This function is responsible for retrieving the form  */
   retrieveForm(): void {

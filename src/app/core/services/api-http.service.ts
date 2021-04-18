@@ -21,25 +21,37 @@ export class ApiHttpService {
    * @param isComplete If the form is complete we have to let the server know that it is complete.
    * @returns A string representation of the json object that is accepted by the backend server.
    */
-  public reformatDataPostEmployee(data: any, isComplete: boolean): string {
+  public reformatDataPostEmployee(data: any, isSubmitted: boolean): string {
     const reformated = {
       // Form specific data
-      complete: isComplete,
+      submitted: isSubmitted,
       employee: true, // Since it is the employee form
+
       // Personal Information
       lastName: data.personalInformation.lastName,
       firstName: data.personalInformation.firstName,
       middleInitial: data.personalInformation.middleInitial,
       employeeEmailAddress: data.personalInformation.emailAddress,
       businessPhoneNumber: data.personalInformation.phoneNumber,
+      employeeNumber: data.personalInformation.employeeNumber,
+
       // Address Information
       businessStreetAddress: data.addressInformation.address,
       businessCity: data.addressInformation.city,
       businessState: data.addressInformation.state,
       businessZip: data.addressInformation.zipCode,
-      // Employee Information
-      employeeNumber: data.employeeInformation.employeeNumber,
-      hostedId: data.employeeInformation.hostedId,
+
+      // Internet Access
+      defaultCountyWidePolicy: data.internetAccess.applyDefaultCountyWidePolicy,
+      departmentPolicyRule0: data.internetAccess.departmentPolicyRule0,
+      departmentPolicyRule1: data.internetAccess.departmentPolicyRule1,
+      departmentPolicyRule2: data.internetAccess.departmentPolicyRule2,
+      departmentPolicyRule3: data.internetAccess.departmentPolicyRule3,
+      departmentPolicyRule4: data.internetAccess.departmentPolicyRule4,
+      socialNetworkingFacebook: data.internetAccess.socialNetworkingFacebook,
+      socialNetworkingTwitter: data.internetAccess.socialNetworkingTwitter,
+      socialNetworkingLinkedIn: data.internetAccess.socialNetworkingLinkedIn,
+
       // Access Information
       ibmLogOnId: data.accessInformation.ibmLogonId,
       majorGroupCode: data.accessInformation.majorGroupCode,
@@ -61,6 +73,12 @@ export class ApiHttpService {
       lacMobileWifiAccess: data.additionalInformation.lacMobileWifiAccess,
       cherwellSms: data.additionalInformation.cherwellSms,
       windowsRightsMgmt: data.additionalInformation.windowsRightsMgmt,
+      // TODO: Add managerTitle
+      // Mananger Information
+      managerFirstName: data.managerInformation.managerFirstName,
+      managerLastName: data.managerInformation.managerLastName,
+      managerEmail: data.managerInformation.managerEmail,
+      managerPhone: data.managerInformation.managerPhoneNumber,
     };
     return JSON.stringify(reformated);
   }
@@ -90,6 +108,32 @@ export class ApiHttpService {
       businessStreetAddress: data.countyInformation.businessStreetAddress,
       businessCity: data.countyInformation.businessCity,
       businessZip: data.countyInformation.businessZipCode,
+      //policy rules info
+      defaultCountyWidePolicy:
+        data.policyRulesInformation.applyDefaultCountyWidePolicy,
+      departmentPolicyRule0: data.policyRulesInformation.departmentPolicyRule0,
+      departmentPolicyRule1: data.policyRulesInformation.departmentPolicyRule1,
+      departmentPolicyRule2: data.policyRulesInformation.departmentPolicyRule2,
+      departmentPolicyRule3: data.policyRulesInformation.departmentPolicyRule3,
+      departmentPolicyRule4: data.policyRulesInformation.departmentPolicyRule4,
+      socialNetworkingFacebook:
+        data.policyRulesInformation.socialNetworkingFacebook,
+      socialNetworkingTwitter:
+        data.policyRulesInformation.socialNetworkingTwitter,
+      socialNetworkingLinkedIn:
+        data.policyRulesInformation.socialNetworkingLinkedIn,
+      //Additional Access
+      ibmLogOnId: data.additionalAccessInformation.ibmLogonId,
+      majorGroupCode: data.additionalAccessInformation.majorGroupCode,
+      lsoGroupCode: data.additionalAccessInformation.lsoGroupCode,
+      securityAuthorization:
+        data.additionalAccessInformation.securityAuthorization,
+      unixLogOnId: data.additionalAccessInformation.unixLogonId,
+      unixApplication: data.additionalAccessInformation.application,
+      unixAccessGroup: data.additionalAccessInformation.accessGroup,
+      unixAccountNumber: data.additionalAccessInformation.accountNumber,
+      billingAccountNumber:
+        data.additionalAccessInformation.billingAccountNumber,
     };
     return JSON.stringify(reformated);
   }
@@ -155,14 +199,28 @@ export class ApiHttpService {
   /**
    * @description This function save's the form on the server.
    * @param requestNumber The form's request number. This is used by the server to retrieve the form.
+   * @param markAsSubmitted If this is true, the submitted field will be true. This is need for the backend to begin processing
+   * the request.
    * @param data This is the data that we want to save.
    * @returns An Observable with the update data. This is returned by the server.
    */
-  public saveForm(requestNumber: string, data: object): Observable<any> {
-    return this.http.put(
-      `${environment.apiUrl}/service_requests/${requestNumber}`,
-      this.reformatDataPostEmployee(data, false),
-      this.httpOptions
-    );
+  public saveForm(
+    requestNumber: string,
+    markAsSubmitted: boolean,
+    data: object
+  ): Observable<any> {
+    if (markAsSubmitted) {
+      return this.http.put(
+        `${environment.apiUrl}/service_requests/${requestNumber}/`,
+        this.reformatDataPostEmployee(data, true),
+        this.httpOptions
+      );
+    } else {
+      return this.http.put(
+        `${environment.apiUrl}/service_requests/${requestNumber}/`,
+        this.reformatDataPostEmployee(data, false),
+        this.httpOptions
+      );
+    }
   }
 }

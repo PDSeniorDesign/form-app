@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReviewSubmitComponent } from './review-submit.component';
+import { AdobeEventHistoryComponent } from './adobe-event-history.component';
 
-describe('ReviewSubmitComponent', () => {
-  let component: ReviewSubmitComponent;
-  let fixture: ComponentFixture<ReviewSubmitComponent>;
+describe('AdobeEventHistoryComponent', () => {
+  let component: AdobeEventHistoryComponent;
+  let fixture: ComponentFixture<AdobeEventHistoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReviewSubmitComponent ]
+      declarations: [ AdobeEventHistoryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReviewSubmitComponent);
+    fixture = TestBed.createComponent(AdobeEventHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

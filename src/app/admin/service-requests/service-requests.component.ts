@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/core/services/admin.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormDataService } from 'src/app/core/services/form-data.service';
 
 @Component({
@@ -9,33 +10,38 @@ import { FormDataService } from 'src/app/core/services/form-data.service';
   styleUrls: ['./service-requests.component.css'],
 })
 export class ServiceRequestsComponent implements OnInit {
-  //access three variable in form: id, request status, first name, last name
-  requestNumber: any;
-  requestStatus: any;
-  firstName: any;
-  lastName: any;
-
-  //request_ number to sent to employee...and contractor...
-  request_number: any;
-
   //save each request into array for display
   @Input() personData: Array<any> = [];
 
-  constructor(private adminService: AdminService, private router: Router, private formDataService: FormDataService) {}
+  //display columns
+  displayedColumns: string[] = [
+    'requestNumber',
+    'requestStatus',
+    'firstName',
+    'lastName',
+    // 'view',
+    'request-review',
+    'above-event-history'
+  ];
+  dataSource: any;
+
+  constructor(
+    private adminService: AdminService,
+    private router: Router,
+    private formDataService: FormDataService
+  ) {}
 
   ngOnInit(): void {
     this.adminService.display().subscribe((res) => {
       console.log(res);
       this.personData = res;
+      this.dataSource = new MatTableDataSource(this.personData);
     });
   }
 
-  //Delete function later on
-  //call service to display based on ID on button click
-  onClick(id: any): void {
-    this.adminService.searchById(id).subscribe((res) => {
-      this.parseObject(res);
-    });
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   //view details on button click
@@ -43,7 +49,7 @@ export class ServiceRequestsComponent implements OnInit {
     this.adminService.searchById(id).subscribe((res) => {
       //debugging
       console.log(res);
-      this.retrieveRequestNumber(res);
+
       //save res to adminFormdata to transfer between components
       this.adminService.adminFormData = res;
       this.formDataService.formData = res;
@@ -58,47 +64,37 @@ export class ServiceRequestsComponent implements OnInit {
          this.router.navigate(['/admin/service-employee-request-detail', this.formDataService.formData.requestNumber])
 
        }
-
-
     });
   }
 
-  edit(id: any): void {
-    this.adminService.searchById(id).subscribe((res) => {
+  review(requestNumber: any): void {
+    this.adminService.searchById(requestNumber).subscribe((res) => {
       console.log(res);
-      this.retrieveRequestNumber(res);
 
       this.formDataService.formData = res;
-
 
       //if not employee(false) -- go to contractor side
 
       if (this.formDataService.formData.employee == false) {
-         this.router.navigate(['/admin/review-request', this.formDataService.formData.requestNumber]);
-       }
-       //go to employee form , if true
-       else if (this.formDataService.formData.employee == true) {
-         this.router.navigate(['/admin/review-employee', this.formDataService.formData.requestNumber])
-
-       }
-
+        this.router.navigate([
+          '/admin/review-contractor',
+          this.formDataService.formData.requestNumber,
+        ]);
+      }
+      //go to employee form , if true
+      else if (this.formDataService.formData.employee == true) {
+        this.router.navigate([
+          '/admin/review-employee',
+          this.formDataService.formData.requestNumber,
+        ]);
+      }
     });
-
   }
 
-  //set requestNumber.
-  retrieveRequestNumber(data: any): void {
-    this.requestNumber = data.requestNumber;
-  }
-
-
-  //if click
-
-  //set properties and access them
-  parseObject(data: any): void {
-    this.requestNumber = data.requestNumber;
-    this.requestStatus = data.requestStatus;
-    this.firstName = data.firstName;
-    this.lastName = data.lastName;
+  adobeEventHistory(requestNumber: any): void {
+    this.adminService.searchById(requestNumber).subscribe((res) => {
+      this.formDataService.formData = res;
+      this.router.navigate(['/admin/adobe-event-history', this.formDataService.formData.requestNumber]);
+    });
   }
 }

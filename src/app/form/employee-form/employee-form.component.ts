@@ -107,6 +107,7 @@ export class EmployeeFormComponent implements OnInit {
           Validators.required,
           Validators.pattern('[0-9]{10}'),
         ]),
+        employeeNumber: new FormControl(null),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(null, Validators.required),
@@ -125,9 +126,16 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(null, [Validators.required]),
-        hostedId: new FormControl(null, Validators.required),
+      internetAccess: new FormGroup({
+        applyDefaultCountyWidePolicy: new FormControl(false),
+        departmentPolicyRule0: new FormControl(false),
+        departmentPolicyRule1: new FormControl(false),
+        departmentPolicyRule2: new FormControl(false),
+        departmentPolicyRule3: new FormControl(false),
+        departmentPolicyRule4: new FormControl(false),
+        socialNetworkingFacebook: new FormControl(false),
+        socialNetworkingTwitter: new FormControl(false),
+        socialNetworkingLinkedIn: new FormControl(false),
       }),
       accessInformation: new FormGroup({
         // IBM Data Center Access
@@ -162,10 +170,17 @@ export class EmployeeFormComponent implements OnInit {
         cherwellSms: new FormControl(false),
         windowsRightsMgmt: new FormControl(false),
       }),
+      managerInformation: new FormGroup({
+        managerFirstName: new FormControl(null),
+        managerLastName: new FormControl(null),
+        managerEmail: new FormControl(null),
+        managerPhoneNumber: new FormControl(null),
+      }),
     });
     return formGroup;
   }
 
+  // TODO: Add manager information
   /**
    * Creates a form group that is prefilled with data from the formDataService. When the user
    * continues a form, the formDataService will hold the existing form.
@@ -194,6 +209,10 @@ export class EmployeeFormComponent implements OnInit {
           this.formDataService.formData.businessPhoneNumber,
           [Validators.required, Validators.pattern('[0-9]{10}')]
         ),
+        employeeNumber: new FormControl(
+          this.formDataService.formData.employeeNumber,
+          [Validators.required]
+        ),
       }),
       addressInformation: new FormGroup({
         address: new FormControl(
@@ -215,14 +234,33 @@ export class EmployeeFormComponent implements OnInit {
           Validators.pattern('[0-9]*'),
         ]),
       }),
-      employeeInformation: new FormGroup({
-        employeeNumber: new FormControl(
-          this.formDataService.formData.employeeNumber,
-          [Validators.required]
+      internetAccess: new FormGroup({
+        applyDefaultCountyWidePolicy: new FormControl(
+          this.formDataService.formData.defaultCountyWidePolicy
         ),
-        hostedId: new FormControl(
-          this.formDataService.formData.hostedId,
-          Validators.required
+        departmentPolicyRule0: new FormControl(
+          this.formDataService.formData.departmentPolicyRule0
+        ),
+        departmentPolicyRule1: new FormControl(
+          this.formDataService.formData.departmentPolicyRule1
+        ),
+        departmentPolicyRule2: new FormControl(
+          this.formDataService.formData.departmentPolicyRule2
+        ),
+        departmentPolicyRule3: new FormControl(
+          this.formDataService.formData.departmentPolicyRule3
+        ),
+        departmentPolicyRule4: new FormControl(
+          this.formDataService.formData.departmentPolicyRule4
+        ),
+        socialNetworkingFacebook: new FormControl(
+          this.formDataService.formData.socialNetworkingFacebook
+        ),
+        socialNetworkingTwitter: new FormControl(
+          this.formDataService.formData.socialNetworkingTwitter
+        ),
+        socialNetworkingLinkedIn: new FormControl(
+          this.formDataService.formData.socialNetworkingLinkedIn
         ),
       }),
       accessInformation: new FormGroup({
@@ -281,6 +319,21 @@ export class EmployeeFormComponent implements OnInit {
           this.formDataService.formData.windowsRightsMgmt
         ),
       }),
+      // TODO: Retrieve these values from formData
+      managerInformation: new FormGroup({
+        managerFirstName: new FormControl(
+          this.formDataService.formData.managerFirstName
+        ),
+        managerLastName: new FormControl(
+          this.formDataService.formData.managerLastName
+        ),
+        managerEmail: new FormControl(
+          this.formDataService.formData.managerEmail
+        ),
+        managerPhoneNumber: new FormControl(
+          this.formDataService.formData.managerPhone
+        ),
+      }),
     });
     return formGroup;
   }
@@ -310,7 +363,11 @@ export class EmployeeFormComponent implements OnInit {
     if (this.formDataService.formData != undefined) {
       console.log('from formData', this.formDataService.formData);
       this.apiHttpService
-        .saveForm(this.formDataService.formData.requestNumber, this.form.value)
+        .saveForm(
+          this.formDataService.formData.requestNumber,
+          false,
+          this.form.value
+        )
         .subscribe((res) => {
           console.log(res);
           // Set the formData to the response

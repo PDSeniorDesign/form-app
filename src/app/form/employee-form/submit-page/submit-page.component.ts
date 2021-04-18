@@ -35,17 +35,29 @@ export class SubmitPageComponent implements OnInit {
   onClick(): void {
     // If there is a form in formData then there is a form in progress
     if (this.formDataService.formData !== undefined) {
+      // Render the loading screen
+      this.setIsLoading(true);
       // Save the form
       this.apiHttpService
         .saveForm(
           this.formDataService.formData.requestNumber,
+          true,
           this.regForm.value
         )
-        .subscribe((response) => {
-          // Set the formData to the response, might be needed somewhere else
-          this.formDataService.formData = response;
-          this.confirmationPageService.requestNumber = response.requestNumber;
-          this.router.navigate(['confirmation-page']);
+        .subscribe({
+          next: (response) => {
+            // Set the formData to the response, might be needed somewhere else
+            this.formDataService.formData = response;
+            this.confirmationPageService.requestNumber = response.requestNumber;
+            this.confirmationPageService.isAdmin = false; // Render the default confirmation page
+            this.router.navigate(['confirmation-page']);
+          },
+          error: (error) => {
+            // Remove loading screen
+            this.setIsLoading(false);
+            // Notify user that something went wrong
+            alert('Something went wrong!');
+          },
         });
 
       // If the else statement executes, then the user probably didn't save their progress
@@ -55,7 +67,15 @@ export class SubmitPageComponent implements OnInit {
       this.apiHttpService.submitForm(this.regForm.value, true).subscribe({
         next: (response) => {
           this.confirmationPageService.requestNumber = response.requestNumber;
+          this.confirmationPageService.isAdmin = false; // Render the default confirmation page
           this.router.navigate(['confirmation-page']);
+        },
+        error: (error) => {
+          // Remove the loading screen
+          this.setIsLoading(false);
+          // Notify the user that an error occured
+          alert('Something went wrong!');
+          throw new Error(error.message);
         },
       });
     }
@@ -69,6 +89,7 @@ export class SubmitPageComponent implements OnInit {
       this.apiHttpService
         .saveForm(
           this.formDataService.formData.requestNumber,
+          false,
           this.regForm.value
         )
         .subscribe({
@@ -76,6 +97,7 @@ export class SubmitPageComponent implements OnInit {
             // Set the formData to the response, might be needed somewhere else
             this.formDataService.formData = response;
             this.confirmationPageService.requestNumber = response.requestNumber;
+            this.confirmationPageService.isAdmin = false;
 
             // Set the submitResponse so that the submit page renders
             this.router.navigate(['confirmation-page']);
@@ -91,6 +113,7 @@ export class SubmitPageComponent implements OnInit {
         .subscribe({
           next: (response) => {
             this.confirmationPageService.requestNumber = response.requestNumber;
+            this.confirmationPageService.isAdmin = false;
             this.router.navigate(['confirmation-page']);
           },
         });
