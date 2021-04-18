@@ -1,100 +1,328 @@
-<div fxLayout="row" fxLayoutAlign="center center" class="content">
-  <mat-card class="card">
-    <mat-card-title>
-      <h3>Service Request</h3>
-    </mat-card-title>
-    <mat-card-content>
-      <mat-form-field fxFlex="40%">
-        <mat-icon matPrefix>search</mat-icon>
-        <mat-label>Search</mat-label>
-        <input
-          matInput
-          (keyup)="applyFilter($event)"
-          placeholder="Ex. 251627"
-          #input
-        />
-      </mat-form-field>
+<form
+  id="regForm"
+  [formGroup]="adminForm"
+  class="container"
+>
+      <ng-template matStepLabel>Contractor</ng-template>
+      <div style="margin: 30px 0px">
+      <h1 style="margin-bottom: 15px">
+        Request Details
+      </h1>
 
-      <table mat-table [dataSource]="dataSource">
-        <!-- requestNumber Column -->
-        <ng-container matColumnDef="requestNumber">
-          <th mat-header-cell *matHeaderCellDef>Request Number</th>
-          <td mat-cell *matCellDef="let element">
+      <h6> Request Number: <span style="color: red">{{requestNumber}}</span></h6>
+      <h6> Request Type: <span style="color: red;">Employee</span></h6>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h4>
             <button
-              mat-flat-button
-              (click)="viewDetails(element.requestNumber)"
-            >
-              {{ element.requestNumber }}
-            </button>
-          </td>
-        </ng-container>
-
-        <!-- requestStatus Column -->
-        <ng-container matColumnDef="requestStatus">
-          <th mat-header-cell *matHeaderCellDef>Request Status</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.requestStatus }}
-          </td>
-        </ng-container>       
-
-        <!-- firstName Column -->
-        <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef>First Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
-        </ng-container>
-
-        <!-- lastName Column -->
-        <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef>Last Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
-        </ng-container>
-
-        <!-- Review button: disabled if requestStatus is not in draft or submitted_for_review mode-->
-        <ng-container matColumnDef="request-review">
-          <th mat-header-cell *matHeaderCellDef>Request-Review</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              mat-flat-button
+              class="btnSub"
+              mat-raised-button
               color="primary"
-              (click)="review(element.requestNumber)"
-              [disabled]="
-                !(
-                  element?.requestStatus == 'Draft' ||
-                  element?.requestStatus == 'Submitted for Admin Review'
-                )
-              "
             >
-              Review
+              Personal
             </button>
-          </td>
-        </ng-container>
+          </h4>
 
-        <!-- adove_event_history button  -->
-        <ng-container matColumnDef="above-event-history">
-          <th mat-header-cell *matHeaderCellDef>Adobe Process History</th>
-          <td mat-cell *matCellDef="let element">
+          <div>
+            <h6>First Name</h6>
+            <div class="sub-group">
+              <p>
+                {{ adminForm.value.personalInformation.firstName || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Middle Initial</h6>
+            <div class="sub-group">
+              <p>
+                {{ adminForm.value.personalInformation.middleInitial || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Last Name</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.personalInformation.lastName || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Email Address</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.personalInformation.emailAddress || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Phone Number</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.personalInformation.phoneNumber || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Employee Number</h6>
+            <div class="subgroup">
+              <p class="font-weight-light">
+                {{ adminForm.value.personalInformation.employeeNumber || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Address Information -->
+        <div class="col">
+          <h4>
             <button
-              mat-flat-button
+              class="btnSub"
+              mat-raised-button
               color="primary"
-              (click)= "adobeEventHistory(element.requestNumber)"
             >
-              Adobe History
+              Address
             </button>
-          </td>
-        </ng-container>        
+          </h4>
 
+          <div>
+            <h6>Street</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.addressInformation.address || "N/A" }}
+              </p>
+            </div>
+          </div>
 
+          <div>
+            <h6>City</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.addressInformation.city || "N/A" }}
+              </p>
+            </div>
+          </div>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <div>
+            <h6>State</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.addressInformation.state || "N/A" }}
+              </p>
+            </div>
+          </div>
 
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="6">
-            No data matching the filter "{{ input.value }}"
-          </td>
-        </tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
-</div>
+          <div>
+            <h6>Zip Code</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.addressInformation.zipCode || "N/A" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Access Information -->
+
+        <div class="col">
+          <h4>
+            <button
+              class="btnSub"
+              mat-raised-button
+              color="primary"
+            >
+              Access
+            </button>
+          </h4>
+
+          <div>
+            <h6>Access Options:</h6>
+            <div class="smallerText" *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
+              <input type="checkbox" disabled checked>
+              <label>IBM</label>
+            </div>
+
+            <div class="smallerText" *ngIf="adminForm.value.accessInformation.unixLogonId != null">
+              <input type="checkbox" disabled checked>
+              <label>Unix Environment</label>
+            </div>
+
+            <div class="smallerText" *ngIf="adminForm.value.accessInformation.billingAccountNumber != null">
+              <input type="checkbox" disabled checked>
+              <label>SecurID Remote</label>
+            </div>
+          </div>
+
+          <!-- IBM info -->
+          <!-- <div *ngIf="regForm.value.accessInformation.renderIBMForm"> -->
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
+            <h6>IBM Info</h6>
+            <div class="subgroup">
+              <p>
+                Logon ID:
+              </p>
+              <p>
+                {{ adminForm.value.accessInformation.ibmLogonId || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
+            <h6>2-Digit Major Group Code</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.majorGroupCode || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
+            <h6>2-Digit LSO Group Code</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.lsoGroupCode || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
+            <h6>Security Authorization</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.securityAuthorization || "N/A" }}
+              </p>
+            </div>
+          </div>
+          <!-- </div> -->
+
+          <!-- Unix info -->
+          <!-- <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess === true> " -->
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
+            <h6>Login ID</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.unixLogonId || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
+            <h6>Application</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.application || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
+            <h6>Access Group</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.accessGroup || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
+            <h6>Account Number</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.accountNumber || "N/A" }}
+              </p>
+            </div>
+          </div>
+          <!-- </div> -->
+
+          <!-- SecurID Access info -->
+          <!-- <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess === true> " -->
+          <div *ngIf="adminForm.value.accessInformation.billingAccountNumber != null">
+            <h6>Billing Account Number</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.billingAccountNumber || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="adminForm.value.accessInformation.billingAccountNumber != null">
+            <h6>Access Type</h6>
+            <div class="subgroup">
+              <p>
+                {{ adminForm.value.accessInformation.accessType || "N/A" }}
+              </p>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+
+        <!-- Additional Information -->
+
+        <div class="col">
+          <h4>
+            <button
+              class="btnSub"
+              mat-raised-button
+              color="primary"
+            >
+              Additional
+            </button>
+          </h4>
+
+          <!-- Application requested info -->
+          <div>
+            <h6>Applications Requested</h6>
+            <div class="subgroup">
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.internetApplication">
+                <input type="checkbox" disabled checked>
+                <label>Internet Access</label>
+              </div>
+
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.exchangeEmail">
+                <input type="checkbox" disabled checked>
+                <label>Email Account</label>
+              </div>
+
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.emailEncryption">
+                <input type="checkbox" disabled checked>
+                <label>Email Encryption</label>
+              </div>
+
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.laCountyGovAccess">
+                <input type="checkbox" disabled checked>
+                <label>LA County Gov Access</label>
+              </div>
+
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.tokenlessAuthentication">
+                <input type="checkbox" disabled checked>
+                <label>Tokenless Authentication</label>
+              </div>
+
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.lacMobileWifiAccess">
+                <input type="checkbox" disabled checked>
+                <label>LACMobile</label>
+              </div>
+
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.cherwellSms">
+                <input type="checkbox" disabled checked>
+                <label>Cherwell Sms</label>
+              </div>
+
+              <div class="smallerText" *ngIf="adminForm.value.additionalInformation.windowsRightsMgmt">
+                <input type="checkbox" disabled checked>
+                <label>Window Rights Management</label>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>

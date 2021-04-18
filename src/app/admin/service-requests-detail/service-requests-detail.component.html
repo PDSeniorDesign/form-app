@@ -280,8 +280,13 @@
             </div>
           </div>
         </div>
-      </div>
       <!-- Access Information -->
+      <div class="col">
+        <h4>
+          <button style="margin-bottom: 5px" class="btnSub" mat-raised-button color="primary">
+            Access
+          </button>
+        </h4>
       <div>
         <h6>Access Options:</h6>
         <div class="smallerText" *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
@@ -299,15 +304,14 @@
           <label>SecurID Remote</label>
         </div>
       </div>
-
       <!-- IBM info -->
       <!-- <div *ngIf="regForm.value.accessInformation.renderIBMForm"> -->
       <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
         <h6>IBM Info</h6>
         <div class="subgroup">
-          <p>
+          <h6>
             Logon ID:
-          </p>
+          </h6>
           <p>
             {{ adminForm.value.accessInformation.ibmLogonId || "N/A" }}
           </p>
@@ -400,6 +404,8 @@
           </p>
         </div>
       </div>
+    </div>
+
       <!-- </div> -->
       <!-- Additional Information -->
       <div class="col">
@@ -446,7 +452,7 @@
               <input type="checkbox" disabled checked>
               <label>LACMobile</label>
             </div>
-      
+
             <div class="smallerText" *ngIf="adminForm.value.additionalInformation.cherwellSms">
               <input type="checkbox" disabled checked>
               <label>Cherwell Sms</label>
@@ -460,6 +466,8 @@
         </div>
 
         </div>
+      </div>
+
 
 
       </form>

@@ -1,100 +1,139 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  ModuleWithComponentFactories,
+  ViewChild,
+} from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
-import { FormDataService } from 'src/app/core/services/form-data.service';
-
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatStepper } from '@angular/material/stepper';
 @Component({
-  selector: 'app-service-requests',
-  templateUrl: './service-requests.component.html',
-  styleUrls: ['./service-requests.component.css'],
+  selector: 'app-service-employee-requests-detail',
+  templateUrl: './service-employee-requests-detail.component.html',
+  styleUrls: ['./service-employee-requests-detail.component.css'],
 })
-export class ServiceRequestsComponent implements OnInit {
-  //save each request into array for display
-  @Input() personData: Array<any> = [];
+export class ServiceEmployeeRequestsDetailComponent implements OnInit {
+  adminForm: FormGroup;
+  requestNumber: any;
 
-  //display columns
-  displayedColumns: string[] = [
-    'requestNumber',
-    'requestStatus',
-    'firstName',
-    'lastName',
-    // 'view',
-    'request-review',
-    'above-event-history'
-  ];
-  dataSource: any;
-
-  constructor(
-    private adminService: AdminService,
-    private router: Router,
-    private formDataService: FormDataService
-  ) {}
+  constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.adminService.display().subscribe((res) => {
-      console.log(res);
-      this.personData = res;
-      this.dataSource = new MatTableDataSource(this.personData);
-    });
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  //view details on button click
-  viewDetails(id: any): void {
-    this.adminService.searchById(id).subscribe((res) => {
-      //debugging
-      console.log(res);
-
-      //save res to adminFormdata to transfer between components
-      this.adminService.adminFormData = res;
-      this.formDataService.formData = res;
-      console.log(this.adminService.adminFormData.requestNumber);
-
-      //go to service request details page
-      if (this.formDataService.formData.employee == false) {
-         this.router.navigate(['/admin/service-contractor-request-detail', this.formDataService.formData.requestNumber]);
-       }
-       //go to employee form , if true
-       else if (this.formDataService.formData.employee == true) {
-         this.router.navigate(['/admin/service-employee-request-detail', this.formDataService.formData.requestNumber])
-
-       }
-    });
-  }
-
-  review(requestNumber: any): void {
-    this.adminService.searchById(requestNumber).subscribe((res) => {
-      console.log(res);
-
-      this.formDataService.formData = res;
-
-      //if not employee(false) -- go to contractor side
-
-      if (this.formDataService.formData.employee == false) {
-        this.router.navigate([
-          '/admin/review-contractor',
-          this.formDataService.formData.requestNumber,
-        ]);
-      }
-      //go to employee form , if true
-      else if (this.formDataService.formData.employee == true) {
-        this.router.navigate([
-          '/admin/review-employee',
-          this.formDataService.formData.requestNumber,
-        ]);
-      }
-    });
-  }
-
-  adobeEventHistory(requestNumber: any): void {
-    this.adminService.searchById(requestNumber).subscribe((res) => {
-      this.formDataService.formData = res;
-      this.router.navigate(['/admin/adobe-event-history', this.formDataService.formData.requestNumber]);
+    this.requestNumber = this.adminService.adminFormData.requestNumber;
+    this.adminForm = new FormGroup({
+      personalInformation: new FormGroup({
+        lastName: new FormControl(this.adminService.adminFormData.lastName, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        firstName: new FormControl(this.adminService.adminFormData.firstName, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        middleInitial: new FormControl(
+          this.adminService.adminFormData.middleInitial,
+          Validators.pattern('[a-z A-Z]*')
+        ),
+        emailAddress: new FormControl(
+          this.adminService.adminFormData.employeeEmailAddress,
+          [Validators.required, Validators.email]
+        ),
+        phoneNumber: new FormControl(
+          this.adminService.adminFormData.businessPhoneNumber,
+          [Validators.required, Validators.pattern('[0-9]{10}')]
+        ),
+        employeeNumber: new FormControl(
+          this.adminService.adminFormData.employeeNumber,
+          [Validators.required]
+        ),
+      }),
+      addressInformation: new FormGroup({
+        address: new FormControl(
+          this.adminService.adminFormData.businessStreetAddress,
+          Validators.required
+        ),
+        city: new FormControl(this.adminService.adminFormData.businessCity, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        state: new FormControl(this.adminService.adminFormData.businessState, [
+          Validators.required,
+          Validators.pattern('[a-z A-Z]*'),
+        ]),
+        zipCode: new FormControl(this.adminService.adminFormData.businessZip, [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(7),
+          Validators.pattern('[0-9]*'),
+        ]),
+      }),
+      accessInformation: new FormGroup({
+        // IBM Data Center Access
+        renderIBMForm: new FormControl(),
+        ibmLogonId: new FormControl(this.adminService.adminFormData.ibmLogOnId),
+        majorGroupCode: new FormControl(
+          this.adminService.adminFormData.majorGroupCode
+        ),
+        lsoGroupCode: new FormControl(
+          this.adminService.adminFormData.lsoGroupCode
+        ),
+        securityAuthorization: new FormControl(
+          this.adminService.adminFormData.securityAuthorization
+        ),
+        // Unix Environment Access
+        renderUnixEnvAccess: new FormControl(),
+        unixLogonId: new FormControl(
+          this.adminService.adminFormData.unixLogOnId
+        ),
+        application: new FormControl(
+          this.adminService.adminFormData.unixApplication
+        ),
+        accessGroup: new FormControl(
+          this.adminService.adminFormData.unixAccessGroup
+        ),
+        accountNumber: new FormControl(
+          this.adminService.adminFormData.unixAccountNumber
+        ),
+        // SecurID Remote Access
+        renderSecurIdAccess: new FormControl(),
+        billingAccountNumber: new FormControl(
+          this.adminService.adminFormData.billingAccountNumber
+        ),
+        accessType: new FormControl(null), // Not yet implemented on backend
+      }),
+      additionalInformation: new FormGroup({
+        internetApplication: new FormControl(
+          this.adminService.adminFormData.internetApplication
+        ),
+        exchangeEmail: new FormControl(
+          this.adminService.adminFormData.exchangeEmail
+        ),
+        emailEncryption: new FormControl(
+          this.adminService.adminFormData.emailEncryption
+        ),
+        laCountyGovAccess: new FormControl(
+          this.adminService.adminFormData.laCountyGovAccess
+        ),
+        tokenlessAuthentication: new FormControl(
+          this.adminService.adminFormData.tokenlessAuthentication
+        ),
+        lacMobileWifiAccess: new FormControl(
+          this.adminService.adminFormData.lacMobileWifiAccess
+        ),
+        cherwellSms: new FormControl(
+          this.adminService.adminFormData.cherwellSms
+        ),
+        windowsRightsMgmt: new FormControl(
+          this.adminService.adminFormData.windowsRightsMgmt
+        ),
+      }),
     });
   }
 }
