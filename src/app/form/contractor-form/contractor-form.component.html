@@ -6,15 +6,15 @@
 >
   <mat-horizontal-stepper #stepper linear>
     <!---------------------------------------------------------------------------------------------------------------------->
-    <!----------------------- PERSONAL INFORMATION STEP -------------------->
+    <!----------------------- CONTRACTOR BASIC INFORMATION STEP -------------------->
     <!---------------------------------------------------------------------------------------------------------------------->
     <mat-step
-      formGroupName="contractorInformation"
-      [stepControl]="formContractor.get('contractorInformation')"
+      formGroupName="contractorBasicInformation"
+      [stepControl]="formContractor.get('contractorBasicInformation')"
     >
-      <ng-template matStepLabel>Contractor</ng-template>
+      <ng-template matStepLabel>Contractor Basic</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
-        Contractor Information
+        Contractor Basic Information
       </h2>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
@@ -96,6 +96,46 @@
           >
         </mat-form-field>
       </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="mat-input-width">
+          <mat-label>Phone number</mat-label>
+          <input
+            id="phoneNumberInput"
+            type="phone"
+            matInput
+            formControlName="phoneNumber"
+            required
+            pattern="[0-9]{10}"
+            [errorStateMatcher]="errorStateMatcher"
+          />
+          <mat-error
+            >Company phone number is required and must be 10 digit</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
+      </div>
+
+      <!--<app-contractor-information [regForm]="formContractor"></app-contractor-information>-->
+    </mat-step>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- CONTRACTOR ADDRESS INFORMATION STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <mat-step
+      formGroupName="contractorAddressInformation"
+      [stepControl]="formContractor.get('contractorAddressInformation')"
+    >
+      <ng-template matStepLabel>Contractor Address</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Contractor Address Information
+      </h2>
+
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Company Street Address</mat-label>
@@ -162,43 +202,25 @@
           >
         </mat-form-field>
       </div>
-      <div>
-        <mat-form-field appearance="outline" class="mat-input-width">
-          <mat-label>Phone number</mat-label>
-          <input
-            id="phoneNumberInput"
-            type="phone"
-            matInput
-            formControlName="phoneNumber"
-            required
-            pattern="[0-9]{10}"
-            [errorStateMatcher]="errorStateMatcher"
-          />
-          <mat-error
-            >Company phone number is required and must be 10 digit</mat-error
-          >
-        </mat-form-field>
-      </div>
+
       <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
         <button mat-raised-button matStepperNext color="primary" class="ml-2">
           Next
         </button>
       </div>
-
-      <!--<app-contractor-information [regForm]="formContractor"></app-contractor-information>-->
     </mat-step>
 
     <!---------------------------------------------------------------------------------------------------------------------->
-    <!----------------------- COUNTY INFORMATION STEP -------------------->
+    <!----------------------- COUNTY BASIC INFORMATION STEP -------------------->
     <!---------------------------------------------------------------------------------------------------------------------->
     <mat-step
-      formGroupName="countyInformation"
-      [stepControl]="formContractor.get('countyInformation')"
+      formGroupName="countyBasicInformation"
+      [stepControl]="formContractor.get('countyBasicInformation')"
     >
-      <ng-template matStepLabel>County</ng-template>
+      <ng-template matStepLabel>County Basic</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
-        County Information
+        County Basic Information
       </h2>
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
@@ -298,6 +320,27 @@
           <mat-error>Department number is required and digits only</mat-error>
         </mat-form-field>
       </div>
+      <div class="button-container">
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
+      </div>
+      <!-- <app-county-information [regForm]="formContractor"></app-county-information> -->
+    </mat-step>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- COUNTY ADDRESS INFORMATION STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <mat-step
+      formGroupName="countyAddressInformation"
+      [stepControl]="formContractor.get('countyAddressInformation')"
+    >
+      <ng-template matStepLabel>County Address</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        County Address Information
+      </h2>
+
       <div>
         <mat-form-field appearance="outline" class="mat-input-width">
           <mat-label>Business Street Address</mat-label>
@@ -347,13 +390,115 @@
           >
         </mat-form-field>
       </div>
+
       <div class="button-container">
         <button mat-raised-button matStepperPrevious>Previous</button>
         <button mat-raised-button matStepperNext color="primary" class="ml-2">
           Next
         </button>
       </div>
-      <!-- <app-county-information [regForm]="formContractor"></app-county-information> -->
+    </mat-step>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    <!----------------------- APPLICATIONS REQUESTED STEP -------------------->
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <mat-step
+      formGroupName="applicationsRequested"
+      [stepControl]="formContractor.get('applicationsRequested')"
+    >
+      <ng-template matStepLabel>Applications</ng-template>
+      <h2 class="mat-display-1" style="margin-bottom: 32px">
+        Applications Requested
+      </h2>
+
+      <div>
+        <br />
+        <h5>Select the following Options:</h5>
+      </div>
+
+      <!-- First Row -->
+      <div class="flex-container">
+        <!-- For some reason need to also apply to parent in order for this style to work, access-option-button -->
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="internetAccess"
+            class="access-option-button"
+            [checked]="internetAccess"
+            (change)="onButtonChange3($event, 'Internet Access')"
+            >Internet Access
+          </mat-button-toggle>
+        </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="emailAccount"
+            class="access-option-button"
+            [checked]="emailAccount"
+            (change)="onButtonChange3($event, 'Email Account')"
+            >Email Account</mat-button-toggle
+          >
+        </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="emailEncryption"
+            class="access-option-button"
+            [checked]="emailEncryption"
+            (change)="onButtonChange3($event, 'Email Encryption')"
+            >Email Encryption</mat-button-toggle
+          >
+        </div>
+      </div>
+
+      <!-- Second row -->
+      <div class="flex-container">
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="tokenlessAuthentication"
+            class="access-option-button"
+            [checked]="tokenlessAuthentication"
+            (change)="onButtonChange3($event, 'Tokenless Authentication')"
+            >Tokenless Authentication</mat-button-toggle
+          >
+        </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="lacMobileWifi"
+            class="access-option-button"
+            [checked]="lacMobileWifi"
+            (change)="onButtonChange3($event, 'LACMobile Wifi')"
+            >LACMobile Wifi</mat-button-toggle
+          >
+        </div>
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="cherwellSMS"
+            class="access-option-button"
+            [checked]="cherwellSMS"
+            (change)="onButtonChange3($event, 'Cherwell SMS')"
+            >Cherwell SMS</mat-button-toggle
+          >
+        </div>
+      </div>
+
+      <!-- Third Row -->
+      <div class="flex-container">
+        <div class="flex-column access-option-button">
+          <mat-button-toggle
+            id="windowRightsManagement"
+            class="access-option-button"
+            [checked]="windowRightsManagement"
+            (change)="onButtonChange3($event, 'Window Rights Management')"
+            >Window Rights Management</mat-button-toggle
+          >
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button mat-raised-button matStepperPrevious>Previous</button>
+        <button mat-raised-button matStepperNext color="primary" class="ml-2">
+          Next
+        </button>
+      </div>
     </mat-step>
 
     <!---------------------------------------------------------------------------------------------------------------------->
@@ -510,18 +655,17 @@
     </mat-step>
 
     <!---------------------------------------------------------------------------------------------------------------------->
-    <!----------------------- ADDITIONAL ACCESS STEP -------------------->
+    <!----------------------- DATE CENTER STEP -------------------->
     <!---------------------------------------------------------------------------------------------------------------------->
     <mat-step
       formGroupName="additionalAccessInformation"
       [stepControl]="formContractor.get('additionalAccessInformation')"
     >
-      <ng-template matStepLabel>Additional Access</ng-template>
+      <ng-template matStepLabel>Data Center Access</ng-template>
       <h2 class="mat-display-1" style="margin-bottom: 32px">
-        Additional Access Options:
+        Access Options:
       </h2>
       <div>
-
         <div class="row">
           <!-- Access choices -->
 
@@ -534,8 +678,13 @@
               (change)="onButtonChange2($event, 'IBM Access')"
               >IBM Access Information
             </mat-button-toggle>
-            <br>
-            <div class="ibmForm" *ngIf="formContractor.value.additionalAccessInformation.ibmChecked">
+            <br />
+            <div
+              class="ibmForm"
+              *ngIf="
+                formContractor.value.additionalAccessInformation.ibmChecked
+              "
+            >
               <div>
                 <!-- TODO: Add a heading here -->
                 <mat-form-field appearance="outline" class="mat-input-width">
@@ -597,8 +746,13 @@
               (change)="onButtonChange2($event, 'Unix Access')"
               >Unix Environment Access</mat-button-toggle
             >
-            <br>
-            <div class="unix-access-form" *ngIf="formContractor.value.additionalAccessInformation.unixChecked">
+            <br />
+            <div
+              class="unix-access-form"
+              *ngIf="
+                formContractor.value.additionalAccessInformation.unixChecked
+              "
+            >
               <!-- TODO: Needs the Type of Request section -->
               <div>
                 <mat-form-field appearance="outline" class="mat-input-width">
@@ -652,7 +806,7 @@
           </div>
 
           <!-- SecurId button -->
-          <div class="access-option-button col-sm-12 col-md-4" >
+          <div class="access-option-button col-sm-12 col-md-4">
             <mat-button-toggle
               id="securidChecked"
               class="access-option-button"
@@ -660,8 +814,13 @@
               (change)="onButtonChange2($event, 'SecurID Access')"
               >SecurID Remote Access</mat-button-toggle
             >
-            <br>
-            <div class="secur-id-access-form" *ngIf="formContractor.value.additionalAccessInformation.securidChecked">
+            <br />
+            <div
+              class="secur-id-access-form"
+              *ngIf="
+                formContractor.value.additionalAccessInformation.securidChecked
+              "
+            >
               <div>
                 <mat-form-field appearance="outline" class="mat-input-width">
                   <mat-label>Billing Account Number</mat-label>
@@ -700,7 +859,6 @@
             Next
           </button>
         </div>
-        
       </div>
     </mat-step>
 
@@ -716,17 +874,18 @@
           on the heading to go back and make changes. Click Submit once done!
         </p>
 
-        <!-- Contractor Information -->
+        <!-- Start of First Row -->
         <div class="row">
+          <!-- Contractor Basic Information -->
           <div class="col">
-            <h4 (click)="move(0)">Contractor Info</h4>
+            <h4 (click)="move(0)">Contractor Basic Information</h4>
 
             <div>
               <h6>First Name</h6>
               <div class="sub-group">
                 <p>
                   {{
-                    formContractor.value.contractorInformation.firstName ||
+                    formContractor.value.contractorBasicInformation.firstName ||
                       "N/A"
                   }}
                 </p>
@@ -738,8 +897,8 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.contractorInformation.middleInitial ||
-                      "N/A"
+                    formContractor.value.contractorBasicInformation
+                      .middleInitial || "N/A"
                   }}
                 </p>
               </div>
@@ -750,7 +909,8 @@
               <div class="sub-group">
                 <p>
                   {{
-                    formContractor.value.contractorInformation.lastName || "N/A"
+                    formContractor.value.contractorBasicInformation.lastName ||
+                      "N/A"
                   }}
                 </p>
               </div>
@@ -761,8 +921,8 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.contractorInformation.companyName ||
-                      "N/A"
+                    formContractor.value.contractorBasicInformation
+                      .companyName || "N/A"
                   }}
                 </p>
               </div>
@@ -773,51 +933,8 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.contractorInformation
+                    formContractor.value.contractorBasicInformation
                       .companyEmailAddress || "N/A"
-                  }}
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h6>Company Street Address</h6>
-              <div class="subgroup">
-                <p>
-                  {{
-                    formContractor.value.contractorInformation
-                      .companyStreetAddress || "N/A"
-                  }}
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h6>City</h6>
-              <div class="subgroup">
-                <p>
-                  {{ formContractor.value.contractorInformation.city || "N/A" }}
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h6>State</h6>
-              <div class="subgroup">
-                <p>
-                  {{
-                    formContractor.value.contractorInformation.state || "N/A"
-                  }}
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h6>Zipcode</h6>
-              <div class="subgroup">
-                <p>
-                  {{
-                    formContractor.value.contractorInformation.zipCode || "N/A"
                   }}
                 </p>
               </div>
@@ -828,7 +945,60 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.contractorInformation.phoneNumber ||
+                    formContractor.value.contractorBasicInformation
+                      .phoneNumber || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contractor Address Information-->
+          <div class="col">
+            <h4 (click)="move(1)">Contractor Address</h4>
+
+            <div>
+              <h6>Company Street Address</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorAddressInformation
+                      .companyStreetAddress || "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>City</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorAddressInformation.city ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>State</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorAddressInformation.state ||
+                      "N/A"
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h6>Zipcode</h6>
+              <div class="subgroup">
+                <p>
+                  {{
+                    formContractor.value.contractorAddressInformation.zipCode ||
                       "N/A"
                   }}
                 </p>
@@ -836,16 +1006,16 @@
             </div>
           </div>
 
-          <!-- County Information -->
+          <!-- County Basic Information -->
           <div class="col">
-            <h4 (click)="move(1)">County Info</h4>
+            <h4 (click)="move(2)">County Basic Information</h4>
 
             <div>
               <h6>Contract Work Order No</h6>
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation
+                    formContractor.value.countyBasicInformation
                       .contractWorkOrderNumber || "N/A"
                   }}
                 </p>
@@ -857,7 +1027,7 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation
+                    formContractor.value.countyBasicInformation
                       .contractExpirationDate || "N/A"
                   }}
                 </p>
@@ -869,8 +1039,8 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation.countyEmailAddress ||
-                      "N/A"
+                    formContractor.value.countyBasicInformation
+                      .countyEmailAddress || "N/A"
                   }}
                 </p>
               </div>
@@ -881,7 +1051,8 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation.phoneNumber || "N/A"
+                    formContractor.value.countyBasicInformation.phoneNumber ||
+                      "N/A"
                   }}
                 </p>
               </div>
@@ -892,8 +1063,8 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation.departmentName ||
-                      "N/A"
+                    formContractor.value.countyBasicInformation
+                      .departmentName || "N/A"
                   }}
                 </p>
               </div>
@@ -904,19 +1075,24 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation.departmentNumber ||
-                      "N/A"
+                    formContractor.value.countyBasicInformation
+                      .departmentNumber || "N/A"
                   }}
                 </p>
               </div>
             </div>
+          </div>
+
+          <!-- County Address Information -->
+          <div class="col">
+            <h4 (click)="move(3)">County Address</h4>
 
             <div>
               <h6>Business Street Address</h6>
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation
+                    formContractor.value.countyAddressInformation
                       .businessStreetAddress || "N/A"
                   }}
                 </p>
@@ -928,7 +1104,8 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation.businessCity || "N/A"
+                    formContractor.value.countyAddressInformation
+                      .businessCity || "N/A"
                   }}
                 </p>
               </div>
@@ -939,17 +1116,118 @@
               <div class="subgroup">
                 <p>
                   {{
-                    formContractor.value.countyInformation.businessZipCode ||
-                      "N/A"
+                    formContractor.value.countyAddressInformation
+                      .businessZipCode || "N/A"
                   }}
                 </p>
               </div>
             </div>
           </div>
+        </div>
+        <!-- End of first row -->
 
-          <!-- Policy Rules Information -->
+        <br />
+        <br />
+
+        <!-- Start of second row -->
+        <div class="row">
+          <!-- Applications Requested -->
           <div class="col">
-            <h4 (click)="move(2)">Policy Rules</h4>
+            <h4 (click)="move(4)">Applications Requested</h4>
+
+            <div>
+              <h6>Selected Policies</h6>
+              <div class="subgroup">
+                <div
+                  *ngIf="
+                    formContractor.value.applicationsRequested.internetAccess
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Internet Access</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.applicationsRequested.emailAccount
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Email Account</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.applicationsRequested.emailEncryption
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Email Encryption</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.applicationsRequested
+                      .tokenlessAuthentication
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Tokenless Authentication</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.applicationsRequested.lacMobileWifi
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>LACMobile Wifi</label>
+                </div>
+
+                <div
+                  *ngIf="formContractor.value.applicationsRequested.cherwellSMS"
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Cherwell SMS</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.applicationsRequested
+                      .windowRightsManagement
+                  "
+                >
+                  <input type="checkbox" disabled checked />
+                  <label>Window Rights Management</label>
+                </div>
+
+                <div
+                  *ngIf="
+                    formContractor.value.applicationsRequested.internetAccess ==
+                      false &&
+                    formContractor.value.applicationsRequested.emailAccount ==
+                      false &&
+                    formContractor.value.applicationsRequested
+                      .emailEncryption == false &&
+                    formContractor.value.applicationsRequested
+                      .tokenlessAuthentication == false &&
+                    formContractor.value.applicationsRequested.lacMobileWifi ==
+                      false &&
+                    formContractor.value.applicationsRequested.cherwellSMS ==
+                      false &&
+                    formContractor.value.applicationsRequested
+                      .windowRightsManagement == false
+                  "
+                >
+                  <p>No applications selected</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Internet Access Information -->
+          <div class="col">
+            <h4 (click)="move(5)">Internet Access Information</h4>
 
             <div>
               <h6>Selected Policies</h6>
@@ -1088,15 +1366,14 @@
 
           <!-- Additional Access Information-->
           <div class="col">
-            <h4 (click)="move(3)">Additional Access</h4>
+            <h4 (click)="move(6)">Additional Access Information</h4>
 
             <div>
               <h6>Selected Access</h6>
               <div class="subgroup">
                 <div
                   *ngIf="
-                    formContractor.value.additionalAccessInformation
-                    .ibmChecked
+                    formContractor.value.additionalAccessInformation.ibmChecked
                   "
                 >
                   <input type="checkbox" disabled checked />
@@ -1105,8 +1382,7 @@
 
                 <div
                   *ngIf="
-                    formContractor.value.additionalAccessInformation
-                    .unixChecked
+                    formContractor.value.additionalAccessInformation.unixChecked
                   "
                 >
                   <input type="checkbox" disabled checked />
@@ -1116,7 +1392,7 @@
                 <div
                   *ngIf="
                     formContractor.value.additionalAccessInformation
-                    .securidChecked
+                      .securidChecked
                   "
                 >
                   <input type="checkbox" disabled checked />
@@ -1125,50 +1401,101 @@
               </div>
             </div>
 
-            <br>
+            <br />
 
-            <div *ngIf="formContractor.value.additionalAccessInformation.ibmChecked == true">
+            <div
+              *ngIf="
+                formContractor.value.additionalAccessInformation.ibmChecked ==
+                true
+              "
+            >
               <h6>IBM Access</h6>
               <div class="subgroup">
-                <p>Logon ID:&nbsp;{{formContractor.value.additionalAccessInformation.ibmLogonId || "N/A"}}
+                <p>
+                  Logon ID:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .ibmLogonId || "N/A"
+                  }}
                 </p>
-                <p>Major Group Code:&nbsp;{{formContractor.value.additionalAccessInformation.majorGroupCode || "N/A"}}
+                <p>
+                  Major Group Code:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .majorGroupCode || "N/A"
+                  }}
                 </p>
-                <p>LSO Group Code:&nbsp;{{formContractor.value.additionalAccessInformation.lsoGroupCode || "N/A"}}
+                <p>
+                  LSO Group Code:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .lsoGroupCode || "N/A"
+                  }}
                 </p>
-                <p>Security Authorization:&nbsp;{{formContractor.value.additionalAccessInformation.securityAuthorization || "N/A"}}
+                <p>
+                  Security Authorization:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .securityAuthorization || "N/A"
+                  }}
                 </p>
               </div>
             </div>
 
-            <div *ngIf="formContractor.value.additionalAccessInformation.unixChecked">
+            <div
+              *ngIf="
+                formContractor.value.additionalAccessInformation.unixChecked
+              "
+            >
               <h6>Unix Access</h6>
               <div class="subgroup">
-                <p>Login ID:&nbsp;{{formContractor.value.additionalAccessInformation.unixLogonId || "N/A"}}</p>
-                <p>Applicaiton:&nbsp;{{formContractor.value.additionalAccessInformation.application || "N/A"}}
+                <p>
+                  Login ID:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .unixLogonId || "N/A"
+                  }}
                 </p>
-                <p>Access Group:&nbsp;{{formContractor.value.additionalAccessInformation.accessGroup || "N/A"}}
+                <p>
+                  Applicaiton:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .application || "N/A"
+                  }}
                 </p>
-                <p>Account Number:&nbsp;{{formContractor.value.additionalAccessInformation.accountNumber || "N/A"}}
+                <p>
+                  Access Group:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .accessGroup || "N/A"
+                  }}
+                </p>
+                <p>
+                  Account Number:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .accountNumber || "N/A"
+                  }}
                 </p>
               </div>
             </div>
 
-            <div *ngIf="formContractor.value.additionalAccessInformation.securidChecked">
+            <div
+              *ngIf="
+                formContractor.value.additionalAccessInformation.securidChecked
+              "
+            >
               <h6>SecurID Access</h6>
               <div class="subgroup">
-                <p>Billing Account Number:&nbsp;{{formContractor.value.additionalAccessInformation.billingAccountNumber || "N/A"}}
+                <p>
+                  Billing Account Number:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .billingAccountNumber || "N/A"
+                  }}
                 </p>
-                <p>Access Type:&nbsp;{{formContractor.value.additionalAccessInformation.accessType || "N/A"}}
+                <p>
+                  Access Type:&nbsp;{{
+                    formContractor.value.additionalAccessInformation
+                      .accessType || "N/A"
+                  }}
                 </p>
               </div>
             </div>
-
           </div>
-
-
-
         </div>
+        <!-- End of second row -->
 
         <div class="text-center">
           <button class="btnContact" (click)="onClick()">Submit</button>

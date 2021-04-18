@@ -40,6 +40,15 @@ export class ContractorFormComponent implements OnInit {
   errorStateMatcher = new InstantErrorStateMatcher();
   hasSubmitted: boolean;
 
+  //Applicaitons Requested Boolean Variables
+  internetAccess: boolean;
+  emailAccount: boolean;
+  emailEncryption: boolean;
+  tokenlessAuthentication: boolean;
+  lacMobileWifi: boolean;
+  cherwellSMS: boolean;
+  windowRightsManagement: boolean;
+
   //Internet Policy Boolean Variables
   applyDefaultCountyWidePolicy: boolean;
   departmentPolicyRule0: boolean;
@@ -63,7 +72,7 @@ export class ContractorFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formContractor = new FormGroup({
-      contractorInformation: new FormGroup({
+      contractorBasicInformation: new FormGroup({
         
         lastName: new FormControl(null,
           [Validators.required, Validators.pattern("[a-z A-Z]*")]
@@ -80,6 +89,11 @@ export class ContractorFormComponent implements OnInit {
         companyEmailAddress: new FormControl(null,
           [Validators.required, Validators.email]
           ),
+        phoneNumber: new FormControl(null,
+          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]
+          ),
+      }),
+      contractorAddressInformation: new FormGroup({
         companyStreetAddress: new FormControl(null,
           Validators.required
           ),
@@ -92,11 +106,8 @@ export class ContractorFormComponent implements OnInit {
         zipCode: new FormControl(null,
           [Validators.required, Validators.minLength(5), Validators.maxLength(7), Validators.pattern("[0-9]*")]
           ),
-        phoneNumber: new FormControl(null,
-          [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]
-          ),
       }),
-      countyInformation: new FormGroup({
+      countyBasicInformation: new FormGroup({
         contractWorkOrderNumber: new FormControl(null,
           Validators.required
           ),
@@ -115,6 +126,8 @@ export class ContractorFormComponent implements OnInit {
         departmentNumber: new FormControl(null,
           Validators.pattern("[0-9]*")
           ),
+      }),
+      countyAddressInformation: new FormGroup({
         businessStreetAddress: new FormControl(null),
         businessCity: new FormControl(null,
           Validators.pattern("[a-z A-Z]*")
@@ -122,6 +135,15 @@ export class ContractorFormComponent implements OnInit {
         businessZipCode: new FormControl(null,
           [Validators.minLength(5), Validators.maxLength(7), Validators.pattern("[0-9]*")]
           ),
+      }),
+      applicationsRequested: new FormGroup({
+        internetAccess: new FormControl(false),
+        emailAccount: new FormControl(false),
+        emailEncryption: new FormControl(false),
+        tokenlessAuthentication: new FormControl(false),
+        lacMobileWifi: new FormControl(false),
+        cherwellSMS: new FormControl(false),
+        windowRightsManagement: new FormControl(false),
       }),
       policyRulesInformation: new FormGroup ({
         applyDefaultCountyWidePolicy: new FormControl(false),
@@ -158,6 +180,8 @@ export class ContractorFormComponent implements OnInit {
     this.hasSubmitted = false;
   }
 
+
+  /*Changes the boolean variables of Policy Rules when user selects or deselects the buttons*/
   onButtonChange(event: MatButtonToggleChange, nameOfOption: string): void {
     // Change to variable to represent the status of the button, whether clicked or not
     this[event.source.id] = event.source.checked;
@@ -177,6 +201,7 @@ export class ContractorFormComponent implements OnInit {
     // }
   }
 
+  /*Changes the boolean variables of Additional Access when user selects or deselects the buttons*/
   onButtonChange2(event: MatButtonToggleChange, nameOfOption: string): void {
     // Change to variable to represent the status of the button, whether clicked or not
     this[event.source.id] = event.source.checked;
@@ -187,12 +212,23 @@ export class ContractorFormComponent implements OnInit {
       .setValue(this[event.source.id]);
   }
 
+  /*Changes the boolean variables of Applications Requested when user selects or deselects the buttons*/
+  onButtonChange3(event: MatButtonToggleChange, nameOfOption: string): void {
+    // Change to variable to represent the status of the button, whether clicked or not
+    this[event.source.id] = event.source.checked;
 
+    // Update form group
+    this.formContractor
+      .get(['applicationsRequested', event.source.id])
+      .setValue(this[event.source.id]);
+  }
 
   move(index:number) {
     this.stepper.selectedIndex = index;
   }
 
+  /*This function will submit the form and it's content
+  */
   onClick(): void {
     console.log(JSON.stringify(this.formContractor.value)); // debugging
 
