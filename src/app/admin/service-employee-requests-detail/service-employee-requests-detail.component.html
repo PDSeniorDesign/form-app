@@ -2,7 +2,9 @@
   id="regForm"
   [formGroup]="adminForm"
   class="container"
+
 >
+
       <ng-template matStepLabel>Contractor</ng-template>
       <div style="margin: 30px 0px">
       <h1 style="margin-bottom: 15px">
@@ -69,16 +71,6 @@
               </p>
             </div>
           </div>
-
-          <div>
-            <h6>Employee Number</h6>
-            <div class="subgroup">
-              <p class="font-weight-light">
-                {{ adminForm.value.personalInformation.employeeNumber || "N/A" }}
-              </p>
-            </div>
-          </div>
-
         </div>
 
         <!-- Address Information -->
@@ -130,6 +122,37 @@
           </div>
         </div>
 
+        <!-- Employee Information -->
+        <div class="col">
+          <h4>
+            <button
+              class="btnSub"
+              mat-raised-button
+              color="primary"
+            >
+              Employee
+            </button>
+          </h4>
+
+          <div>
+            <h6>Employee Number</h6>
+            <div class="subgroup">
+              <p class="font-weight-light">
+                {{ adminForm.value.employeeInformation.employeeNumber || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Hosted ID</h6>
+            <div class="subgroup">
+              <p class="font-weight-light">
+                {{ adminForm.value.employeeInformation.hostedId || "N/A" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
         <!-- Access Information -->
 
         <div class="col">
@@ -166,9 +189,9 @@
           <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
             <h6>IBM Info</h6>
             <div class="subgroup">
-              <p>
+              <h6>
                 Logon ID:
-              </p>
+              </h6>
               <p>
                 {{ adminForm.value.accessInformation.ibmLogonId || "N/A" }}
               </p>
