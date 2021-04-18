@@ -30,13 +30,13 @@ export class ServiceRequestsDetailComponent implements OnInit {
                 ),
               companyStreetAddress: new FormControl(this.adminService.adminFormData.companyStreetAddress,
                 ),
-              city: new FormControl(this.adminService.adminFormData.city,
+              city: new FormControl(this.adminService.adminFormData.companyCity,
                 ),
-              state: new FormControl(this.adminService.adminFormData.state,
+              state: new FormControl(this.adminService.adminFormData.companyState,
                 ),
-              zipCode: new FormControl(this.adminService.adminFormData.zipCode,
+              zipCode: new FormControl(this.adminService.adminFormData.companyZip,
                 ),
-              phoneNumber: new FormControl(this.adminService.adminFormData.phoneNumber,
+              phoneNumber: new FormControl(this.adminService.adminFormData.companyPhoneNumber,
                 ),
             }),
             countyInformation: new FormGroup({
@@ -46,7 +46,7 @@ export class ServiceRequestsDetailComponent implements OnInit {
                 ),
               countyEmailAddress: new FormControl(this.adminService.adminFormData.countyEmailAddress,
                 ),
-              phoneNumber: new FormControl(this.adminService.adminFormData.phoneNumber
+              phoneNumber: new FormControl(this.adminService.adminFormData.businessPhoneNumber
                 ),
               departmentName: new FormControl(this.adminService.adminFormData.departmentName
                 ),
@@ -55,7 +55,7 @@ export class ServiceRequestsDetailComponent implements OnInit {
               businessStreetAddress: new FormControl(this.adminService.adminFormData.businessStreetAddress),
               businessCity: new FormControl(this.adminService.adminFormData.businessCity
                 ),
-              businessZipCode: new FormControl(this.adminService.adminFormData.businessZipCode
+              businessZipCode: new FormControl(this.adminService.adminFormData.businessZip
                 ),
             }),
             policyRulesInformation: new FormGroup ({
