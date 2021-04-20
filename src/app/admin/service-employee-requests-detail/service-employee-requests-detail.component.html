@@ -2,7 +2,9 @@
   id="regForm"
   [formGroup]="adminForm"
   class="container"
+
 >
+
       <ng-template matStepLabel>Contractor</ng-template>
       <div style="margin: 30px 0px">
       <h1 style="margin-bottom: 15px">
@@ -69,16 +71,6 @@
               </p>
             </div>
           </div>
-
-          <div>
-            <h6>Employee Number</h6>
-            <div class="subgroup">
-              <p class="font-weight-light">
-                {{ adminForm.value.personalInformation.employeeNumber || "N/A" }}
-              </p>
-            </div>
-          </div>
-
         </div>
 
         <!-- Address Information -->
@@ -130,6 +122,37 @@
           </div>
         </div>
 
+        <!-- Employee Information -->
+        <div class="col">
+          <h4>
+            <button
+              class="btnSub"
+              mat-raised-button
+              color="primary"
+            >
+              Employee
+            </button>
+          </h4>
+
+          <div>
+            <h6>Employee Number</h6>
+            <div class="subgroup">
+              <p class="font-weight-light">
+                {{ adminForm.value.personalInformation.employeeNumber || "N/A" }}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h6>Hosted ID</h6>
+            <div class="subgroup">
+              <p class="font-weight-light">
+                {{ adminForm.value.personalInformation.hostedId || "N/A" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
         <!-- Access Information -->
 
         <div class="col">
@@ -145,17 +168,17 @@
 
           <div>
             <h6>Access Options:</h6>
-            <div class="smallerText" *ngIf="adminForm.value.accessInformation.renderIBMForm">
+            <div class="smallerText" *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
               <input type="checkbox" disabled checked>
               <label>IBM</label>
             </div>
 
-            <div class="smallerText" *ngIf="adminForm.value.accessInformation.renderUnixEnvAccess">
+            <div class="smallerText" *ngIf="adminForm.value.accessInformation.unixLogonId != null">
               <input type="checkbox" disabled checked>
               <label>Unix Environment</label>
             </div>
 
-            <div class="smallerText" *ngIf="adminForm.value.accessInformation.renderSecurIdAccess">
+            <div class="smallerText" *ngIf="adminForm.value.accessInformation.billingAccountNumber != null">
               <input type="checkbox" disabled checked>
               <label>SecurID Remote</label>
             </div>
@@ -163,19 +186,19 @@
 
           <!-- IBM info -->
           <!-- <div *ngIf="regForm.value.accessInformation.renderIBMForm"> -->
-          <div *ngIf="adminForm.value.accessInformation.renderIBMForm">
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
             <h6>IBM Info</h6>
             <div class="subgroup">
-              <p>
+              <h6>
                 Logon ID:
-              </p>
+              </h6>
               <p>
                 {{ adminForm.value.accessInformation.ibmLogonId || "N/A" }}
               </p>
             </div>
           </div>
 
-          <div *ngIf="adminForm.value.accessInformation.renderIBMForm">
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
             <h6>2-Digit Major Group Code</h6>
             <div class="subgroup">
               <p>
@@ -184,7 +207,7 @@
             </div>
           </div>
 
-          <div *ngIf="adminForm.value.accessInformation.renderIBMForm">
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
             <h6>2-Digit LSO Group Code</h6>
             <div class="subgroup">
               <p>
@@ -193,7 +216,7 @@
             </div>
           </div>
 
-          <div *ngIf="adminForm.value.accessInformation.renderIBMForm">
+          <div *ngIf="adminForm.value.accessInformation.ibmLogonId != null">
             <h6>Security Authorization</h6>
             <div class="subgroup">
               <p>
@@ -205,7 +228,7 @@
 
           <!-- Unix info -->
           <!-- <div *ngIf="regForm.value.accessInformation.renderUnixEnvAccess === true> " -->
-          <div *ngIf="adminForm.value.accessInformation.renderUnixEnvAccess">
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
             <h6>Login ID</h6>
             <div class="subgroup">
               <p>
@@ -214,7 +237,7 @@
             </div>
           </div>
 
-          <div *ngIf="adminForm.value.accessInformation.renderUnixEnvAccess">
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
             <h6>Application</h6>
             <div class="subgroup">
               <p>
@@ -223,7 +246,7 @@
             </div>
           </div>
 
-          <div *ngIf="adminForm.value.accessInformation.renderUnixEnvAccess">
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
             <h6>Access Group</h6>
             <div class="subgroup">
               <p>
@@ -232,7 +255,7 @@
             </div>
           </div>
 
-          <div *ngIf="adminForm.value.accessInformation.renderUnixEnvAccess">
+          <div *ngIf="adminForm.value.accessInformation.unixLogonId != null">
             <h6>Account Number</h6>
             <div class="subgroup">
               <p>
@@ -244,7 +267,7 @@
 
           <!-- SecurID Access info -->
           <!-- <div *ngIf="regForm.value.accessInformation.renderSecurIdAccess === true> " -->
-          <div *ngIf="adminForm.value.accessInformation.renderSecurIdAccess">
+          <div *ngIf="adminForm.value.accessInformation.billingAccountNumber != null">
             <h6>Billing Account Number</h6>
             <div class="subgroup">
               <p>
@@ -253,7 +276,7 @@
             </div>
           </div>
 
-          <div *ngIf="adminForm.value.accessInformation.renderSecurIdAccess">
+          <div *ngIf="adminForm.value.accessInformation.billingAccountNumber != null">
             <h6>Access Type</h6>
             <div class="subgroup">
               <p>
